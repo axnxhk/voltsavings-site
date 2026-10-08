@@ -13,7 +13,20 @@
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
+<style>
+  /* Netlify drawer aur feedback widget ko zabardasti hide karne ke liye */
+  [data-netlify-drawer],
+  #netlify-badge,
+  .netlify-badge,
+  iframe[src*="netlify"],
+  div[class*="netlify"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
 
+  /* Aapka baki purana CSS code yahan se aage rahega... */
   <style>
     @media print {
       body * {
