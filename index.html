@@ -14,17 +14,21 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
   </style>
 <style>
-  /* Netlify drawer aur feedback widget ko zabardasti hide karne ke liye */
-  [data-netlify-drawer],
-  #netlify-badge,
-  .netlify-badge,
-  iframe[src*="netlify"],
-  div[class*="netlify"] {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
-  }
+ /* Netlify feedback badge & drawer auto-hide */
+netlify-drawer,
+[data-netlify-drawer],
+#netlify-badge,
+.netlify-badge,
+iframe[title*="Netlify"],
+iframe[src*="netlify"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+}
 
   /* Aapka baki purana CSS code yahan se aage rahega... */
   <style>
@@ -869,6 +873,18 @@
       <span>Calculations based on user-entered tariffs. Real-world values may vary.</span>
     </div>
   </div>
-
+<script>
+  // Netlify drawer ko load hote hi page se delete karna
+  const removeNetlifyWidget = () => {
+    const badges = document.querySelectorAll('netlify-drawer, [data-netlify-drawer], #netlify-badge, iframe[src*="netlify"], iframe[title*="Netlify"]');
+    badges.forEach(el => el.remove());
+  };
+  
+  // Page load aur run time par continuously check karega
+  window.addEventListener('DOMContentLoaded', removeNetlifyWidget);
+  window.addEventListener('load', removeNetlifyWidget);
+  const observer = new MutationObserver(removeNetlifyWidget);
+  observer.observe(document.documentElement, { childList: true, subtree: true });
+</script>
 </body>
 </html>
