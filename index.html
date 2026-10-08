@@ -189,19 +189,14 @@
         </div>
 
         <!-- Travel Days Selector -->
-        <div class="mb-6">
-          <div class="flex justify-between items-center mb-2">
-            <label class="text-xs font-black uppercase tracking-wider text-black">Monthly Usage Days</label>
-            <span class="text-xs text-gray-500 font-semibold">Commuting days per month</span>
-          </div>
-          <div class="grid grid-cols-4 gap-2 font-black">
-            <button class="day-btn py-2.5 text-xs rounded-xl border-2 border-gray-200 bg-white text-gray-700 hover:border-emerald-600 transition" data-days="20">20 Days<br><span class="text-[10px] font-normal text-gray-500">5 Days/wk</span></button>
-            <button class="day-btn py-2.5 text-xs rounded-xl border-2 border-gray-200 bg-white text-gray-700 hover:border-emerald-600 transition" data-days="24">24 Days<br><span class="text-[10px] font-normal text-gray-500">6 Days/wk</span></button>
-            <button class="day-btn active-days py-2.5 text-xs rounded-xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 transition" data-days="26">26 Days<br><span class="text-[10px] font-normal text-emerald-700">Standard</span></button>
-            <button class="day-btn py-2.5 text-xs rounded-xl border-2 border-gray-200 bg-white text-gray-700 hover:border-emerald-600 transition" data-days="30">30 Days<br><span class="text-[10px] font-normal text-gray-500">Everyday</span></button>
+       <div class="mb-6">
+          <label class="block text-xs font-black uppercase tracking-wider text-black mb-1">Monthly Usage Days</label>
+          <div class="relative">
+            <input type="number" id="customDays" value="26" min="1" max="31" class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
+            <span class="absolute right-4 top-2.5 text-xs text-gray-500 font-bold">Days / Month (1 - 31)</span>
           </div>
         </div>
-
+        
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <!-- Petrol Vehicle Block -->
           <div class="bg-amber-50/70 border-2 border-amber-200 p-5 rounded-2xl relative">
@@ -610,22 +605,7 @@
 
     const unitMetric = document.getElementById('unitMetric');
     const unitImperial = document.getElementById('unitImperial');
-    const dayBtns = document.querySelectorAll('.day-btn');
-    const resetDefaultsBtn = document.getElementById('resetDefaultsBtn');
-
-    dayBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        dayBtns.forEach(b => {
-          b.classList.remove('active-days', 'border-emerald-600', 'bg-emerald-50', 'text-emerald-800');
-          b.classList.add('border-gray-200', 'bg-white', 'text-gray-700');
-        });
-        btn.classList.add('active-days', 'border-emerald-600', 'bg-emerald-50', 'text-emerald-800');
-        btn.classList.remove('border-gray-200', 'bg-white', 'text-gray-700');
-        selectedDays = parseInt(btn.dataset.days);
-        calculate();
-      });
-    });
-
+   const customDays = document.getElementById('customDays');
     unitMetric.addEventListener('click', () => {
       if (!isMetric) {
         isMetric = true;
@@ -684,7 +664,7 @@
       calculate();
     });
 
-    [dailyDistance, fuelEfficiency, fuelPrice, fuelMaint, evEfficiency, electricityRate, evMaint].forEach(el => {
+    [dailyDistance, customDays, fuelEfficiency, fuelPrice, fuelMaint, evEfficiency, electricityRate, evMaint].forEach(el => {
       el.addEventListener('input', calculate);
     });
 
@@ -694,6 +674,7 @@
 
     function calculate() {
       const dist = parseFloat(dailyDistance.value) || 0;
+      selectedDays = parseFloat(customDays.value) || 26;
       distanceDisplay.innerText = dist + " " + (isMetric ? 'km' : 'mi');
 
       const fEff = parseFloat(fuelEfficiency.value) || 1;
