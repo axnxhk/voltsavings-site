@@ -223,7 +223,13 @@
               <div class="relative">
                 <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
                 <input type="number" id="fuelPrice" value="280" step="0.1" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
-              </div>
+              </div><div class="mt-4">
+  <label class="block text-xs text-black font-black mb-1">Monthly Maintenance / Oil Change</label>
+  <div class="relative">
+    <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
+    <input type="number" id="fuelMaint" value="1500" step="50" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
+  </div>
+</div>
             </div>
           </div>
 
@@ -248,7 +254,13 @@
                 <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
                 <input type="number" id="electricityRate" value="40" step="0.1" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
               </div>
-            </div>
+            </div><div class="mt-4">
+  <label class="block text-xs text-black font-black mb-1">Monthly Maintenance (Routine Service)</label>
+  <div class="relative">
+    <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
+    <input type="number" id="evMaint" value="200" step="50" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
+  </div>
+</div>
           </div>
         </div>
 
@@ -592,6 +604,8 @@
     const fuelPrice = document.getElementById('fuelPrice');
     const evEfficiency = document.getElementById('evEfficiency');
     const electricityRate = document.getElementById('electricityRate');
+    const fuelMaint = document.getElementById('fuelMaint');
+    const evMaint = document.getElementById('evMaint');
     const currencySelect = document.getElementById('currencySelect');
 
     const unitMetric = document.getElementById('unitMetric');
@@ -670,7 +684,7 @@
       calculate();
     });
 
-    [dailyDistance, fuelEfficiency, fuelPrice, evEfficiency, electricityRate].forEach(el => {
+    [dailyDistance, fuelEfficiency, fuelPrice, fuelMaint, evEfficiency, electricityRate, evMaint].forEach(el => {
       el.addEventListener('input', calculate);
     });
 
@@ -687,13 +701,16 @@
       const eEff = parseFloat(evEfficiency.value) || 1;
       const eRate = parseFloat(electricityRate.value) || 0;
 
+      const fMaintCost = parseFloat(fuelMaint.value) || 0;
+      const eMaintCost = parseFloat(evMaint.value) || 0;
+
       const monthlyDistance = dist * selectedDays;
       const fuelPerUnit = monthlyDistance / fEff;
-      const fuelCostMonthly = fuelPerUnit * fPrice;
+      const fuelCostMonthly = (fuelPerUnit * fPrice) + fMaintCost;
       const fuelCostYearly = fuelCostMonthly * 12;
 
       const evKwhMonthly = monthlyDistance / eEff;
-      const evCostMonthly = evKwhMonthly * eRate;
+      const evCostMonthly = (evKwhMonthly * eRate) + eMaintCost;
       const evCostYearly = evCostMonthly * 12;
 
       const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
