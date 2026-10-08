@@ -55,6 +55,82 @@ iframe[src*="netlify"] {
         margin: 15mm;
       }
     }
+  /* Print / PDF Mode Styling */
+@media print {
+  nav, 
+  header, 
+  footer, 
+  button, 
+  .no-print, 
+  #btnPdf, 
+  #btnSave,
+  .day-btn {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  main, .calculator-container, #reportSection {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 15px !important;
+  }
+
+  input {
+    border: none !important;
+    background: transparent !important;
+    font-weight: bold !important;
+  }
+}
+  /* Print / PDF Mode Styling - Sab buttons aur faltu cheezein auto-hide */
+@media print {
+  /* Navbar, Footer, Headers */
+  nav, 
+  header, 
+  footer, 
+  aside,
+  
+  /* Har qisam ke buttons, links jo button jaise hain, aur inputs jo click hote hain */
+  button,
+  input[type="button"],
+  input[type="submit"],
+  a[onclick],
+  [onclick*="print"],
+  
+  /* Day selection aur extra UI elements */
+  .day-btn,
+  [class*="btn"],
+  [class*="button"] {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  /* Screen ko clean white document banana */
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Main card aur comparison clean print ho */
+  main, 
+  .container, 
+  [class*="card"] {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
   </style>
 
 </head>
