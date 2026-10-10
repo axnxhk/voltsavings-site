@@ -156,7 +156,7 @@ iframe[src*="netlify"] {
   }
 } 
  </style>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body class="bg-white text-black min-h-screen flex flex-col antialiased selection:bg-emerald-600 selection:text-white">
 
@@ -878,7 +878,18 @@ iframe[src*="netlify"] {
       document.getElementById('rptEv5Y').innerText = document.getElementById('tblEv5Y').innerText;
       document.getElementById('rptSave5Y').innerText = document.getElementById('tblSave5Y').innerText;
 
-      window.print();
+      const reportElement = document.getElementById('printableReport') || document.querySelector('[id*="rpt"]')?.closest('div') || document.body;
+
+    const opt = {
+        margin:       10,
+        filename:     'VoltSavings_Report.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(reportElement).save();
+
     }
 
   </script>
@@ -985,6 +996,29 @@ iframe[src*="netlify"] {
   window.addEventListener('load', removeNetlifyWidget);
   const observer = new MutationObserver(removeNetlifyWidget);
   observer.observe(document.documentElement, { childList: true, subtree: true });
+</script>
+<script>
+function downloadPDFReport() {
+  // Yahan aapke result / report wale container ka ID aayega
+  // Agar aapke container ka koi aur ID hai (maslan 'results' ya 'reportSection'), to wahan change kar lein
+  const element = document.getElementById('reportSection') || document.querySelector('.results-container') || document.querySelector('#results');
+
+  if (!element) {
+    alert("Report nahi mili! Pehle calculation karein.");
+    return;
+  }
+
+  const opt = {
+    margin:       10,
+    filename:     'VoltSavings_Report.pdf',
+    image:        { type: 'jpeg', quality: 0.98 },
+    html2canvas:  { scale: 2 },
+    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  // Direct download shuru
+  html2pdf().set(opt).from(element).save();
+}
 </script>
 </body>
 </html>
