@@ -30,12 +30,14 @@
     }
 
     #printableReport {
-      display: none;
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      width: 750px;
       background: #ffffff;
       color: #000000;
-      padding: 30px;
+      padding: 24px;
       box-sizing: border-box;
-      width: 800px;
     }
   </style>
 </head>
@@ -866,24 +868,21 @@
       document.getElementById('rptEv5Y').innerText = document.getElementById('tblEv5Y').innerText;
       document.getElementById('rptSave5Y').innerText = document.getElementById('tblSave5Y').innerText;
 
+           
       const report = document.getElementById('printableReport');
-      
-      // Temporarily screen par visible karein
-      report.style.display = 'block';
 
       const opt = {
-        margin:       [8, 8, 8, 8],
+        margin:       [10, 10, 10, 10],
         filename:     'VoltSavings_Report.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
+        html2canvas:  { scale: 2, scrollX: 0, scrollY: 0 },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
-      html2pdf().set(opt).from(report).save().then(() => {
-        report.style.display = 'none';
-      }).catch(() => {
-        report.style.display = 'none';
-      });
+      // 100ms delay taake text mukammal paint ho jaye
+      setTimeout(() => {
+        html2pdf().set(opt).from(report).save();
+      }, 100);
     }
   </script>
 </body>
