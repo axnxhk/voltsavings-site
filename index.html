@@ -14,6 +14,7 @@
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
 
+    /* Hide any external badges */
     netlify-drawer,
     [data-netlify-drawer],
     #netlify-badge,
@@ -24,25 +25,35 @@
       visibility: hidden !important;
       opacity: 0 !important;
       pointer-events: none !important;
-      position: absolute !important;
-      left: -9999px !important;
-      top: -9999px !important;
     }
 
-    #printableReport {
-      position: absolute;
-      left: -9999px;
-      top: 0;
-      width: 750px;
-      background: #ffffff;
-      color: #000000;
-      padding: 24px;
-      box-sizing: border-box;
+    @media print {
+      body * {
+        visibility: hidden !important;
+      }
+      #printableReport, #printableReport * {
+        visibility: visible !important;
+      }
+      #printableReport {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+        display: block !important;
+        background: #ffffff !important;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 10mm;
+      }
     }
   </style>
 </head>
 <body class="bg-white text-black min-h-screen flex flex-col antialiased selection:bg-emerald-600 selection:text-white">
 
+  <!-- Header -->
   <header class="border-b border-gray-100 bg-white sticky top-0 z-50 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -116,7 +127,7 @@
           <i class="fa-solid fa-circle-check text-emerald-600"></i> Metric (km) & Imperial (mi)
         </div>
         <div class="flex items-center gap-2">
-          <i class="fa-solid fa-circle-check text-emerald-600"></i> Global Currencies Supported
+          <i class="fa-solid fa-circle-check text-emerald-600"></i> Auto Currency Detection
         </div>
       </div>
     </div>
@@ -130,7 +141,7 @@
       <div class="flex items-center gap-3">
         <span class="text-xs font-black uppercase tracking-wider text-black">Country / Currency:</span>
         <select id="currencySelect" class="bg-white border-2 border-gray-200 text-xs font-bold rounded-xl px-3 py-2 text-black focus:outline-none focus:border-emerald-600 cursor-pointer">
-          <option value="PKR|Rs.|280|40" selected>🇵🇰 Pakistan (PKR - Rs.)</option>
+          <option value="PKR|Rs.|280|40">🇵🇰 Pakistan (PKR - Rs.)</option>
           <option value="USD|$|3.80|0.18">🇺🇸 United States (USD - $)</option>
           <option value="EUR|€|1.85|0.32">🇪🇺 Europe (EUR - €)</option>
           <option value="GBP|£|1.50|0.28">🇬🇧 United Kingdom (GBP - £)</option>
@@ -355,7 +366,7 @@
           <button id="copyBtn" class="flex-1 bg-black hover:bg-gray-800 text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer shadow-md">
             <i class="fa-regular fa-copy"></i> Copy My Calculation Summary
           </button>
-          <button onclick="printPDFReport()" class="bg-gray-100 hover:bg-gray-200 border-2 border-gray-200 text-black text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer">
+          <button id="pdfBtn" onclick="printPDFReport()" class="bg-gray-100 hover:bg-gray-200 border-2 border-gray-200 text-black text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer">
             <i class="fa-solid fa-print"></i> PDF Report
           </button>
         </div>
@@ -497,7 +508,7 @@
             <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
           </summary>
           <p class="text-xs text-gray-600 leading-relaxed mt-3 font-medium">
-            This tool computes direct fuel vs electric energy expenses and routine maintenance fees entered above. In reality, your savings with an EV are even higher because EVs have no engine oil, spark plugs, timing belts, or clutch assemblies.
+            This tool computes direct fuel vs electric energy expenses and routine maintenance entered above. In reality, your savings with an EV are even higher because EVs have no engine oil, spark plugs, timing belts, or clutch assemblies.
           </p>
         </details>
 
@@ -579,15 +590,15 @@
     </div>
   </footer>
 
-  <!-- Dedicated Clean 1-Page PDF Report (Pure Static Template) -->
-  <div id="printableReport">
+  <!-- Dedicated Clean 1-Page PDF Report (Renders in background modal on PDF click) -->
+  <div id="printableReport" style="display: none; width: 750px; background: #ffffff; color: #000000; padding: 24px; box-sizing: border-box; font-family: 'Plus Jakarta Sans', Arial, sans-serif;">
     <div style="border-bottom: 2px solid #059669; padding-bottom: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start;">
       <div>
         <h1 style="font-size: 24px; font-weight: 900; color: #000; margin: 0;">⚡ VoltSavings<span style="color: #059669;">.</span></h1>
         <p style="font-size: 12px; color: #4b5563; margin-top: 4px;">Electric Vehicle vs Internal Combustion Engine Cost Assessment</p>
       </div>
       <div style="text-align: right; font-size: 11px; color: #6b7280;">
-        <p style="margin: 0;"><strong>Date:</strong> <span id="rptDate"></span></p>
+        <p style="margin: 0;"><strong>Date:</strong> <span id="rptDate">-</span></p>
         <p style="margin: 2px 0 0 0;"><strong>Report Type:</strong> Financial Feasibility</p>
       </div>
     </div>
@@ -667,14 +678,6 @@
   </div>
 
   <script>
-    // Netlify drawer auto-cleanup
-    const removeNetlifyWidget = () => {
-      const badges = document.querySelectorAll('netlify-drawer, [data-netlify-drawer], #netlify-badge, iframe[src*="netlify"], iframe[title*="Netlify"]');
-      badges.forEach(el => el.remove());
-    };
-    window.addEventListener('DOMContentLoaded', removeNetlifyWidget);
-    window.addEventListener('load', removeNetlifyWidget);
-
     // Mobile Navigation Toggle
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -689,7 +692,7 @@
     let selectedDays = 26;
     let currentSymbol = "Rs.";
 
-    // Elements
+    // DOM Elements
     const dailyDistance = document.getElementById('dailyDistance');
     const distanceDisplay = document.getElementById('distanceDisplay');
     const distMin = document.getElementById('distMin');
@@ -706,65 +709,57 @@
     const unitImperial = document.getElementById('unitImperial');
     const customDays = document.getElementById('customDays');
 
-    // Units toggle
-    unitMetric.addEventListener('click', () => {
-      if (!isMetric) {
+    // Unit toggle handlers
+    function setUnit(metricMode) {
+      if (metricMode) {
         isMetric = true;
         unitMetric.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
         unitImperial.className = "px-3.5 py-1.5 rounded-lg text-gray-700 hover:text-black transition-all";
-        updateUnitsUI();
-        calculate();
-      }
-    });
-
-    unitImperial.addEventListener('click', () => {
-      if (isMetric) {
-        isMetric = false;
-        unitImperial.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
-        unitMetric.className = "px-3.5 py-1.5 rounded-lg text-gray-700 hover:text-black transition-all";
-        updateUnitsUI();
-        calculate();
-      }
-    });
-
-    function updateUnitsUI() {
-      if (isMetric) {
         distMin.innerText = "5 km/day";
         distMax.innerText = "250 km/day";
+        dailyDistance.max = "250";
         document.getElementById('lblFuelEfficiency').innerText = "Fuel Economy (km/L)";
         document.getElementById('lblFuelPrice').innerText = "Fuel Price (per Liter)";
         document.getElementById('lblEvEfficiency').innerText = "EV Efficiency (km/kWh)";
         fuelEfficiency.value = 40;
         evEfficiency.value = 30;
       } else {
+        isMetric = false;
+        unitImperial.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
+        unitMetric.className = "px-3.5 py-1.5 rounded-lg text-gray-700 hover:text-black transition-all";
         distMin.innerText = "5 mi/day";
         distMax.innerText = "150 mi/day";
+        dailyDistance.max = "150";
         document.getElementById('lblFuelEfficiency').innerText = "Fuel Economy (MPG)";
         document.getElementById('lblFuelPrice').innerText = "Fuel Price (per Gallon)";
         document.getElementById('lblEvEfficiency').innerText = "EV Efficiency (mi/kWh)";
         fuelEfficiency.value = 30;
         evEfficiency.value = 3.5;
       }
+      calculate();
     }
 
-    currencySelect.addEventListener('change', (e) => {
-      const parts = e.target.value.split('|');
+    unitMetric.addEventListener('click', () => setUnit(true));
+    unitImperial.addEventListener('click', () => setUnit(false));
+
+    function applyCurrencyChange() {
+      const parts = currencySelect.value.split('|');
       currentSymbol = parts[1];
       fuelPrice.value = parts[2];
       electricityRate.value = parts[3];
       document.querySelectorAll('.currency-symbol').forEach(el => el.innerText = currentSymbol);
       calculate();
-    });
+    }
+
+    currencySelect.addEventListener('change', applyCurrencyChange);
 
     resetDefaultsBtn.addEventListener('click', () => {
       dailyDistance.value = 35;
       fuelEfficiency.value = isMetric ? 40 : 30;
-      fuelPrice.value = 280;
       evEfficiency.value = isMetric ? 30 : 3.5;
-      electricityRate.value = 40;
       fuelMaint.value = 1500;
       evMaint.value = 200;
-      calculate();
+      applyCurrencyChange();
     });
 
     [dailyDistance, customDays, fuelEfficiency, fuelPrice, fuelMaint, evEfficiency, electricityRate, evMaint].forEach(el => {
@@ -789,12 +784,10 @@
       const eMaintCost = parseFloat(evMaint.value) || 0;
 
       const monthlyDistance = dist * selectedDays;
-      const fuelPerUnit = monthlyDistance / fEff;
-      const fuelCostMonthly = (fuelPerUnit * fPrice) + fMaintCost;
+      const fuelCostMonthly = ((monthlyDistance / fEff) * fPrice) + fMaintCost;
       const fuelCostYearly = fuelCostMonthly * 12;
 
-      const evKwhMonthly = monthlyDistance / eEff;
-      const evCostMonthly = (evKwhMonthly * eRate) + eMaintCost;
+      const evCostMonthly = ((monthlyDistance / eEff) * eRate) + eMaintCost;
       const evCostYearly = evCostMonthly * 12;
 
       const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
@@ -827,20 +820,79 @@
     }
 
     document.getElementById('copyBtn').addEventListener('click', () => {
-      const text = "VoltSavings Report: I save estimated " + document.getElementById('annualSavingsText').innerText + " per year by switching to an Electric Vehicle! Calculate yours free at: https://voltsavings.com";
+      const text = "VoltSavings Report: I save estimated " + document.getElementById('annualSavingsText').innerText + " per year by switching to an Electric Vehicle! Calculate yours free at: " + window.location.href;
       navigator.clipboard.writeText(text).then(() => {
         alert("Summary copied to clipboard!");
       });
     });
 
-    // Pehli dafa page load par calculate chalana
-    calculate();
+    // Auto Country / Currency Detection Logic
+    function setCountryCurrency(code) {
+      code = (code || '').toUpperCase();
+      let matchedVal = null;
 
-    // Clean PDF Report Downloader
+      if (code === 'PK') matchedVal = 'PKR|Rs.|280|40';
+      else if (code === 'US') {
+        matchedVal = 'USD|$|3.80|0.18';
+        setUnit(false); // Auto Imperial for USA
+      }
+      else if (code === 'GB') matchedVal = 'GBP|£|1.50|0.28';
+      else if (code === 'IN') matchedVal = 'INR|₹|102|8';
+      else if (code === 'AE') matchedVal = 'AED|AED|3.15|0.30';
+      else if (code === 'CA') matchedVal = 'CAD|$|1.65|0.16';
+      else if (code === 'AU') matchedVal = 'AUD|$|1.95|0.25';
+      else if (['DE','FR','IT','ES','NL','BE','AT','IE','PT','GR','FI','SE','PL','NO','DK','CH'].includes(code)) {
+        matchedVal = 'EUR|€|1.85|0.32';
+      }
+
+      if (matchedVal) {
+        currencySelect.value = matchedVal;
+        applyCurrencyChange();
+      }
+    }
+
+    // 1. Instant Timezone-based Detection (0 milliseconds lag)
+    function autoDetectByTimezone() {
+      try {
+        const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        if (tz.includes('Karachi')) return 'PK';
+        if (tz.includes('Kolkata') || tz.includes('Calcutta')) return 'IN';
+        if (tz.includes('Dubai')) return 'AE';
+        if (tz.includes('London')) return 'GB';
+        if (tz.includes('Toronto') || tz.includes('Vancouver') || tz.includes('Montreal') || tz.includes('Edmonton')) return 'CA';
+        if (tz.startsWith('Australia/')) return 'AU';
+        if (tz.startsWith('America/')) return 'US';
+        if (tz.startsWith('Europe/')) return 'DE';
+      } catch(e) {}
+      return null;
+    }
+
+    const detectedLocal = autoDetectByTimezone();
+    if (detectedLocal) {
+      setCountryCurrency(detectedLocal);
+    } else {
+      calculate();
+    }
+
+    // 2. High-precision Network IP Fallback
+    fetch('https://api.country.is')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.country) {
+          setCountryCurrency(data.country);
+        }
+      })
+      .catch(() => {});
+
+    // Reliable PDF Report Generator (No Blank Page Bug)
     function printPDFReport() {
       calculate();
 
-      // Report ke text elements bharo
+      const btn = document.getElementById('pdfBtn');
+      const originalBtnText = btn.innerHTML;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
+
+      // 1. Fill data in PDF template
       document.getElementById('rptDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
       document.getElementById('rptAnnualSave').innerText = document.getElementById('annualSavingsText').innerText;
       document.getElementById('rptPctSave').innerText = document.getElementById('savingPercentage').innerText + " energy cost reduction compared to petrol";
@@ -868,21 +920,48 @@
       document.getElementById('rptEv5Y').innerText = document.getElementById('tblEv5Y').innerText;
       document.getElementById('rptSave5Y').innerText = document.getElementById('tblSave5Y').innerText;
 
-           
       const report = document.getElementById('printableReport');
 
+      // 2. Temporarily show overlay in valid viewport coordinates for html2canvas
+      report.style.display = 'block';
+      report.style.position = 'fixed';
+      report.style.top = '0';
+      report.style.left = '50%';
+      report.style.transform = 'translateX(-50%)';
+      report.style.zIndex = '99999';
+      report.style.boxShadow = '0 25px 50px -12px rgba(0,0,0,0.25)';
+
       const opt = {
-        margin:       [10, 10, 10, 10],
+        margin:       [8, 8, 8, 8],
         filename:     'VoltSavings_Report.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, scrollX: 0, scrollY: 0 },
+        html2canvas:  { scale: 2, useCORS: true, logging: false },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
-      // 100ms delay taake text mukammal paint ho jaye
+      // 3. Render and save cleanly
       setTimeout(() => {
-        html2pdf().set(opt).from(report).save();
-      }, 100);
+        html2pdf().set(opt).from(report).save().then(() => {
+          report.style.display = 'none';
+          report.style.position = '';
+          report.style.top = '';
+          report.style.left = '';
+          report.style.transform = '';
+          report.style.zIndex = '';
+          report.style.boxShadow = '';
+          btn.innerHTML = originalBtnText;
+        }).catch((err) => {
+          console.error(err);
+          report.style.display = 'none';
+          report.style.position = '';
+          report.style.top = '';
+          report.style.left = '';
+          report.style.transform = '';
+          report.style.zIndex = '';
+          report.style.boxShadow = '';
+          btn.innerHTML = originalBtnText;
+        });
+      }, 200);
     }
   </script>
 </body>
