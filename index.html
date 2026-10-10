@@ -14,7 +14,6 @@
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
 
-    /* Hide any external badges */
     netlify-drawer,
     [data-netlify-drawer],
     #netlify-badge,
@@ -39,14 +38,8 @@
         left: 0 !important;
         top: 0 !important;
         width: 100% !important;
-        margin: 0 !important;
-        padding: 20px !important;
         display: block !important;
         background: #ffffff !important;
-      }
-      @page {
-        size: A4 portrait;
-        margin: 10mm;
       }
     }
   </style>
@@ -361,7 +354,7 @@
           </div>
         </div>
 
-        <!-- Action / Export Buttons -->
+        <!-- Action Buttons -->
         <div class="flex gap-3">
           <button id="copyBtn" class="flex-1 bg-black hover:bg-gray-800 text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer shadow-md">
             <i class="fa-regular fa-copy"></i> Copy My Calculation Summary
@@ -590,95 +583,102 @@
     </div>
   </footer>
 
-  <!-- Dedicated Clean 1-Page PDF Report (Renders in background modal on PDF click) -->
-  <div id="printableReport" style="display: none; width: 750px; background: #ffffff; color: #000000; padding: 24px; box-sizing: border-box; font-family: 'Plus Jakarta Sans', Arial, sans-serif;">
-    <div style="border-bottom: 2px solid #059669; padding-bottom: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start;">
-      <div>
-        <h1 style="font-size: 24px; font-weight: 900; color: #000; margin: 0;">⚡ VoltSavings<span style="color: #059669;">.</span></h1>
-        <p style="font-size: 12px; color: #4b5563; margin-top: 4px;">Electric Vehicle vs Internal Combustion Engine Cost Assessment</p>
+  <!-- Dedicated PDF Rendering Overlay (Zero Transform, 100% Reliable Capture) -->
+  <div id="pdfCaptureOverlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 999999; overflow-y: auto;">
+    <div style="min-height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px;">
+      <div style="color: #ffffff; font-weight: 800; font-size: 14px; margin-bottom: 14px; letter-spacing: 0.5px;">
+        <i class="fa-solid fa-spinner fa-spin mr-2"></i> Generating VoltSavings PDF Report...
       </div>
-      <div style="text-align: right; font-size: 11px; color: #6b7280;">
-        <p style="margin: 0;"><strong>Date:</strong> <span id="rptDate">-</span></p>
-        <p style="margin: 2px 0 0 0;"><strong>Report Type:</strong> Financial Feasibility</p>
+      <div id="printableReport" style="width: 750px; background: #ffffff; color: #000000; padding: 30px; box-sizing: border-box; border-radius: 8px; font-family: 'Plus Jakarta Sans', Arial, sans-serif;">
+        <div style="border-bottom: 2px solid #059669; padding-bottom: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start;">
+          <div>
+            <h1 style="font-size: 24px; font-weight: 900; color: #000; margin: 0;">⚡ VoltSavings<span style="color: #059669;">.</span></h1>
+            <p style="font-size: 12px; color: #4b5563; margin-top: 4px;">Electric Vehicle vs Internal Combustion Engine Cost Assessment</p>
+          </div>
+          <div style="text-align: right; font-size: 11px; color: #6b7280;">
+            <p style="margin: 0;"><strong>Date:</strong> <span id="rptDate">-</span></p>
+            <p style="margin: 2px 0 0 0;"><strong>Report Type:</strong> Financial Feasibility</p>
+          </div>
+        </div>
+
+        <div style="background-color: #ecfdf5; border: 1.5px solid #a7f3d0; border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
+          <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #065f46; text-transform: uppercase;">Estimated Net Annual Financial Savings</span>
+          <div style="font-size: 36px; font-weight: 900; color: #059669; margin: 6px 0;" id="rptAnnualSave">Rs. 0</div>
+          <p style="font-size: 12px; color: #047857; margin: 0; font-weight: 600;" id="rptPctSave">85% energy cost reduction compared to petrol</p>
+        </div>
+
+        <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #111827; margin-bottom: 10px; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px;">1. Evaluation Parameters</h3>
+        <table style="width: 100%; font-size: 12px; margin-bottom: 24px; border-collapse: collapse;">
+          <tbody>
+            <tr style="border-bottom: 1px solid #f3f4f6;">
+              <td style="padding: 6px 0; color: #4b5563;">Daily Commute Distance:</td>
+              <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptDailyDist">-</td>
+              <td style="padding: 6px 0 6px 24px; color: #4b5563;">Commute Days / Month:</td>
+              <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptDays">-</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #f3f4f6;">
+              <td style="padding: 6px 0; color: #4b5563;">Petrol Mileage (Fuel Economy):</td>
+              <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptFuelEff">-</td>
+              <td style="padding: 6px 0 6px 24px; color: #4b5563;">EV Efficiency:</td>
+              <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptEvEff">-</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #f3f4f6;">
+              <td style="padding: 6px 0; color: #4b5563;">Petrol Price per Unit:</td>
+              <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptFuelPrice">-</td>
+              <td style="padding: 6px 0 6px 24px; color: #4b5563;">Electricity Rate per Unit:</td>
+              <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptPowerPrice">-</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #111827; margin-bottom: 10px; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px;">2. Comparative Running Costs</h3>
+        <table style="width: 100%; font-size: 12px; margin-bottom: 24px; border-collapse: collapse; text-align: left;">
+          <thead>
+            <tr style="background-color: #f9fafb; border-bottom: 1.5px solid #e5e7eb;">
+              <th style="padding: 8px 10px; font-weight: 800;">Timeline</th>
+              <th style="padding: 8px 10px; font-weight: 800; color: #b45309;">Petrol Vehicle</th>
+              <th style="padding: 8px 10px; font-weight: 800; color: #059669;">Electric Vehicle</th>
+              <th style="padding: 8px 10px; font-weight: 800; text-align: right; color: #059669;">Net Savings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #e5e7eb;">
+              <td style="padding: 8px 10px; font-weight: 700;">1 Month</td>
+              <td style="padding: 8px 10px;" id="rptFuel1M">-</td>
+              <td style="padding: 8px 10px;" id="rptEv1M">-</td>
+              <td style="padding: 8px 10px; text-align: right; font-weight: 800; color: #059669;" id="rptSave1M">-</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e5e7eb;">
+              <td style="padding: 8px 10px; font-weight: 700;">1 Year</td>
+              <td style="padding: 8px 10px;" id="rptFuel1Y">-</td>
+              <td style="padding: 8px 10px;" id="rptEv1Y">-</td>
+              <td style="padding: 8px 10px; text-align: right; font-weight: 800; color: #059669;" id="rptSave1Y">-</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #e5e7eb;">
+              <td style="padding: 8px 10px; font-weight: 700;">3 Years</td>
+              <td style="padding: 8px 10px;" id="rptFuel3Y">-</td>
+              <td style="padding: 8px 10px;" id="rptEv3Y">-</td>
+              <td style="padding: 8px 10px; text-align: right; font-weight: 800; color: #059669;" id="rptSave3Y">-</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px 10px; font-weight: 700;">5 Years</td>
+              <td style="padding: 8px 10px;" id="rptFuel5Y">-</td>
+              <td style="padding: 8px 10px;" id="rptEv5Y">-</td>
+              <td style="padding: 8px 10px; text-align: right; font-weight: 800; color: #059669;" id="rptSave5Y">-</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="border-top: 1px solid #e5e7eb; padding-top: 12px; font-size: 10px; color: #6b7280; display: flex; justify-content: space-between;">
+          <span>Report generated by VoltSavings Tool (voltsavings.com)</span>
+          <span>Tariff based feasibility analysis.</span>
+        </div>
       </div>
-    </div>
-
-    <div style="background-color: #ecfdf5; border: 1.5px solid #a7f3d0; border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center;">
-      <span style="font-size: 11px; font-weight: 800; letter-spacing: 1px; color: #065f46; text-transform: uppercase;">Estimated Net Annual Financial Savings</span>
-      <div style="font-size: 36px; font-weight: 900; color: #059669; margin: 6px 0;" id="rptAnnualSave">Rs. 0</div>
-      <p style="font-size: 12px; color: #047857; margin: 0; font-weight: 600;" id="rptPctSave">85% energy cost reduction compared to petrol</p>
-    </div>
-
-    <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #111827; margin-bottom: 10px; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px;">1. Evaluation Parameters</h3>
-    <table style="width: 100%; font-size: 12px; margin-bottom: 24px; border-collapse: collapse;">
-      <tbody>
-        <tr style="border-bottom: 1px solid #f3f4f6;">
-          <td style="padding: 6px 0; color: #4b5563;">Daily Commute Distance:</td>
-          <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptDailyDist">-</td>
-          <td style="padding: 6px 0 6px 24px; color: #4b5563;">Commute Days / Month:</td>
-          <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptDays">-</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #f3f4f6;">
-          <td style="padding: 6px 0; color: #4b5563;">Petrol Mileage (Fuel Economy):</td>
-          <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptFuelEff">-</td>
-          <td style="padding: 6px 0 6px 24px; color: #4b5563;">EV Efficiency:</td>
-          <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptEvEff">-</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #f3f4f6;">
-          <td style="padding: 6px 0; color: #4b5563;">Petrol Price per Unit:</td>
-          <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptFuelPrice">-</td>
-          <td style="padding: 6px 0 6px 24px; color: #4b5563;">Electricity Rate per Unit:</td>
-          <td style="padding: 6px 0; font-weight: 700; text-align: right;" id="rptPowerPrice">-</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h3 style="font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #111827; margin-bottom: 10px; border-bottom: 1px solid #e5e7eb; padding-bottom: 4px;">2. Comparative Running Costs</h3>
-    <table style="width: 100%; font-size: 12px; margin-bottom: 24px; border-collapse: collapse; text-align: left;">
-      <thead>
-        <tr style="background-color: #f9fafb; border-bottom: 1.5px solid #e5e7eb;">
-          <th style="padding: 8px 10px; font-weight: 800;">Timeline</th>
-          <th style="padding: 8px 10px; font-weight: 800; color: #b45309;">Petrol Vehicle</th>
-          <th style="padding: 8px 10px; font-weight: 800; color: #059669;">Electric Vehicle</th>
-          <th style="padding: 8px 10px; font-weight: 800; text-align: right; color: #059669;">Net Savings</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="border-bottom: 1px solid #e5e7eb;">
-          <td style="padding: 8px 10px; font-weight: 700;">1 Month</td>
-          <td style="padding: 8px 10px;" id="rptFuel1M">-</td>
-          <td style="padding: 8px 10px;" id="rptEv1M">-</td>
-          <td style="padding: 8px 10px; text-align: right; font-weight: 800; color: #059669;" id="rptSave1M">-</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #e5e7eb;">
-          <td style="padding: 8px 10px; font-weight: 700;">1 Year</td>
-          <td style="padding: 8px 10px;" id="rptFuel1Y">-</td>
-          <td style="padding: 8px 10px;" id="rptEv1Y">-</td>
-          <td style="padding: 8px 10px; text-align: right; font-weight: 800; color: #059669;" id="rptSave1Y">-</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #e5e7eb;">
-          <td style="padding: 8px 10px; font-weight: 700;">3 Years</td>
-          <td style="padding: 8px 10px;" id="rptFuel3Y">-</td>
-          <td style="padding: 8px 10px;" id="rptEv3Y">-</td>
-          <td style="padding: 8px 10px; text-align: right; font-weight: 800; color: #059669;" id="rptSave3Y">-</td>
-        </tr>
-        <tr>
-          <td style="padding: 8px 10px; font-weight: 700;">5 Years</td>
-          <td style="padding: 8px 10px;" id="rptFuel5Y">-</td>
-          <td style="padding: 8px 10px;" id="rptEv5Y">-</td>
-          <td style="padding: 8px 10px; text-align: right; font-weight: 800; color: #059669;" id="rptSave5Y">-</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div style="border-top: 1px solid #e5e7eb; padding-top: 12px; font-size: 10px; color: #6b7280; display: flex; justify-content: space-between;">
-      <span>Report generated by VoltSavings Tool (voltsavings.com)</span>
-      <span>Calculations based on user-entered tariffs. Real-world values may vary.</span>
     </div>
   </div>
 
   <script>
-    // Mobile Navigation Toggle
+    // Navigation Menu
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
     if (mobileBtn && mobileMenu) {
@@ -687,12 +687,12 @@
       });
     }
 
-    // State Variables
+    // App State
     let isMetric = true;
     let selectedDays = 26;
     let currentSymbol = "Rs.";
 
-    // DOM Elements
+    // Elements
     const dailyDistance = document.getElementById('dailyDistance');
     const distanceDisplay = document.getElementById('distanceDisplay');
     const distMin = document.getElementById('distMin');
@@ -709,7 +709,6 @@
     const unitImperial = document.getElementById('unitImperial');
     const customDays = document.getElementById('customDays');
 
-    // Unit toggle handlers
     function setUnit(metricMode) {
       if (metricMode) {
         isMetric = true;
@@ -770,16 +769,14 @@
       return currentSymbol + " " + Math.round(val).toLocaleString();
     }
 
+    // Single Synchronous Function: Updates Main Screen AND Report Simultaneously
     function calculate() {
       const dist = parseFloat(dailyDistance.value) || 0;
       selectedDays = parseFloat(customDays.value) || 26;
-      distanceDisplay.innerText = dist + " " + (isMetric ? 'km' : 'mi');
-
       const fEff = parseFloat(fuelEfficiency.value) || 1;
       const fPrice = parseFloat(fuelPrice.value) || 0;
       const eEff = parseFloat(evEfficiency.value) || 1;
       const eRate = parseFloat(electricityRate.value) || 0;
-
       const fMaintCost = parseFloat(fuelMaint.value) || 0;
       const eMaintCost = parseFloat(evMaint.value) || 0;
 
@@ -793,6 +790,8 @@
       const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
       const pctSavings = fuelCostYearly > 0 ? Math.round((annualSavings / fuelCostYearly) * 100) : 0;
 
+      // 1. Update Main UI
+      distanceDisplay.innerText = dist + " " + (isMetric ? 'km' : 'mi');
       document.getElementById('annualSavingsText').innerText = fmt(annualSavings);
       document.getElementById('savingPercentage').innerText = "Save ~" + pctSavings + "%";
 
@@ -817,6 +816,34 @@
       document.getElementById('tblFuel5Y').innerText = fmt(fuelCostYearly * 5);
       document.getElementById('tblEv5Y').innerText = fmt(evCostYearly * 5);
       document.getElementById('tblSave5Y').innerText = fmt(annualSavings * 5);
+
+      // 2. Direct Sync to Printable Report (Zero Missed Data)
+      document.getElementById('rptDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+      document.getElementById('rptAnnualSave').innerText = fmt(annualSavings);
+      document.getElementById('rptPctSave').innerText = pctSavings + "% energy cost reduction compared to petrol";
+
+      document.getElementById('rptDailyDist').innerText = dist + " " + (isMetric ? 'km' : 'mi');
+      document.getElementById('rptDays').innerText = selectedDays + " Days / month";
+      document.getElementById('rptFuelEff').innerText = fEff + (isMetric ? " km/L" : " MPG");
+      document.getElementById('rptEvEff').innerText = eEff + (isMetric ? " km/kWh" : " mi/kWh");
+      document.getElementById('rptFuelPrice').innerText = currentSymbol + " " + fPrice;
+      document.getElementById('rptPowerPrice').innerText = currentSymbol + " " + eRate;
+
+      document.getElementById('rptFuel1M').innerText = fmt(fuelCostMonthly);
+      document.getElementById('rptEv1M').innerText = fmt(evCostMonthly);
+      document.getElementById('rptSave1M').innerText = fmt(Math.max(0, fuelCostMonthly - evCostMonthly));
+
+      document.getElementById('rptFuel1Y').innerText = fmt(fuelCostYearly);
+      document.getElementById('rptEv1Y').innerText = fmt(evCostYearly);
+      document.getElementById('rptSave1Y').innerText = fmt(annualSavings);
+
+      document.getElementById('rptFuel3Y').innerText = fmt(fuelCostYearly * 3);
+      document.getElementById('rptEv3Y').innerText = fmt(evCostYearly * 3);
+      document.getElementById('rptSave3Y').innerText = fmt(annualSavings * 3);
+
+      document.getElementById('rptFuel5Y').innerText = fmt(fuelCostYearly * 5);
+      document.getElementById('rptEv5Y').innerText = fmt(evCostYearly * 5);
+      document.getElementById('rptSave5Y').innerText = fmt(annualSavings * 5);
     }
 
     document.getElementById('copyBtn').addEventListener('click', () => {
@@ -826,7 +853,7 @@
       });
     });
 
-    // Auto Country / Currency Detection Logic
+    // Auto Country Detection
     function setCountryCurrency(code) {
       code = (code || '').toUpperCase();
       let matchedVal = null;
@@ -834,7 +861,7 @@
       if (code === 'PK') matchedVal = 'PKR|Rs.|280|40';
       else if (code === 'US') {
         matchedVal = 'USD|$|3.80|0.18';
-        setUnit(false); // Auto Imperial for USA
+        setUnit(false);
       }
       else if (code === 'GB') matchedVal = 'GBP|£|1.50|0.28';
       else if (code === 'IN') matchedVal = 'INR|₹|102|8';
@@ -851,7 +878,6 @@
       }
     }
 
-    // 1. Instant Timezone-based Detection (0 milliseconds lag)
     function autoDetectByTimezone() {
       try {
         const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
@@ -859,7 +885,7 @@
         if (tz.includes('Kolkata') || tz.includes('Calcutta')) return 'IN';
         if (tz.includes('Dubai')) return 'AE';
         if (tz.includes('London')) return 'GB';
-        if (tz.includes('Toronto') || tz.includes('Vancouver') || tz.includes('Montreal') || tz.includes('Edmonton')) return 'CA';
+        if (tz.includes('Toronto') || tz.includes('Vancouver') || tz.includes('Montreal')) return 'CA';
         if (tz.startsWith('Australia/')) return 'AU';
         if (tz.startsWith('America/')) return 'US';
         if (tz.startsWith('Europe/')) return 'DE';
@@ -867,69 +893,29 @@
       return null;
     }
 
-    const detectedLocal = autoDetectByTimezone();
-    if (detectedLocal) {
-      setCountryCurrency(detectedLocal);
+    const detected = autoDetectByTimezone();
+    if (detected) {
+      setCountryCurrency(detected);
     } else {
       calculate();
     }
 
-    // 2. High-precision Network IP Fallback
     fetch('https://api.country.is')
       .then(res => res.json())
       .then(data => {
-        if (data && data.country) {
-          setCountryCurrency(data.country);
-        }
+        if (data && data.country) setCountryCurrency(data.country);
       })
       .catch(() => {});
 
-    // Reliable PDF Report Generator (No Blank Page Bug)
+    // Fail-Safe PDF Generator: Real visible overlay, no transform bugs
     function printPDFReport() {
       calculate();
 
-      const btn = document.getElementById('pdfBtn');
-      const originalBtnText = btn.innerHTML;
-      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Generating...';
-
-      // 1. Fill data in PDF template
-      document.getElementById('rptDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-      document.getElementById('rptAnnualSave').innerText = document.getElementById('annualSavingsText').innerText;
-      document.getElementById('rptPctSave').innerText = document.getElementById('savingPercentage').innerText + " energy cost reduction compared to petrol";
-
-      document.getElementById('rptDailyDist').innerText = document.getElementById('distanceDisplay').innerText;
-      document.getElementById('rptDays').innerText = selectedDays + " Days / month";
-      document.getElementById('rptFuelEff').innerText = fuelEfficiency.value + (isMetric ? " km/L" : " MPG");
-      document.getElementById('rptEvEff').innerText = evEfficiency.value + (isMetric ? " km/kWh" : " mi/kWh");
-      document.getElementById('rptFuelPrice').innerText = currentSymbol + " " + fuelPrice.value;
-      document.getElementById('rptPowerPrice').innerText = currentSymbol + " " + electricityRate.value;
-
-      document.getElementById('rptFuel1M').innerText = document.getElementById('tblFuel1M').innerText;
-      document.getElementById('rptEv1M').innerText = document.getElementById('tblEv1M').innerText;
-      document.getElementById('rptSave1M').innerText = document.getElementById('tblSave1M').innerText;
-
-      document.getElementById('rptFuel1Y').innerText = document.getElementById('tblFuel1Y').innerText;
-      document.getElementById('rptEv1Y').innerText = document.getElementById('tblEv1Y').innerText;
-      document.getElementById('rptSave1Y').innerText = document.getElementById('tblSave1Y').innerText;
-
-      document.getElementById('rptFuel3Y').innerText = document.getElementById('tblFuel3Y').innerText;
-      document.getElementById('rptEv3Y').innerText = document.getElementById('tblEv3Y').innerText;
-      document.getElementById('rptSave3Y').innerText = document.getElementById('tblSave3Y').innerText;
-
-      document.getElementById('rptFuel5Y').innerText = document.getElementById('tblFuel5Y').innerText;
-      document.getElementById('rptEv5Y').innerText = document.getElementById('tblEv5Y').innerText;
-      document.getElementById('rptSave5Y').innerText = document.getElementById('tblSave5Y').innerText;
-
+      const overlay = document.getElementById('pdfCaptureOverlay');
       const report = document.getElementById('printableReport');
 
-      // 2. Temporarily show overlay in valid viewport coordinates for html2canvas
-      report.style.display = 'block';
-      report.style.position = 'fixed';
-      report.style.top = '0';
-      report.style.left = '50%';
-      report.style.transform = 'translateX(-50%)';
-      report.style.zIndex = '99999';
-      report.style.boxShadow = '0 25px 50px -12px rgba(0,0,0,0.25)';
+      // 1. Show the overlay cleanly on screen
+      overlay.style.display = 'block';
 
       const opt = {
         margin:       [8, 8, 8, 8],
@@ -939,29 +925,15 @@
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
       };
 
-      // 3. Render and save cleanly
+      // 2. Allow 300ms for browser to render the visible modal before capture
       setTimeout(() => {
         html2pdf().set(opt).from(report).save().then(() => {
-          report.style.display = 'none';
-          report.style.position = '';
-          report.style.top = '';
-          report.style.left = '';
-          report.style.transform = '';
-          report.style.zIndex = '';
-          report.style.boxShadow = '';
-          btn.innerHTML = originalBtnText;
-        }).catch((err) => {
+          overlay.style.display = 'none';
+        }).catch(err => {
           console.error(err);
-          report.style.display = 'none';
-          report.style.position = '';
-          report.style.top = '';
-          report.style.left = '';
-          report.style.transform = '';
-          report.style.zIndex = '';
-          report.style.boxShadow = '';
-          btn.innerHTML = originalBtnText;
+          overlay.style.display = 'none';
         });
-      }, 200);
+      }, 300);
     }
   </script>
 </body>
