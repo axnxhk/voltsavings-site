@@ -10,28 +10,39 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
-  </style>
-<style>
- /* Netlify feedback badge & drawer auto-hide */
-netlify-drawer,
-[data-netlify-drawer],
-#netlify-badge,
-.netlify-badge,
-iframe[title*="Netlify"],
-iframe[src*="netlify"] {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-  position: absolute !important;
-  left: -9999px !important;
-  top: -9999px !important;
-}
 
-  /* Aapka baki purana CSS code yahan se aage rahega... */
-  <style>
+    /* Netlify feedback badge auto-hide */
+    netlify-drawer,
+    [data-netlify-drawer],
+    #netlify-badge,
+    .netlify-badge,
+    iframe[title*="Netlify"],
+    iframe[src*="netlify"] {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      position: absolute !important;
+      left: -9999px !important;
+      top: -9999px !important;
+    }
+
+    /* Dedicated PDF Report container: UI par nahi dikhega lekin html2pdf ke liye renderable rahega */
+    #printableReport {
+      position: fixed;
+      left: -9999px;
+      top: 0;
+      width: 794px; /* Standard A4 width at 96 DPI */
+      background: #ffffff;
+      color: #000000;
+      padding: 30px;
+      z-index: -50;
+      box-sizing: border-box;
+    }
+
     @media print {
       body * {
         visibility: hidden !important;
@@ -45,118 +56,16 @@ iframe[src*="netlify"] {
         top: 0 !important;
         width: 100% !important;
         margin: 0 !important;
-        padding: 24px !important;
-        background: white !important;
-        color: black !important;
+        padding: 20px !important;
         display: block !important;
+        z-index: 9999 !important;
       }
       @page {
         size: A4 portrait;
-        margin: 15mm;
+        margin: 10mm;
       }
     }
-  /* Print / PDF Mode Styling */
-@media print {
-  nav, 
-  header, 
-  footer, 
-  button, 
-  .no-print, 
-  #btnPdf, 
-  #btnSave,
-  .day-btn {
-    display: none !important;
-  }
-
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  main, .calculator-container, #reportSection {
-    box-shadow: none !important;
-    border: 1px solid #e2e8f0 !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 15px !important;
-  }
-
-  input {
-    border: none !important;
-    background: transparent !important;
-    font-weight: bold !important;
-  }
-}
-  /* Print / PDF Mode Styling - Sab buttons aur faltu cheezein auto-hide */
-@media print {
-  /* Navbar, Footer, Headers */
-  nav, 
-  header, 
-  footer, 
-  aside,
-  
-  /* Har qisam ke buttons, links jo button jaise hain, aur inputs jo click hote hain */
-  button,
-  input[type="button"],
-  input[type="submit"],
-  a[onclick],
-  [onclick*="print"],
-  
-  /* Day selection aur extra UI elements */
-  .day-btn,
-  [class*="btn"],
-  [class*="button"] {
-    display: none !important;
-    visibility: hidden !important;
-  }
-
-  /* Screen ko clean white document banana */
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* Main card aur comparison clean print ho */
-  main, 
-  .container, 
-  [class*="card"] {
-    box-shadow: none !important;
-    border: 1px solid #e2e8f0 !important;
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-}
-@media print {
-  /* Pura background aur extra page elements hide */
-  nav, header, footer, button, .no-print, input[type="button"], input[type="submit"] {
-    display: none !important;
-    visibility: hidden !important;
-  }
-
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-
-  /* Result aur card ko top par la kar clean document banana */
-  main, .container, [class*="card"] {
-    box-shadow: none !important;
-    border: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-    padding: 10px !important;
-  }
-} 
- </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  </style>
 </head>
 <body class="bg-white text-black min-h-screen flex flex-col antialiased selection:bg-emerald-600 selection:text-white">
 
@@ -201,17 +110,16 @@ iframe[src*="netlify"] {
       <a href="index.html" class="block text-emerald-600 font-bold py-1">Calculator</a>
       <a href="index.html#features" class="block text-black hover:text-emerald-600 py-1 font-semibold">Features</a>
       <a href="index.html#breakdown" class="block text-black hover:text-emerald-600 py-1 font-semibold">Comparison</a>
-      <a href="blog.html" class="block text-black hover:text-emerald-600 py-1 font-semibold"></a>
+      <a href="blog.html" class="block text-black hover:text-emerald-600 py-1 font-semibold">Blog</a>
       <a href="index.html#faq" class="block text-black hover:text-emerald-600 py-1 font-semibold">FAQ</a>
       <a href="about.html" class="block text-black hover:text-emerald-600 py-1 font-semibold">About Us</a>
       <a href="contact.html" class="block text-black hover:text-emerald-600 py-1 font-semibold">Contact Us</a>
     </div>
   </header>
 
-  <!-- Clean Hero Section -->
+  <!-- Hero Section -->
   <section class="pt-14 pb-10 sm:pt-20 sm:pb-14 border-b border-gray-100 bg-emerald-50/40">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-      
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300 text-emerald-800 text-xs font-bold mb-6 shadow-sm">
         <span class="flex h-2 w-2 rounded-full bg-emerald-600"></span>
         Zero Login • 100% Free & Private • Go Green & Save
@@ -306,7 +214,7 @@ iframe[src*="netlify"] {
         </div>
 
         <!-- Travel Days Selector -->
-       <div class="mb-6">
+        <div class="mb-6">
           <label class="block text-xs font-black uppercase tracking-wider text-black mb-1">Monthly Usage Days</label>
           <div class="relative">
             <input type="number" id="customDays" value="26" min="1" max="31" class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
@@ -335,13 +243,14 @@ iframe[src*="netlify"] {
               <div class="relative">
                 <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
                 <input type="number" id="fuelPrice" value="280" step="0.1" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
-              </div><div class="mt-4">
-  <label class="block text-xs text-black font-black mb-1">Monthly Maintenance / Oil Change</label>
-  <div class="relative">
-    <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
-    <input type="number" id="fuelMaint" value="1500" step="50" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
-  </div>
-</div>
+              </div>
+              <div class="mt-4">
+                <label class="block text-xs text-black font-black mb-1">Monthly Maintenance / Oil Change</label>
+                <div class="relative">
+                  <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
+                  <input type="number" id="fuelMaint" value="1500" step="50" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
+                </div>
+              </div>
             </div>
           </div>
 
@@ -366,13 +275,14 @@ iframe[src*="netlify"] {
                 <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
                 <input type="number" id="electricityRate" value="40" step="0.1" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
               </div>
-            </div><div class="mt-4">
-  <label class="block text-xs text-black font-black mb-1">Monthly Maintenance (Routine Service)</label>
-  <div class="relative">
-    <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
-    <input type="number" id="evMaint" value="200" step="50" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
-  </div>
-</div>
+              <div class="mt-4">
+                <label class="block text-xs text-black font-black mb-1">Monthly Maintenance (Routine Service)</label>
+                <div class="relative">
+                  <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
+                  <input type="number" id="evMaint" value="200" step="50" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -613,7 +523,7 @@ iframe[src*="netlify"] {
             <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
           </summary>
           <p class="text-xs text-gray-600 leading-relaxed mt-3 font-medium">
-            This tool strictly computes direct fuel vs electric energy expenses. In reality, your savings with an EV are even higher because EVs have no engine oil, spark plugs, timing belts, or clutch assemblies, reducing routine service costs by an estimated 40-50%.
+            This tool computes direct fuel vs electric energy expenses and routine maintenance fees entered above. In reality, your savings with an EV are even higher because EVs have no engine oil, spark plugs, timing belts, or clutch assemblies.
           </p>
         </details>
 
@@ -630,6 +540,7 @@ iframe[src*="netlify"] {
     </div>
   </section>
 
+  <!-- Footer -->
   <footer class="border-t border-gray-200 bg-white pt-16 pb-12 text-gray-600 text-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
@@ -693,226 +604,9 @@ iframe[src*="netlify"] {
       </div>
     </div>
   </footer>
-  <script>
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
-    if (mobileBtn && mobileMenu) {
-      mobileBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
-    }
-  </script>
 
-  <script>
-    let isMetric = true;
-    let selectedDays = 26;
-    let currentSymbol = "Rs.";
-
-    const dailyDistance = document.getElementById('dailyDistance');
-    const distanceDisplay = document.getElementById('distanceDisplay');
-    const distMin = document.getElementById('distMin');
-    const distMax = document.getElementById('distMax');
-    const fuelEfficiency = document.getElementById('fuelEfficiency');
-    const fuelPrice = document.getElementById('fuelPrice');
-    const evEfficiency = document.getElementById('evEfficiency');
-    const electricityRate = document.getElementById('electricityRate');
-    const fuelMaint = document.getElementById('fuelMaint');
-    const evMaint = document.getElementById('evMaint');
-    const currencySelect = document.getElementById('currencySelect');
-
-    const unitMetric = document.getElementById('unitMetric');
-    const unitImperial = document.getElementById('unitImperial');
-   const customDays = document.getElementById('customDays');
-    unitMetric.addEventListener('click', () => {
-      if (!isMetric) {
-        isMetric = true;
-        unitMetric.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
-        unitImperial.className = "px-3.5 py-1.5 rounded-lg text-gray-700 hover:text-black transition-all";
-        updateUnitsUI();
-        calculate();
-      }
-    });
-
-    unitImperial.addEventListener('click', () => {
-      if (isMetric) {
-        isMetric = false;
-        unitImperial.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
-        unitMetric.className = "px-3.5 py-1.5 rounded-lg text-gray-700 hover:text-black transition-all";
-        updateUnitsUI();
-        calculate();
-      }
-    });
-
-    function updateUnitsUI() {
-      if (isMetric) {
-        distMin.innerText = "5 km/day";
-        distMax.innerText = "250 km/day";
-        document.getElementById('lblFuelEfficiency').innerText = "Fuel Economy (km/L)";
-        document.getElementById('lblFuelPrice').innerText = "Fuel Price (per Liter)";
-        document.getElementById('lblEvEfficiency').innerText = "EV Efficiency (km/kWh)";
-        fuelEfficiency.value = 40;
-        evEfficiency.value = 30;
-      } else {
-        distMin.innerText = "5 mi/day";
-        distMax.innerText = "150 mi/day";
-        document.getElementById('lblFuelEfficiency').innerText = "Fuel Economy (MPG)";
-        document.getElementById('lblFuelPrice').innerText = "Fuel Price (per Gallon)";
-        document.getElementById('lblEvEfficiency').innerText = "EV Efficiency (mi/kWh)";
-        fuelEfficiency.value = 30;
-        evEfficiency.value = 3.5;
-      }
-    }
-
-    currencySelect.addEventListener('change', (e) => {
-      const parts = e.target.value.split('|');
-      currentSymbol = parts[1];
-      fuelPrice.value = parts[2];
-      electricityRate.value = parts[3];
-      document.querySelectorAll('.currency-symbol').forEach(el => el.innerText = currentSymbol);
-      calculate();
-    });
-
-    resetDefaultsBtn.addEventListener('click', () => {
-      dailyDistance.value = 35;
-      fuelEfficiency.value = isMetric ? 40 : 30;
-      fuelPrice.value = 280;
-      evEfficiency.value = isMetric ? 30 : 3.5;
-      electricityRate.value = 40;
-      calculate();
-    });
-
-    [dailyDistance, customDays, fuelEfficiency, fuelPrice, fuelMaint, evEfficiency, electricityRate, evMaint].forEach(el => {
-      el.addEventListener('input', calculate);
-    });
-
-    function fmt(val) {
-      return currentSymbol + " " + Math.round(val).toLocaleString();
-    }
-
-    function calculate() {
-      const dist = parseFloat(dailyDistance.value) || 0;
-      selectedDays = parseFloat(customDays.value) || 26;
-      distanceDisplay.innerText = dist + " " + (isMetric ? 'km' : 'mi');
-
-      const fEff = parseFloat(fuelEfficiency.value) || 1;
-      const fPrice = parseFloat(fuelPrice.value) || 0;
-      const eEff = parseFloat(evEfficiency.value) || 1;
-      const eRate = parseFloat(electricityRate.value) || 0;
-
-      const fMaintCost = parseFloat(fuelMaint.value) || 0;
-      const eMaintCost = parseFloat(evMaint.value) || 0;
-
-      const monthlyDistance = dist * selectedDays;
-      const fuelPerUnit = monthlyDistance / fEff;
-      const fuelCostMonthly = (fuelPerUnit * fPrice) + fMaintCost;
-      const fuelCostYearly = fuelCostMonthly * 12;
-
-      const evKwhMonthly = monthlyDistance / eEff;
-      const evCostMonthly = (evKwhMonthly * eRate) + eMaintCost;
-      const evCostYearly = evCostMonthly * 12;
-
-      const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
-      const pctSavings = fuelCostYearly > 0 ? Math.round((annualSavings / fuelCostYearly) * 100) : 0;
-
-      document.getElementById('annualSavingsText').innerText = fmt(annualSavings);
-      document.getElementById('savingPercentage').innerText = "Save ~" + pctSavings + "%";
-
-      document.getElementById('fuelMonthlyText').innerText = fmt(fuelCostMonthly);
-      document.getElementById('fuelYearlyText').innerText = "Yearly: " + fmt(fuelCostYearly);
-
-      document.getElementById('evMonthlyText').innerText = fmt(evCostMonthly);
-      document.getElementById('evYearlyText').innerText = "Yearly: " + fmt(evCostYearly);
-
-      document.getElementById('tblFuel1M').innerText = fmt(fuelCostMonthly);
-      document.getElementById('tblEv1M').innerText = fmt(evCostMonthly);
-      document.getElementById('tblSave1M').innerText = fmt(Math.max(0, fuelCostMonthly - evCostMonthly));
-
-      document.getElementById('tblFuel1Y').innerText = fmt(fuelCostYearly);
-      document.getElementById('tblEv1Y').innerText = fmt(evCostYearly);
-      document.getElementById('tblSave1Y').innerText = fmt(annualSavings);
-
-      document.getElementById('tblFuel3Y').innerText = fmt(fuelCostYearly * 3);
-      document.getElementById('tblEv3Y').innerText = fmt(evCostYearly * 3);
-      document.getElementById('tblSave3Y').innerText = fmt(annualSavings * 3);
-
-      document.getElementById('tblFuel5Y').innerText = fmt(fuelCostYearly * 5);
-      document.getElementById('tblEv5Y').innerText = fmt(evCostYearly * 5);
-      document.getElementById('tblSave5Y').innerText = fmt(annualSavings * 5);
-    }
-
-    document.getElementById('copyBtn').addEventListener('click', () => {
-      const text = "VoltSavings Report: I save estimated " + document.getElementById('annualSavingsText').innerText + " per year by switching to an Electric Vehicle! Calculate yours free at: https://yourdomain.com";
-      navigator.clipboard.writeText(text).then(() => {
-        alert("Summary copied to clipboard!");
-      });
-    });
-
-    calculate();
-
-    function printPDFReport() {
-      // Populate printable report elements before opening print dialog
-      document.getElementById('rptDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-      document.getElementById('rptAnnualSave').innerText = document.getElementById('annualSavingsText').innerText;
-      document.getElementById('rptPctSave').innerText = document.getElementById('savingPercentage').innerText + " energy cost reduction compared to petrol";
-      
-      document.getElementById('rptDailyDist').innerText = document.getElementById('distanceDisplay').innerText;
-      document.getElementById('rptDays').innerText = selectedDays + " Days / month";
-      document.getElementById('rptFuelEff').innerText = fuelEfficiency.value + (isMetric ? " km/L" : " MPG");
-      document.getElementById('rptEvEff').innerText = evEfficiency.value + (isMetric ? " km/kWh" : " mi/kWh");
-      document.getElementById('rptFuelPrice').innerText = currentSymbol + " " + fuelPrice.value;
-      document.getElementById('rptPowerPrice').innerText = currentSymbol + " " + electricityRate.value;
-
-      document.getElementById('rptFuel1M').innerText = document.getElementById('tblFuel1M').innerText;
-      document.getElementById('rptEv1M').innerText = document.getElementById('tblEv1M').innerText;
-      document.getElementById('rptSave1M').innerText = document.getElementById('tblSave1M').innerText;
-
-      document.getElementById('rptFuel1Y').innerText = document.getElementById('tblFuel1Y').innerText;
-      document.getElementById('rptEv1Y').innerText = document.getElementById('tblEv1Y').innerText;
-      document.getElementById('rptSave1Y').innerText = document.getElementById('tblSave1Y').innerText;
-
-      document.getElementById('rptFuel3Y').innerText = document.getElementById('tblFuel3Y').innerText;
-      document.getElementById('rptEv3Y').innerText = document.getElementById('tblEv3Y').innerText;
-      document.getElementById('rptSave3Y').innerText = document.getElementById('tblSave3Y').innerText;
-
-      document.getElementById('rptFuel5Y').innerText = document.getElementById('tblFuel5Y').innerText;
-      document.getElementById('rptEv5Y').innerText = document.getElementById('tblEv5Y').innerText;
-      document.getElementById('rptSave5Y').innerText = document.getElementById('tblSave5Y').innerText;
-
-      // Dedicated clean report element dhoondein
-    const reportElement = document.querySelector('[id*="rpt"]')?.closest('div[class*="hidden"]') || 
-                          document.getElementById('printableReport') || 
-                          document.querySelector('#reportTemplate');
-
-    if (!reportElement) {
-        alert("Report element nahi mila!");
-        return;
-    }
-
-    // PDF banate waqt isko show karein taake blank na aaye
-    const originalDisplay = reportElement.style.display;
-    reportElement.style.display = 'block';
-
-    const opt = {
-        margin:       [10, 10, 10, 10],
-        filename:     'VoltSavings_Report.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2, useCORS: true, logging: false },
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
-    html2pdf().set(opt).from(reportElement).save().then(() => {
-        // PDF download hone ke baad wapas hidden kar do
-        reportElement.style.display = originalDisplay;
-    }).catch(err => {
-        reportElement.style.display = originalDisplay;
-        console.error(err);
-    });
-}
-
- </script>
-
-  <!-- Dedicated Clean 1-Page PDF Report (Visible ONLY when printing / downloading PDF) -->
-  <div id="printableReport" class="hidden print:block ...">
+  <!-- Dedicated Clean 1-Page PDF Report (Always rendered off-screen for perfect PDF captures) -->
+  <div id="printableReport">
     <div style="border-bottom: 2px solid #059669; padding-bottom: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start;">
       <div>
         <h1 style="font-size: 24px; font-weight: 900; color: #000; margin: 0;">⚡ VoltSavings<span style="color: #059669;">.</span></h1>
@@ -1001,41 +695,225 @@ iframe[src*="netlify"] {
       <span>Calculations based on user-entered tariffs. Real-world values may vary.</span>
     </div>
   </div>
-<script>
-  // Netlify drawer ko load hote hi page se delete karna
-  const removeNetlifyWidget = () => {
-    const badges = document.querySelectorAll('netlify-drawer, [data-netlify-drawer], #netlify-badge, iframe[src*="netlify"], iframe[title*="Netlify"]');
-    badges.forEach(el => el.remove());
-  };
-  
-  // Page load aur run time par continuously check karega
-  window.addEventListener('DOMContentLoaded', removeNetlifyWidget);
-  window.addEventListener('load', removeNetlifyWidget);
-  const observer = new MutationObserver(removeNetlifyWidget);
-  observer.observe(document.documentElement, { childList: true, subtree: true });
-</script>
-<script>
-function downloadPDFReport() {
-  // Yahan aapke result / report wale container ka ID aayega
-  // Agar aapke container ka koi aur ID hai (maslan 'results' ya 'reportSection'), to wahan change kar lein
-  const element = document.getElementById('reportSection') || document.querySelector('.results-container') || document.querySelector('#results');
 
-  if (!element) {
-    alert("Report nahi mili! Pehle calculation karein.");
-    return;
-  }
+  <script>
+    // Netlify drawer auto-cleanup
+    const removeNetlifyWidget = () => {
+      const badges = document.querySelectorAll('netlify-drawer, [data-netlify-drawer], #netlify-badge, iframe[src*="netlify"], iframe[title*="Netlify"]');
+      badges.forEach(el => el.remove());
+    };
+    window.addEventListener('DOMContentLoaded', removeNetlifyWidget);
+    window.addEventListener('load', removeNetlifyWidget);
+    const observer = new MutationObserver(removeNetlifyWidget);
+    observer.observe(document.documentElement, { childList: true, subtree: true });
 
-  const opt = {
-    margin:       10,
-    filename:     'VoltSavings_Report.pdf',
-    image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2 },
-    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
+    // Mobile Navigation Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
 
-  // Direct download shuru
-  html2pdf().set(opt).from(element).save();
-}
-</script>
+    // Calculator Logic
+    let isMetric = true;
+    let selectedDays = 26;
+    let currentSymbol = "Rs.";
+
+    const dailyDistance = document.getElementById('dailyDistance');
+    const distanceDisplay = document.getElementById('distanceDisplay');
+    const distMin = document.getElementById('distMin');
+    const distMax = document.getElementById('distMax');
+    const fuelEfficiency = document.getElementById('fuelEfficiency');
+    const fuelPrice = document.getElementById('fuelPrice');
+    const evEfficiency = document.getElementById('evEfficiency');
+    const electricityRate = document.getElementById('electricityRate');
+    const fuelMaint = document.getElementById('fuelMaint');
+    const evMaint = document.getElementById('evMaint');
+    const currencySelect = document.getElementById('currencySelect');
+    const resetDefaultsBtn = document.getElementById('resetDefaultsBtn');
+    const unitMetric = document.getElementById('unitMetric');
+    const unitImperial = document.getElementById('unitImperial');
+    const customDays = document.getElementById('customDays');
+
+    unitMetric.addEventListener('click', () => {
+      if (!isMetric) {
+        isMetric = true;
+        unitMetric.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
+        unitImperial.className = "px-3.5 py-1.5 rounded-lg text-gray-700 hover:text-black transition-all";
+        updateUnitsUI();
+        calculate();
+      }
+    });
+
+    unitImperial.addEventListener('click', () => {
+      if (isMetric) {
+        isMetric = false;
+        unitImperial.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
+        unitMetric.className = "px-3.5 py-1.5 rounded-lg text-gray-700 hover:text-black transition-all";
+        updateUnitsUI();
+        calculate();
+      }
+    });
+
+    function updateUnitsUI() {
+      if (isMetric) {
+        distMin.innerText = "5 km/day";
+        distMax.innerText = "250 km/day";
+        document.getElementById('lblFuelEfficiency').innerText = "Fuel Economy (km/L)";
+        document.getElementById('lblFuelPrice').innerText = "Fuel Price (per Liter)";
+        document.getElementById('lblEvEfficiency').innerText = "EV Efficiency (km/kWh)";
+        fuelEfficiency.value = 40;
+        evEfficiency.value = 30;
+      } else {
+        distMin.innerText = "5 mi/day";
+        distMax.innerText = "150 mi/day";
+        document.getElementById('lblFuelEfficiency').innerText = "Fuel Economy (MPG)";
+        document.getElementById('lblFuelPrice').innerText = "Fuel Price (per Gallon)";
+        document.getElementById('lblEvEfficiency').innerText = "EV Efficiency (mi/kWh)";
+        fuelEfficiency.value = 30;
+        evEfficiency.value = 3.5;
+      }
+    }
+
+    currencySelect.addEventListener('change', (e) => {
+      const parts = e.target.value.split('|');
+      currentSymbol = parts[1];
+      fuelPrice.value = parts[2];
+      electricityRate.value = parts[3];
+      document.querySelectorAll('.currency-symbol').forEach(el => el.innerText = currentSymbol);
+      calculate();
+    });
+
+    resetDefaultsBtn.addEventListener('click', () => {
+      dailyDistance.value = 35;
+      fuelEfficiency.value = isMetric ? 40 : 30;
+      fuelPrice.value = 280;
+      evEfficiency.value = isMetric ? 30 : 3.5;
+      electricityRate.value = 40;
+      fuelMaint.value = 1500;
+      evMaint.value = 200;
+      calculate();
+    });
+
+    [dailyDistance, customDays, fuelEfficiency, fuelPrice, fuelMaint, evEfficiency, electricityRate, evMaint].forEach(el => {
+      el.addEventListener('input', calculate);
+    });
+
+    function fmt(val) {
+      return currentSymbol + " " + Math.round(val).toLocaleString();
+    }
+
+    function calculate() {
+      const dist = parseFloat(dailyDistance.value) || 0;
+      selectedDays = parseFloat(customDays.value) || 26;
+      distanceDisplay.innerText = dist + " " + (isMetric ? 'km' : 'mi');
+
+      const fEff = parseFloat(fuelEfficiency.value) || 1;
+      const fPrice = parseFloat(fuelPrice.value) || 0;
+      const eEff = parseFloat(evEfficiency.value) || 1;
+      const eRate = parseFloat(electricityRate.value) || 0;
+
+      const fMaintCost = parseFloat(fuelMaint.value) || 0;
+      const eMaintCost = parseFloat(evMaint.value) || 0;
+
+      const monthlyDistance = dist * selectedDays;
+      const fuelPerUnit = monthlyDistance / fEff;
+      const fuelCostMonthly = (fuelPerUnit * fPrice) + fMaintCost;
+      const fuelCostYearly = fuelCostMonthly * 12;
+
+      const evKwhMonthly = monthlyDistance / eEff;
+      const evCostMonthly = (evKwhMonthly * eRate) + eMaintCost;
+      const evCostYearly = evCostMonthly * 12;
+
+      const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
+      const pctSavings = fuelCostYearly > 0 ? Math.round((annualSavings / fuelCostYearly) * 100) : 0;
+
+      document.getElementById('annualSavingsText').innerText = fmt(annualSavings);
+      document.getElementById('savingPercentage').innerText = "Save ~" + pctSavings + "%";
+
+      document.getElementById('fuelMonthlyText').innerText = fmt(fuelCostMonthly);
+      document.getElementById('fuelYearlyText').innerText = "Yearly: " + fmt(fuelCostYearly);
+
+      document.getElementById('evMonthlyText').innerText = fmt(evCostMonthly);
+      document.getElementById('evYearlyText').innerText = "Yearly: " + fmt(evCostYearly);
+
+      document.getElementById('tblFuel1M').innerText = fmt(fuelCostMonthly);
+      document.getElementById('tblEv1M').innerText = fmt(evCostMonthly);
+      document.getElementById('tblSave1M').innerText = fmt(Math.max(0, fuelCostMonthly - evCostMonthly));
+
+      document.getElementById('tblFuel1Y').innerText = fmt(fuelCostYearly);
+      document.getElementById('tblEv1Y').innerText = fmt(evCostYearly);
+      document.getElementById('tblSave1Y').innerText = fmt(annualSavings);
+
+      document.getElementById('tblFuel3Y').innerText = fmt(fuelCostYearly * 3);
+      document.getElementById('tblEv3Y').innerText = fmt(evCostYearly * 3);
+      document.getElementById('tblSave3Y').innerText = fmt(annualSavings * 3);
+
+      document.getElementById('tblFuel5Y').innerText = fmt(fuelCostYearly * 5);
+      document.getElementById('tblEv5Y').innerText = fmt(evCostYearly * 5);
+      document.getElementById('tblSave5Y').innerText = fmt(annualSavings * 5);
+    }
+
+    document.getElementById('copyBtn').addEventListener('click', () => {
+      const text = "VoltSavings Report: I save estimated " + document.getElementById('annualSavingsText').innerText + " per year by switching to an Electric Vehicle! Calculate yours free at: https://voltsavings.com";
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Summary copied to clipboard!");
+      });
+    });
+
+    calculate();
+
+    // Auto PDF Report Generation
+    function printPDFReport() {
+      // 1. Populate all variables in printable report
+      document.getElementById('rptDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+      document.getElementById('rptAnnualSave').innerText = document.getElementById('annualSavingsText').innerText;
+      document.getElementById('rptPctSave').innerText = document.getElementById('savingPercentage').innerText + " energy cost reduction compared to petrol";
+      
+      document.getElementById('rptDailyDist').innerText = document.getElementById('distanceDisplay').innerText;
+      document.getElementById('rptDays').innerText = selectedDays + " Days / month";
+      document.getElementById('rptFuelEff').innerText = fuelEfficiency.value + (isMetric ? " km/L" : " MPG");
+      document.getElementById('rptEvEff').innerText = evEfficiency.value + (isMetric ? " km/kWh" : " mi/kWh");
+      document.getElementById('rptFuelPrice').innerText = currentSymbol + " " + fuelPrice.value;
+      document.getElementById('rptPowerPrice').innerText = currentSymbol + " " + electricityRate.value;
+
+      document.getElementById('rptFuel1M').innerText = document.getElementById('tblFuel1M').innerText;
+      document.getElementById('rptEv1M').innerText = document.getElementById('tblEv1M').innerText;
+      document.getElementById('rptSave1M').innerText = document.getElementById('tblSave1M').innerText;
+
+      document.getElementById('rptFuel1Y').innerText = document.getElementById('tblFuel1Y').innerText;
+      document.getElementById('rptEv1Y').innerText = document.getElementById('tblEv1Y').innerText;
+      document.getElementById('rptSave1Y').innerText = document.getElementById('tblSave1Y').innerText;
+
+      document.getElementById('rptFuel3Y').innerText = document.getElementById('tblFuel3Y').innerText;
+      document.getElementById('rptEv3Y').innerText = document.getElementById('tblEv3Y').innerText;
+      document.getElementById('rptSave3Y').innerText = document.getElementById('tblSave3Y').innerText;
+
+      document.getElementById('rptFuel5Y').innerText = document.getElementById('tblFuel5Y').innerText;
+      document.getElementById('rptEv5Y').innerText = document.getElementById('tblEv5Y').innerText;
+      document.getElementById('rptSave5Y').innerText = document.getElementById('tblSave5Y').innerText;
+
+      // 2. Select report element
+      const reportElement = document.getElementById('printableReport');
+
+      if (!reportElement) {
+        alert("Report element nahi mila!");
+        return;
+      }
+
+      // 3. Generate and Save PDF cleanly
+      const opt = {
+        margin:       [8, 8, 8, 8],
+        filename:     'VoltSavings_Report.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, logging: false },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(reportElement).save();
+    }
+  </script>
 </body>
 </html>
