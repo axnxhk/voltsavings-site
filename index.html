@@ -131,7 +131,31 @@ iframe[src*="netlify"] {
     width: 100% !important;
   }
 }
-  </style>
+@media print {
+  /* Pura background aur extra page elements hide */
+  nav, header, footer, button, .no-print, input[type="button"], input[type="submit"] {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Result aur card ko top par la kar clean document banana */
+  main, .container, [class*="card"] {
+    box-shadow: none !important;
+    border: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 10px !important;
+  }
+} 
+ </style>
 
 </head>
 <body class="bg-white text-black min-h-screen flex flex-col antialiased selection:bg-emerald-600 selection:text-white">
