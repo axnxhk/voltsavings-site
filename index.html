@@ -878,24 +878,41 @@ iframe[src*="netlify"] {
       document.getElementById('rptEv5Y').innerText = document.getElementById('tblEv5Y').innerText;
       document.getElementById('rptSave5Y').innerText = document.getElementById('tblSave5Y').innerText;
 
-      const reportElement = document.getElementById('printableReport') || document.querySelector('[id*="rpt"]')?.closest('div') || document.body;
+      // Dedicated clean report element dhoondein
+    const reportElement = document.querySelector('[id*="rpt"]')?.closest('div[class*="hidden"]') || 
+                          document.getElementById('printableReport') || 
+                          document.querySelector('#reportTemplate');
+
+    if (!reportElement) {
+        alert("Report element nahi mila!");
+        return;
+    }
+
+    // PDF banate waqt isko show karein taake blank na aaye
+    const originalDisplay = reportElement.style.display;
+    reportElement.style.display = 'block';
 
     const opt = {
-        margin:       10,
+        margin:       [10, 10, 10, 10],
         filename:     'VoltSavings_Report.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
+        html2canvas:  { scale: 2, useCORS: true, logging: false },
         jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
     };
 
-    html2pdf().set(opt).from(reportElement).save();
+    html2pdf().set(opt).from(reportElement).save().then(() => {
+        // PDF download hone ke baad wapas hidden kar do
+        reportElement.style.display = originalDisplay;
+    }).catch(err => {
+        reportElement.style.display = originalDisplay;
+        console.error(err);
+    });
+}
 
-    }
-
-  </script>
+ </script>
 
   <!-- Dedicated Clean 1-Page PDF Report (Visible ONLY when printing / downloading PDF) -->
-  <div id="printableReport" class="hidden">
+  <div id="printableReport" class="hidden print:block ...">
     <div style="border-bottom: 2px solid #059669; padding-bottom: 16px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-start;">
       <div>
         <h1 style="font-size: 24px; font-weight: 900; color: #000; margin: 0;">⚡ VoltSavings<span style="color: #059669;">.</span></h1>
