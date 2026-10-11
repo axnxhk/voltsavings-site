@@ -5,11 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VoltSavings™ - The Free EV vs Petrol Savings Calculator</title>
   <meta name="description" content="Calculate and compare petrol vs electric vehicle operational costs. Clean, simple, and 100% free green vehicle economics.">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Optimized CSS (Render-Blocking Fix) -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Optimized JS (Render-Blocking Fix) -->
+  <script defer src="https://cdn.tailwindcss.com"></script>
+  
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
 
@@ -41,7 +47,7 @@
               <span class="text-xl font-black tracking-tight text-black">VoltSavings</span>
               <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">PRO</span>
             </div>
-            <p class="text-[11px] text-gray-500 font-medium">Global Fuel vs EV Intelligence</p>
+            <p class="text-[11px] text-gray-600 font-medium">Global Fuel vs EV Intelligence</p>
           </div>
         </a>
       </div>
@@ -61,7 +67,7 @@
         <a href="index.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all">
           Try Calculator
         </a>
-        <button id="mobileMenuBtn" class="md:hidden text-black p-2">
+        <button aria-label="Mobile Menu" id="mobileMenuBtn" class="md:hidden text-black p-2">
           <i class="fa-solid fa-bars text-lg"></i>
         </button>
       </div>
@@ -90,7 +96,7 @@
         <span class="text-emerald-600">Switch to Clean Green Electric.</span>
       </h1>
 
-      <p class="max-w-2xl mx-auto text-gray-700 text-sm sm:text-base leading-relaxed mb-8 font-medium">
+      <p class="max-w-2xl mx-auto text-gray-800 text-sm sm:text-base leading-relaxed mb-8 font-medium">
         Enter your routine daily distance, local fuel prices, and electricity rates to calculate your exact monthly and yearly cost savings.
       </p>
 
@@ -114,7 +120,7 @@
     <!-- Controls Bar -->
     <div class="bg-white border-2 border-emerald-100 rounded-2xl p-4 mb-8 flex flex-wrap items-center justify-between gap-4 shadow-sm">
       <div class="flex items-center gap-3">
-        <span class="text-xs font-black uppercase tracking-wider text-black">Country / Currency:</span>
+        <label for="currencySelect" class="text-xs font-black uppercase tracking-wider text-black">Country / Currency:</label>
         <select id="currencySelect" class="bg-white border-2 border-gray-200 text-xs font-bold rounded-xl px-3 py-2 text-black focus:outline-none focus:border-emerald-600 cursor-pointer">
           <option value="PKR|Rs.|280|40">🇵🇰 Pakistan (PKR - Rs.)</option>
           <option value="USD|$|3.80|0.18">🇺🇸 United States (USD - $)</option>
@@ -131,7 +137,7 @@
         <span class="text-xs font-black uppercase tracking-wider text-black">Distance Unit:</span>
         <div class="flex bg-gray-100 p-1 rounded-xl border border-gray-200 text-xs font-bold">
           <button id="unitMetric" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm">Metric (km / L)</button>
-          <button id="unitImperial" class="px-3.5 py-1.5 rounded-lg text-gray-700 hover:text-black transition-all">Imperial (mi / gal)</button>
+          <button id="unitImperial" class="px-3.5 py-1.5 rounded-lg text-gray-800 hover:text-black transition-all">Imperial (mi / gal)</button>
         </div>
       </div>
     </div>
@@ -149,10 +155,10 @@
             </div>
             <div>
               <h2 class="text-lg font-black text-black">Your Commute Details</h2>
-              <p class="text-xs text-gray-500 font-medium">Input your routine numbers below</p>
+              <p class="text-xs text-gray-600 font-medium">Input your routine numbers below</p>
             </div>
           </div>
-          <button id="resetDefaultsBtn" class="text-xs font-bold text-gray-500 hover:text-emerald-600 flex items-center gap-1 transition-colors">
+          <button id="resetDefaultsBtn" class="text-xs font-bold text-gray-600 hover:text-emerald-600 flex items-center gap-1 transition-colors">
             <i class="fa-solid fa-rotate-left"></i> Reset
           </button>
         </div>
@@ -161,13 +167,13 @@
         <div class="mb-6 bg-gray-50 p-5 rounded-2xl border border-gray-200">
           <div class="flex justify-between items-center mb-2">
             <div>
-              <label class="text-sm font-black text-black">Daily Commute Distance</label>
-              <p class="text-xs text-gray-500 font-medium">Average travel every day</p>
+              <label for="dailyDistance" class="text-sm font-black text-black">Daily Commute Distance</label>
+              <p class="text-xs text-gray-600 font-medium">Average travel every day</p>
             </div>
             <span id="distanceDisplay" class="text-base font-black text-white bg-emerald-600 px-3 py-1 rounded-xl shadow-sm">35 km</span>
           </div>
           <input type="range" id="dailyDistance" min="5" max="250" value="35" class="w-full accent-emerald-600 cursor-pointer h-2 bg-gray-200 rounded-lg">
-          <div class="flex justify-between text-xs text-gray-500 mt-2 font-bold">
+          <div class="flex justify-between text-xs text-gray-600 mt-2 font-bold">
             <span id="distMin">5 km/day</span>
             <span id="distMax">250 km/day</span>
           </div>
@@ -175,10 +181,10 @@
 
         <!-- Travel Days Selector -->
         <div class="mb-6">
-          <label class="block text-xs font-black uppercase tracking-wider text-black mb-1">Monthly Usage Days</label>
+          <label for="customDays" class="block text-xs font-black uppercase tracking-wider text-black mb-1">Monthly Usage Days</label>
           <div class="relative">
             <input type="number" id="customDays" value="26" min="1" max="31" class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
-            <span class="absolute right-4 top-2.5 text-xs text-gray-500 font-bold">Days / Month (1 - 31)</span>
+            <span class="absolute right-4 top-2.5 text-xs text-gray-600 font-bold">Days / Month (1 - 31)</span>
           </div>
         </div>
         
@@ -186,28 +192,28 @@
           <!-- Petrol Vehicle Block -->
           <div class="bg-amber-50/70 border-2 border-amber-200 p-5 rounded-2xl relative">
             <div class="flex items-center gap-2 mb-4 text-amber-800 text-sm font-black">
-              <i class="fa-solid fa-gas-pump text-amber-600"></i> Fuel Vehicle (Petrol)
+              <i class="fa-solid fa-gas-pump text-amber-700"></i> Fuel Vehicle (Petrol)
             </div>
             
             <div class="mb-4">
-              <label id="lblFuelEfficiency" class="block text-xs text-black font-black mb-1">Fuel Economy (km/L)</label>
+              <label id="lblFuelEfficiency" for="fuelEfficiency" class="block text-xs text-black font-black mb-1">Fuel Economy (km/L)</label>
               <input type="number" id="fuelEfficiency" value="40" step="0.5" class="w-full bg-white border-2 border-amber-200 rounded-xl px-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
-              <div class="flex justify-between text-[11px] text-gray-600 mt-1 font-semibold">
+              <div class="flex justify-between text-[11px] text-gray-700 mt-1 font-semibold">
                 <span>Bike: ~40 km/L</span>
                 <span>Car: ~14 km/L</span>
               </div>
             </div>
 
             <div>
-              <label id="lblFuelPrice" class="block text-xs text-black font-black mb-1">Fuel Price (per Liter)</label>
+              <label id="lblFuelPrice" for="fuelPrice" class="block text-xs text-black font-black mb-1">Fuel Price (per Liter)</label>
               <div class="relative">
-                <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
+                <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
                 <input type="number" id="fuelPrice" value="280" step="0.1" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
               </div>
               <div class="mt-4">
-                <label class="block text-xs text-black font-black mb-1">Monthly Maintenance / Oil Change</label>
+                <label for="fuelMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance / Oil Change</label>
                 <div class="relative">
-                  <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
+                  <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
                   <input type="number" id="fuelMaint" value="1500" step="50" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
                 </div>
               </div>
@@ -221,24 +227,24 @@
             </div>
 
             <div class="mb-4">
-              <label id="lblEvEfficiency" class="block text-xs text-black font-black mb-1">EV Efficiency (km/kWh)</label>
+              <label id="lblEvEfficiency" for="evEfficiency" class="block text-xs text-black font-black mb-1">EV Efficiency (km/kWh)</label>
               <input type="number" id="evEfficiency" value="30" step="0.5" class="w-full bg-white border-2 border-emerald-300 rounded-xl px-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
-              <div class="flex justify-between text-[11px] text-gray-600 mt-1 font-semibold">
+              <div class="flex justify-between text-[11px] text-gray-700 mt-1 font-semibold">
                 <span>Bike: ~30 km/unit</span>
                 <span>Car: ~6-7 km/unit</span>
               </div>
             </div>
 
             <div>
-              <label class="block text-xs text-black font-black mb-1">Electricity Rate (per Unit / kWh)</label>
+              <label for="electricityRate" class="block text-xs text-black font-black mb-1">Electricity Rate (per Unit / kWh)</label>
               <div class="relative">
-                <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
+                <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
                 <input type="number" id="electricityRate" value="40" step="0.1" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
               </div>
               <div class="mt-4">
-                <label class="block text-xs text-black font-black mb-1">Monthly Maintenance (Routine Service)</label>
+                <label for="evMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance (Routine Service)</label>
                 <div class="relative">
-                  <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-500 font-black">Rs.</span>
+                  <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
                   <input type="number" id="evMaint" value="200" step="50" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
                 </div>
               </div>
@@ -268,21 +274,21 @@
         <!-- Monthly Breakdown Cards -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div class="bg-white border-2 border-gray-200 rounded-2xl p-5 shadow-sm">
-            <div class="flex items-center justify-between text-xs text-gray-500 mb-2">
+            <div class="flex items-center justify-between text-xs text-gray-600 mb-2">
               <span class="font-black uppercase tracking-wider text-black">Fuel Cost (Monthly)</span>
               <span class="p-1.5 rounded-lg bg-amber-100 text-amber-700 font-bold"><i class="fa-solid fa-gas-pump"></i></span>
             </div>
             <div class="text-2xl sm:text-3xl font-black text-amber-600" id="fuelMonthlyText">Rs. 0</div>
-            <div class="text-xs text-gray-500 mt-2 font-bold" id="fuelYearlyText">Yearly: Rs. 0</div>
+            <div class="text-xs text-gray-600 mt-2 font-bold" id="fuelYearlyText">Yearly: Rs. 0</div>
           </div>
 
           <div class="bg-white border-2 border-gray-200 rounded-2xl p-5 shadow-sm">
-            <div class="flex items-center justify-between text-xs text-gray-500 mb-2">
+            <div class="flex items-center justify-between text-xs text-gray-600 mb-2">
               <span class="font-black uppercase tracking-wider text-black">EV Charging (Monthly)</span>
               <span class="p-1.5 rounded-lg bg-emerald-100 text-emerald-700 font-bold"><i class="fa-solid fa-plug-circle-bolt"></i></span>
             </div>
             <div class="text-2xl sm:text-3xl font-black text-emerald-600" id="evMonthlyText">Rs. 0</div>
-            <div class="text-xs text-gray-500 mt-2 font-bold" id="evYearlyText">Yearly: Rs. 0</div>
+            <div class="text-xs text-gray-600 mt-2 font-bold" id="evYearlyText">Yearly: Rs. 0</div>
           </div>
         </div>
 
@@ -291,17 +297,17 @@
           <div class="flex items-center justify-between mb-4">
             <div>
               <h3 class="text-xs font-black uppercase tracking-wider text-black">Long-Term Cumulative Savings</h3>
-              <p class="text-xs text-gray-500 font-medium">Expense comparison across standard ownership periods</p>
+              <p class="text-xs text-gray-600 font-medium">Expense comparison across standard ownership periods</p>
             </div>
-            <span class="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-md font-black">Net Retained</span>
+            <span class="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-md font-black">Net Retained</span>
           </div>
           
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs">
               <thead>
-                <tr class="border-b-2 border-gray-100 text-gray-500">
+                <tr class="border-b-2 border-gray-100 text-gray-600">
                   <th class="pb-2.5 font-black uppercase text-black">Period</th>
-                  <th class="pb-2.5 font-black uppercase text-amber-600">Petrol Cost</th>
+                  <th class="pb-2.5 font-black uppercase text-amber-700">Petrol Cost</th>
                   <th class="pb-2.5 font-black uppercase text-emerald-600">EV Power</th>
                   <th class="pb-2.5 font-black uppercase text-right text-emerald-600">You Save</th>
                 </tr>
@@ -309,26 +315,26 @@
               <tbody class="divide-y divide-gray-100 font-bold">
                 <tr>
                   <td class="py-3 text-black">1 Month</td>
-                  <td class="py-3 text-gray-700" id="tblFuel1M">-</td>
-                  <td class="py-3 text-gray-700" id="tblEv1M">-</td>
+                  <td class="py-3 text-gray-800" id="tblFuel1M">-</td>
+                  <td class="py-3 text-gray-800" id="tblEv1M">-</td>
                   <td class="py-3 text-right font-black text-emerald-600" id="tblSave1M">-</td>
                 </tr>
                 <tr>
                   <td class="py-3 text-black">1 Year</td>
-                  <td class="py-3 text-gray-700" id="tblFuel1Y">-</td>
-                  <td class="py-3 text-gray-700" id="tblEv1Y">-</td>
+                  <td class="py-3 text-gray-800" id="tblFuel1Y">-</td>
+                  <td class="py-3 text-gray-800" id="tblEv1Y">-</td>
                   <td class="py-3 text-right font-black text-emerald-600" id="tblSave1Y">-</td>
                 </tr>
                 <tr>
                   <td class="py-3 text-black">3 Years</td>
-                  <td class="py-3 text-gray-700" id="tblFuel3Y">-</td>
-                  <td class="py-3 text-gray-700" id="tblEv3Y">-</td>
+                  <td class="py-3 text-gray-800" id="tblFuel3Y">-</td>
+                  <td class="py-3 text-gray-800" id="tblEv3Y">-</td>
                   <td class="py-3 text-right font-black text-emerald-600" id="tblSave3Y">-</td>
                 </tr>
                 <tr>
                   <td class="py-3 text-black">5 Years</td>
-                  <td class="py-3 text-gray-700" id="tblFuel5Y">-</td>
-                  <td class="py-3 text-gray-700" id="tblEv5Y">-</td>
+                  <td class="py-3 text-gray-800" id="tblFuel5Y">-</td>
+                  <td class="py-3 text-gray-800" id="tblEv5Y">-</td>
                   <td class="py-3 text-right font-black text-emerald-600" id="tblSave5Y">-</td>
                 </tr>
               </tbody>
@@ -354,7 +360,7 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-12">
         <h2 class="text-2xl sm:text-3xl font-black text-black tracking-tight mb-3">Why Commuters Trust VoltSavings</h2>
-        <p class="text-sm text-gray-600 font-medium">We provide transparent real-world calculations without marketing bias.</p>
+        <p class="text-sm text-gray-700 font-medium">We provide transparent real-world calculations without marketing bias.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -363,7 +369,7 @@
             <i class="fa-solid fa-leaf"></i>
           </div>
           <h3 class="text-base font-black text-black mb-2">100% Eco-Friendly Analysis</h3>
-          <p class="text-xs text-gray-600 leading-relaxed font-medium">See how switching to electric reduces your direct tailpipe carbon impact while cutting down monthly fuel expenses.</p>
+          <p class="text-xs text-gray-700 leading-relaxed font-medium">See how switching to electric reduces your direct tailpipe carbon impact while cutting down monthly fuel expenses.</p>
         </div>
 
         <div class="bg-white border-2 border-gray-100 p-6 rounded-2xl shadow-sm">
@@ -371,7 +377,7 @@
             <i class="fa-solid fa-shield-halved"></i>
           </div>
           <h3 class="text-base font-black text-black mb-2">Complete User Privacy</h3>
-          <p class="text-xs text-gray-600 leading-relaxed font-medium">No registrations, no cookies, no tracking. All arithmetic processes run completely inside your personal browser window.</p>
+          <p class="text-xs text-gray-700 leading-relaxed font-medium">No registrations, no cookies, no tracking. All arithmetic processes run completely inside your personal browser window.</p>
         </div>
 
         <div class="bg-white border-2 border-gray-100 p-6 rounded-2xl shadow-sm">
@@ -379,7 +385,7 @@
             <i class="fa-solid fa-chart-line"></i>
           </div>
           <h3 class="text-base font-black text-black mb-2">Long-Term ROI Forecast</h3>
-          <p class="text-xs text-gray-600 leading-relaxed font-medium">Clear 1 to 5 year cost projections that show exactly when your electric bike or car pays back its initial upfront investment.</p>
+          <p class="text-xs text-gray-700 leading-relaxed font-medium">Clear 1 to 5 year cost projections that show exactly when your electric bike or car pays back its initial upfront investment.</p>
         </div>
       </div>
     </div>
@@ -405,7 +411,7 @@
             <h3 class="text-base font-black text-black leading-snug">Are Electric Motorcycles Worth It in 2026?</h3>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
-            <p class="text-xs text-gray-600 leading-relaxed mb-4 font-medium">
+            <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
               With surging petrol rates, electric bikes claim up to 80% operational cost reduction. We break down initial purchase price vs recurring savings.
             </p>
             <a href="blog.html#ev-worth-2026" class="text-xs font-black text-emerald-600 hover:underline">Read Analysis →</a>
@@ -418,7 +424,7 @@
             <h3 class="text-base font-black text-black leading-snug">Home Charging vs Public DC Fast Chargers</h3>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
-            <p class="text-xs text-gray-600 leading-relaxed mb-4 font-medium">
+            <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
               Commercial rapid chargers cost up to 3x more per kWh than overnight domestic tariffs. Learn how to optimize your charging cycle.
             </p>
             <a href="blog.html#charging-costs" class="text-xs font-black text-emerald-600 hover:underline">Read Analysis →</a>
@@ -431,7 +437,7 @@
             <h3 class="text-base font-black text-black leading-snug">Battery Degradation & Replacement Costs</h3>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
-            <p class="text-xs text-gray-600 leading-relaxed mb-4 font-medium">
+            <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
               How long do lithium iron phosphate (LFP) packs truly last under hot climates, and what will replacement cost by 2030?
             </p>
             <a href="blog.html#battery-degradation" class="text-xs font-black text-emerald-600 hover:underline">Read Analysis →</a>
@@ -447,7 +453,7 @@
       <div class="text-center mb-12">
         <span class="text-xs font-black uppercase tracking-wider text-emerald-600">HELP & FAQ</span>
         <h2 class="text-2xl sm:text-3xl font-black text-black tracking-tight mt-1">Frequently Asked Questions</h2>
-        <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">Everything you need to know about EV operational economics.</p>
+        <p class="text-xs sm:text-sm text-gray-700 mt-2 font-medium">Everything you need to know about EV operational economics.</p>
       </div>
 
       <div class="space-y-4">
@@ -456,7 +462,7 @@
             <span>What does EV Efficiency (km/kWh) mean?</span>
             <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
           </summary>
-          <p class="text-xs text-gray-600 leading-relaxed mt-3 font-medium">
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
             In combustion engines, efficiency is measured in distance per unit of liquid fuel (km per liter). In electric vehicles, energy is measured in kilowatt-hours (kWh), equivalent to 1 unit of electricity on your home meter. A rating of 30 km/kWh means the vehicle travels 30 kilometers using 1 unit of electric energy.
           </p>
         </details>
@@ -466,7 +472,7 @@
             <span>What typical efficiency numbers should I enter?</span>
             <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
           </summary>
-          <div class="text-xs text-gray-600 leading-relaxed mt-3 space-y-2 font-medium">
+          <div class="text-xs text-gray-700 leading-relaxed mt-3 space-y-2 font-medium">
             <p><strong>Electric Bikes / Scooters:</strong> Typically deliver 25 to 45 km per kWh (or 15 to 28 mi/kWh).</p>
             <p><strong>Electric Sedans / Compact Cars:</strong> Typically achieve 5.5 to 7.5 km per kWh (or 3.4 to 4.6 mi/kWh).</p>
             <p><strong>Petrol 70cc-125cc Bikes:</strong> 40 to 55 km/L.</p>
@@ -479,7 +485,7 @@
             <span>Does this calculator account for maintenance & engine oil?</span>
             <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
           </summary>
-          <p class="text-xs text-gray-600 leading-relaxed mt-3 font-medium">
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
             This tool computes direct fuel vs electric energy expenses and routine maintenance entered above. In reality, your savings with an EV are even higher because EVs have no engine oil, spark plugs, timing belts, or clutch assemblies.
           </p>
         </details>
@@ -489,7 +495,7 @@
             <span>Is user data logged or sent to servers?</span>
             <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
           </summary>
-          <p class="text-xs text-gray-600 leading-relaxed mt-3 font-medium">
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
             No. VoltSavings is built as an open, client-side calculator. Everything runs locally in your device's browser memory. We never ask for your email, login, or personal driving history.
           </p>
         </details>
@@ -498,7 +504,7 @@
   </section>
 
   <!-- Footer -->
-  <footer class="border-t border-gray-200 bg-white pt-16 pb-12 text-gray-600 text-xs">
+  <footer class="border-t border-gray-200 bg-white pt-16 pb-12 text-gray-700 text-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
         <div class="col-span-2">
@@ -506,20 +512,20 @@
             <span class="text-xl">⚡</span>
             <span class="text-lg font-black tracking-tight text-black">VoltSavings<span class="text-emerald-600">.</span></span>
           </div>
-          <p class="text-gray-600 text-xs leading-relaxed max-w-sm mb-4">
+          <p class="text-gray-700 text-xs leading-relaxed max-w-sm mb-4">
             An open, privacy-first EV vs ICE fuel expenditure calculator designed to provide transparent operational cost projections for daily commuters globally.
           </p>
-          <div class="flex items-center gap-3 text-gray-500 text-sm">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-700 font-bold">
+          <div class="flex items-center gap-3 text-gray-600 text-sm">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-800 font-bold">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
               100% Free & Open
             </span>
-            <span class="text-[11px] text-gray-500">No cookies, zero tracking</span>
+            <span class="text-[11px] text-gray-600">No cookies, zero tracking</span>
           </div>
         </div>
 
         <div>
-          <h4 class="text-xs font-black uppercase tracking-wider text-black mb-4">Product</h4>
+          <h2 class="text-xs font-black uppercase tracking-wider text-black mb-4">Product</h2>
           <ul class="space-y-2.5 font-semibold text-gray-700">
             <li><a href="index.html" class="hover:text-emerald-600 transition-colors">EV Savings Calculator</a></li>
             <li><a href="index.html#features" class="hover:text-emerald-600 transition-colors">Core Features</a></li>
@@ -529,7 +535,7 @@
         </div>
 
         <div>
-          <h4 class="text-xs font-black uppercase tracking-wider text-black mb-4">Guides & Media</h4>
+          <h2 class="text-xs font-black uppercase tracking-wider text-black mb-4">Guides & Media</h2>
           <ul class="space-y-2.5 font-semibold text-gray-700">
             <li><a href="blog.html" class="hover:text-emerald-600 transition-colors">All Research Articles</a></li>
             <li><a href="blog.html#ev-worth-2026" class="hover:text-emerald-600 transition-colors">Are EV Bikes Worth It?</a></li>
@@ -539,7 +545,7 @@
         </div>
 
         <div>
-          <h4 class="text-xs font-black uppercase tracking-wider text-black mb-4">Legal & Support</h4>
+          <h2 class="text-xs font-black uppercase tracking-wider text-black mb-4">Legal & Support</h2>
           <ul class="space-y-2.5 font-semibold text-gray-700">
             <li><a href="about.html" class="hover:text-emerald-600 transition-colors">About Our Mission</a></li>
             <li><a href="privacy-policy.html" class="hover:text-emerald-600 transition-colors">Privacy Policy</a></li>
@@ -550,8 +556,8 @@
       </div>
 
       <div class="border-t border-gray-100 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-medium">
-        <p class="text-gray-500">© 2026 VoltSavings Calculator. Designed for clean eco-mobility.</p>
-        <div class="flex items-center gap-4 text-gray-500">
+        <p class="text-gray-600">© 2026 VoltSavings Calculator. Designed for clean eco-mobility.</p>
+        <div class="flex items-center gap-4 text-gray-600">
           <a href="privacy-policy.html" class="hover:text-black">Privacy</a>
           <span>•</span>
           <a href="terms.html" class="hover:text-black">Terms</a>
@@ -598,7 +604,7 @@
       if (metricMode) {
         isMetric = true;
         unitMetric.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
-        unitImperial.className = "px-3.5 py-1.5 rounded-lg text-gray-700 hover:text-black transition-all";
+        unitImperial.className = "px-3.5 py-1.5 rounded-lg text-gray-800 hover:text-black transition-all";
         distMin.innerText = "5 km/day";
         distMax.innerText = "250 km/day";
         dailyDistance.max = "250";
@@ -610,7 +616,7 @@
       } else {
         isMetric = false;
         unitImperial.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
-        unitMetric.className = "px-3.5 py-1.5 rounded-lg text-gray-700 hover:text-black transition-all";
+        unitMetric.className = "px-3.5 py-1.5 rounded-lg text-gray-800 hover:text-black transition-all";
         distMin.innerText = "5 mi/day";
         distMax.innerText = "150 mi/day";
         dailyDistance.max = "150";
