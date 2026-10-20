@@ -1,7 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-<!-- Fonts & Icons (Non-blocking taake speed behtar ho) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Much Money Do You Save Switching to an EV? | VoltSavings™</title>
+  <meta name="description" content="Is buying an electric vehicle worth it? Discover exactly how much money you can save by switching from gas to an electric car or motorcycle.">
+  <meta name="theme-color" content="#059669">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Fonts & Icons (Non-blocking taake speed behtar ho) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" media="print" onload="this.media='all'">
@@ -20,17 +27,50 @@
   <!-- Header -->
   <header class="border-b border-gray-100 bg-white sticky top-0 z-50 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2.5 group py-2">
-        <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-md">⚡</div>
-        <span class="text-xl font-black tracking-tight text-black">VoltSavings</span>
-      </a>
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-2.5 group">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-emerald-600/20">
+            ⚡
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-xl font-black tracking-tight text-black">VoltSavings</span>
+              <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">PRO</span>
+            </div>
+            <p class="text-[11px] text-gray-600 font-medium">Global Fuel vs EV Intelligence</p>
+          </div>
+        </a>
+      </div>
+
       <nav class="hidden md:flex items-center space-x-8 text-sm font-bold text-gray-900">
+        <!-- Calculator Inactive (Gray) -->
         <a href="index.html" class="py-2 hover:text-emerald-600 transition-colors">Calculator</a>
+        <!-- Blog Active (Green with dot) -->
         <a href="blog.html" class="py-2 text-emerald-600 transition-colors flex items-center gap-1.5">
           Blog <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
         </a>
+        <!-- About Inactive (Gray) -->
+        <a href="about.html" class="py-2 hover:text-emerald-600 transition-colors">About Us</a>
+        <!-- Contact Inactive (Gray) -->
+        <a href="contact.html" class="py-2 hover:text-emerald-600 transition-colors">Contact</a>
       </nav>
-      <a href="index.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition-all">Try Calculator</a>
+
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all">
+          Try Calculator
+        </a>
+        <button aria-label="Mobile Menu" id="mobileMenuBtn" class="md:hidden text-black p-2">
+          <i class="fa-solid fa-bars text-lg"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-3 text-sm">
+      <a href="index.html" class="block text-black hover:text-emerald-600 py-1 font-semibold">Calculator</a>
+      <a href="blog.html" class="block text-emerald-600 font-bold py-1">Blog</a>
+      <a href="about.html" class="block text-black hover:text-emerald-600 py-1 font-semibold">About Us</a>
+      <a href="contact.html" class="block text-black hover:text-emerald-600 py-1 font-semibold">Contact Us</a>
     </div>
   </header>
 
@@ -38,14 +78,13 @@
   <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 w-full flex-grow">
     
     <!-- Breadcrumb -->
-    <nav class="hidden md:flex items-center space-x-8 text-sm font-bold text-gray-900">
-        <!-- Calculator Inactive (Gray) -->
-        <a href="index.html" class="py-2 hover:text-emerald-600 transition-colors">Calculator</a>
-        <!-- Blog Active (Green) with dot -->
-        <a href="blog.html" class="py-2 text-emerald-600 transition-colors flex items-center gap-1.5">
-          Blog <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
-        </a>
-      </nav>
+    <nav class="flex text-xs text-gray-500 font-bold mb-8">
+      <a href="index.html" class="hover:text-emerald-600">Home</a>
+      <span class="mx-2">/</span>
+      <a href="blog.html" class="hover:text-emerald-600">Blog</a>
+      <span class="mx-2">/</span>
+      <span class="text-gray-800">Economics</span>
+    </nav>
 
     <article>
       <header class="mb-10">
@@ -96,16 +135,71 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-gray-200 bg-white py-10 text-center text-xs text-gray-500 font-medium">
-    <div class="max-w-7xl mx-auto px-4">
-      <p>© 2026 VoltSavings Calculator. Designed for clean eco-mobility.</p>
-      <div class="flex items-center justify-center gap-4 mt-3">
-        <a href="privacy-policy.html" class="hover:text-black">Privacy</a>
-        <span>•</span>
-        <a href="terms.html" class="hover:text-black">Terms</a>
+  <footer class="border-t border-gray-200 bg-white pt-16 pb-12 text-gray-700 text-xs mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
+        <div class="col-span-2">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-xl">⚡</span>
+            <span class="text-lg font-black tracking-tight text-black">VoltSavings<span class="text-emerald-600">.</span></span>
+          </div>
+          <p class="text-gray-700 text-xs leading-relaxed max-w-sm mb-4">
+            An open, privacy-first EV vs ICE fuel expenditure calculator designed to provide transparent operational cost projections for daily commuters globally.
+          </p>
+          <div class="flex items-center gap-3 text-gray-600 text-sm">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-[11px] text-emerald-800 font-bold">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+              100% Free & Open
+            </span>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-xs font-black uppercase tracking-wider text-black mb-4">Product</h2>
+          <ul class="space-y-2.5 font-semibold text-gray-700">
+            <li><a href="index.html" class="hover:text-emerald-600 transition-colors">EV Savings Calculator</a></li>
+            <li><a href="index.html#features" class="hover:text-emerald-600 transition-colors">Core Features</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-xs font-black uppercase tracking-wider text-black mb-4">Guides & Media</h2>
+          <ul class="space-y-2.5 font-semibold text-gray-700">
+            <li><a href="blog.html" class="hover:text-emerald-600 transition-colors">All Research Articles</a></li>
+            <li><a href="ev-bikes-2026.html" class="hover:text-emerald-600 transition-colors">Are EV Bikes Worth It?</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="text-xs font-black uppercase tracking-wider text-black mb-4">Legal & Support</h2>
+          <ul class="space-y-2.5 font-semibold text-gray-700">
+            <li><a href="about.html" class="hover:text-emerald-600 transition-colors">About Our Mission</a></li>
+            <li><a href="privacy-policy.html" class="hover:text-emerald-600 transition-colors">Privacy Policy</a></li>
+            <li><a href="terms.html" class="hover:text-emerald-600 transition-colors">Terms of Service</a></li>
+            <li><a href="contact.html" class="hover:text-emerald-600 transition-colors">Contact Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-100 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 font-medium">
+        <p class="text-gray-600">© 2026 VoltSavings Calculator. Designed for clean eco-mobility.</p>
+        <div class="flex items-center gap-4 text-gray-600">
+          <a href="privacy-policy.html" class="hover:text-black">Privacy</a>
+          <span>•</span>
+          <a href="terms.html" class="hover:text-black">Terms</a>
+        </div>
       </div>
     </div>
   </footer>
 
+  <script>
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  </script>
 </body>
 </html>
