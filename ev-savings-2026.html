@@ -38,13 +38,14 @@
   <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20 w-full flex-grow">
     
     <!-- Breadcrumb -->
-    <nav class="flex text-xs text-gray-500 font-bold mb-8">
-      <a href="index.html" class="hover:text-emerald-600">Home</a>
-      <span class="mx-2">/</span>
-      <a href="blog.html" class="hover:text-emerald-600">Blog</a>
-      <span class="mx-2">/</span>
-      <span class="text-gray-800">Economics</span>
-    </nav>
+    <nav class="hidden md:flex items-center space-x-8 text-sm font-bold text-gray-900">
+        <!-- Calculator Inactive (Gray) -->
+        <a href="index.html" class="py-2 hover:text-emerald-600 transition-colors">Calculator</a>
+        <!-- Blog Active (Green) with dot -->
+        <a href="blog.html" class="py-2 text-emerald-600 transition-colors flex items-center gap-1.5">
+          Blog <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+        </a>
+      </nav>
 
     <article>
       <header class="mb-10">
