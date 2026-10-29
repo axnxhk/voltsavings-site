@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const aboutSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About VoltSavings",
+  "description": "Learn about VoltSavings, our mission to empower commuters with transparent EV vs Petrol cost comparisons, and our commitment to client-side data privacy."
+};
+---
+
+<Layout 
+  title="About Us | VoltSavings™ - EV Cost Calculator"
+  description="Learn about VoltSavings, our mission to empower commuters with transparent EV vs Petrol cost comparisons, and our commitment to your data privacy."
+  schema={aboutSchema}
+>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full flex-grow">
+    
+    <Breadcrumbs items={[
+      { name: 'Home', url: '/' },
+      { name: 'About Us' }
+    ]} />
+
+    <div class="bg-white border-2 border-gray-100 rounded-3xl p-8 sm:p-12 shadow-sm">
+      <div class="mb-8 border-b border-gray-100 pb-6">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Our Mission</span>
+        <h1 class="text-3xl sm:text-4xl font-black text-black tracking-tight mt-2">About VoltSavings</h1>
+      </div>
+      <div class="space-y-6 text-sm sm:text-base text-gray-600 font-medium leading-relaxed">
+        <p>Welcome to <strong>VoltSavings</strong>, your premier destination for transparent, data-driven operational cost comparisons between Electric Vehicles (EVs) and Internal Combustion Engine (ICE) vehicles.</p>
+        <p>Our mission is simple: to empower daily commuters worldwide with the financial data they need to make the switch to clean, green electric mobility. We noticed a lack of unbiased, easy-to-use tools that factor in real-world metrics like local electricity tariffs, fuel price spikes, and routine maintenance.</p>
+        <p>VoltSavings operates entirely in your browser. We prioritize your privacy above all else—we do not collect personal data, track your location, or require you to create an account. All arithmetic processes run strictly client-side.</p>
+        <p>Whether you are considering an electric motorcycle for daily intra-city trips or a family EV sedan, VoltSavings is here to help you forecast your long-term return on investment.</p>
+      </div>
+
+      <div class="mt-10 pt-8 border-t border-gray-100 flex flex-wrap gap-4 items-center justify-between">
+        <div>
+          <h2 class="text-sm font-black text-black">Curious about your personal savings?</h2>
+          <p class="text-xs text-gray-500 font-medium">Test our free tool with your routine daily mileage.</p>
+        </div>
+        <a 
+          href="/#calculator-app" 
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all"
+        >
+          Try Free Calculator <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>

@@ -1,0 +1,499 @@
+---
+---
+
+<div id="calculator-app" class="scroll-mt-20">
+  <!-- Controls Bar -->
+  <div class="bg-white border-2 border-emerald-100 rounded-2xl p-4 mb-8 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+    <div class="flex items-center gap-3">
+      <label for="currencySelect" class="text-xs font-black uppercase tracking-wider text-black">Country / Currency:</label>
+      <select id="currencySelect" class="bg-white border-2 border-gray-200 text-xs font-bold rounded-xl px-3 py-2 text-black focus:outline-none focus:border-emerald-600 cursor-pointer">
+        <option value="PK">🇵🇰 Pakistan (PKR - Rs.)</option>
+        <option value="US">🇺🇸 United States (USD - $)</option>
+        <option value="EU">🇪🇺 Europe (EUR - €)</option>
+        <option value="GB">🇬🇧 United Kingdom (GBP - £)</option>
+        <option value="IN">🇮🇳 India (INR - ₹)</option>
+        <option value="AE">🇦🇪 United Arab Emirates (AED)</option>
+        <option value="CA">🇨🇦 Canada (CAD - $)</option>
+        <option value="AU">🇦🇺 Australia (AUD - $)</option>
+      </select>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span class="text-xs font-black uppercase tracking-wider text-black">Distance Unit:</span>
+      <div class="flex bg-gray-100 p-1 rounded-xl border border-gray-200 text-xs font-bold" role="group" aria-label="Distance Unit Selector">
+        <button type="button" id="unitMetric" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm">Metric (km / L)</button>
+        <button type="button" id="unitImperial" class="px-3.5 py-1.5 rounded-lg text-gray-800 hover:text-black transition-all">Imperial (mi / gal)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+    
+    <!-- Input Column -->
+    <div class="lg:col-span-6 bg-white border-2 border-gray-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+      
+      <div class="flex items-center justify-between pb-5 border-b border-gray-100 mb-6">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700 text-base">
+            <i class="fa-solid fa-sliders"></i>
+          </div>
+          <div>
+            <h2 class="text-lg font-black text-black">Your Commute Details</h2>
+            <p class="text-xs text-gray-600 font-medium">Input your routine numbers below</p>
+          </div>
+        </div>
+        <button type="button" id="resetDefaultsBtn" class="text-xs font-bold text-gray-600 hover:text-emerald-600 flex items-center gap-1 transition-colors">
+          <i class="fa-solid fa-rotate-left"></i> Reset
+        </button>
+      </div>
+
+      <!-- Daily Distance Slider -->
+      <div class="mb-6 bg-gray-50 p-5 rounded-2xl border border-gray-200">
+        <div class="flex justify-between items-center mb-2">
+          <div>
+            <label for="dailyDistance" class="text-sm font-black text-black">Daily Commute Distance</label>
+            <p class="text-xs text-gray-600 font-medium">Average travel every day</p>
+          </div>
+          <span id="distanceDisplay" class="text-base font-black text-white bg-emerald-600 px-3 py-1 rounded-xl shadow-sm">35 km</span>
+        </div>
+        <input type="range" id="dailyDistance" min="5" max="250" value="35" class="w-full accent-emerald-600 cursor-pointer h-2 bg-gray-200 rounded-lg">
+        <div class="flex justify-between text-xs text-gray-600 mt-2 font-bold">
+          <span id="distMin">5 km/day</span>
+          <span id="distMax">250 km/day</span>
+        </div>
+      </div>
+
+      <!-- Travel Days Selector -->
+      <div class="mb-6">
+        <label for="customDays" class="block text-xs font-black uppercase tracking-wider text-black mb-1">Monthly Usage Days</label>
+        <div class="relative">
+          <input type="number" id="customDays" value="26" min="1" max="31" class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
+          <span class="absolute right-4 top-2.5 text-xs text-gray-600 font-bold">Days / Month (1 - 31)</span>
+        </div>
+      </div>
+      
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <!-- Petrol Vehicle Block -->
+        <div class="bg-amber-50/70 border-2 border-amber-200 p-5 rounded-2xl relative">
+          <div class="flex items-center gap-2 mb-4 text-amber-800 text-sm font-black">
+            <i class="fa-solid fa-gas-pump text-amber-700"></i> Fuel Vehicle (Petrol)
+          </div>
+          
+          <div class="mb-4">
+            <label id="lblFuelEfficiency" for="fuelEfficiency" class="block text-xs text-black font-black mb-1">Fuel Economy (km/L)</label>
+            <input type="number" id="fuelEfficiency" value="40" step="0.5" class="w-full bg-white border-2 border-amber-200 rounded-xl px-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
+            <div class="flex justify-between text-[11px] text-gray-700 mt-1 font-semibold">
+              <span id="txtBikeFuelHint">Bike: ~40 km/L</span>
+              <span id="txtCarFuelHint">Car: ~14 km/L</span>
+            </div>
+          </div>
+
+          <div>
+            <label id="lblFuelPrice" for="fuelPrice" class="block text-xs text-black font-black mb-1">Fuel Price (per Liter)</label>
+            <div class="relative">
+              <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
+              <input type="number" id="fuelPrice" value="280" step="0.01" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
+            </div>
+            <div class="mt-4">
+              <label for="fuelMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance / Oil Change</label>
+              <div class="relative">
+                <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
+                <input type="number" id="fuelMaint" value="1500" step="1" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Electric Vehicle Block -->
+        <div class="bg-emerald-50/70 border-2 border-emerald-300 p-5 rounded-2xl relative">
+          <div class="flex items-center gap-2 mb-4 text-emerald-800 text-sm font-black">
+            <i class="fa-solid fa-bolt text-emerald-600"></i> Electric Vehicle (EV)
+          </div>
+
+          <div class="mb-4">
+            <label id="lblEvEfficiency" for="evEfficiency" class="block text-xs text-black font-black mb-1">EV Efficiency (km/kWh)</label>
+            <input type="number" id="evEfficiency" value="30" step="0.1" class="w-full bg-white border-2 border-emerald-300 rounded-xl px-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
+            <div class="flex justify-between text-[11px] text-gray-700 mt-1 font-semibold">
+              <span id="txtBikeEvHint">Bike: ~30 km/unit</span>
+              <span id="txtCarEvHint">Car: ~6-7 km/unit</span>
+            </div>
+          </div>
+
+          <div>
+            <label for="electricityRate" class="block text-xs text-black font-black mb-1">Electricity Rate (per Unit / kWh)</label>
+            <div class="relative">
+              <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
+              <input type="number" id="electricityRate" value="40" step="0.01" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
+            </div>
+            <div class="mt-4">
+              <label for="evMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance (Routine Service)</label>
+              <div class="relative">
+                <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
+                <input type="number" id="evMaint" value="200" step="1" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Results Column -->
+    <div class="lg:col-span-6 space-y-6">
+      
+      <!-- Big Hero Savings Banner -->
+      <div class="bg-emerald-600 rounded-3xl p-6 sm:p-8 text-white shadow-xl shadow-emerald-600/20">
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-xs uppercase font-black tracking-widest text-emerald-100">TOTAL ESTIMATED ANNUAL SAVINGS</span>
+          <span id="savingPercentage" class="bg-white text-emerald-800 text-xs font-black px-3 py-1 rounded-full shadow-sm">Save ~85%</span>
+        </div>
+        
+        <div class="text-4xl sm:text-6xl font-black tracking-tight my-3" id="annualSavingsText">Rs. 0</div>
+        
+        <p class="text-xs sm:text-sm text-emerald-50 max-w-md font-medium leading-relaxed">
+          By eliminating expensive fuel consumption and switching to electric mobility, you keep thousands in your pocket every single year.
+        </p>
+      </div>
+
+      <!-- Monthly Breakdown Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="bg-white border-2 border-gray-200 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center justify-between text-xs text-gray-600 mb-2">
+            <span class="font-black uppercase tracking-wider text-black">Fuel Cost (Monthly)</span>
+            <span class="p-1.5 rounded-lg bg-amber-100 text-amber-700 font-bold"><i class="fa-solid fa-gas-pump"></i></span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-black text-amber-600" id="fuelMonthlyText">Rs. 0</div>
+          <div class="text-xs text-gray-600 mt-2 font-bold" id="fuelYearlyText">Yearly: Rs. 0</div>
+        </div>
+
+        <div class="bg-white border-2 border-gray-200 rounded-2xl p-5 shadow-sm">
+          <div class="flex items-center justify-between text-xs text-gray-600 mb-2">
+            <span class="font-black uppercase tracking-wider text-black">EV Charging (Monthly)</span>
+            <span class="p-1.5 rounded-lg bg-emerald-100 text-emerald-700 font-bold"><i class="fa-solid fa-plug-circle-bolt"></i></span>
+          </div>
+          <div class="text-2xl sm:text-3xl font-black text-emerald-600" id="evMonthlyText">Rs. 0</div>
+          <div class="text-xs text-gray-600 mt-2 font-bold" id="evYearlyText">Yearly: Rs. 0</div>
+        </div>
+      </div>
+
+      <!-- Multi-Year ROI Matrix Table -->
+      <div id="breakdown" class="bg-white border-2 border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm scroll-mt-20">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h3 class="text-xs font-black uppercase tracking-wider text-black">Long-Term Cumulative Savings</h3>
+            <p class="text-xs text-gray-600 font-medium">Expense comparison across standard ownership periods</p>
+          </div>
+          <span class="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-md font-black">Net Retained</span>
+        </div>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead>
+              <tr class="border-b-2 border-gray-100 text-gray-600">
+                <th class="pb-2.5 font-black uppercase text-black">Period</th>
+                <th class="pb-2.5 font-black uppercase text-amber-700">Petrol Cost</th>
+                <th class="pb-2.5 font-black uppercase text-emerald-600">EV Power</th>
+                <th class="pb-2.5 font-black uppercase text-right text-emerald-600">You Save</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100 font-bold">
+              <tr>
+                <td class="py-3 text-black">1 Month</td>
+                <td class="py-3 text-gray-800" id="tblFuel1M">-</td>
+                <td class="py-3 text-gray-800" id="tblEv1M">-</td>
+                <td class="py-3 text-right font-black text-emerald-600" id="tblSave1M">-</td>
+              </tr>
+              <tr>
+                <td class="py-3 text-black">1 Year</td>
+                <td class="py-3 text-gray-800" id="tblFuel1Y">-</td>
+                <td class="py-3 text-gray-800" id="tblEv1Y">-</td>
+                <td class="py-3 text-right font-black text-emerald-600" id="tblSave1Y">-</td>
+              </tr>
+              <tr>
+                <td class="py-3 text-black">3 Years</td>
+                <td class="py-3 text-gray-800" id="tblFuel3Y">-</td>
+                <td class="py-3 text-gray-800" id="tblEv3Y">-</td>
+                <td class="py-3 text-right font-black text-emerald-600" id="tblSave3Y">-</td>
+              </tr>
+              <tr>
+                <td class="py-3 text-black">5 Years</td>
+                <td class="py-3 text-gray-800" id="tblFuel5Y">-</td>
+                <td class="py-3 text-gray-800" id="tblEv5Y">-</td>
+                <td class="py-3 text-right font-black text-emerald-600" id="tblSave5Y">-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex gap-3">
+        <button type="button" id="copyBtn" class="flex-1 bg-black hover:bg-gray-800 text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer shadow-md w-full focus:outline-none focus:ring-2 focus:ring-emerald-600">
+          <i class="fa-regular fa-copy"></i> Copy My Calculation Summary
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+  // Complete Country & Currency Configurations (Fixes the currency maintenance bug!)
+  const CURRENCY_DATA = {
+    'PK': { code: 'PKR', symbol: 'Rs.', fuelPrice: 280, powerRate: 40, fuelMaint: 1500, evMaint: 200, isMetric: true },
+    'US': { code: 'USD', symbol: '$', fuelPrice: 3.80, powerRate: 0.18, fuelMaint: 60, evMaint: 15, isMetric: false },
+    'EU': { code: 'EUR', symbol: '€', fuelPrice: 1.85, powerRate: 0.32, fuelMaint: 55, evMaint: 15, isMetric: true },
+    'GB': { code: 'GBP', symbol: '£', fuelPrice: 1.50, powerRate: 0.28, fuelMaint: 50, evMaint: 12, isMetric: true },
+    'IN': { code: 'INR', symbol: '₹', fuelPrice: 102, powerRate: 8, fuelMaint: 600, evMaint: 100, isMetric: true },
+    'AE': { code: 'AED', symbol: 'AED', fuelPrice: 3.15, powerRate: 0.30, fuelMaint: 180, evMaint: 50, isMetric: true },
+    'CA': { code: 'CAD', symbol: '$', fuelPrice: 1.65, powerRate: 0.16, fuelMaint: 75, evMaint: 20, isMetric: true },
+    'AU': { code: 'AUD', symbol: '$', fuelPrice: 1.95, powerRate: 0.25, fuelMaint: 80, evMaint: 20, isMetric: true },
+  };
+
+  // State
+  let isMetric = true;
+  let selectedDays = 26;
+  let currentCountry = 'PK';
+  let currentSymbol = 'Rs.';
+
+  // Elements
+  const dailyDistance = document.getElementById('dailyDistance') as HTMLInputElement;
+  const distanceDisplay = document.getElementById('distanceDisplay');
+  const distMin = document.getElementById('distMin');
+  const distMax = document.getElementById('distMax');
+  const fuelEfficiency = document.getElementById('fuelEfficiency') as HTMLInputElement;
+  const fuelPrice = document.getElementById('fuelPrice') as HTMLInputElement;
+  const evEfficiency = document.getElementById('evEfficiency') as HTMLInputElement;
+  const electricityRate = document.getElementById('electricityRate') as HTMLInputElement;
+  const fuelMaint = document.getElementById('fuelMaint') as HTMLInputElement;
+  const evMaint = document.getElementById('evMaint') as HTMLInputElement;
+  const currencySelect = document.getElementById('currencySelect') as HTMLSelectElement;
+  const resetDefaultsBtn = document.getElementById('resetDefaultsBtn');
+  const unitMetric = document.getElementById('unitMetric');
+  const unitImperial = document.getElementById('unitImperial');
+  const customDays = document.getElementById('customDays') as HTMLInputElement;
+
+  function setUnit(metricMode: boolean) {
+    isMetric = metricMode;
+    if (metricMode) {
+      if (unitMetric) unitMetric.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
+      if (unitImperial) unitImperial.className = "px-3.5 py-1.5 rounded-lg text-gray-800 hover:text-black transition-all";
+      if (distMin) distMin.innerText = "5 km/day";
+      if (distMax) distMax.innerText = "250 km/day";
+      if (dailyDistance) dailyDistance.max = "250";
+      const lblFuel = document.getElementById('lblFuelEfficiency');
+      const lblPrice = document.getElementById('lblFuelPrice');
+      const lblEv = document.getElementById('lblEvEfficiency');
+      if (lblFuel) lblFuel.innerText = "Fuel Economy (km/L)";
+      if (lblPrice) lblPrice.innerText = "Fuel Price (per Liter)";
+      if (lblEv) lblEv.innerText = "EV Efficiency (km/kWh)";
+      const bHint = document.getElementById('txtBikeFuelHint');
+      const cHint = document.getElementById('txtCarFuelHint');
+      const bEv = document.getElementById('txtBikeEvHint');
+      const cEv = document.getElementById('txtCarEvHint');
+      if (bHint) bHint.innerText = "Bike: ~40 km/L";
+      if (cHint) cHint.innerText = "Car: ~14 km/L";
+      if (bEv) bEv.innerText = "Bike: ~30 km/unit";
+      if (cEv) cEv.innerText = "Car: ~6-7 km/unit";
+      fuelEfficiency.value = "40";
+      evEfficiency.value = "30";
+    } else {
+      if (unitImperial) unitImperial.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
+      if (unitMetric) unitMetric.className = "px-3.5 py-1.5 rounded-lg text-gray-800 hover:text-black transition-all";
+      if (distMin) distMin.innerText = "5 mi/day";
+      if (distMax) distMax.innerText = "150 mi/day";
+      if (dailyDistance) dailyDistance.max = "150";
+      const lblFuel = document.getElementById('lblFuelEfficiency');
+      const lblPrice = document.getElementById('lblFuelPrice');
+      const lblEv = document.getElementById('lblEvEfficiency');
+      if (lblFuel) lblFuel.innerText = "Fuel Economy (MPG)";
+      if (lblPrice) lblPrice.innerText = "Fuel Price (per Gallon)";
+      if (lblEv) lblEv.innerText = "EV Efficiency (mi/kWh)";
+      const bHint = document.getElementById('txtBikeFuelHint');
+      const cHint = document.getElementById('txtCarFuelHint');
+      const bEv = document.getElementById('txtBikeEvHint');
+      const cEv = document.getElementById('txtCarEvHint');
+      if (bHint) bHint.innerText = "Motorcycle: ~45 MPG";
+      if (cHint) cHint.innerText = "Car: ~25-30 MPG";
+      if (bEv) bEv.innerText = "E-Bike: ~18 mi/kWh";
+      if (cEv) cEv.innerText = "EV Car: ~3.5 mi/kWh";
+      fuelEfficiency.value = "30";
+      evEfficiency.value = "3.5";
+    }
+    calculate();
+  }
+
+  unitMetric?.addEventListener('click', () => {
+    setUnit(true);
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'switch_unit', { unit: 'metric' });
+    }
+  });
+  unitImperial?.addEventListener('click', () => {
+    setUnit(false);
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'switch_unit', { unit: 'imperial' });
+    }
+  });
+
+  function applyCountryData(countryKey: string) {
+    const data = CURRENCY_DATA[countryKey as keyof typeof CURRENCY_DATA] || CURRENCY_DATA['PK'];
+    currentCountry = countryKey;
+    currentSymbol = data.symbol;
+    fuelPrice.value = String(data.fuelPrice);
+    electricityRate.value = String(data.powerRate);
+    fuelMaint.value = String(data.fuelMaint);
+    evMaint.value = String(data.evMaint);
+    
+    document.querySelectorAll('.currency-symbol').forEach(el => {
+      (el as HTMLElement).innerText = currentSymbol;
+    });
+
+    if (currencySelect.value !== countryKey) {
+      currencySelect.value = countryKey;
+    }
+
+    if (data.isMetric !== isMetric) {
+      setUnit(data.isMetric);
+    } else {
+      calculate();
+    }
+  }
+
+  currencySelect?.addEventListener('change', () => {
+    applyCountryData(currencySelect.value);
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'select_currency', {
+        currency: currencySelect.value
+      });
+    }
+  });
+
+  resetDefaultsBtn?.addEventListener('click', () => {
+    dailyDistance.value = "35";
+    customDays.value = "26";
+    applyCountryData(currentCountry);
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'reset_calculator_defaults');
+    }
+  });
+
+  [dailyDistance, customDays, fuelEfficiency, fuelPrice, fuelMaint, evEfficiency, electricityRate, evMaint].forEach(el => {
+    el?.addEventListener('input', calculate);
+  });
+
+  function fmt(val: number): string {
+    return currentSymbol + " " + Math.round(val).toLocaleString();
+  }
+
+  function calculate() {
+    const dist = parseFloat(dailyDistance?.value) || 0;
+    selectedDays = parseFloat(customDays?.value) || 26;
+    const fEff = parseFloat(fuelEfficiency?.value) || 1;
+    const fPrice = parseFloat(fuelPrice?.value) || 0;
+    const eEff = parseFloat(evEfficiency?.value) || 1;
+    const eRate = parseFloat(electricityRate?.value) || 0;
+    const fMaintCost = parseFloat(fuelMaint?.value) || 0;
+    const eMaintCost = parseFloat(evMaint?.value) || 0;
+
+    const monthlyDistance = dist * selectedDays;
+    const fuelCostMonthly = ((monthlyDistance / fEff) * fPrice) + fMaintCost;
+    const fuelCostYearly = fuelCostMonthly * 12;
+
+    const evCostMonthly = ((monthlyDistance / eEff) * eRate) + eMaintCost;
+    const evCostYearly = evCostMonthly * 12;
+
+    const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
+    const pctSavings = fuelCostYearly > 0 ? Math.round((annualSavings / fuelCostYearly) * 100) : 0;
+
+    // Update UI
+    if (distanceDisplay) distanceDisplay.innerText = dist + " " + (isMetric ? 'km' : 'mi');
+    const annualTxt = document.getElementById('annualSavingsText');
+    const savingPct = document.getElementById('savingPercentage');
+    if (annualTxt) annualTxt.innerText = fmt(annualSavings);
+    if (savingPct) savingPct.innerText = "Save ~" + pctSavings + "%";
+
+    const fMonthly = document.getElementById('fuelMonthlyText');
+    const fYearly = document.getElementById('fuelYearlyText');
+    if (fMonthly) fMonthly.innerText = fmt(fuelCostMonthly);
+    if (fYearly) fYearly.innerText = "Yearly: " + fmt(fuelCostYearly);
+
+    const eMonthly = document.getElementById('evMonthlyText');
+    const eYearly = document.getElementById('evYearlyText');
+    if (eMonthly) eMonthly.innerText = fmt(evCostMonthly);
+    if (eYearly) eYearly.innerText = "Yearly: " + fmt(evCostYearly);
+
+    const setEl = (id: string, text: string) => {
+      const el = document.getElementById(id);
+      if (el) el.innerText = text;
+    };
+
+    setEl('tblFuel1M', fmt(fuelCostMonthly));
+    setEl('tblEv1M', fmt(evCostMonthly));
+    setEl('tblSave1M', fmt(Math.max(0, fuelCostMonthly - evCostMonthly)));
+
+    setEl('tblFuel1Y', fmt(fuelCostYearly));
+    setEl('tblEv1Y', fmt(evCostYearly));
+    setEl('tblSave1Y', fmt(annualSavings));
+
+    setEl('tblFuel3Y', fmt(fuelCostYearly * 3));
+    setEl('tblEv3Y', fmt(evCostYearly * 3));
+    setEl('tblSave3Y', fmt(annualSavings * 3));
+
+    setEl('tblFuel5Y', fmt(fuelCostYearly * 5));
+    setEl('tblEv5Y', fmt(evCostYearly * 5));
+    setEl('tblSave5Y', fmt(annualSavings * 5));
+  }
+
+  document.getElementById('copyBtn')?.addEventListener('click', () => {
+    const annualText = document.getElementById('annualSavingsText')?.innerText || '';
+    const text = `VoltSavings Report: I save estimated ${annualText} per year by switching to an Electric Vehicle! Calculate yours free at: ${window.location.origin}`;
+    navigator.clipboard.writeText(text).then(() => {
+      alert("Summary copied to clipboard!");
+      if (typeof (window as any).gtag === 'function') {
+        (window as any).gtag('event', 'share_calculation_summary', {
+          event_category: 'engagement',
+          country: currentCountry,
+          currency: currentSymbol,
+          annual_savings: annualText
+        });
+      }
+    });
+  });
+
+  // Timezone Auto-Detection
+  function autoDetectCountry(): string {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      if (tz.includes('Karachi')) return 'PK';
+      if (tz.includes('Kolkata') || tz.includes('Calcutta')) return 'IN';
+      if (tz.includes('Dubai')) return 'AE';
+      if (tz.includes('London')) return 'GB';
+      if (tz.includes('Toronto') || tz.includes('Vancouver') || tz.includes('Montreal')) return 'CA';
+      if (tz.startsWith('Australia/')) return 'AU';
+      if (tz.startsWith('America/')) return 'US';
+      if (tz.startsWith('Europe/')) return 'EU';
+    } catch(e) {}
+    return 'PK';
+  }
+
+  const detected = autoDetectCountry();
+  applyCountryData(detected);
+
+  // Fallback to IP lookup
+  fetch('https://api.country.is')
+    .then(res => res.json())
+    .then(data => {
+      if (data && data.country) {
+        let code = data.country.toUpperCase();
+        if (CURRENCY_DATA[code as keyof typeof CURRENCY_DATA]) {
+          applyCountryData(code);
+        } else if (['DE','FR','IT','ES','NL','BE','AT','IE','PT','GR','FI','SE','PL','NO','DK','CH'].includes(code)) {
+          applyCountryData('EU');
+        }
+      }
+    })
+    .catch(() => {});
+</script>

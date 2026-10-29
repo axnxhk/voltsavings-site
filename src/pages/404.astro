@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout 
+  title="404: Page Not Found | VoltSavings™"
+  description="The page you are looking for does not exist or has been moved. Return to the VoltSavings calculator or browse our electric mobility guides."
+  noindex={true}
+>
+  <main class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex-grow flex flex-col justify-center items-center">
+    
+    <div class="w-20 h-20 rounded-3xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl font-black mb-6 shadow-md shadow-emerald-600/10">
+      ⚡
+    </div>
+
+    <span class="text-xs font-black uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 mb-3">
+      ERROR 404
+    </span>
+
+    <h1 class="text-3xl sm:text-5xl font-black text-black tracking-tight mb-4">
+      Page Lost in the Grid
+    </h1>
+
+    <p class="text-sm sm:text-base text-gray-600 max-w-md mx-auto mb-8 font-medium leading-relaxed">
+      The page you requested could not be located. It may have been moved, renamed, or temporarily unplugged.
+    </p>
+
+    <!-- Navigation Choices -->
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a 
+        href="/" 
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all"
+      >
+        <i class="fa-solid fa-calculator"></i> Launch Calculator
+      </a>
+      <a 
+        href="/blog" 
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold bg-gray-100 hover:bg-gray-200 text-black border-2 border-gray-200 transition-all"
+      >
+        <i class="fa-solid fa-book-open"></i> Browse EV Guides
+      </a>
+      <a 
+        href="/contact" 
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold text-gray-600 hover:text-black transition-all"
+      >
+        Contact Support
+      </a>
+    </div>
+
+    <!-- Helpful Links -->
+    <div class="mt-12 pt-8 border-t border-gray-100 w-full max-w-md text-xs text-gray-500 font-medium">
+      <p class="mb-2 font-bold text-gray-700">Looking for our most popular guides?</p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href="/blog/ev-bikes-2026" class="text-emerald-600 hover:underline">Are EV Bikes Worth It?</a>
+        <span>•</span>
+        <a href="/blog/ev-savings-2026" class="text-emerald-600 hover:underline">EV vs Gas Total Savings</a>
+        <span>•</span>
+        <a href="/blog/ev-battery-life-2026" class="text-emerald-600 hover:underline">Battery Degradation</a>
+      </div>
+    </div>
+
+  </main>
+</Layout>

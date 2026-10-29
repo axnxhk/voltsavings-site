@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<Layout 
+  title="Terms of Service | VoltSavings™"
+  description="Read the terms and conditions governing the use of the VoltSavings EV cost estimation calculator."
+>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full flex-grow">
+    
+    <Breadcrumbs items={[
+      { name: 'Home', url: '/' },
+      { name: 'Terms of Service' }
+    ]} />
+
+    <div class="bg-white border-2 border-gray-100 rounded-3xl p-8 sm:p-12 shadow-sm">
+      <div class="mb-8 border-b border-gray-100 pb-6">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Legal</span>
+        <h1 class="text-3xl sm:text-4xl font-black text-black tracking-tight mt-2">Terms of Service</h1>
+      </div>
+      <div class="space-y-6 text-sm text-gray-600 font-medium leading-relaxed">
+        <h2 class="text-lg font-black text-black mt-6">1. Acceptance of Terms</h2>
+        <p>By accessing and utilizing VoltSavings, you agree to be bound by the terms and provisions of this agreement.</p>
+        
+        <h2 class="text-lg font-black text-black mt-6">2. Use of Calculator & Financial Disclaimer</h2>
+        <p>The VoltSavings calculator is provided for informational and estimation purposes only. While our algorithms use realistic vehicle efficiency ratios, actual real-world vehicle performance, fuel pricing fluctuations, driving behavior, terrain, and regional electricity tariffs vary. VoltSavings provides no warranty regarding absolute mathematical prediction.</p>
+        <p>Decisions made based upon calculations from this tool are strictly at your own discretion and risk. VoltSavings shall not be liable for any purchase decisions or financial losses.</p>
+
+        <h2 class="text-lg font-black text-black mt-6">3. Intellectual Property</h2>
+        <p>The code, UI design, copywriting, and computational architecture of VoltSavings are the property of the site operators. You may not scrape, clone, or exploit our services for unauthorized commercial redistributions without written consent.</p>
+
+        <h2 class="text-lg font-black text-black mt-6">4. Modifications</h2>
+        <p>We reserve the right to modify these terms at any time. Continued usage of the site represents acceptance of any updated provisions.</p>
+      </div>
+    </div>
+  </main>
+</Layout>

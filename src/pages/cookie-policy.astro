@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const cookieSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Cookie Policy | VoltSavings",
+  "description": "Cookie policy and consent guidelines for VoltSavings users, complying with Google AdSense and global privacy frameworks."
+};
+---
+
+<Layout 
+  title="Cookie Policy | VoltSavings™"
+  description="Learn about our use of cookies, Google Analytics, third-party advertising compliance, and how to manage your privacy settings."
+  schema={cookieSchema}
+>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full flex-grow">
+    
+    <Breadcrumbs items={[
+      { name: 'Home', url: '/' },
+      { name: 'Cookie Policy' }
+    ]} />
+
+    <div class="bg-white border-2 border-gray-100 rounded-3xl p-8 sm:p-12 shadow-sm">
+      <div class="mb-8 border-b border-gray-100 pb-6">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Privacy & Compliance</span>
+        <h1 class="text-3xl sm:text-4xl font-black text-black tracking-tight mt-2">Cookie Policy</h1>
+      </div>
+
+      <div class="space-y-6 text-sm text-gray-600 font-medium leading-relaxed">
+        <p>
+          This Cookie Policy explains what cookies are, how <strong>VoltSavings™</strong> utilizes them, and how you can manage your preferences in compliance with global privacy regulations (GDPR, CCPA) and Google Publisher Policies.
+        </p>
+
+        <h2 class="text-lg font-black text-black mt-6">1. What Are Cookies?</h2>
+        <p>
+          Cookies are small text files placed on your computer or mobile device when you access websites. They are widely used to make websites work efficiently, provide analytics, and deliver personalized user experiences.
+        </p>
+
+        <h2 class="text-lg font-black text-black mt-6">2. Cookies Used on VoltSavings</h2>
+        <p>We keep our cookie footprint strictly minimal. The categories of cookies we utilize include:</p>
+
+        <div class="space-y-4">
+          <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+            <h3 class="text-sm font-black text-black mb-1">A. Necessary / Functional Storage</h3>
+            <p class="text-xs text-gray-700">
+              Our calculator application runs client-side. We may store your preferred currency and distance units (Metric vs Imperial) temporarily in your browser memory so your preferences persist during your browsing session. No personal identifying information is stored.
+            </p>
+          </div>
+
+          <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+            <h3 class="text-sm font-black text-black mb-1">B. Performance & Analytics Cookies (Google Analytics 4)</h3>
+            <p class="text-xs text-gray-700 mb-2">
+              We use Google Analytics (Tag ID: <code>G-EMCZKSXR3N</code>) to understand aggregate user behavior—such as popular guides, time spent on the calculator, and regional traffic volume. Google Analytics stores cookies such as <code>_ga</code> and <code>_ga_*</code> to distinguish unique users anonymously.
+            </p>
+            <p class="text-xs text-gray-700">
+              You can opt out of Google Analytics tracking across all websites by installing the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener noreferrer" class="text-emerald-600 font-bold hover:underline">Google Analytics Opt-out Browser Add-on</a>.
+            </p>
+          </div>
+
+          <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl">
+            <h3 class="text-sm font-black text-black mb-1">C. Advertising Cookies (Google AdSense & Partners)</h3>
+            <p class="text-xs text-gray-700">
+              Third-party vendors, including Google, use cookies to serve advertisements based on your prior visits to our site or other websites. Google's use of advertising cookies enables it and its partners to serve targeted ads. Users may opt out of personalized advertising by visiting <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer" class="text-emerald-600 font-bold hover:underline">Google Ad Center</a> or <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" class="text-emerald-600 font-bold hover:underline">AboutAds.info</a>.
+            </p>
+          </div>
+        </div>
+
+        <h2 class="text-lg font-black text-black mt-6">3. Managing and Disabling Cookies</h2>
+        <p>
+          Most web browsers allow you to control cookies through their settings preferences. You can configure your browser to block cookies, delete existing cookies, or alert you when cookies are sent. Please note that disabling cookies may affect certain analytics and usability features.
+        </p>
+
+        <h2 class="text-lg font-black text-black mt-6">4. Updates to this Policy</h2>
+        <p>
+          We may update this Cookie Policy periodically to reflect technological or legal requirements. Please review this page regularly to stay informed.
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>

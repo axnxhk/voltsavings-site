@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+---
+
+<Layout 
+  title="Privacy Policy | VoltSavings™"
+  description="Read the VoltSavings privacy policy. Learn how we handle your data, our client-side calculation privacy, and Google compliance."
+>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full flex-grow">
+    
+    <Breadcrumbs items={[
+      { name: 'Home', url: '/' },
+      { name: 'Privacy Policy' }
+    ]} />
+
+    <div class="bg-white border-2 border-gray-100 rounded-3xl p-8 sm:p-12 shadow-sm">
+      <div class="mb-8 border-b border-gray-100 pb-6">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Legal</span>
+        <h1 class="text-3xl sm:text-4xl font-black text-black tracking-tight mt-2">Privacy Policy</h1>
+      </div>
+      <div class="space-y-6 text-sm text-gray-600 font-medium leading-relaxed">
+        <p>At <strong>VoltSavings</strong>, accessible from our website, one of our primary priorities is the privacy of our visitors. This Privacy Policy document details the types of information recorded by VoltSavings and how we manage it.</p>
+        
+        <h2 class="text-lg font-black text-black mt-6">1. Information Collection & Client-Side Privacy</h2>
+        <p>Our EV cost savings calculator functions entirely on the client-side inside your web browser. We do not require account registration, and we do not store, log, or transmit the personal commute numbers (distance, fuel costs, electricity bills) you enter into any remote database.</p>
+        
+        <h2 class="text-lg font-black text-black mt-6">2. Third-Party Services & Analytics</h2>
+        <p>We use Google Analytics (GA4) to observe anonymous website traffic metrics (such as page views, country-level aggregate visits, and browser types) to improve application stability and tool utility. These metrics do not contain personally identifying information.</p>
+        <p>We may also display third-party advertisements via Google AdSense. Third-party vendors, including Google, use cookies to serve ads based on prior visits. Users may opt out of personalized advertising by visiting Google's <a href="https://myadcenter.google.com/" class="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">Ads Settings</a>.</p>
+
+        <h2 class="text-lg font-black text-black mt-6">3. Standard Log Files</h2>
+        <p>VoltSavings follows standard hosting server procedure using log files. Information recorded includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamps, and referring/exit pages.</p>
+        
+        <h2 class="text-lg font-black text-black mt-6">4. Consent</h2>
+        <p>By using our website, you hereby consent to our Privacy Policy and agree to its <a href="/terms" class="text-emerald-600 hover:underline">Terms of Service</a>.</p>
+      </div>
+    </div>
+  </main>
+</Layout>

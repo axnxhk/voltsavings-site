@@ -1,0 +1,97 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  schema?: Record<string, any> | Array<Record<string, any>>;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://evcalculator.online').href,
+  image = '/og-image.jpg',
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  author = 'VoltSavings Research Team',
+  schema,
+  noindex = false
+} = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.origin : 'https://evcalculator.online';
+const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`;
+
+// Base Schema.org Organization & WebSite
+const baseOrganizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "VoltSavings",
+  "url": siteUrl,
+  "logo": `${siteUrl}/icon-512.png`,
+  "sameAs": []
+};
+
+const baseWebSiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "VoltSavings",
+  "url": siteUrl,
+  "description": "Global EV vs Petrol operational cost calculator and clean mobility intelligence."
+};
+
+const allSchemas = [
+  baseOrganizationSchema,
+  baseWebSiteSchema,
+  ...(Array.isArray(schema) ? schema : schema ? [schema] : [])
+];
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="robots" content={noindex ? "noindex, follow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"} />
+<link rel="canonical" href={canonicalUrl} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={fullImageUrl} />
+<meta property="og:site_name" content="VoltSavings" />
+
+{type === 'article' && publishedTime && (
+  <meta property="article:published_time" content={publishedTime} />
+)}
+{type === 'article' && modifiedTime && (
+  <meta property="article:modified_time" content={modifiedTime} />
+)}
+{type === 'article' && (
+  <meta property="article:author" content={author} />
+)}
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalUrl} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={fullImageUrl} />
+
+<!-- Favicon & PWA -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" href="/icon-192.png" />
+<link rel="manifest" href="/manifest.json" />
+<meta name="theme-color" content="#059669" />
+
+<!-- Structured Data (JSON-LD) -->
+{allSchemas.map((s) => (
+  <script type="application/ld+json" set:html={JSON.stringify(s)} />
+))}

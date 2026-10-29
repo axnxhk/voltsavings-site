@@ -1,0 +1,68 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const disclaimerSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Disclaimer | VoltSavings",
+  "description": "Financial disclaimer and calculation transparency statement for VoltSavings EV vs Petrol estimation tool."
+};
+---
+
+<Layout 
+  title="Disclaimer & Estimation Limitations | VoltSavings™"
+  description="Read our comprehensive financial disclaimer, calculation limitations, and vehicle performance advisory."
+  schema={disclaimerSchema}
+>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full flex-grow">
+    
+    <Breadcrumbs items={[
+      { name: 'Home', url: '/' },
+      { name: 'Disclaimer' }
+    ]} />
+
+    <div class="bg-white border-2 border-gray-100 rounded-3xl p-8 sm:p-12 shadow-sm">
+      <div class="mb-8 border-b border-gray-100 pb-6">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Legal & Transparency</span>
+        <h1 class="text-3xl sm:text-4xl font-black text-black tracking-tight mt-2">Disclaimer & Advisory</h1>
+      </div>
+
+      <div class="space-y-6 text-sm text-gray-600 font-medium leading-relaxed">
+        <p class="text-base text-black font-semibold">
+          Please read this Disclaimer carefully before using the <strong>VoltSavings™</strong> EV vs Petrol Savings Calculator or relying on any research guides published on this platform.
+        </p>
+
+        <h2 class="text-lg font-black text-black mt-6">1. General Estimations Only (Not Financial Advice)</h2>
+        <p>
+          The computational models, cost comparisons, 1-to-5-year ROI forecasts, and fuel versus electricity comparisons provided on this website are designed for <strong>educational and informational estimation purposes only</strong>. None of the figures, projections, or comparisons constitute professional financial, accounting, legal, or automotive procurement advice.
+        </p>
+
+        <h2 class="text-lg font-black text-black mt-6">2. Real-World Variables and Mathematical Accuracy</h2>
+        <p>
+          While our algorithm applies verified baseline metrics (e.g., standard internal combustion engine fuel efficiency, kilowatt-hour per kilometer ratios, and regional domestic tariffs), real-world operational costs depend on numerous independent variables beyond our control:
+        </p>
+        <ul class="list-disc pl-5 space-y-2">
+          <li><strong>Driving Behavior & Terrain:</strong> Aggressive acceleration, uphill driving, and aerodynamic resistance significantly reduce both petrol and electric range.</li>
+          <li><strong>Climate and Battery Conditioning:</strong> Extreme temperatures (both hot climates and freezing winters) affect lithium-ion battery capacity and energy density.</li>
+          <li><strong>Electricity Tariff Tiers:</strong> Regional utility tariffs, peak vs off-peak rates, fuel price adjustments (FPA), and commercial fast-charging premiums may deviate from default inputs.</li>
+          <li><strong>Vehicle Maintenance Variability:</strong> Actual routine maintenance expenses depend on vehicle make, age, spare parts availability, and technician labor rates.</li>
+        </ul>
+
+        <h2 class="text-lg font-black text-black mt-6">3. No Warranties or Guarantees</h2>
+        <p>
+          VoltSavings makes no representation, warranty, or guarantee—express or implied—regarding the absolute financial accuracy, completeness, or monetary returns resulting from purchasing any specific electric car, scooter, or motorcycle. You assume full personal responsibility for any vehicle purchases, leasing agreements, or financing decisions.
+        </p>
+
+        <h2 class="text-lg font-black text-black mt-6">4. External Links and Third-Party Information</h2>
+        <p>
+          Our guides may cite external studies, government regulations, or manufacturer specifications. VoltSavings is not responsible for the accuracy or uptime of third-party external resources.
+        </p>
+
+        <div class="mt-8 p-6 bg-emerald-50 border border-emerald-200 rounded-2xl text-xs text-emerald-800">
+          <strong>Questions regarding our methodology?</strong> Learn how our computational models operate on our dedicated <a href="/methodology" class="underline font-bold">Calculation Methodology Page</a>.
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

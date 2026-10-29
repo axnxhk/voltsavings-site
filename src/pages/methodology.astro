@@ -1,0 +1,112 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+
+const methodologySchema = {
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "VoltSavings Calculation Methodology & Computational Architecture",
+  "description": "Detailed explanation of the computational formulas, energy conversion factors, and data sources powering the VoltSavings calculator.",
+  "author": {
+    "@type": "Organization",
+    "name": "VoltSavings Research Team"
+  }
+};
+---
+
+<Layout 
+  title="Calculation Methodology & Mathematical Formulas | VoltSavings™"
+  description="Explore the transparent mathematical formulas, energy conversion factors, and maintenance assumptions powering the VoltSavings calculator."
+  schema={methodologySchema}
+>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full flex-grow">
+    
+    <Breadcrumbs items={[
+      { name: 'Home', url: '/' },
+      { name: 'Methodology' }
+    ]} />
+
+    <div class="bg-white border-2 border-gray-100 rounded-3xl p-8 sm:p-12 shadow-sm">
+      <div class="mb-8 border-b border-gray-100 pb-6">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">E-E-A-T & Transparency</span>
+        <h1 class="text-3xl sm:text-4xl font-black text-black tracking-tight mt-2">Calculation Methodology</h1>
+        <p class="text-xs sm:text-sm text-gray-500 mt-2 font-medium">How VoltSavings computes operational energy expenditure and cumulative net ROI.</p>
+      </div>
+
+      <div class="space-y-6 text-sm text-gray-600 font-medium leading-relaxed">
+        <p>
+          At <strong>VoltSavings</strong>, we believe calculation tools must be completely transparent. Below is the exact mathematical model and technical assumptions used by our calculator engine.
+        </p>
+
+        <h2 class="text-lg font-black text-black mt-6">1. Primary Distance Equation</h2>
+        <p>Monthly distance is computed based on your regular daily travel distance multiplied by your active commute days per month:</p>
+        <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl font-mono text-xs text-emerald-900 font-bold">
+          Monthly Distance = Daily Commute Distance × Usage Days Per Month
+        </div>
+
+        <h2 class="text-lg font-black text-black mt-6">2. Internal Combustion Engine (Petrol) Expenditure</h2>
+        <p>The total monthly expense for a fuel vehicle includes fuel volume consumed plus recurring routine maintenance:</p>
+        <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl font-mono text-xs text-amber-900 font-bold space-y-2">
+          <p>Fuel Volume Consumed = Monthly Distance ÷ Fuel Economy (km/L or MPG)</p>
+          <p>Monthly Fuel Cost = (Fuel Volume × Fuel Price Per Unit) + Monthly Maintenance</p>
+          <p>Yearly Fuel Cost = Monthly Fuel Cost × 12</p>
+        </div>
+
+        <h2 class="text-lg font-black text-black mt-6">3. Electric Vehicle (EV) Charging Expenditure</h2>
+        <p>Electric energy is measured in kilowatt-hours (kWh). One kWh equals 1 electric billing unit on standard domestic meters:</p>
+        <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl font-mono text-xs text-emerald-900 font-bold space-y-2">
+          <p>Energy Consumed (kWh) = Monthly Distance ÷ EV Efficiency (km/kWh or mi/kWh)</p>
+          <p>Monthly EV Cost = (Energy Consumed × Electricity Tariff Rate) + EV Routine Maintenance</p>
+          <p>Yearly EV Cost = Monthly EV Cost × 12</p>
+        </div>
+
+        <h2 class="text-lg font-black text-black mt-6">4. Net Retained Savings & Multi-Year Cumulative Forecast</h2>
+        <p>Cumulative retained savings represent the direct financial delta between maintaining an internal combustion engine versus an electric vehicle:</p>
+        <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl font-mono text-xs text-gray-900 font-bold space-y-2">
+          <p>Annual Savings = Max(0, Yearly Fuel Cost - Yearly EV Cost)</p>
+          <p>Percentage Saved = Round((Annual Savings ÷ Yearly Fuel Cost) × 100)</p>
+          <p>3-Year Savings = Annual Savings × 3</p>
+          <p>5-Year Savings = Annual Savings × 5</p>
+        </div>
+
+        <h2 class="text-lg font-black text-black mt-6">5. Baseline Efficiency Benchmarks</h2>
+        <p>Our default recommended metrics reflect verified field data from automotive regulatory benchmarks (including US EPA, WLTP, and regional commuter surveys):</p>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs text-left border border-gray-200 rounded-xl overflow-hidden mt-3">
+            <thead class="bg-gray-100 text-black font-black uppercase text-[11px]">
+              <tr>
+                <th class="p-3">Vehicle Class</th>
+                <th class="p-3">ICE Economy</th>
+                <th class="p-3">EV Efficiency</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr>
+                <td class="p-3 font-bold text-black">Motorcycles / Scooters (70cc - 150cc)</td>
+                <td class="p-3">40 - 55 km/L (35 - 45 MPG)</td>
+                <td class="p-3 text-emerald-700 font-bold">25 - 45 km/kWh (15 - 28 mi/kWh)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-black">Compact Cars / Sedans (1000cc - 1800cc)</td>
+                <td class="p-3">12 - 16 km/L (28 - 38 MPG)</td>
+                <td class="p-3 text-emerald-700 font-bold">5.5 - 7.5 km/kWh (3.4 - 4.6 mi/kWh)</td>
+              </tr>
+              <tr>
+                <td class="p-3 font-bold text-black">SUVs & Crossovers</td>
+                <td class="p-3">8 - 12 km/L (19 - 28 MPG)</td>
+                <td class="p-3 text-emerald-700 font-bold">4.0 - 5.5 km/kWh (2.5 - 3.4 mi/kWh)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between flex-wrap gap-4">
+          <span class="text-xs text-gray-500">Want to test your personal driving numbers?</span>
+          <a href="/#calculator-app" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-sm transition-all">
+            Launch Calculator →
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>

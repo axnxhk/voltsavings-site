@@ -1,0 +1,120 @@
+---
+const currentPath = Astro.url.pathname;
+
+const isCalculator = currentPath === '/' || currentPath === '';
+const isBlog = currentPath.startsWith('/blog');
+const isAbout = currentPath.startsWith('/about');
+const isContact = currentPath.startsWith('/contact');
+---
+
+<header class="border-b border-gray-100 bg-white sticky top-0 z-50 shadow-sm" role="banner">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    
+    <!-- Logo -->
+    <div class="flex items-center gap-3">
+      <a href="/" class="flex items-center gap-2.5 group" aria-label="VoltSavings Home">
+        <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform">
+          ⚡
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-xl font-black tracking-tight text-black">VoltSavings</span>
+            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">PRO</span>
+          </div>
+          <p class="text-[11px] text-gray-600 font-medium">Global Fuel vs EV Intelligence</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center space-x-8 text-sm font-bold text-gray-900" aria-label="Main Navigation">
+      <a 
+        href="/" 
+        class={`py-2 transition-colors flex items-center gap-1.5 ${isCalculator ? 'text-emerald-600 font-black' : 'hover:text-emerald-600 text-gray-700'}`}
+        aria-current={isCalculator ? 'page' : undefined}
+      >
+        Calculator {isCalculator && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
+      </a>
+      <a 
+        href="/blog" 
+        class={`py-2 transition-colors flex items-center gap-1.5 ${isBlog ? 'text-emerald-600 font-black' : 'hover:text-emerald-600 text-gray-700'}`}
+        aria-current={isBlog ? 'page' : undefined}
+      >
+        Blog {isBlog && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
+      </a>
+      <a 
+        href="/about" 
+        class={`py-2 transition-colors flex items-center gap-1.5 ${isAbout ? 'text-emerald-600 font-black' : 'hover:text-emerald-600 text-gray-700'}`}
+        aria-current={isAbout ? 'page' : undefined}
+      >
+        About Us {isAbout && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
+      </a>
+      <a 
+        href="/contact" 
+        class={`py-2 transition-colors flex items-center gap-1.5 ${isContact ? 'text-emerald-600 font-black' : 'hover:text-emerald-600 text-gray-700'}`}
+        aria-current={isContact ? 'page' : undefined}
+      >
+        Contact {isContact && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
+      </a>
+    </nav>
+
+    <!-- Right Action -->
+    <div class="flex items-center gap-3">
+      <a 
+        href="/#calculator-app" 
+        class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all"
+      >
+        Try Calculator
+      </a>
+      <button 
+        type="button"
+        aria-label="Toggle Navigation Menu" 
+        id="mobileMenuBtn" 
+        class="md:hidden text-black p-2 focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-lg"
+      >
+        <i class="fa-solid fa-bars text-lg"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-3 text-sm">
+    <a 
+      href="/" 
+      class={`block py-1 font-bold ${isCalculator ? 'text-emerald-600' : 'text-black hover:text-emerald-600'}`}
+    >
+      Calculator
+    </a>
+    <a href="/#features" class="block text-black hover:text-emerald-600 py-1 font-semibold">Features</a>
+    <a href="/#breakdown" class="block text-black hover:text-emerald-600 py-1 font-semibold">Comparison Matrix</a>
+    <a 
+      href="/blog" 
+      class={`block py-1 font-bold ${isBlog ? 'text-emerald-600' : 'text-black hover:text-emerald-600'}`}
+    >
+      Blog & Guides
+    </a>
+    <a href="/#faq" class="block text-black hover:text-emerald-600 py-1 font-semibold">FAQ</a>
+    <a 
+      href="/about" 
+      class={`block py-1 font-bold ${isAbout ? 'text-emerald-600' : 'text-black hover:text-emerald-600'}`}
+    >
+      About Us
+    </a>
+    <a 
+      href="/contact" 
+      class={`block py-1 font-bold ${isContact ? 'text-emerald-600' : 'text-black hover:text-emerald-600'}`}
+    >
+      Contact Us
+    </a>
+  </div>
+</header>
+
+<script>
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  if (mobileBtn && mobileMenu) {
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  }
+</script>

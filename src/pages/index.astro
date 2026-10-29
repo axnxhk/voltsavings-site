@@ -1,0 +1,257 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Calculator from '../components/Calculator.astro';
+
+// Structured Data (JSON-LD) for SoftwareApplication & FAQPage
+const calculatorSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "VoltSavings EV vs Petrol Calculator",
+  "operatingSystem": "All",
+  "applicationCategory": "FinanceApplication",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Calculate exact fuel cost vs electric vehicle charging expenses. Compare ROI across 1 to 5 years for cars and motorcycles."
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What does EV Efficiency (km/kWh) mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In combustion engines, efficiency is measured in distance per unit of liquid fuel (km per liter). In electric vehicles, energy is measured in kilowatt-hours (kWh), equivalent to 1 unit of electricity on your home meter. A rating of 30 km/kWh means the vehicle travels 30 kilometers using 1 unit of electric energy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What typical efficiency numbers should I enter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Electric Bikes/Scooters typically deliver 25 to 45 km per kWh. Electric sedans typically achieve 5.5 to 7.5 km per kWh. Petrol 70cc-125cc bikes achieve 40 to 55 km/L, while petrol cars achieve 11 to 16 km/L."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this calculator account for maintenance & engine oil?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This tool computes direct fuel vs electric energy expenses and routine monthly maintenance entered in the inputs. In reality, savings with an EV are even higher because EVs have no engine oil, spark plugs, timing belts, or clutch assemblies."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is user data logged or sent to servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. VoltSavings is built as an open, client-side calculator. Everything runs locally in your device's browser memory. We never ask for your email, login, or personal driving history."
+      }
+    }
+  ]
+};
+---
+
+<Layout 
+  title="EV vs Petrol Calculator: Free Cost Savings Tool | VoltSavings™"
+  description="Use our free EV vs petrol calculator to compare electric vehicle charging costs with gas prices. Discover your exact monthly and 5-year savings in 2026."
+  schema={[calculatorSchema, faqSchema]}
+>
+  <!-- Hero Section -->
+  <section class="pt-14 pb-10 sm:pt-20 sm:pb-14 border-b border-gray-100 bg-emerald-50/40" aria-labelledby="hero-heading">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300 text-emerald-800 text-xs font-bold mb-6 shadow-sm">
+        <span class="flex h-2 w-2 rounded-full bg-emerald-600"></span>
+        Zero Login • 100% Free & Private • Go Green & Save
+      </div>
+
+      <h1 id="hero-heading" class="text-3xl sm:text-5xl lg:text-6xl font-black text-black tracking-tight leading-[1.15] mb-5">
+        Cut Your Fuel Bills. <br class="hidden sm:inline" />
+        <span class="text-emerald-600">Switch to Clean Green Electric.</span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-gray-800 text-sm sm:text-base leading-relaxed mb-8 font-medium">
+        Enter your routine daily distance, local fuel prices, and electricity rates to calculate your exact monthly and yearly cost savings.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-black font-bold">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-check text-emerald-600"></i> Motorcycle & Car Accurate
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-check text-emerald-600"></i> Metric (km) & Imperial (mi)
+        </div>
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-circle-check text-emerald-600"></i> Auto Currency Detection
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Calculator App -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full" role="main">
+    <Calculator />
+  </main>
+
+  <!-- Feature Highlights -->
+  <section id="features" class="py-16 border-t border-gray-100 bg-emerald-50/30 scroll-mt-16" aria-labelledby="features-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <h2 id="features-heading" class="text-2xl sm:text-3xl font-black text-black tracking-tight mb-3">Why Commuters Trust VoltSavings</h2>
+        <p class="text-sm text-gray-700 font-medium">We provide transparent real-world calculations without marketing bias.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white border-2 border-gray-100 p-6 rounded-2xl shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg mb-4 font-bold">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <h3 class="text-base font-black text-black mb-2">100% Eco-Friendly Analysis</h3>
+          <p class="text-xs text-gray-700 leading-relaxed font-medium">See how switching to electric reduces your direct tailpipe carbon impact while cutting down monthly fuel expenses.</p>
+        </div>
+
+        <div class="bg-white border-2 border-gray-100 p-6 rounded-2xl shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg mb-4 font-bold">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h3 class="text-base font-black text-black mb-2">Complete User Privacy</h3>
+          <p class="text-xs text-gray-700 leading-relaxed font-medium">No registrations, no cookies, no tracking. All arithmetic processes run completely inside your personal browser window.</p>
+        </div>
+
+        <div class="bg-white border-2 border-gray-100 p-6 rounded-2xl shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg mb-4 font-bold">
+            <i class="fa-solid fa-chart-line"></i>
+          </div>
+          <h3 class="text-base font-black text-black mb-2">Long-Term ROI Forecast</h3>
+          <p class="text-xs text-gray-700 leading-relaxed font-medium">Clear 1 to 5 year cost projections that show exactly when your electric bike or car pays back its initial upfront investment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guides & Research Section (Semantic Internal Linking!) -->
+  <section class="py-16 border-t border-gray-100 bg-white" aria-labelledby="research-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-xs font-black uppercase tracking-wider text-emerald-600">COMMUTER INTELLIGENCE</span>
+          <h2 id="research-heading" class="text-2xl sm:text-3xl font-black text-black tracking-tight mt-1">Latest EV Guides & Research</h2>
+        </div>
+        <a href="/blog" class="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-1 transition-colors">
+          Explore all articles <i class="fa-solid fa-arrow-right"></i>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Article 1 -->
+        <article class="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden hover:border-emerald-300 transition flex flex-col shadow-sm">
+          <div class="h-44 bg-emerald-50 p-6 flex flex-col justify-end border-b border-gray-100">
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1">Economics</span>
+            <h3 class="text-base font-black text-black leading-snug">Are Electric Motorcycles Worth It in 2026?</h3>
+          </div>
+          <div class="p-6 flex-grow flex flex-col justify-between">
+            <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
+              With surging petrol rates, electric bikes claim up to 80% operational cost reduction. We break down initial purchase price vs recurring savings.
+            </p>
+            <a href="/blog/ev-bikes-2026" class="text-xs font-black text-emerald-600 hover:underline inline-flex items-center gap-1">
+              Read Analysis →
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden hover:border-emerald-300 transition flex flex-col shadow-sm">
+          <div class="h-44 bg-emerald-50 p-6 flex flex-col justify-end border-b border-gray-100">
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1">Cost Analysis</span>
+            <h3 class="text-base font-black text-black leading-snug">How Much Do You Save Switching to an EV?</h3>
+          </div>
+          <div class="p-6 flex-grow flex flex-col justify-between">
+            <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
+              Commercial rapid chargers vs overnight domestic tariffs, plus long-term maintenance differences between internal combustion engines and EVs.
+            </p>
+            <a href="/blog/ev-savings-2026" class="text-xs font-black text-emerald-600 hover:underline inline-flex items-center gap-1">
+              Read Analysis →
+            </a>
+          </div>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden hover:border-emerald-300 transition flex flex-col shadow-sm">
+          <div class="h-44 bg-emerald-50 p-6 flex flex-col justify-end border-b border-gray-100">
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1">Maintenance</span>
+            <h3 class="text-base font-black text-black leading-snug">EV Battery Lifespan & Degradation Guide</h3>
+          </div>
+          <div class="p-6 flex-grow flex flex-col justify-between">
+            <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
+              How long do lithium iron phosphate (LFP) packs truly last under hot climates, and what will replacement cost by 2030?
+            </p>
+            <a href="/blog/ev-battery-life-2026" class="text-xs font-black text-emerald-600 hover:underline inline-flex items-center gap-1">
+              Read Analysis →
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive FAQ Section -->
+  <section id="faq" class="py-16 border-t border-gray-100 bg-gray-50/50 scroll-mt-16" aria-labelledby="faq-heading">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center mb-12">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">HELP & FAQ</span>
+        <h2 id="faq-heading" class="text-2xl sm:text-3xl font-black text-black tracking-tight mt-1">Frequently Asked Questions</h2>
+        <p class="text-xs sm:text-sm text-gray-700 mt-2 font-medium">Everything you need to know about EV operational economics.</p>
+      </div>
+
+      <div class="space-y-4">
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
+          <summary class="flex justify-between items-center text-sm font-black text-black">
+            <span>What does EV Efficiency (km/kWh) mean?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            In combustion engines, efficiency is measured in distance per unit of liquid fuel (km per liter). In electric vehicles, energy is measured in kilowatt-hours (kWh), equivalent to 1 unit of electricity on your home meter. A rating of 30 km/kWh means the vehicle travels 30 kilometers using 1 unit of electric energy.
+          </p>
+        </details>
+
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
+          <summary class="flex justify-between items-center text-sm font-black text-black">
+            <span>What typical efficiency numbers should I enter?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <div class="text-xs text-gray-700 leading-relaxed mt-3 space-y-2 font-medium">
+            <p><strong>Electric Bikes / Scooters:</strong> Typically deliver 25 to 45 km per kWh (or 15 to 28 mi/kWh).</p>
+            <p><strong>Electric Sedans / Compact Cars:</strong> Typically achieve 5.5 to 7.5 km per kWh (or 3.4 to 4.6 mi/kWh).</p>
+            <p><strong>Petrol 70cc-125cc Bikes:</strong> 40 to 55 km/L.</p>
+            <p><strong>Petrol 1000cc-1500cc Cars:</strong> 11 to 16 km/L.</p>
+          </div>
+        </details>
+
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
+          <summary class="flex justify-between items-center text-sm font-black text-black">
+            <span>Does this calculator account for maintenance & engine oil?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            This tool computes direct fuel vs electric energy expenses and routine maintenance entered above. In reality, your savings with an EV are even higher because EVs have no engine oil, spark plugs, timing belts, or clutch assemblies.
+          </p>
+        </details>
+
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
+          <summary class="flex justify-between items-center text-sm font-black text-black">
+            <span>Is user data logged or sent to servers?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            No. VoltSavings is built as an open, client-side calculator. Everything runs locally in your device's browser memory. We never ask for your email, login, or personal driving history.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+</Layout>

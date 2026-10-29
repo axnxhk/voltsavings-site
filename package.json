@@ -1,0 +1,23 @@
+{
+  "name": "voltsavings-pdf-fixed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build && node -e \"import('fs').then(fs => fs.copyFileSync('dist/sitemap-index.xml', 'dist/sitemap.xml'))\"",
+    "preview": "astro preview"
+  },
+  "bugs": {
+    "url": "https://github.com/axnxhk/voltsavings-site/issues"
+  },
+  "homepage": "https://github.com/axnxhk/voltsavings-site#readme",
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/tailwind": "^6.0.2",
+    "astro": "^7.4.4",
+    "tailwindcss": "^3.4.19"
+  }
+}

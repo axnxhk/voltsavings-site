@@ -1,0 +1,46 @@
+---
+export interface BreadcrumbItem {
+  name: string;
+  url?: string;
+}
+
+export interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+const siteUrl = Astro.site ? Astro.site.origin : 'https://evcalculator.online';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": items.map((item, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": item.name,
+    ...(item.url ? { "item": item.url.startsWith('http') ? item.url : `${siteUrl}${item.url}` } : {})
+  }))
+};
+---
+
+<nav class="flex text-xs text-gray-500 font-bold mb-8" aria-label="Breadcrumb">
+  <ol class="flex items-center space-x-2">
+    {items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <li class="flex items-center">
+          {index > 0 && <span class="mx-2 text-gray-400">/</span>}
+          {isLast || !item.url ? (
+            <span class="text-gray-900 font-extrabold" aria-current="page">{item.name}</span>
+          ) : (
+            <a href={item.url} class="hover:text-emerald-600 transition-colors">
+              {item.name}
+            </a>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
