@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://evcalculator.online',
+  site: 'https://www.evcalculator.online',
   trailingSlash: 'never',
   integrations: [
     tailwind({

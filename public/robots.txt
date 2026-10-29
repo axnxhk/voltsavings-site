@@ -2,5 +2,5 @@ User-agent: *
 Allow: /
 
 # Sitemaps
-Sitemap: https://evcalculator.online/sitemap-index.xml
-Sitemap: https://evcalculator.online/sitemap.xml
+Sitemap: https://www.evcalculator.online/sitemap-index.xml
+Sitemap: https://www.evcalculator.online/sitemap.xml

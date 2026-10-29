@@ -12,16 +12,16 @@ const isContact = currentPath.startsWith('/contact');
     
     <!-- Logo -->
     <div class="flex items-center gap-3">
-      <a href="/" class="flex items-center gap-2.5 group" aria-label="VoltSavings Home">
-        <div class="w-10 h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform">
+      <a href="/" class="flex items-center gap-2 group" aria-label="VoltSavings Home">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-emerald-600 flex items-center justify-center text-white font-bold text-lg sm:text-xl shadow-md shadow-emerald-600/20 group-hover:scale-105 transition-transform flex-shrink-0">
           ⚡
         </div>
         <div>
           <div class="flex items-center gap-1.5">
-            <span class="text-xl font-black tracking-tight text-black">VoltSavings</span>
-            <span class="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">PRO</span>
+            <span class="text-lg sm:text-xl font-black tracking-tight text-black">VoltSavings</span>
+            <span class="inline-flex items-center px-1.5 py-0.2 rounded text-[9px] sm:text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">PRO</span>
           </div>
-          <p class="text-[11px] text-gray-600 font-medium">Global Fuel vs EV Intelligence</p>
+          <p class="text-[10px] sm:text-[11px] text-gray-500 font-medium hidden xs:block">Global Fuel vs EV Intelligence</p>
         </div>
       </a>
     </div>
@@ -59,62 +59,102 @@ const isContact = currentPath.startsWith('/contact');
     </nav>
 
     <!-- Right Action -->
-    <div class="flex items-center gap-3">
+    <div class="flex items-center gap-2 sm:gap-3">
       <a 
         href="/#calculator-app" 
-        class="hidden sm:inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all"
+        class="hidden sm:inline-flex items-center justify-center px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all"
       >
         Try Calculator
       </a>
       <button 
         type="button"
         aria-label="Toggle Navigation Menu" 
+        aria-expanded="false"
         id="mobileMenuBtn" 
-        class="md:hidden text-black p-2 focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-lg"
+        class="md:hidden text-black p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-xl border border-gray-200"
       >
-        <i class="fa-solid fa-bars text-lg"></i>
+        <i id="mobileMenuIcon" class="fa-solid fa-bars text-lg"></i>
       </button>
     </div>
   </div>
 
   <!-- Mobile Menu Dropdown -->
-  <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-3 text-sm">
+  <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md px-4 py-5 space-y-2 text-sm shadow-xl transition-all animate-fadeIn">
     <a 
       href="/" 
-      class={`block py-1 font-bold ${isCalculator ? 'text-emerald-600' : 'text-black hover:text-emerald-600'}`}
+      class={`mobile-link flex items-center justify-between py-2.5 px-3 rounded-xl font-bold min-h-[44px] ${isCalculator ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-800 hover:bg-gray-50'}`}
     >
-      Calculator
+      <span>⚡ EV Calculator</span>
+      {isCalculator && <span class="w-2 h-2 rounded-full bg-emerald-600"></span>}
     </a>
-    <a href="/#features" class="block text-black hover:text-emerald-600 py-1 font-semibold">Features</a>
-    <a href="/#breakdown" class="block text-black hover:text-emerald-600 py-1 font-semibold">Comparison Matrix</a>
+    <a href="/#features" class="mobile-link block py-2.5 px-3 rounded-xl text-gray-700 hover:bg-gray-50 font-semibold min-h-[44px]">
+      Key Features
+    </a>
+    <a href="/#breakdown" class="mobile-link block py-2.5 px-3 rounded-xl text-gray-700 hover:bg-gray-50 font-semibold min-h-[44px]">
+      Comparison & 5-Year Matrix
+    </a>
     <a 
       href="/blog" 
-      class={`block py-1 font-bold ${isBlog ? 'text-emerald-600' : 'text-black hover:text-emerald-600'}`}
+      class={`mobile-link flex items-center justify-between py-2.5 px-3 rounded-xl font-bold min-h-[44px] ${isBlog ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-800 hover:bg-gray-50'}`}
     >
-      Blog & Guides
+      <span>📚 EV Guides & Research</span>
+      {isBlog && <span class="w-2 h-2 rounded-full bg-emerald-600"></span>}
     </a>
-    <a href="/#faq" class="block text-black hover:text-emerald-600 py-1 font-semibold">FAQ</a>
+    <a href="/#faq" class="mobile-link block py-2.5 px-3 rounded-xl text-gray-700 hover:bg-gray-50 font-semibold min-h-[44px]">
+      Help & FAQ
+    </a>
     <a 
       href="/about" 
-      class={`block py-1 font-bold ${isAbout ? 'text-emerald-600' : 'text-black hover:text-emerald-600'}`}
+      class={`mobile-link block py-2.5 px-3 rounded-xl font-semibold min-h-[44px] ${isAbout ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-700 hover:bg-gray-50'}`}
     >
-      About Us
+      About Our Mission
     </a>
     <a 
       href="/contact" 
-      class={`block py-1 font-bold ${isContact ? 'text-emerald-600' : 'text-black hover:text-emerald-600'}`}
+      class={`mobile-link block py-2.5 px-3 rounded-xl font-semibold min-h-[44px] ${isContact ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-700 hover:bg-gray-50'}`}
     >
-      Contact Us
+      Contact Support
     </a>
+
+    <!-- Mobile Menu CTA Button -->
+    <div class="pt-3 border-t border-gray-100">
+      <a 
+        href="/#calculator-app" 
+        class="mobile-link w-full py-3 px-4 rounded-xl text-center text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md flex items-center justify-center gap-2 min-h-[44px]"
+      >
+        <i class="fa-solid fa-calculator"></i> Launch Free Calculator
+      </a>
+    </div>
   </div>
 </header>
 
 <script>
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const mobileMenu = document.getElementById('mobileMenu');
-  if (mobileBtn && mobileMenu) {
-    mobileBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+  const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+
+  function toggleMenu() {
+    if (!mobileMenu || !mobileBtn || !mobileMenuIcon) return;
+    const isHidden = mobileMenu.classList.contains('hidden');
+    if (isHidden) {
+      mobileMenu.classList.remove('hidden');
+      mobileBtn.setAttribute('aria-expanded', 'true');
+      mobileMenuIcon.className = 'fa-solid fa-xmark text-lg';
+    } else {
+      mobileMenu.classList.add('hidden');
+      mobileBtn.setAttribute('aria-expanded', 'false');
+      mobileMenuIcon.className = 'fa-solid fa-bars text-lg';
+    }
   }
+
+  mobileBtn?.addEventListener('click', toggleMenu);
+
+  // Close mobile menu automatically when any link is clicked
+  document.querySelectorAll('.mobile-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+        toggleMenu();
+      }
+    });
+  });
 </script>

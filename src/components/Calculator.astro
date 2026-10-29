@@ -3,10 +3,10 @@
 
 <div id="calculator-app" class="scroll-mt-20">
   <!-- Controls Bar -->
-  <div class="bg-white border-2 border-emerald-100 rounded-2xl p-4 mb-8 flex flex-wrap items-center justify-between gap-4 shadow-sm">
-    <div class="flex items-center gap-3">
+  <div class="bg-white border-2 border-emerald-100 rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 shadow-sm">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
       <label for="currencySelect" class="text-xs font-black uppercase tracking-wider text-black">Country / Currency:</label>
-      <select id="currencySelect" class="bg-white border-2 border-gray-200 text-xs font-bold rounded-xl px-3 py-2 text-black focus:outline-none focus:border-emerald-600 cursor-pointer">
+      <select id="currencySelect" class="w-full sm:w-auto bg-white border-2 border-gray-200 text-base sm:text-xs font-bold rounded-xl px-3 py-2.5 sm:py-2 text-black focus:outline-none focus:border-emerald-600 cursor-pointer min-h-[44px]">
         <option value="PK">🇵🇰 Pakistan (PKR - Rs.)</option>
         <option value="US">🇺🇸 United States (USD - $)</option>
         <option value="EU">🇪🇺 Europe (EUR - €)</option>
@@ -18,46 +18,46 @@
       </select>
     </div>
 
-    <div class="flex items-center gap-3">
+    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
       <span class="text-xs font-black uppercase tracking-wider text-black">Distance Unit:</span>
-      <div class="flex bg-gray-100 p-1 rounded-xl border border-gray-200 text-xs font-bold" role="group" aria-label="Distance Unit Selector">
-        <button type="button" id="unitMetric" class="px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm">Metric (km / L)</button>
-        <button type="button" id="unitImperial" class="px-3.5 py-1.5 rounded-lg text-gray-800 hover:text-black transition-all">Imperial (mi / gal)</button>
+      <div class="grid grid-cols-2 sm:flex bg-gray-100 p-1 rounded-xl border border-gray-200 text-xs font-bold w-full sm:w-auto" role="group" aria-label="Distance Unit Selector">
+        <button type="button" id="unitMetric" class="px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center">Metric (km / L)</button>
+        <button type="button" id="unitImperial" class="px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-800 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center">Imperial (mi / gal)</button>
       </div>
     </div>
   </div>
 
   <!-- Main Grid -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
     
     <!-- Input Column -->
-    <div class="lg:col-span-6 bg-white border-2 border-gray-200 rounded-3xl p-6 sm:p-8 shadow-sm">
+    <div class="lg:col-span-6 bg-white border-2 border-gray-200 rounded-3xl p-5 sm:p-8 shadow-sm">
       
-      <div class="flex items-center justify-between pb-5 border-b border-gray-100 mb-6">
+      <div class="flex items-center justify-between pb-4 sm:pb-5 border-b border-gray-100 mb-6">
         <div class="flex items-center gap-2.5">
           <div class="w-9 h-9 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700 text-base">
             <i class="fa-solid fa-sliders"></i>
           </div>
           <div>
-            <h2 class="text-lg font-black text-black">Your Commute Details</h2>
-            <p class="text-xs text-gray-600 font-medium">Input your routine numbers below</p>
+            <h2 class="text-base sm:text-lg font-black text-black">Your Commute Details</h2>
+            <p class="text-[11px] sm:text-xs text-gray-600 font-medium">Input your routine numbers below</p>
           </div>
         </div>
-        <button type="button" id="resetDefaultsBtn" class="text-xs font-bold text-gray-600 hover:text-emerald-600 flex items-center gap-1 transition-colors">
+        <button type="button" id="resetDefaultsBtn" class="text-xs font-bold text-gray-600 hover:text-emerald-600 flex items-center gap-1.5 transition-colors p-2 rounded-lg hover:bg-gray-100 min-h-[44px]">
           <i class="fa-solid fa-rotate-left"></i> Reset
         </button>
       </div>
 
       <!-- Daily Distance Slider -->
-      <div class="mb-6 bg-gray-50 p-5 rounded-2xl border border-gray-200">
-        <div class="flex justify-between items-center mb-2">
+      <div class="mb-6 bg-gray-50 p-4 sm:p-5 rounded-2xl border border-gray-200">
+        <div class="flex justify-between items-center mb-2 gap-2">
           <div>
             <label for="dailyDistance" class="text-sm font-black text-black">Daily Commute Distance</label>
             <p class="text-xs text-gray-600 font-medium">Average travel every day</p>
           </div>
-          <span id="distanceDisplay" class="text-base font-black text-white bg-emerald-600 px-3 py-1 rounded-xl shadow-sm">35 km</span>
+          <span id="distanceDisplay" class="text-base font-black text-white bg-emerald-600 px-3 py-1 rounded-xl shadow-sm flex-shrink-0">35 km</span>
         </div>
-        <input type="range" id="dailyDistance" min="5" max="250" value="35" class="w-full accent-emerald-600 cursor-pointer h-2 bg-gray-200 rounded-lg">
+        <input type="range" id="dailyDistance" min="5" max="250" value="35" class="w-full accent-emerald-600 cursor-pointer h-3 sm:h-2 bg-gray-200 rounded-lg">
         <div class="flex justify-between text-xs text-gray-600 mt-2 font-bold">
           <span id="distMin">5 km/day</span>
           <span id="distMax">250 km/day</span>
@@ -68,21 +68,21 @@
       <div class="mb-6">
         <label for="customDays" class="block text-xs font-black uppercase tracking-wider text-black mb-1">Monthly Usage Days</label>
         <div class="relative">
-          <input type="number" id="customDays" value="26" min="1" max="31" class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-2.5 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
-          <span class="absolute right-4 top-2.5 text-xs text-gray-600 font-bold">Days / Month (1 - 31)</span>
+          <input type="number" id="customDays" value="26" min="1" max="31" class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-2.5 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
+          <span class="absolute right-4 top-3 sm:top-2.5 text-xs text-gray-600 font-bold pointer-events-none">Days / Mo (1-31)</span>
         </div>
       </div>
       
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <!-- Petrol Vehicle Block -->
-        <div class="bg-amber-50/70 border-2 border-amber-200 p-5 rounded-2xl relative">
+        <div class="bg-amber-50/70 border-2 border-amber-200 p-4 sm:p-5 rounded-2xl relative">
           <div class="flex items-center gap-2 mb-4 text-amber-800 text-sm font-black">
             <i class="fa-solid fa-gas-pump text-amber-700"></i> Fuel Vehicle (Petrol)
           </div>
           
           <div class="mb-4">
             <label id="lblFuelEfficiency" for="fuelEfficiency" class="block text-xs text-black font-black mb-1">Fuel Economy (km/L)</label>
-            <input type="number" id="fuelEfficiency" value="40" step="0.5" class="w-full bg-white border-2 border-amber-200 rounded-xl px-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
+            <input type="number" id="fuelEfficiency" value="40" step="0.5" class="w-full bg-white border-2 border-amber-200 rounded-xl px-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
             <div class="flex justify-between text-[11px] text-gray-700 mt-1 font-semibold">
               <span id="txtBikeFuelHint">Bike: ~40 km/L</span>
               <span id="txtCarFuelHint">Car: ~14 km/L</span>
@@ -92,28 +92,28 @@
           <div>
             <label id="lblFuelPrice" for="fuelPrice" class="block text-xs text-black font-black mb-1">Fuel Price (per Liter)</label>
             <div class="relative">
-              <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
-              <input type="number" id="fuelPrice" value="280" step="0.01" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
+              <span class="currency-symbol absolute left-3 top-3 sm:top-2.5 text-xs text-gray-600 font-black pointer-events-none">Rs.</span>
+              <input type="number" id="fuelPrice" value="280" step="0.01" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
             </div>
             <div class="mt-4">
               <label for="fuelMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance / Oil Change</label>
               <div class="relative">
-                <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
-                <input type="number" id="fuelMaint" value="1500" step="1" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-amber-600 font-black">
+                <span class="currency-symbol absolute left-3 top-3 sm:top-2.5 text-xs text-gray-600 font-black pointer-events-none">Rs.</span>
+                <input type="number" id="fuelMaint" value="1500" step="1" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
               </div>
             </div>
           </div>
         </div>
 
         <!-- Electric Vehicle Block -->
-        <div class="bg-emerald-50/70 border-2 border-emerald-300 p-5 rounded-2xl relative">
+        <div class="bg-emerald-50/70 border-2 border-emerald-300 p-4 sm:p-5 rounded-2xl relative">
           <div class="flex items-center gap-2 mb-4 text-emerald-800 text-sm font-black">
             <i class="fa-solid fa-bolt text-emerald-600"></i> Electric Vehicle (EV)
           </div>
 
           <div class="mb-4">
             <label id="lblEvEfficiency" for="evEfficiency" class="block text-xs text-black font-black mb-1">EV Efficiency (km/kWh)</label>
-            <input type="number" id="evEfficiency" value="30" step="0.1" class="w-full bg-white border-2 border-emerald-300 rounded-xl px-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
+            <input type="number" id="evEfficiency" value="30" step="0.1" class="w-full bg-white border-2 border-emerald-300 rounded-xl px-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
             <div class="flex justify-between text-[11px] text-gray-700 mt-1 font-semibold">
               <span id="txtBikeEvHint">Bike: ~30 km/unit</span>
               <span id="txtCarEvHint">Car: ~6-7 km/unit</span>
@@ -123,14 +123,14 @@
           <div>
             <label for="electricityRate" class="block text-xs text-black font-black mb-1">Electricity Rate (per Unit / kWh)</label>
             <div class="relative">
-              <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
-              <input type="number" id="electricityRate" value="40" step="0.01" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
+              <span class="currency-symbol absolute left-3 top-3 sm:top-2.5 text-xs text-gray-600 font-black pointer-events-none">Rs.</span>
+              <input type="number" id="electricityRate" value="40" step="0.01" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
             </div>
             <div class="mt-4">
               <label for="evMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance (Routine Service)</label>
               <div class="relative">
-                <span class="currency-symbol absolute left-3 top-2 text-xs text-gray-600 font-black">Rs.</span>
-                <input type="number" id="evMaint" value="200" step="1" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-sm text-black focus:outline-none focus:border-emerald-600 font-black">
+                <span class="currency-symbol absolute left-3 top-3 sm:top-2.5 text-xs text-gray-600 font-black pointer-events-none">Rs.</span>
+                <input type="number" id="evMaint" value="200" step="1" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
               </div>
             </div>
           </div>
@@ -143,13 +143,13 @@
     <div class="lg:col-span-6 space-y-6">
       
       <!-- Big Hero Savings Banner -->
-      <div class="bg-emerald-600 rounded-3xl p-6 sm:p-8 text-white shadow-xl shadow-emerald-600/20">
-        <div class="flex justify-between items-center mb-2">
-          <span class="text-xs uppercase font-black tracking-widest text-emerald-100">TOTAL ESTIMATED ANNUAL SAVINGS</span>
-          <span id="savingPercentage" class="bg-white text-emerald-800 text-xs font-black px-3 py-1 rounded-full shadow-sm">Save ~85%</span>
+      <div class="bg-emerald-600 rounded-3xl p-5 sm:p-8 text-white shadow-xl shadow-emerald-600/20">
+        <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+          <span class="text-[10px] sm:text-xs uppercase font-black tracking-widest text-emerald-100">TOTAL ESTIMATED ANNUAL SAVINGS</span>
+          <span id="savingPercentage" class="bg-white text-emerald-800 text-xs font-black px-3 py-1 rounded-full shadow-sm flex-shrink-0">Save ~85%</span>
         </div>
         
-        <div class="text-4xl sm:text-6xl font-black tracking-tight my-3" id="annualSavingsText">Rs. 0</div>
+        <div class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight my-3 break-words" id="annualSavingsText">Rs. 0</div>
         
         <p class="text-xs sm:text-sm text-emerald-50 max-w-md font-medium leading-relaxed">
           By eliminating expensive fuel consumption and switching to electric mobility, you keep thousands in your pocket every single year.
@@ -158,28 +158,28 @@
 
       <!-- Monthly Breakdown Cards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="bg-white border-2 border-gray-200 rounded-2xl p-5 shadow-sm">
+        <div class="bg-white border-2 border-gray-200 rounded-2xl p-4 sm:p-5 shadow-sm">
           <div class="flex items-center justify-between text-xs text-gray-600 mb-2">
             <span class="font-black uppercase tracking-wider text-black">Fuel Cost (Monthly)</span>
             <span class="p-1.5 rounded-lg bg-amber-100 text-amber-700 font-bold"><i class="fa-solid fa-gas-pump"></i></span>
           </div>
-          <div class="text-2xl sm:text-3xl font-black text-amber-600" id="fuelMonthlyText">Rs. 0</div>
-          <div class="text-xs text-gray-600 mt-2 font-bold" id="fuelYearlyText">Yearly: Rs. 0</div>
+          <div class="text-2xl sm:text-3xl font-black text-amber-600 break-words" id="fuelMonthlyText">Rs. 0</div>
+          <div class="text-xs text-gray-600 mt-2 font-bold break-words" id="fuelYearlyText">Yearly: Rs. 0</div>
         </div>
 
-        <div class="bg-white border-2 border-gray-200 rounded-2xl p-5 shadow-sm">
+        <div class="bg-white border-2 border-gray-200 rounded-2xl p-4 sm:p-5 shadow-sm">
           <div class="flex items-center justify-between text-xs text-gray-600 mb-2">
             <span class="font-black uppercase tracking-wider text-black">EV Charging (Monthly)</span>
             <span class="p-1.5 rounded-lg bg-emerald-100 text-emerald-700 font-bold"><i class="fa-solid fa-plug-circle-bolt"></i></span>
           </div>
-          <div class="text-2xl sm:text-3xl font-black text-emerald-600" id="evMonthlyText">Rs. 0</div>
-          <div class="text-xs text-gray-600 mt-2 font-bold" id="evYearlyText">Yearly: Rs. 0</div>
+          <div class="text-2xl sm:text-3xl font-black text-emerald-600 break-words" id="evMonthlyText">Rs. 0</div>
+          <div class="text-xs text-gray-600 mt-2 font-bold break-words" id="evYearlyText">Yearly: Rs. 0</div>
         </div>
       </div>
 
       <!-- Multi-Year ROI Matrix Table -->
-      <div id="breakdown" class="bg-white border-2 border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm scroll-mt-20">
-        <div class="flex items-center justify-between mb-4">
+      <div id="breakdown" class="bg-white border-2 border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm scroll-mt-20">
+        <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
           <div>
             <h3 class="text-xs font-black uppercase tracking-wider text-black">Long-Term Cumulative Savings</h3>
             <p class="text-xs text-gray-600 font-medium">Expense comparison across standard ownership periods</p>
@@ -187,40 +187,40 @@
           <span class="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-md font-black">Net Retained</span>
         </div>
         
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs">
+        <div class="overflow-x-auto -mx-2 px-2 sm:mx-0 sm:px-0">
+          <table class="w-full text-left text-xs min-w-[280px]">
             <thead>
               <tr class="border-b-2 border-gray-100 text-gray-600">
-                <th class="pb-2.5 font-black uppercase text-black">Period</th>
-                <th class="pb-2.5 font-black uppercase text-amber-700">Petrol Cost</th>
-                <th class="pb-2.5 font-black uppercase text-emerald-600">EV Power</th>
-                <th class="pb-2.5 font-black uppercase text-right text-emerald-600">You Save</th>
+                <th class="pb-2.5 font-black uppercase text-black whitespace-nowrap">Period</th>
+                <th class="pb-2.5 font-black uppercase text-amber-700 whitespace-nowrap">Petrol Cost</th>
+                <th class="pb-2.5 font-black uppercase text-emerald-600 whitespace-nowrap">EV Power</th>
+                <th class="pb-2.5 font-black uppercase text-right text-emerald-600 whitespace-nowrap">You Save</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 font-bold">
               <tr>
-                <td class="py-3 text-black">1 Month</td>
-                <td class="py-3 text-gray-800" id="tblFuel1M">-</td>
-                <td class="py-3 text-gray-800" id="tblEv1M">-</td>
-                <td class="py-3 text-right font-black text-emerald-600" id="tblSave1M">-</td>
+                <td class="py-3 text-black whitespace-nowrap">1 Month</td>
+                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblFuel1M">-</td>
+                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblEv1M">-</td>
+                <td class="py-3 text-right font-black text-emerald-600 whitespace-nowrap" id="tblSave1M">-</td>
               </tr>
               <tr>
-                <td class="py-3 text-black">1 Year</td>
-                <td class="py-3 text-gray-800" id="tblFuel1Y">-</td>
-                <td class="py-3 text-gray-800" id="tblEv1Y">-</td>
-                <td class="py-3 text-right font-black text-emerald-600" id="tblSave1Y">-</td>
+                <td class="py-3 text-black whitespace-nowrap">1 Year</td>
+                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblFuel1Y">-</td>
+                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblEv1Y">-</td>
+                <td class="py-3 text-right font-black text-emerald-600 whitespace-nowrap" id="tblSave1Y">-</td>
               </tr>
               <tr>
-                <td class="py-3 text-black">3 Years</td>
-                <td class="py-3 text-gray-800" id="tblFuel3Y">-</td>
-                <td class="py-3 text-gray-800" id="tblEv3Y">-</td>
-                <td class="py-3 text-right font-black text-emerald-600" id="tblSave3Y">-</td>
+                <td class="py-3 text-black whitespace-nowrap">3 Years</td>
+                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblFuel3Y">-</td>
+                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblEv3Y">-</td>
+                <td class="py-3 text-right font-black text-emerald-600 whitespace-nowrap" id="tblSave3Y">-</td>
               </tr>
               <tr>
-                <td class="py-3 text-black">5 Years</td>
-                <td class="py-3 text-gray-800" id="tblFuel5Y">-</td>
-                <td class="py-3 text-gray-800" id="tblEv5Y">-</td>
-                <td class="py-3 text-right font-black text-emerald-600" id="tblSave5Y">-</td>
+                <td class="py-3 text-black whitespace-nowrap">5 Years</td>
+                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblFuel5Y">-</td>
+                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblEv5Y">-</td>
+                <td class="py-3 text-right font-black text-emerald-600 whitespace-nowrap" id="tblSave5Y">-</td>
               </tr>
             </tbody>
           </table>
@@ -229,7 +229,7 @@
 
       <!-- Action Buttons -->
       <div class="flex gap-3">
-        <button type="button" id="copyBtn" class="flex-1 bg-black hover:bg-gray-800 text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer shadow-md w-full focus:outline-none focus:ring-2 focus:ring-emerald-600">
+        <button type="button" id="copyBtn" class="flex-1 bg-black hover:bg-gray-800 text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer shadow-md w-full focus:outline-none focus:ring-2 focus:ring-emerald-600 min-h-[48px]">
           <i class="fa-regular fa-copy"></i> Copy My Calculation Summary
         </button>
       </div>
@@ -278,8 +278,8 @@
   function setUnit(metricMode: boolean) {
     isMetric = metricMode;
     if (metricMode) {
-      if (unitMetric) unitMetric.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
-      if (unitImperial) unitImperial.className = "px-3.5 py-1.5 rounded-lg text-gray-800 hover:text-black transition-all";
+      if (unitMetric) unitMetric.className = "px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center";
+      if (unitImperial) unitImperial.className = "px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-800 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center";
       if (distMin) distMin.innerText = "5 km/day";
       if (distMax) distMax.innerText = "250 km/day";
       if (dailyDistance) dailyDistance.max = "250";
@@ -300,8 +300,8 @@
       fuelEfficiency.value = "40";
       evEfficiency.value = "30";
     } else {
-      if (unitImperial) unitImperial.className = "px-3.5 py-1.5 rounded-lg bg-emerald-600 text-white transition-all shadow-sm";
-      if (unitMetric) unitMetric.className = "px-3.5 py-1.5 rounded-lg text-gray-800 hover:text-black transition-all";
+      if (unitImperial) unitImperial.className = "px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center";
+      if (unitMetric) unitMetric.className = "px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-800 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center";
       if (distMin) distMin.innerText = "5 mi/day";
       if (distMax) distMax.innerText = "150 mi/day";
       if (dailyDistance) dailyDistance.max = "150";

@@ -15,7 +15,7 @@ export interface Props {
 const {
   title,
   description,
-  canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://evcalculator.online').href,
+  canonicalUrl = new URL(Astro.url.pathname, Astro.site || 'https://www.evcalculator.online').href,
   image = '/og-image.jpg',
   type = 'website',
   publishedTime,
@@ -25,7 +25,7 @@ const {
   noindex = false
 } = Astro.props;
 
-const siteUrl = Astro.site ? Astro.site.origin : 'https://evcalculator.online';
+const siteUrl = Astro.site ? Astro.site.origin : 'https://www.evcalculator.online';
 const fullImageUrl = image.startsWith('http') ? image : `${siteUrl}${image.startsWith('/') ? '' : '/'}${image}`;
 
 // Base Schema.org Organization & WebSite
