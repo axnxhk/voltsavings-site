@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && node -e \"import('fs').then(fs => fs.copyFileSync('dist/sitemap-index.xml', 'dist/sitemap.xml'))\"",
+    "build": "astro build && node -e \"import('fs').then(fs => fs.copyFileSync('dist/sitemap-0.xml', 'dist/sitemap.xml'))\"",
     "preview": "astro preview"
   },
   "bugs": {
