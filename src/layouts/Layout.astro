@@ -3,6 +3,7 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import SEO from '../components/SEO.astro';
+import ExecutiveReportPrint from '../components/ExecutiveReportPrint.astro';
 
 export interface Props {
   title: string;
@@ -63,10 +64,16 @@ const {
   />
 </head>
 <body class="bg-white text-black min-h-screen flex flex-col antialiased selection:bg-emerald-600 selection:text-white">
-  <Header />
-  
-  <slot />
+  <!-- Interactive Web Application (Hidden completely during Print / PDF Export) -->
+  <div id="siteContentWrapper" class="flex flex-col min-h-screen w-full">
+    <Header />
+    
+    <slot />
 
-  <Footer />
+    <Footer />
+  </div>
+
+  <!-- Dedicated Executive PDF / Print Report (Visible ONLY during Print / PDF Export) -->
+  <ExecutiveReportPrint />
 </body>
 </html>

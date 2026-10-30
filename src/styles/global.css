@@ -58,24 +58,64 @@ input[type="range"]::-moz-range-thumb {
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-/* Clean Executive Print Stylesheet */
-@media print {
-  header, footer, #features, #faq, .no-print, #mobileFloatingBar, #copyBtn, #printBtn, #currencySelect, #resetDefaultsBtn {
+/* ============================================================
+   EXECUTIVE 1-PAGE PDF / PRINT STYLESHEET SETUP
+   ============================================================ */
+@page {
+  size: A4 portrait;
+  margin: 8mm 10mm 8mm 10mm;
+}
+
+@media screen {
+  #executiveReportPrint {
     display: none !important;
   }
-  body {
-    background: #ffffff !important;
-    color: #000000 !important;
-    font-size: 12pt;
+}
+
+@media print {
+  /* 1. Hide the entire website application */
+  #siteContentWrapper,
+  header,
+  footer,
+  nav,
+  #mobileFloatingBar,
+  #features,
+  #faq,
+  .no-print {
+    display: none !important;
   }
-  #calculator-app {
+
+  /* 2. Configure body for pristine 1-page document */
+  html, body {
+    width: 100% !important;
+    height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-size: 10pt !important;
+    line-height: 1.35 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    overflow: visible !important;
   }
-  .shadow-sm, .shadow-md, .shadow-xl {
+
+  /* 3. Display ONLY the dedicated executive report */
+  #executiveReportPrint {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
     box-shadow: none !important;
+    border: none !important;
+    page-break-inside: avoid !important;
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
   }
-  .border-2 {
-    border-width: 1px !important;
+
+  #executiveReportPrint * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
