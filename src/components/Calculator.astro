@@ -20,15 +20,15 @@
   </div>
 
   <!-- Controls Bar (Currency & Unit) -->
-  <div class="bg-white border border-gray-200/90 rounded-2xl sm:rounded-3xl p-4 sm:p-5 mb-8 shadow-sm">
-    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+  <div class="bg-white border border-gray-200/90 rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 mb-8 shadow-sm overflow-hidden">
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
       
       <!-- Currency / Country Selector -->
-      <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 w-full sm:w-auto">
         <label for="currencySelect" class="text-xs font-black uppercase tracking-wider text-gray-700 flex items-center gap-1.5">
           <i class="fa-solid fa-earth-americas text-emerald-600"></i> Country & Currency:
         </label>
-        <select id="currencySelect" class="w-full sm:w-auto bg-gray-50 hover:bg-gray-100/80 border border-gray-300 text-base sm:text-xs font-bold rounded-xl px-3.5 py-2.5 sm:py-2 text-black focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer min-h-[44px] transition-all">
+        <select id="currencySelect" class="w-full sm:w-auto bg-gray-50 hover:bg-gray-100/80 border border-gray-300 text-sm sm:text-xs font-bold rounded-xl px-3 py-2 text-black focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer min-h-[44px] transition-all">
           <option value="PK">🇵🇰 Pakistan (PKR - Rs.)</option>
           <option value="US">🇺🇸 United States (USD - $)</option>
           <option value="EU">🇪🇺 Europe (EUR - €)</option>
@@ -41,13 +41,13 @@
       </div>
 
       <!-- Distance Unit Selector -->
-      <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+      <div class="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3 w-full sm:w-auto">
         <span class="text-xs font-black uppercase tracking-wider text-gray-700 flex items-center gap-1.5">
           <i class="fa-solid fa-ruler-horizontal text-emerald-600"></i> Measurement:
         </span>
-        <div class="grid grid-cols-2 sm:flex bg-gray-100 p-1 rounded-xl border border-gray-200 text-xs font-bold w-full sm:w-auto" role="group" aria-label="Distance Unit Selector">
-          <button type="button" id="unitMetric" class="px-4 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer">Metric (km / L)</button>
-          <button type="button" id="unitImperial" class="px-4 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-700 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer">Imperial (mi / gal)</button>
+        <div class="grid grid-cols-2 bg-gray-100 p-1 rounded-xl border border-gray-200 text-xs font-bold w-full sm:w-auto" role="group" aria-label="Distance Unit Selector">
+          <button type="button" id="unitMetric" class="px-2.5 py-2 sm:px-4 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[42px] sm:min-h-0 flex items-center justify-center cursor-pointer text-xs">Metric (km/L)</button>
+          <button type="button" id="unitImperial" class="px-2.5 py-2 sm:px-4 sm:py-1.5 rounded-lg text-center text-gray-700 hover:text-black transition-all min-h-[42px] sm:min-h-0 flex items-center justify-center cursor-pointer text-xs">Imperial (mi/gal)</button>
         </div>
       </div>
 
@@ -66,57 +66,57 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="presetContainer" role="radiogroup" aria-label="Vehicle Presets">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4" id="presetContainer" role="radiogroup" aria-label="Vehicle Presets">
       
       <!-- Preset 1: Bike / Scooter -->
-      <button type="button" data-preset="bike" class="preset-btn active text-left p-4 rounded-2xl border-2 border-emerald-600 bg-emerald-50/70 shadow-sm transition-all duration-200 cursor-pointer hover:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="true" role="radio">
+      <button type="button" data-preset="bike" class="preset-btn active text-left p-3 sm:p-4 rounded-2xl border-2 border-emerald-600 bg-emerald-50/70 shadow-sm transition-all duration-200 cursor-pointer hover:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="true" role="radio">
         <div class="flex items-center justify-between mb-2">
           <span class="text-2xl sm:text-3xl">🛵</span>
-          <span class="preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-emerald-600 text-white">Selected</span>
+          <span class="preset-badge text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-md bg-emerald-600 text-white">Selected</span>
         </div>
-        <p class="font-black text-sm sm:text-base text-black leading-tight">E-Bike / Scooter</p>
-        <p class="text-[11px] text-gray-600 mt-1 font-medium">70cc-125cc vs Electric Bike</p>
-        <div class="mt-2 text-[10px] font-bold text-emerald-700 bg-white/80 rounded-lg px-2 py-1 inline-block border border-emerald-200">
-          Save ~85-90%
+        <p class="font-black text-xs sm:text-base text-black leading-tight">E-Bike / Scooter</p>
+        <p class="text-[10px] sm:text-[11px] text-gray-600 mt-0.5 sm:mt-1 font-medium">70cc vs EV</p>
+        <div class="mt-2 text-[9px] sm:text-[10px] font-bold text-emerald-700 bg-white/80 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 inline-block border border-emerald-200">
+          Save ~90%
         </div>
       </button>
 
       <!-- Preset 2: Compact / Hatchback -->
-      <button type="button" data-preset="car_compact" class="preset-btn text-left p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
+      <button type="button" data-preset="car_compact" class="preset-btn text-left p-3 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
         <div class="flex items-center justify-between mb-2">
           <span class="text-2xl sm:text-3xl">🚗</span>
-          <span class="preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
+          <span class="preset-badge text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
         </div>
-        <p class="font-black text-sm sm:text-base text-black leading-tight">City Hatchback</p>
-        <p class="text-[11px] text-gray-600 mt-1 font-medium">660cc-1000cc vs Mini EV</p>
-        <div class="mt-2 text-[10px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-2 py-1 inline-block border border-emerald-100">
-          Save ~78-82%
+        <p class="font-black text-xs sm:text-base text-black leading-tight">City Hatchback</p>
+        <p class="text-[10px] sm:text-[11px] text-gray-600 mt-0.5 sm:mt-1 font-medium">Alto vs EV</p>
+        <div class="mt-2 text-[9px] sm:text-[10px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 inline-block border border-emerald-100">
+          Save ~80%
         </div>
       </button>
 
       <!-- Preset 3: Sedan / SUV -->
-      <button type="button" data-preset="car_sedan" class="preset-btn text-left p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
+      <button type="button" data-preset="car_sedan" class="preset-btn text-left p-3 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
         <div class="flex items-center justify-between mb-2">
           <span class="text-2xl sm:text-3xl">🚙</span>
-          <span class="preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
+          <span class="preset-badge text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
         </div>
-        <p class="font-black text-sm sm:text-base text-black leading-tight">Sedan / Crossover</p>
-        <p class="text-[11px] text-gray-600 mt-1 font-medium">1.5L-1.8L vs EV Sedan/SUV</p>
-        <div class="mt-2 text-[10px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-2 py-1 inline-block border border-emerald-100">
-          Save ~72-76%
+        <p class="font-black text-xs sm:text-base text-black leading-tight">Sedan / SUV</p>
+        <p class="text-[10px] sm:text-[11px] text-gray-600 mt-0.5 sm:mt-1 font-medium">Civic vs EV</p>
+        <div class="mt-2 text-[9px] sm:text-[10px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 inline-block border border-emerald-100">
+          Save ~75%
         </div>
       </button>
 
       <!-- Preset 4: Custom -->
-      <button type="button" data-preset="custom" class="preset-btn text-left p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
+      <button type="button" data-preset="custom" class="preset-btn text-left p-3 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
         <div class="flex items-center justify-between mb-2">
           <span class="text-2xl sm:text-3xl">⚙️</span>
-          <span class="preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Custom</span>
+          <span class="preset-badge text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Custom</span>
         </div>
-        <p class="font-black text-sm sm:text-base text-black leading-tight">Custom Profile</p>
-        <p class="text-[11px] text-gray-600 mt-1 font-medium">Full manual control mode</p>
-        <div class="mt-2 text-[10px] font-bold text-gray-600 bg-gray-100 rounded-lg px-2 py-1 inline-block">
-          Tailored to You
+        <p class="font-black text-xs sm:text-base text-black leading-tight">Custom</p>
+        <p class="text-[10px] sm:text-[11px] text-gray-600 mt-0.5 sm:mt-1 font-medium">Manual Mode</p>
+        <div class="mt-2 text-[9px] sm:text-[10px] font-bold text-gray-600 bg-gray-100 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 inline-block">
+          Tailored
         </div>
       </button>
 
