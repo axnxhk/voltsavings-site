@@ -6,6 +6,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.evcalculator.online',
   trailingSlash: 'never',
+  devToolbar: {
+    enabled: false,
+  },
   integrations: [
     tailwind({
       applyBaseStyles: false,
