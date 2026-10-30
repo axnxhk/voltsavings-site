@@ -2,235 +2,418 @@
 ---
 
 <div id="calculator-app" class="scroll-mt-20">
-  <!-- Controls Bar -->
-  <div class="bg-white border-2 border-emerald-100 rounded-2xl p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 shadow-sm">
-    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
-      <label for="currencySelect" class="text-xs font-black uppercase tracking-wider text-black">Country / Currency:</label>
-      <select id="currencySelect" class="w-full sm:w-auto bg-white border-2 border-gray-200 text-base sm:text-xs font-bold rounded-xl px-3 py-2.5 sm:py-2 text-black focus:outline-none focus:border-emerald-600 cursor-pointer min-h-[44px]">
-        <option value="PK">🇵🇰 Pakistan (PKR - Rs.)</option>
-        <option value="US">🇺🇸 United States (USD - $)</option>
-        <option value="EU">🇪🇺 Europe (EUR - €)</option>
-        <option value="GB">🇬🇧 United Kingdom (GBP - £)</option>
-        <option value="IN">🇮🇳 India (INR - ₹)</option>
-        <option value="AE">🇦🇪 United Arab Emirates (AED)</option>
-        <option value="CA">🇨🇦 Canada (CAD - $)</option>
-        <option value="AU">🇦🇺 Australia (AUD - $)</option>
-      </select>
-    </div>
-
-    <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
-      <span class="text-xs font-black uppercase tracking-wider text-black">Distance Unit:</span>
-      <div class="grid grid-cols-2 sm:flex bg-gray-100 p-1 rounded-xl border border-gray-200 text-xs font-bold w-full sm:w-auto" role="group" aria-label="Distance Unit Selector">
-        <button type="button" id="unitMetric" class="px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center">Metric (km / L)</button>
-        <button type="button" id="unitImperial" class="px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-800 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center">Imperial (mi / gal)</button>
+  
+  <!-- Floating Mobile Summary Pill (Shows on mobile when adjusting inputs) -->
+  <div id="mobileFloatingBar" class="fixed bottom-4 left-4 right-4 z-40 sm:hidden bg-gray-900/95 backdrop-blur-md text-white p-3.5 rounded-2xl shadow-2xl border border-gray-700/60 flex items-center justify-between transition-all duration-300 transform translate-y-0">
+    <div class="flex items-center gap-2.5">
+      <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-sm font-black">
+        ⚡
       </div>
+      <div>
+        <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Est. Annual Savings</p>
+        <p id="mobileSavingsText" class="text-base font-black text-emerald-400 leading-tight">Rs. 0</p>
+      </div>
+    </div>
+    <a href="#breakdown" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center gap-1 shadow-sm">
+      Breakdown ↓
+    </a>
+  </div>
+
+  <!-- Controls Bar (Currency & Unit) -->
+  <div class="bg-white border border-gray-200/90 rounded-2xl sm:rounded-3xl p-4 sm:p-5 mb-8 shadow-sm">
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+      
+      <!-- Currency / Country Selector -->
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+        <label for="currencySelect" class="text-xs font-black uppercase tracking-wider text-gray-700 flex items-center gap-1.5">
+          <i class="fa-solid fa-earth-americas text-emerald-600"></i> Country & Currency:
+        </label>
+        <select id="currencySelect" class="w-full sm:w-auto bg-gray-50 hover:bg-gray-100/80 border border-gray-300 text-base sm:text-xs font-bold rounded-xl px-3.5 py-2.5 sm:py-2 text-black focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer min-h-[44px] transition-all">
+          <option value="PK">🇵🇰 Pakistan (PKR - Rs.)</option>
+          <option value="US">🇺🇸 United States (USD - $)</option>
+          <option value="EU">🇪🇺 Europe (EUR - €)</option>
+          <option value="GB">🇬🇧 United Kingdom (GBP - £)</option>
+          <option value="IN">🇮🇳 India (INR - ₹)</option>
+          <option value="AE">🇦🇪 United Arab Emirates (AED)</option>
+          <option value="CA">🇨🇦 Canada (CAD - $)</option>
+          <option value="AU">🇦🇺 Australia (AUD - $)</option>
+        </select>
+      </div>
+
+      <!-- Distance Unit Selector -->
+      <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 w-full sm:w-auto">
+        <span class="text-xs font-black uppercase tracking-wider text-gray-700 flex items-center gap-1.5">
+          <i class="fa-solid fa-ruler-horizontal text-emerald-600"></i> Measurement:
+        </span>
+        <div class="grid grid-cols-2 sm:flex bg-gray-100 p-1 rounded-xl border border-gray-200 text-xs font-bold w-full sm:w-auto" role="group" aria-label="Distance Unit Selector">
+          <button type="button" id="unitMetric" class="px-4 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer">Metric (km / L)</button>
+          <button type="button" id="unitImperial" class="px-4 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-700 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer">Imperial (mi / gal)</button>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- Main Grid -->
+  <!-- Vehicle Presets Cards (Key UX Feature!) -->
+  <div class="mb-8">
+    <div class="flex items-center justify-between mb-3">
+      <div>
+        <h2 class="text-sm sm:text-base font-black text-black flex items-center gap-2">
+          <span>1. Select Vehicle Category</span>
+          <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">Instant 1-Click Setup</span>
+        </h2>
+        <p class="text-xs text-gray-500 font-medium">Choose your ride to auto-fill realistic fuel economy & efficiency numbers</p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4" id="presetContainer" role="radiogroup" aria-label="Vehicle Presets">
+      
+      <!-- Preset 1: Bike / Scooter -->
+      <button type="button" data-preset="bike" class="preset-btn active text-left p-4 rounded-2xl border-2 border-emerald-600 bg-emerald-50/70 shadow-sm transition-all duration-200 cursor-pointer hover:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="true" role="radio">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl sm:text-3xl">🛵</span>
+          <span class="preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-emerald-600 text-white">Selected</span>
+        </div>
+        <p class="font-black text-sm sm:text-base text-black leading-tight">E-Bike / Scooter</p>
+        <p class="text-[11px] text-gray-600 mt-1 font-medium">70cc-125cc vs Electric Bike</p>
+        <div class="mt-2 text-[10px] font-bold text-emerald-700 bg-white/80 rounded-lg px-2 py-1 inline-block border border-emerald-200">
+          Save ~85-90%
+        </div>
+      </button>
+
+      <!-- Preset 2: Compact / Hatchback -->
+      <button type="button" data-preset="car_compact" class="preset-btn text-left p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl sm:text-3xl">🚗</span>
+          <span class="preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
+        </div>
+        <p class="font-black text-sm sm:text-base text-black leading-tight">City Hatchback</p>
+        <p class="text-[11px] text-gray-600 mt-1 font-medium">660cc-1000cc vs Mini EV</p>
+        <div class="mt-2 text-[10px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-2 py-1 inline-block border border-emerald-100">
+          Save ~78-82%
+        </div>
+      </button>
+
+      <!-- Preset 3: Sedan / SUV -->
+      <button type="button" data-preset="car_sedan" class="preset-btn text-left p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl sm:text-3xl">🚙</span>
+          <span class="preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
+        </div>
+        <p class="font-black text-sm sm:text-base text-black leading-tight">Sedan / Crossover</p>
+        <p class="text-[11px] text-gray-600 mt-1 font-medium">1.5L-1.8L vs EV Sedan/SUV</p>
+        <div class="mt-2 text-[10px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-2 py-1 inline-block border border-emerald-100">
+          Save ~72-76%
+        </div>
+      </button>
+
+      <!-- Preset 4: Custom -->
+      <button type="button" data-preset="custom" class="preset-btn text-left p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-2xl sm:text-3xl">⚙️</span>
+          <span class="preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Custom</span>
+        </div>
+        <p class="font-black text-sm sm:text-base text-black leading-tight">Custom Profile</p>
+        <p class="text-[11px] text-gray-600 mt-1 font-medium">Full manual control mode</p>
+        <div class="mt-2 text-[10px] font-bold text-gray-600 bg-gray-100 rounded-lg px-2 py-1 inline-block">
+          Tailored to You
+        </div>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Main Calculator Grid -->
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
     
-    <!-- Input Column -->
-    <div class="lg:col-span-6 bg-white border-2 border-gray-200 rounded-3xl p-5 sm:p-8 shadow-sm">
+    <!-- Left Column: User Inputs -->
+    <div class="lg:col-span-6 bg-white border border-gray-200 rounded-3xl p-5 sm:p-7 shadow-sm">
       
-      <div class="flex items-center justify-between pb-4 sm:pb-5 border-b border-gray-100 mb-6">
+      <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
         <div class="flex items-center gap-2.5">
           <div class="w-9 h-9 rounded-xl bg-emerald-100 flex items-center justify-center text-emerald-700 text-base">
-            <i class="fa-solid fa-sliders"></i>
+            <i class="fa-solid fa-route"></i>
           </div>
           <div>
-            <h2 class="text-base sm:text-lg font-black text-black">Your Commute Details</h2>
-            <p class="text-[11px] sm:text-xs text-gray-600 font-medium">Input your routine numbers below</p>
+            <h2 class="text-base sm:text-lg font-black text-black">2. Your Driving Routine</h2>
+            <p class="text-[11px] sm:text-xs text-gray-500 font-medium">Adjust commute distance & travel days</p>
           </div>
         </div>
-        <button type="button" id="resetDefaultsBtn" class="text-xs font-bold text-gray-600 hover:text-emerald-600 flex items-center gap-1.5 transition-colors p-2 rounded-lg hover:bg-gray-100 min-h-[44px]">
+        <button type="button" id="resetDefaultsBtn" class="text-xs font-bold text-gray-500 hover:text-emerald-700 flex items-center gap-1.5 transition-colors p-2 rounded-xl hover:bg-gray-100 cursor-pointer">
           <i class="fa-solid fa-rotate-left"></i> Reset
         </button>
       </div>
 
-      <!-- Daily Distance Slider -->
-      <div class="mb-6 bg-gray-50 p-4 sm:p-5 rounded-2xl border border-gray-200">
-        <div class="flex justify-between items-center mb-2 gap-2">
+      <!-- Daily Distance Slider & Quick Chips -->
+      <div class="mb-6 bg-gradient-to-br from-gray-50 to-emerald-50/20 p-4 sm:p-5 rounded-2xl border border-gray-200">
+        <div class="flex justify-between items-center mb-3 gap-2">
           <div>
             <label for="dailyDistance" class="text-sm font-black text-black">Daily Commute Distance</label>
-            <p class="text-xs text-gray-600 font-medium">Average travel every day</p>
+            <p class="text-xs text-gray-500 font-medium">Round-trip travel every day</p>
           </div>
-          <span id="distanceDisplay" class="text-base font-black text-white bg-emerald-600 px-3 py-1 rounded-xl shadow-sm flex-shrink-0">35 km</span>
+          <span id="distanceDisplay" class="text-lg font-black text-white bg-emerald-600 px-3.5 py-1 rounded-xl shadow-md shadow-emerald-600/20 flex-shrink-0 transition-transform">35 km</span>
         </div>
-        <input type="range" id="dailyDistance" min="5" max="250" value="35" class="w-full accent-emerald-600 cursor-pointer h-3 sm:h-2 bg-gray-200 rounded-lg">
-        <div class="flex justify-between text-xs text-gray-600 mt-2 font-bold">
+        
+        <input type="range" id="dailyDistance" min="5" max="250" value="35" class="w-full cursor-pointer my-2">
+        
+        <div class="flex justify-between text-xs text-gray-500 font-bold mb-3">
           <span id="distMin">5 km/day</span>
           <span id="distMax">250 km/day</span>
         </div>
+
+        <!-- Quick Pick Chips for Distance -->
+        <div class="pt-2 border-t border-gray-200/80 flex flex-wrap items-center gap-2">
+          <span class="text-[10px] font-black uppercase text-gray-400 mr-1">Quick pick:</span>
+          <button type="button" data-dist="15" class="dist-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-gray-200 hover:border-emerald-500 text-gray-700 hover:text-emerald-700 cursor-pointer transition-all">15 km</button>
+          <button type="button" data-dist="35" class="dist-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-50 border border-emerald-300 text-emerald-800 cursor-pointer transition-all">35 km (Avg)</button>
+          <button type="button" data-dist="60" class="dist-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-gray-200 hover:border-emerald-500 text-gray-700 hover:text-emerald-700 cursor-pointer transition-all">60 km</button>
+          <button type="button" data-dist="100" class="dist-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-gray-200 hover:border-emerald-500 text-gray-700 hover:text-emerald-700 cursor-pointer transition-all">100 km (Comm)</button>
+        </div>
       </div>
 
-      <!-- Travel Days Selector -->
-      <div class="mb-6">
-        <label for="customDays" class="block text-xs font-black uppercase tracking-wider text-black mb-1">Monthly Usage Days</label>
-        <div class="relative">
+      <!-- Monthly Usage Days & Quick Chips -->
+      <div class="mb-6 bg-gray-50 p-4 sm:p-5 rounded-2xl border border-gray-200">
+        <div class="flex justify-between items-center mb-2">
+          <label for="customDays" class="text-xs font-black uppercase tracking-wider text-black">Monthly Driving Days</label>
+          <span class="text-xs text-gray-500 font-medium">Standard is 26 days</span>
+        </div>
+        <div class="relative mb-3">
           <input type="number" id="customDays" value="26" min="1" max="31" class="w-full bg-white border-2 border-gray-200 rounded-xl px-4 py-2.5 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
-          <span class="absolute right-4 top-3 sm:top-2.5 text-xs text-gray-600 font-bold pointer-events-none">Days / Mo (1-31)</span>
+          <span class="absolute right-4 top-3 text-xs text-gray-500 font-bold pointer-events-none">Days / Month (1-31)</span>
+        </div>
+        <!-- Days Quick Chips -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button type="button" data-days="22" class="days-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-gray-200 hover:border-emerald-500 text-gray-700 hover:text-emerald-700 cursor-pointer transition-all">22 Days (5-Day Wk)</button>
+          <button type="button" data-days="26" class="days-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-50 border border-emerald-300 text-emerald-800 cursor-pointer transition-all">26 Days (Standard)</button>
+          <button type="button" data-days="30" class="days-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-gray-200 hover:border-emerald-500 text-gray-700 hover:text-emerald-700 cursor-pointer transition-all">30 Days (Daily)</button>
         </div>
       </div>
       
+      <!-- Side by Side Vehicle Fuel & Power Specs -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        
         <!-- Petrol Vehicle Block -->
-        <div class="bg-amber-50/70 border-2 border-amber-200 p-4 sm:p-5 rounded-2xl relative">
-          <div class="flex items-center gap-2 mb-4 text-amber-800 text-sm font-black">
-            <i class="fa-solid fa-gas-pump text-amber-700"></i> Fuel Vehicle (Petrol)
+        <div class="bg-amber-50/60 border-2 border-amber-200 p-4 sm:p-5 rounded-2xl relative shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <span class="flex items-center gap-2 text-amber-900 text-xs sm:text-sm font-black">
+              <i class="fa-solid fa-gas-pump text-amber-600 text-base"></i> Petrol Vehicle
+            </span>
+            <span class="text-[10px] font-bold uppercase bg-amber-100 text-amber-800 px-2 py-0.5 rounded-md">Combustion</span>
           </div>
           
           <div class="mb-4">
-            <label id="lblFuelEfficiency" for="fuelEfficiency" class="block text-xs text-black font-black mb-1">Fuel Economy (km/L)</label>
-            <input type="number" id="fuelEfficiency" value="40" step="0.5" class="w-full bg-white border-2 border-amber-200 rounded-xl px-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
-            <div class="flex justify-between text-[11px] text-gray-700 mt-1 font-semibold">
-              <span id="txtBikeFuelHint">Bike: ~40 km/L</span>
-              <span id="txtCarFuelHint">Car: ~14 km/L</span>
+            <div class="flex items-center justify-between mb-1">
+              <label id="lblFuelEfficiency" for="fuelEfficiency" class="text-xs text-black font-black">Fuel Economy (km/L)</label>
+            </div>
+            <input type="number" id="fuelEfficiency" value="40" step="0.5" class="w-full bg-white border-2 border-amber-200 rounded-xl px-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
+            <p id="txtFuelHint" class="text-[11px] text-gray-600 mt-1 font-medium">Standard for selected vehicle</p>
+          </div>
+
+          <div class="mb-4">
+            <label id="lblFuelPrice" for="fuelPrice" class="block text-xs text-black font-black mb-1">Fuel Price (per Liter)</label>
+            <div class="relative">
+              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">Rs.</span>
+              <input type="number" id="fuelPrice" value="280" step="0.01" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
             </div>
           </div>
 
           <div>
-            <label id="lblFuelPrice" for="fuelPrice" class="block text-xs text-black font-black mb-1">Fuel Price (per Liter)</label>
+            <label for="fuelMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance / Oil</label>
             <div class="relative">
-              <span class="currency-symbol absolute left-3 top-3 sm:top-2.5 text-xs text-gray-600 font-black pointer-events-none">Rs.</span>
-              <input type="number" id="fuelPrice" value="280" step="0.01" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
-            </div>
-            <div class="mt-4">
-              <label for="fuelMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance / Oil Change</label>
-              <div class="relative">
-                <span class="currency-symbol absolute left-3 top-3 sm:top-2.5 text-xs text-gray-600 font-black pointer-events-none">Rs.</span>
-                <input type="number" id="fuelMaint" value="1500" step="1" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
-              </div>
+              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">Rs.</span>
+              <input type="number" id="fuelMaint" value="1500" step="1" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
             </div>
           </div>
         </div>
 
         <!-- Electric Vehicle Block -->
-        <div class="bg-emerald-50/70 border-2 border-emerald-300 p-4 sm:p-5 rounded-2xl relative">
-          <div class="flex items-center gap-2 mb-4 text-emerald-800 text-sm font-black">
-            <i class="fa-solid fa-bolt text-emerald-600"></i> Electric Vehicle (EV)
+        <div class="bg-emerald-50/60 border-2 border-emerald-300 p-4 sm:p-5 rounded-2xl relative shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <span class="flex items-center gap-2 text-emerald-900 text-xs sm:text-sm font-black">
+              <i class="fa-solid fa-bolt text-emerald-600 text-base"></i> Electric Vehicle
+            </span>
+            <span class="text-[10px] font-bold uppercase bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-md">Electric</span>
           </div>
 
           <div class="mb-4">
-            <label id="lblEvEfficiency" for="evEfficiency" class="block text-xs text-black font-black mb-1">EV Efficiency (km/kWh)</label>
-            <input type="number" id="evEfficiency" value="30" step="0.1" class="w-full bg-white border-2 border-emerald-300 rounded-xl px-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
-            <div class="flex justify-between text-[11px] text-gray-700 mt-1 font-semibold">
-              <span id="txtBikeEvHint">Bike: ~30 km/unit</span>
-              <span id="txtCarEvHint">Car: ~6-7 km/unit</span>
+            <div class="flex items-center justify-between mb-1">
+              <label id="lblEvEfficiency" for="evEfficiency" class="text-xs text-black font-black">EV Efficiency (km/kWh)</label>
+            </div>
+            <input type="number" id="evEfficiency" value="30" step="0.1" class="w-full bg-white border-2 border-emerald-300 rounded-xl px-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
+            <p id="txtEvHint" class="text-[11px] text-gray-600 mt-1 font-medium">Standard for selected vehicle</p>
+          </div>
+
+          <div class="mb-4">
+            <label for="electricityRate" class="block text-xs text-black font-black mb-1">Electricity Rate (per Unit / kWh)</label>
+            <div class="relative">
+              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">Rs.</span>
+              <input type="number" id="electricityRate" value="40" step="0.01" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
             </div>
           </div>
 
           <div>
-            <label for="electricityRate" class="block text-xs text-black font-black mb-1">Electricity Rate (per Unit / kWh)</label>
+            <label for="evMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance (Routine)</label>
             <div class="relative">
-              <span class="currency-symbol absolute left-3 top-3 sm:top-2.5 text-xs text-gray-600 font-black pointer-events-none">Rs.</span>
-              <input type="number" id="electricityRate" value="40" step="0.01" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
-            </div>
-            <div class="mt-4">
-              <label for="evMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance (Routine Service)</label>
-              <div class="relative">
-                <span class="currency-symbol absolute left-3 top-3 sm:top-2.5 text-xs text-gray-600 font-black pointer-events-none">Rs.</span>
-                <input type="number" id="evMaint" value="200" step="1" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2.5 sm:py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
-              </div>
+              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">Rs.</span>
+              <input type="number" id="evMaint" value="200" step="1" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
             </div>
           </div>
         </div>
+
       </div>
 
     </div>
 
-    <!-- Results Column -->
+    <!-- Right Column: Interactive Results & Visual Comparisons -->
     <div class="lg:col-span-6 space-y-6">
       
       <!-- Big Hero Savings Banner -->
-      <div class="bg-emerald-600 rounded-3xl p-5 sm:p-8 text-white shadow-xl shadow-emerald-600/20">
-        <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
-          <span class="text-[10px] sm:text-xs uppercase font-black tracking-widest text-emerald-100">TOTAL ESTIMATED ANNUAL SAVINGS</span>
-          <span id="savingPercentage" class="bg-white text-emerald-800 text-xs font-black px-3 py-1 rounded-full shadow-sm flex-shrink-0">Save ~85%</span>
+      <div class="bg-gradient-to-br from-emerald-600 via-emerald-700 to-teal-800 rounded-3xl p-6 sm:p-8 text-white shadow-xl shadow-emerald-700/20 relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl font-black pointer-events-none">⚡</div>
+        
+        <div class="flex flex-wrap justify-between items-center gap-2 mb-2 relative z-10">
+          <span class="text-[10px] sm:text-xs uppercase font-black tracking-widest text-emerald-200">TOTAL ESTIMATED ANNUAL SAVINGS</span>
+          <span id="savingPercentage" class="bg-white text-emerald-800 text-xs font-black px-3.5 py-1 rounded-full shadow-md flex-shrink-0 animate-pulse">Save ~85%</span>
         </div>
         
-        <div class="text-3xl xs:text-4xl sm:text-5xl md:text-6xl font-black tracking-tight my-3 break-words" id="annualSavingsText">Rs. 0</div>
+        <div class="text-4xl xs:text-5xl sm:text-6xl font-black tracking-tight my-3 break-words relative z-10" id="annualSavingsText">Rs. 0</div>
         
-        <p class="text-xs sm:text-sm text-emerald-50 max-w-md font-medium leading-relaxed">
-          By eliminating expensive fuel consumption and switching to electric mobility, you keep thousands in your pocket every single year.
+        <div class="flex items-center gap-2 text-emerald-100 text-xs sm:text-sm font-semibold mb-4">
+          <i class="fa-solid fa-piggy-bank"></i>
+          <span>You keep approx <strong id="monthlySavingsText" class="text-white">Rs. 0</strong> in your pocket every month.</span>
+        </div>
+
+        <p class="text-xs text-emerald-100/90 max-w-md font-medium leading-relaxed relative z-10">
+          By switching to electric mobility, you eliminate recurring liquid petrol refills and costly engine oil services.
         </p>
       </div>
 
-      <!-- Monthly Breakdown Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="bg-white border-2 border-gray-200 rounded-2xl p-4 sm:p-5 shadow-sm">
-          <div class="flex items-center justify-between text-xs text-gray-600 mb-2">
-            <span class="font-black uppercase tracking-wider text-black">Fuel Cost (Monthly)</span>
-            <span class="p-1.5 rounded-lg bg-amber-100 text-amber-700 font-bold"><i class="fa-solid fa-gas-pump"></i></span>
-          </div>
-          <div class="text-2xl sm:text-3xl font-black text-amber-600 break-words" id="fuelMonthlyText">Rs. 0</div>
-          <div class="text-xs text-gray-600 mt-2 font-bold break-words" id="fuelYearlyText">Yearly: Rs. 0</div>
+      <!-- Live Visual Comparison Gauge Bar (Instant Graphical Clarity) -->
+      <div class="bg-white border border-gray-200 rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="text-xs font-black uppercase tracking-wider text-black flex items-center gap-1.5">
+            <i class="fa-solid fa-chart-simple text-emerald-600"></i> Monthly Expenditure Comparison
+          </h3>
+          <span class="text-[10px] font-bold text-gray-500">Live Breakdown</span>
         </div>
 
-        <div class="bg-white border-2 border-gray-200 rounded-2xl p-4 sm:p-5 shadow-sm">
-          <div class="flex items-center justify-between text-xs text-gray-600 mb-2">
-            <span class="font-black uppercase tracking-wider text-black">EV Charging (Monthly)</span>
-            <span class="p-1.5 rounded-lg bg-emerald-100 text-emerald-700 font-bold"><i class="fa-solid fa-plug-circle-bolt"></i></span>
+        <!-- Petrol Visual Bar -->
+        <div class="mb-4">
+          <div class="flex justify-between text-xs font-bold mb-1">
+            <span class="text-amber-800 flex items-center gap-1.5">
+              <i class="fa-solid fa-gas-pump text-amber-600"></i> Petrol Vehicle
+            </span>
+            <span id="gaugePetrolText" class="text-amber-700 font-black">Rs. 0 / mo</span>
           </div>
-          <div class="text-2xl sm:text-3xl font-black text-emerald-600 break-words" id="evMonthlyText">Rs. 0</div>
-          <div class="text-xs text-gray-600 mt-2 font-bold break-words" id="evYearlyText">Yearly: Rs. 0</div>
+          <div class="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
+            <div id="gaugePetrolBar" class="bg-gradient-to-r from-amber-500 to-rose-500 h-full rounded-full transition-all duration-500" style="width: 100%;"></div>
+          </div>
+        </div>
+
+        <!-- EV Visual Bar -->
+        <div class="mb-3">
+          <div class="flex justify-between text-xs font-bold mb-1">
+            <span class="text-emerald-800 flex items-center gap-1.5">
+              <i class="fa-solid fa-bolt text-emerald-600"></i> Electric Vehicle (EV)
+            </span>
+            <span id="gaugeEvText" class="text-emerald-700 font-black">Rs. 0 / mo</span>
+          </div>
+          <div class="w-full bg-gray-100 h-3 rounded-full overflow-hidden">
+            <div id="gaugeEvBar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full transition-all duration-500" style="width: 18%;"></div>
+          </div>
+        </div>
+
+        <!-- Net Advantage Chip -->
+        <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 flex items-center justify-between text-xs font-bold text-emerald-900 mt-2">
+          <span>Net Monthly Cash Retained:</span>
+          <span id="gaugeNetText" class="text-emerald-700 font-black text-sm">+ Rs. 0 / mo</span>
+        </div>
+      </div>
+
+      <!-- Environmental Green Impact Card (CO2 & Trees) -->
+      <div class="bg-gradient-to-r from-teal-50 to-emerald-50 border border-emerald-200 rounded-2xl p-4 sm:p-5 shadow-sm">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-sm">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <div>
+            <h3 class="text-xs font-black uppercase tracking-wider text-emerald-900">Annual Environmental Impact</h3>
+            <p class="text-[11px] text-gray-600 font-medium">Your contribution to cleaner urban air</p>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 gap-3 text-center">
+          <div class="bg-white/80 rounded-xl p-3 border border-emerald-100 shadow-xs">
+            <p class="text-[10px] uppercase font-black text-gray-500">CO2 Emissions Avoided</p>
+            <p id="co2SavedText" class="text-base sm:text-lg font-black text-emerald-700 mt-0.5">~1,200 kg</p>
+            <span class="text-[10px] text-gray-500 font-medium">Tailpipe emissions saved</span>
+          </div>
+          <div class="bg-white/80 rounded-xl p-3 border border-emerald-100 shadow-xs">
+            <p class="text-[10px] uppercase font-black text-gray-500">Tree Equivalent</p>
+            <p id="treeEquivalentText" class="text-base sm:text-lg font-black text-emerald-700 mt-0.5">~57 Trees</p>
+            <span class="text-[10px] text-gray-500 font-medium">Planted per year equivalent</span>
+          </div>
         </div>
       </div>
 
       <!-- Multi-Year ROI Matrix Table -->
-      <div id="breakdown" class="bg-white border-2 border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm scroll-mt-20">
+      <div id="breakdown" class="bg-white border border-gray-200 rounded-2xl p-4 sm:p-6 shadow-sm scroll-mt-20">
         <div class="flex flex-wrap items-center justify-between mb-4 gap-2">
           <div>
-            <h3 class="text-xs font-black uppercase tracking-wider text-black">Long-Term Cumulative Savings</h3>
-            <p class="text-xs text-gray-600 font-medium">Expense comparison across standard ownership periods</p>
+            <h3 class="text-xs font-black uppercase tracking-wider text-black">Cumulative Long-Term Retained Cash</h3>
+            <p class="text-xs text-gray-500 font-medium">Clear comparison across ownership timelines</p>
           </div>
-          <span class="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-md font-black">Net Retained</span>
+          <span class="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-md font-black">100% Retained</span>
         </div>
         
         <div class="overflow-x-auto -mx-2 px-2 sm:mx-0 sm:px-0">
           <table class="w-full text-left text-xs min-w-[280px]">
             <thead>
-              <tr class="border-b-2 border-gray-100 text-gray-600">
-                <th class="pb-2.5 font-black uppercase text-black whitespace-nowrap">Period</th>
+              <tr class="border-b-2 border-gray-100 text-gray-500">
+                <th class="pb-2.5 font-black uppercase text-black whitespace-nowrap">Timeline</th>
                 <th class="pb-2.5 font-black uppercase text-amber-700 whitespace-nowrap">Petrol Cost</th>
                 <th class="pb-2.5 font-black uppercase text-emerald-600 whitespace-nowrap">EV Power</th>
-                <th class="pb-2.5 font-black uppercase text-right text-emerald-600 whitespace-nowrap">You Save</th>
+                <th class="pb-2.5 font-black uppercase text-right text-emerald-600 whitespace-nowrap">Net Saved</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-100 font-bold">
               <tr>
                 <td class="py-3 text-black whitespace-nowrap">1 Month</td>
-                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblFuel1M">-</td>
-                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblEv1M">-</td>
+                <td class="py-3 text-gray-700 whitespace-nowrap" id="tblFuel1M">-</td>
+                <td class="py-3 text-gray-700 whitespace-nowrap" id="tblEv1M">-</td>
                 <td class="py-3 text-right font-black text-emerald-600 whitespace-nowrap" id="tblSave1M">-</td>
               </tr>
               <tr>
                 <td class="py-3 text-black whitespace-nowrap">1 Year</td>
-                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblFuel1Y">-</td>
-                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblEv1Y">-</td>
+                <td class="py-3 text-gray-700 whitespace-nowrap" id="tblFuel1Y">-</td>
+                <td class="py-3 text-gray-700 whitespace-nowrap" id="tblEv1Y">-</td>
                 <td class="py-3 text-right font-black text-emerald-600 whitespace-nowrap" id="tblSave1Y">-</td>
               </tr>
               <tr>
                 <td class="py-3 text-black whitespace-nowrap">3 Years</td>
-                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblFuel3Y">-</td>
-                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblEv3Y">-</td>
+                <td class="py-3 text-gray-700 whitespace-nowrap" id="tblFuel3Y">-</td>
+                <td class="py-3 text-gray-700 whitespace-nowrap" id="tblEv3Y">-</td>
                 <td class="py-3 text-right font-black text-emerald-600 whitespace-nowrap" id="tblSave3Y">-</td>
               </tr>
-              <tr>
-                <td class="py-3 text-black whitespace-nowrap">5 Years</td>
-                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblFuel5Y">-</td>
-                <td class="py-3 text-gray-800 whitespace-nowrap" id="tblEv5Y">-</td>
-                <td class="py-3 text-right font-black text-emerald-600 whitespace-nowrap" id="tblSave5Y">-</td>
+              <tr class="bg-emerald-50/50">
+                <td class="py-3 text-black whitespace-nowrap font-black">5 Years</td>
+                <td class="py-3 text-gray-700 whitespace-nowrap" id="tblFuel5Y">-</td>
+                <td class="py-3 text-gray-700 whitespace-nowrap" id="tblEv5Y">-</td>
+                <td class="py-3 text-right font-black text-emerald-600 whitespace-nowrap text-sm" id="tblSave5Y">-</td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="flex gap-3">
-        <button type="button" id="copyBtn" class="flex-1 bg-black hover:bg-gray-800 text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition cursor-pointer shadow-md w-full focus:outline-none focus:ring-2 focus:ring-emerald-600 min-h-[48px]">
-          <i class="fa-regular fa-copy"></i> Copy My Calculation Summary
+      <!-- Action Buttons (Copy & Print PDF) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 no-print">
+        <button type="button" id="copyBtn" class="bg-black hover:bg-gray-800 text-white text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-600 min-h-[48px]">
+          <i class="fa-regular fa-copy"></i> <span id="copyBtnText">Copy Calculation Report</span>
+        </button>
+
+        <button type="button" id="printBtn" class="bg-white hover:bg-gray-50 text-gray-900 border-2 border-gray-200 hover:border-gray-300 text-xs font-bold py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 min-h-[48px]">
+          <i class="fa-solid fa-print text-emerald-600"></i> Print / Save as PDF
         </button>
       </div>
 
@@ -240,16 +423,38 @@
 </div>
 
 <script>
-  // Complete Country & Currency Configurations (Fixes the currency maintenance bug!)
+  // Country & Currency Base Configurations
   const CURRENCY_DATA = {
-    'PK': { code: 'PKR', symbol: 'Rs.', fuelPrice: 280, powerRate: 40, fuelMaint: 1500, evMaint: 200, isMetric: true },
-    'US': { code: 'USD', symbol: '$', fuelPrice: 3.80, powerRate: 0.18, fuelMaint: 60, evMaint: 15, isMetric: false },
-    'EU': { code: 'EUR', symbol: '€', fuelPrice: 1.85, powerRate: 0.32, fuelMaint: 55, evMaint: 15, isMetric: true },
-    'GB': { code: 'GBP', symbol: '£', fuelPrice: 1.50, powerRate: 0.28, fuelMaint: 50, evMaint: 12, isMetric: true },
-    'IN': { code: 'INR', symbol: '₹', fuelPrice: 102, powerRate: 8, fuelMaint: 600, evMaint: 100, isMetric: true },
-    'AE': { code: 'AED', symbol: 'AED', fuelPrice: 3.15, powerRate: 0.30, fuelMaint: 180, evMaint: 50, isMetric: true },
-    'CA': { code: 'CAD', symbol: '$', fuelPrice: 1.65, powerRate: 0.16, fuelMaint: 75, evMaint: 20, isMetric: true },
-    'AU': { code: 'AUD', symbol: '$', fuelPrice: 1.95, powerRate: 0.25, fuelMaint: 80, evMaint: 20, isMetric: true },
+    'PK': { code: 'PKR', symbol: 'Rs.', fuelPrice: 280, powerRate: 40, isMetric: true, baseFuelMaint: 1500, baseEvMaint: 200 },
+    'US': { code: 'USD', symbol: '$', fuelPrice: 3.80, powerRate: 0.18, isMetric: false, baseFuelMaint: 35, baseEvMaint: 10 },
+    'EU': { code: 'EUR', symbol: '€', fuelPrice: 1.85, powerRate: 0.32, isMetric: true, baseFuelMaint: 30, baseEvMaint: 8 },
+    'GB': { code: 'GBP', symbol: '£', fuelPrice: 1.50, powerRate: 0.28, isMetric: true, baseFuelMaint: 28, baseEvMaint: 8 },
+    'IN': { code: 'INR', symbol: '₹', fuelPrice: 102, powerRate: 8, isMetric: true, baseFuelMaint: 600, baseEvMaint: 100 },
+    'AE': { code: 'AED', symbol: 'AED', fuelPrice: 3.15, powerRate: 0.30, isMetric: true, baseFuelMaint: 100, baseEvMaint: 25 },
+    'CA': { code: 'CAD', symbol: '$', fuelPrice: 1.65, powerRate: 0.16, isMetric: true, baseFuelMaint: 40, baseEvMaint: 12 },
+    'AU': { code: 'AUD', symbol: '$', fuelPrice: 1.95, powerRate: 0.25, isMetric: true, baseFuelMaint: 45, baseEvMaint: 15 },
+  };
+
+  // Realistic vehicle presets specification
+  const PRESET_SPECS = {
+    bike: {
+      metric: { fuelEff: 40, evEff: 30, maintMult: 1 },
+      imperial: { fuelEff: 75, evEff: 18, maintMult: 1 },
+      fuelHint: "Typical 70cc-125cc commuter motorcycle",
+      evHint: "Electric bike / 1.5-2.5 kWh battery"
+    },
+    car_compact: {
+      metric: { fuelEff: 15, evEff: 7.5, maintMult: 2.8 },
+      imperial: { fuelEff: 35, evEff: 4.6, maintMult: 2.5 },
+      fuelHint: "660cc-1000cc hatchback (Alto/Cultus/Swift)",
+      evHint: "Compact city EV (BYD Dolphin/Seagull/Mini EV)"
+    },
+    car_sedan: {
+      metric: { fuelEff: 11, evEff: 6.0, maintMult: 4.2 },
+      imperial: { fuelEff: 25, evEff: 3.6, maintMult: 3.8 },
+      fuelHint: "1.5L-1.8L sedan/crossover (Civic/Corolla/Sportage)",
+      evHint: "EV Sedan/SUV (Tesla Model 3/BYD Atto 3/Deepal)"
+    }
   };
 
   // State
@@ -257,6 +462,7 @@
   let selectedDays = 26;
   let currentCountry = 'PK';
   let currentSymbol = 'Rs.';
+  let activePreset = 'bike';
 
   // Elements
   const dailyDistance = document.getElementById('dailyDistance') as HTMLInputElement;
@@ -274,55 +480,141 @@
   const unitMetric = document.getElementById('unitMetric');
   const unitImperial = document.getElementById('unitImperial');
   const customDays = document.getElementById('customDays') as HTMLInputElement;
+  const txtFuelHint = document.getElementById('txtFuelHint');
+  const txtEvHint = document.getElementById('txtEvHint');
 
+  // Apply Vehicle Preset
+  function applyPreset(presetKey: string) {
+    activePreset = presetKey;
+
+    // Update preset buttons visually
+    document.querySelectorAll('.preset-btn').forEach(btn => {
+      const p = btn.getAttribute('data-preset');
+      const badge = btn.querySelector('.preset-badge');
+      if (p === presetKey) {
+        btn.classList.add('border-emerald-600', 'bg-emerald-50/70', 'shadow-sm');
+        btn.classList.remove('border-gray-200', 'bg-white');
+        btn.setAttribute('aria-checked', 'true');
+        if (badge) {
+          badge.className = 'preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-emerald-600 text-white';
+          badge.textContent = 'Selected';
+        }
+      } else {
+        btn.classList.remove('border-emerald-600', 'bg-emerald-50/70', 'shadow-sm');
+        btn.classList.add('border-gray-200', 'bg-white');
+        btn.setAttribute('aria-checked', 'false');
+        if (badge) {
+          badge.className = 'preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-100 text-gray-600';
+          badge.textContent = p === 'custom' ? 'Custom' : 'Select';
+        }
+      }
+    });
+
+    if (presetKey === 'custom') {
+      if (txtFuelHint) txtFuelHint.innerText = "Custom user-defined fuel rating";
+      if (txtEvHint) txtEvHint.innerText = "Custom user-defined EV rating";
+      calculate();
+      return;
+    }
+
+    const spec = PRESET_SPECS[presetKey as keyof typeof PRESET_SPECS];
+    if (!spec) return;
+
+    const unitSpec = isMetric ? spec.metric : spec.imperial;
+    fuelEfficiency.value = String(unitSpec.fuelEff);
+    evEfficiency.value = String(unitSpec.evEff);
+
+    // Realistic maintenance scaling for the vehicle category
+    const countryData = CURRENCY_DATA[currentCountry as keyof typeof CURRENCY_DATA] || CURRENCY_DATA['PK'];
+    fuelMaint.value = String(Math.round(countryData.baseFuelMaint * unitSpec.maintMult));
+    evMaint.value = String(Math.round(countryData.baseEvMaint * unitSpec.maintMult));
+
+    if (txtFuelHint) txtFuelHint.innerText = spec.fuelHint;
+    if (txtEvHint) txtEvHint.innerText = spec.evHint;
+
+    calculate();
+  }
+
+  // Setup Preset Button Click Listeners
+  document.querySelectorAll('.preset-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const p = btn.getAttribute('data-preset');
+      if (p) {
+        applyPreset(p);
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'select_vehicle_preset', { vehicle_type: p });
+        }
+      }
+    });
+  });
+
+  // Quick distance chips listeners
+  document.querySelectorAll('.dist-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const d = chip.getAttribute('data-dist');
+      if (d && dailyDistance) {
+        dailyDistance.value = d;
+        // update chip active style
+        document.querySelectorAll('.dist-chip').forEach(c => {
+          c.className = 'dist-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-gray-200 hover:border-emerald-500 text-gray-700 hover:text-emerald-700 cursor-pointer transition-all';
+        });
+        chip.className = 'dist-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-50 border border-emerald-300 text-emerald-800 cursor-pointer transition-all';
+        calculate();
+      }
+    });
+  });
+
+  // Quick days chips listeners
+  document.querySelectorAll('.days-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const d = chip.getAttribute('data-days');
+      if (d && customDays) {
+        customDays.value = d;
+        document.querySelectorAll('.days-chip').forEach(c => {
+          c.className = 'days-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-gray-200 hover:border-emerald-500 text-gray-700 hover:text-emerald-700 cursor-pointer transition-all';
+        });
+        chip.className = 'days-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-50 border border-emerald-300 text-emerald-800 cursor-pointer transition-all';
+        calculate();
+      }
+    });
+  });
+
+  // Set Measurement Unit (Metric vs Imperial)
   function setUnit(metricMode: boolean) {
     isMetric = metricMode;
     if (metricMode) {
-      if (unitMetric) unitMetric.className = "px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center";
-      if (unitImperial) unitImperial.className = "px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-800 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center";
+      if (unitMetric) unitMetric.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
+      if (unitImperial) unitImperial.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-700 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
       if (distMin) distMin.innerText = "5 km/day";
       if (distMax) distMax.innerText = "250 km/day";
       if (dailyDistance) dailyDistance.max = "250";
+      
       const lblFuel = document.getElementById('lblFuelEfficiency');
       const lblPrice = document.getElementById('lblFuelPrice');
       const lblEv = document.getElementById('lblEvEfficiency');
       if (lblFuel) lblFuel.innerText = "Fuel Economy (km/L)";
       if (lblPrice) lblPrice.innerText = "Fuel Price (per Liter)";
       if (lblEv) lblEv.innerText = "EV Efficiency (km/kWh)";
-      const bHint = document.getElementById('txtBikeFuelHint');
-      const cHint = document.getElementById('txtCarFuelHint');
-      const bEv = document.getElementById('txtBikeEvHint');
-      const cEv = document.getElementById('txtCarEvHint');
-      if (bHint) bHint.innerText = "Bike: ~40 km/L";
-      if (cHint) cHint.innerText = "Car: ~14 km/L";
-      if (bEv) bEv.innerText = "Bike: ~30 km/unit";
-      if (cEv) cEv.innerText = "Car: ~6-7 km/unit";
-      fuelEfficiency.value = "40";
-      evEfficiency.value = "30";
     } else {
-      if (unitImperial) unitImperial.className = "px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center";
-      if (unitMetric) unitMetric.className = "px-3.5 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-800 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center";
+      if (unitImperial) unitImperial.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
+      if (unitMetric) unitMetric.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-700 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
       if (distMin) distMin.innerText = "5 mi/day";
       if (distMax) distMax.innerText = "150 mi/day";
       if (dailyDistance) dailyDistance.max = "150";
+
       const lblFuel = document.getElementById('lblFuelEfficiency');
       const lblPrice = document.getElementById('lblFuelPrice');
       const lblEv = document.getElementById('lblEvEfficiency');
       if (lblFuel) lblFuel.innerText = "Fuel Economy (MPG)";
       if (lblPrice) lblPrice.innerText = "Fuel Price (per Gallon)";
       if (lblEv) lblEv.innerText = "EV Efficiency (mi/kWh)";
-      const bHint = document.getElementById('txtBikeFuelHint');
-      const cHint = document.getElementById('txtCarFuelHint');
-      const bEv = document.getElementById('txtBikeEvHint');
-      const cEv = document.getElementById('txtCarEvHint');
-      if (bHint) bHint.innerText = "Motorcycle: ~45 MPG";
-      if (cHint) cHint.innerText = "Car: ~25-30 MPG";
-      if (bEv) bEv.innerText = "E-Bike: ~18 mi/kWh";
-      if (cEv) cEv.innerText = "EV Car: ~3.5 mi/kWh";
-      fuelEfficiency.value = "30";
-      evEfficiency.value = "3.5";
     }
-    calculate();
+
+    if (activePreset !== 'custom') {
+      applyPreset(activePreset);
+    } else {
+      calculate();
+    }
   }
 
   unitMetric?.addEventListener('click', () => {
@@ -331,6 +623,7 @@
       (window as any).gtag('event', 'switch_unit', { unit: 'metric' });
     }
   });
+
   unitImperial?.addEventListener('click', () => {
     setUnit(false);
     if (typeof (window as any).gtag === 'function') {
@@ -338,14 +631,13 @@
     }
   });
 
+  // Country Data & Currency Setup
   function applyCountryData(countryKey: string) {
     const data = CURRENCY_DATA[countryKey as keyof typeof CURRENCY_DATA] || CURRENCY_DATA['PK'];
     currentCountry = countryKey;
     currentSymbol = data.symbol;
     fuelPrice.value = String(data.fuelPrice);
     electricityRate.value = String(data.powerRate);
-    fuelMaint.value = String(data.fuelMaint);
-    evMaint.value = String(data.evMaint);
     
     document.querySelectorAll('.currency-symbol').forEach(el => {
       (el as HTMLElement).innerText = currentSymbol;
@@ -358,16 +650,14 @@
     if (data.isMetric !== isMetric) {
       setUnit(data.isMetric);
     } else {
-      calculate();
+      applyPreset(activePreset);
     }
   }
 
   currencySelect?.addEventListener('change', () => {
     applyCountryData(currencySelect.value);
     if (typeof (window as any).gtag === 'function') {
-      (window as any).gtag('event', 'select_currency', {
-        currency: currencySelect.value
-      });
+      (window as any).gtag('event', 'select_currency', { currency: currencySelect.value });
     }
   });
 
@@ -375,12 +665,41 @@
     dailyDistance.value = "35";
     customDays.value = "26";
     applyCountryData(currentCountry);
+    applyPreset('bike');
     if (typeof (window as any).gtag === 'function') {
       (window as any).gtag('event', 'reset_calculator_defaults');
     }
   });
 
-  [dailyDistance, customDays, fuelEfficiency, fuelPrice, fuelMaint, evEfficiency, electricityRate, evMaint].forEach(el => {
+  // Detect manual user edits to switch to "Custom" mode
+  [fuelEfficiency, evEfficiency, fuelMaint, evMaint].forEach(el => {
+    el?.addEventListener('input', () => {
+      // Mark as custom preset
+      document.querySelectorAll('.preset-btn').forEach(btn => {
+        const p = btn.getAttribute('data-preset');
+        const badge = btn.querySelector('.preset-badge');
+        if (p === 'custom') {
+          btn.classList.add('border-emerald-600', 'bg-emerald-50/70', 'shadow-sm');
+          btn.classList.remove('border-gray-200', 'bg-white');
+          if (badge) {
+            badge.className = 'preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-emerald-600 text-white';
+            badge.textContent = 'Active';
+          }
+        } else {
+          btn.classList.remove('border-emerald-600', 'bg-emerald-50/70', 'shadow-sm');
+          btn.classList.add('border-gray-200', 'bg-white');
+          if (badge) {
+            badge.className = 'preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-100 text-gray-600';
+            badge.textContent = 'Select';
+          }
+        }
+      });
+      activePreset = 'custom';
+      calculate();
+    });
+  });
+
+  [dailyDistance, customDays, fuelPrice, electricityRate].forEach(el => {
     el?.addEventListener('input', calculate);
   });
 
@@ -388,6 +707,7 @@
     return currentSymbol + " " + Math.round(val).toLocaleString();
   }
 
+  // Core Calculation Function
   function calculate() {
     const dist = parseFloat(dailyDistance?.value) || 0;
     selectedDays = parseFloat(customDays?.value) || 26;
@@ -399,32 +719,63 @@
     const eMaintCost = parseFloat(evMaint?.value) || 0;
 
     const monthlyDistance = dist * selectedDays;
-    const fuelCostMonthly = ((monthlyDistance / fEff) * fPrice) + fMaintCost;
+    const monthlyFuelLiters = fEff > 0 ? (monthlyDistance / fEff) : 0;
+    const fuelCostMonthly = (monthlyFuelLiters * fPrice) + fMaintCost;
     const fuelCostYearly = fuelCostMonthly * 12;
 
-    const evCostMonthly = ((monthlyDistance / eEff) * eRate) + eMaintCost;
+    const monthlyEvKwh = eEff > 0 ? (monthlyDistance / eEff) : 0;
+    const evCostMonthly = (monthlyEvKwh * eRate) + eMaintCost;
     const evCostYearly = evCostMonthly * 12;
 
     const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
+    const monthlySavings = Math.max(0, fuelCostMonthly - evCostMonthly);
     const pctSavings = fuelCostYearly > 0 ? Math.round((annualSavings / fuelCostYearly) * 100) : 0;
 
-    // Update UI
-    if (distanceDisplay) distanceDisplay.innerText = dist + " " + (isMetric ? 'km' : 'mi');
+    // Environmental Impact Calculation
+    // Petrol emits ~2.31 kg CO2/L (or 8.89 kg/gal). EV grid emissions ~0.45 kg CO2/kWh
+    const annualFuelCo2 = isMetric ? (monthlyFuelLiters * 12 * 2.31) : (monthlyFuelLiters * 12 * 8.89);
+    const annualEvCo2 = (monthlyEvKwh * 12 * 0.45);
+    const annualCo2SavedKg = Math.max(0, Math.round(annualFuelCo2 - annualEvCo2));
+    const treeEquivalent = Math.max(1, Math.round(annualCo2SavedKg / 21)); // 1 mature tree absorbs ~21kg CO2/yr
+
+    // Update Distance Display
+    if (distanceDisplay) {
+      distanceDisplay.innerText = dist + " " + (isMetric ? 'km' : 'mi');
+    }
+
+    // Update Hero Results
     const annualTxt = document.getElementById('annualSavingsText');
+    const monthlyTxt = document.getElementById('monthlySavingsText');
     const savingPct = document.getElementById('savingPercentage');
+    const mobSavings = document.getElementById('mobileSavingsText');
+    
     if (annualTxt) annualTxt.innerText = fmt(annualSavings);
+    if (monthlyTxt) monthlyTxt.innerText = fmt(monthlySavings);
+    if (mobSavings) mobSavings.innerText = fmt(annualSavings) + " / yr";
     if (savingPct) savingPct.innerText = "Save ~" + pctSavings + "%";
 
-    const fMonthly = document.getElementById('fuelMonthlyText');
-    const fYearly = document.getElementById('fuelYearlyText');
-    if (fMonthly) fMonthly.innerText = fmt(fuelCostMonthly);
-    if (fYearly) fYearly.innerText = "Yearly: " + fmt(fuelCostYearly);
+    // Update Visual Comparison Gauge
+    const gaugePetrolTxt = document.getElementById('gaugePetrolText');
+    const gaugeEvTxt = document.getElementById('gaugeEvText');
+    const gaugeNetTxt = document.getElementById('gaugeNetText');
+    const gaugeEvBar = document.getElementById('gaugeEvBar');
 
-    const eMonthly = document.getElementById('evMonthlyText');
-    const eYearly = document.getElementById('evYearlyText');
-    if (eMonthly) eMonthly.innerText = fmt(evCostMonthly);
-    if (eYearly) eYearly.innerText = "Yearly: " + fmt(evCostYearly);
+    if (gaugePetrolTxt) gaugePetrolTxt.innerText = fmt(fuelCostMonthly) + " / mo";
+    if (gaugeEvTxt) gaugeEvTxt.innerText = fmt(evCostMonthly) + " / mo";
+    if (gaugeNetTxt) gaugeNetTxt.innerText = "+ " + fmt(monthlySavings) + " / mo";
+    
+    if (gaugeEvBar) {
+      const evBarWidth = fuelCostMonthly > 0 ? Math.min(100, Math.max(8, (evCostMonthly / fuelCostMonthly) * 100)) : 10;
+      gaugeEvBar.style.width = evBarWidth + "%";
+    }
 
+    // Update Environmental Impact
+    const co2El = document.getElementById('co2SavedText');
+    const treeEl = document.getElementById('treeEquivalentText');
+    if (co2El) co2El.innerText = annualCo2SavedKg > 1000 ? `~${(annualCo2SavedKg / 1000).toFixed(1)} Tonnes` : `~${annualCo2SavedKg} kg`;
+    if (treeEl) treeEl.innerText = `~${treeEquivalent} Trees`;
+
+    // Update Multi-Year ROI Matrix Table
     const setEl = (id: string, text: string) => {
       const el = document.getElementById(id);
       if (el) el.innerText = text;
@@ -432,7 +783,7 @@
 
     setEl('tblFuel1M', fmt(fuelCostMonthly));
     setEl('tblEv1M', fmt(evCostMonthly));
-    setEl('tblSave1M', fmt(Math.max(0, fuelCostMonthly - evCostMonthly)));
+    setEl('tblSave1M', fmt(monthlySavings));
 
     setEl('tblFuel1Y', fmt(fuelCostYearly));
     setEl('tblEv1Y', fmt(evCostYearly));
@@ -447,21 +798,69 @@
     setEl('tblSave5Y', fmt(annualSavings * 5));
   }
 
-  document.getElementById('copyBtn')?.addEventListener('click', () => {
+  // Copy Calculation Summary with Visual Toast Feedback
+  const copyBtn = document.getElementById('copyBtn');
+  const copyBtnText = document.getElementById('copyBtnText');
+  copyBtn?.addEventListener('click', () => {
     const annualText = document.getElementById('annualSavingsText')?.innerText || '';
-    const text = `VoltSavings Report: I save estimated ${annualText} per year by switching to an Electric Vehicle! Calculate yours free at: ${window.location.origin}`;
+    const monthlyText = document.getElementById('monthlySavingsText')?.innerText || '';
+    const distText = distanceDisplay?.innerText || '';
+    
+    const text = `⚡ VoltSavings EV vs Petrol Report:
+• Vehicle Category: ${activePreset.toUpperCase()}
+• Daily Commute: ${distText} (${customDays.value} days/month)
+• Monthly Fuel Cost: ${document.getElementById('tblFuel1M')?.innerText || ''}
+• Monthly EV Cost: ${document.getElementById('tblEv1M')?.innerText || ''}
+• Monthly Cash Saved: ${monthlyText}
+• Estimated 1-Year Savings: ${annualText}
+• Estimated 5-Year Savings: ${document.getElementById('tblSave5Y')?.innerText || ''}
+Calculate your exact vehicle savings free at: https://www.evcalculator.online`;
+
     navigator.clipboard.writeText(text).then(() => {
-      alert("Summary copied to clipboard!");
+      if (copyBtnText) copyBtnText.innerText = "✓ Copied to Clipboard!";
+      copyBtn.classList.add('bg-emerald-600');
+      copyBtn.classList.remove('bg-black');
+      setTimeout(() => {
+        if (copyBtnText) copyBtnText.innerText = "Copy Calculation Report";
+        copyBtn.classList.remove('bg-emerald-600');
+        copyBtn.classList.add('bg-black');
+      }, 2500);
+
       if (typeof (window as any).gtag === 'function') {
         (window as any).gtag('event', 'share_calculation_summary', {
           event_category: 'engagement',
           country: currentCountry,
           currency: currentSymbol,
+          vehicle_preset: activePreset,
           annual_savings: annualText
         });
       }
     });
   });
+
+  // Print / Save PDF Button
+  document.getElementById('printBtn')?.addEventListener('click', () => {
+    window.print();
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'print_savings_report', {
+        vehicle_preset: activePreset
+      });
+    }
+  });
+
+  // Hide mobile floating bar when user scrolls near the breakdown table
+  const breakdownSection = document.getElementById('breakdown');
+  const mobileFloatingBar = document.getElementById('mobileFloatingBar');
+  if (breakdownSection && mobileFloatingBar) {
+    window.addEventListener('scroll', () => {
+      const rect = breakdownSection.getBoundingClientRect();
+      if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+        mobileFloatingBar.style.transform = 'translateY(120%)';
+      } else {
+        mobileFloatingBar.style.transform = 'translateY(0)';
+      }
+    }, { passive: true });
+  }
 
   // Timezone Auto-Detection
   function autoDetectCountry(): string {

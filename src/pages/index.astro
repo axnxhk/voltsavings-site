@@ -63,33 +63,56 @@ const faqSchema = {
   schema={[calculatorSchema, faqSchema]}
 >
   <!-- Hero Section -->
-  <section class="pt-14 pb-10 sm:pt-20 sm:pb-14 border-b border-gray-100 bg-emerald-50/40" aria-labelledby="hero-heading">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300 text-emerald-800 text-xs font-bold mb-6 shadow-sm">
-        <span class="flex h-2 w-2 rounded-full bg-emerald-600"></span>
-        Zero Login • 100% Free & Private • Go Green & Save
+  <section class="pt-12 pb-10 sm:pt-16 sm:pb-14 border-b border-gray-100 bg-gradient-to-b from-emerald-50/70 via-white to-gray-50/30 relative overflow-hidden" aria-labelledby="hero-heading">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
+      
+      <!-- Trust Badge -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/90 border border-emerald-300 text-emerald-800 text-xs font-bold mb-5 shadow-xs">
+        <span class="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
+        Zero Login • 100% Free & Private • Updated for 2026
       </div>
 
-      <h1 id="hero-heading" class="text-3xl sm:text-5xl lg:text-6xl font-black text-black tracking-tight leading-[1.15] mb-5">
-        Cut Your Fuel Bills. <br class="hidden sm:inline" />
-        <span class="text-emerald-600">Switch to Clean Green Electric.</span>
+      <!-- Main Headline -->
+      <h1 id="hero-heading" class="text-3xl sm:text-5xl lg:text-6xl font-black text-black tracking-tight leading-[1.15] mb-4">
+        Stop Overpaying for Fuel. <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Calculate Your Real EV Savings.</span>
       </h1>
 
-      <p class="max-w-2xl mx-auto text-gray-800 text-sm sm:text-base leading-relaxed mb-8 font-medium">
-        Enter your routine daily distance, local fuel prices, and electricity rates to calculate your exact monthly and yearly cost savings.
+      <p class="max-w-2xl mx-auto text-gray-700 text-sm sm:text-base leading-relaxed mb-6 font-medium">
+        Compare your daily petrol expenditure against electric vehicle charging in 10 seconds. Discover your exact monthly cash retained, multi-year ROI, and reduced carbon footprint.
       </p>
 
-      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-black font-bold">
-        <div class="flex items-center gap-2">
-          <i class="fa-solid fa-circle-check text-emerald-600"></i> Motorcycle & Car Accurate
+      <!-- 3-Step Visual Micro-Flow -->
+      <div class="inline-flex flex-wrap items-center justify-center gap-2 sm:gap-4 bg-white/90 border border-gray-200/90 p-2 sm:p-2.5 rounded-2xl shadow-xs text-xs font-bold text-gray-800 mb-8">
+        <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-gray-50 text-gray-900">
+          <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-black">1</span>
+          Pick Vehicle
+        </span>
+        <i class="fa-solid fa-arrow-right text-[10px] text-gray-400 hidden xs:inline"></i>
+        <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-gray-50 text-gray-900">
+          <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-black">2</span>
+          Set Daily Km
+        </span>
+        <i class="fa-solid fa-arrow-right text-[10px] text-gray-400 hidden xs:inline"></i>
+        <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-200">
+          <span class="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[10px] font-black">3</span>
+          Instant Savings Matrix
+        </span>
+      </div>
+
+      <!-- Quick Trust Points -->
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs text-black font-bold">
+        <div class="flex items-center gap-1.5 text-gray-800">
+          <i class="fa-solid fa-motorcycle text-emerald-600"></i> Motorcycle & Car Presets
         </div>
-        <div class="flex items-center gap-2">
-          <i class="fa-solid fa-circle-check text-emerald-600"></i> Metric (km) & Imperial (mi)
+        <div class="flex items-center gap-1.5 text-gray-800">
+          <i class="fa-solid fa-globe text-emerald-600"></i> 8 Global Currencies Supported
         </div>
-        <div class="flex items-center gap-2">
-          <i class="fa-solid fa-circle-check text-emerald-600"></i> Auto Currency Detection
+        <div class="flex items-center gap-1.5 text-gray-800">
+          <i class="fa-solid fa-shield-halved text-emerald-600"></i> Client-Side Safe (No Cookies)
         </div>
       </div>
+
     </div>
   </section>
 
@@ -99,36 +122,37 @@ const faqSchema = {
   </main>
 
   <!-- Feature Highlights -->
-  <section id="features" class="py-16 border-t border-gray-100 bg-emerald-50/30 scroll-mt-16" aria-labelledby="features-heading">
+  <section id="features" class="py-16 border-t border-gray-100 bg-gradient-to-b from-gray-50/60 to-white scroll-mt-16" aria-labelledby="features-heading">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <h2 id="features-heading" class="text-2xl sm:text-3xl font-black text-black tracking-tight mb-3">Why Commuters Trust VoltSavings</h2>
-        <p class="text-sm text-gray-700 font-medium">We provide transparent real-world calculations without marketing bias.</p>
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">UNBIASED & ACCURATE</span>
+        <h2 id="features-heading" class="text-2xl sm:text-3xl font-black text-black tracking-tight mt-1 mb-3">Why Commuters Trust VoltSavings</h2>
+        <p class="text-sm text-gray-600 font-medium">Transparent, real-world calculations without auto dealership or manufacturer bias.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white border-2 border-gray-100 p-6 rounded-2xl shadow-sm">
-          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg mb-4 font-bold">
+        <div class="bg-white border border-gray-200/90 hover:border-emerald-500/50 p-6 rounded-3xl shadow-xs hover:shadow-md transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mb-4 font-bold group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-leaf"></i>
           </div>
-          <h3 class="text-base font-black text-black mb-2">100% Eco-Friendly Analysis</h3>
-          <p class="text-xs text-gray-700 leading-relaxed font-medium">See how switching to electric reduces your direct tailpipe carbon impact while cutting down monthly fuel expenses.</p>
+          <h3 class="text-base font-black text-black mb-2">Real Eco & Financial Impact</h3>
+          <p class="text-xs text-gray-600 leading-relaxed font-medium">Discover direct tailpipe emissions avoided alongside hundreds of thousands of currency units kept in your personal wallet.</p>
         </div>
 
-        <div class="bg-white border-2 border-gray-100 p-6 rounded-2xl shadow-sm">
-          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg mb-4 font-bold">
+        <div class="bg-white border border-gray-200/90 hover:border-emerald-500/50 p-6 rounded-3xl shadow-xs hover:shadow-md transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mb-4 font-bold group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-shield-halved"></i>
           </div>
-          <h3 class="text-base font-black text-black mb-2">Complete User Privacy</h3>
-          <p class="text-xs text-gray-700 leading-relaxed font-medium">No registrations, no cookies, no tracking. All arithmetic processes run completely inside your personal browser window.</p>
+          <h3 class="text-base font-black text-black mb-2">100% Client-Side Privacy</h3>
+          <p class="text-xs text-gray-600 leading-relaxed font-medium">No registrations, no cookies, no tracking. All arithmetic formulas run locally inside your device browser window.</p>
         </div>
 
-        <div class="bg-white border-2 border-gray-100 p-6 rounded-2xl shadow-sm">
-          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-lg mb-4 font-bold">
+        <div class="bg-white border border-gray-200/90 hover:border-emerald-500/50 p-6 rounded-3xl shadow-xs hover:shadow-md transition-all duration-300 group">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mb-4 font-bold group-hover:scale-110 transition-transform">
             <i class="fa-solid fa-chart-line"></i>
           </div>
-          <h3 class="text-base font-black text-black mb-2">Long-Term ROI Forecast</h3>
-          <p class="text-xs text-gray-700 leading-relaxed font-medium">Clear 1 to 5 year cost projections that show exactly when your electric bike or car pays back its initial upfront investment.</p>
+          <h3 class="text-base font-black text-black mb-2">1 to 5 Year Retained Cash</h3>
+          <p class="text-xs text-gray-600 leading-relaxed font-medium">Comprehensive long-term projections to calculate when your new electric vehicle breaks even and pays for its initial cost.</p>
         </div>
       </div>
     </div>
