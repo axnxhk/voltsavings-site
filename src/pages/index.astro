@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Calculator from '../components/Calculator.astro';
 
-// Structured Data (JSON-LD) for SoftwareApplication & FAQPage
+// Enhanced Structured Data (JSON-LD) for SoftwareApplication & Comprehensive FAQPage
 const calculatorSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -23,18 +23,26 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What does EV Efficiency (km/kWh) mean?",
+      "name": "What is VoltSavings and how does the calculator work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In combustion engines, efficiency is measured in distance per unit of liquid fuel (km per liter). In electric vehicles, energy is measured in kilowatt-hours (kWh), equivalent to 1 unit of electricity on your home meter. A rating of 30 km/kWh means the vehicle travels 30 kilometers using 1 unit of electric energy."
+        "text": "VoltSavings is a free, privacy-first financial simulator designed to calculate the exact operational cost difference between Internal Combustion Engine (petrol/diesel) vehicles and Electric Vehicles (EVs). You enter your daily travel distance, local fuel rates, electricity tariffs, and vehicle efficiencies to receive instant cost-per-kilometer, monthly retained cash, 5-year compounding savings, and avoided tailpipe CO2 emissions."
       }
     },
     {
       "@type": "Question",
-      "name": "What typical efficiency numbers should I enter?",
+      "name": "What does EV Efficiency (km/kWh) mean?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Electric Bikes/Scooters typically deliver 25 to 45 km per kWh. Electric sedans typically achieve 5.5 to 7.5 km per kWh. Petrol 70cc-125cc bikes achieve 40 to 55 km/L, while petrol cars achieve 11 to 16 km/L."
+        "text": "In combustion engines, efficiency is measured in distance per unit of liquid fuel (km per liter or MPG). In electric vehicles, energy is measured in kilowatt-hours (kWh), equivalent to 1 unit of electricity on your domestic utility meter. A rating of 30 km/kWh means the electric vehicle travels 30 kilometers using 1 unit of electric energy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What typical efficiency numbers should I enter for my vehicle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Electric Bikes/Scooters typically deliver 25 to 45 km per kWh. Electric compact sedans achieve 5.5 to 7.5 km per kWh. Electric SUVs achieve 4.0 to 5.5 km per kWh. For fuel vehicles: 70cc-125cc motorcycles achieve 40 to 55 km/L, petrol sedans achieve 11 to 16 km/L, and petrol SUVs achieve 8 to 12 km/L."
       }
     },
     {
@@ -42,15 +50,39 @@ const faqSchema = {
       "name": "Does this calculator account for maintenance & engine oil?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "This tool computes direct fuel vs electric energy expenses and routine monthly maintenance entered in the inputs. In reality, savings with an EV are even higher because EVs have no engine oil, spark plugs, timing belts, or clutch assemblies."
+        "text": "Yes. VoltSavings includes configurable monthly routine maintenance for both fuel and EV models. Internal combustion engines require periodic motor oil changes, oil filters, spark plugs, clutch adjustments, and timing belts. Electric vehicles have single-speed reduction gearboxes and no motor oil, reducing powertrain maintenance by up to 60-70%."
       }
     },
     {
       "@type": "Question",
-      "name": "Is user data logged or sent to servers?",
+      "name": "How does charging at home compare with commercial DC fast chargers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. VoltSavings is built as an open, client-side calculator. Everything runs locally in your device's browser memory. We never ask for your email, login, or personal driving history."
+        "text": "Overnight domestic Level 2 home charging on residential electricity tariffs is 60% to 80% cheaper than petrol. Commercial public DC fast chargers (50 kW to 350 kW) carry convenience and demand surcharges, making them approximately 2x to 3x more expensive than home charging, but still 30% to 50% cheaper than petrol."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the lifespan of modern EV batteries in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Modern Lithium Iron Phosphate (LFP) batteries commonly last 2,000 to 3,000 charge cycles before degrading to 80% capacity, representing 10 to 15 years of standard commuting (250,000 to 400,000 km). Nickel-Manganese-Cobalt (NMC) chemistries deliver 1,200 to 1,500 cycles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is my driving data logged or sent to external servers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. VoltSavings is engineered with 100% client-side computation. All mathematical equations, conversions, and currency calculations run strictly within your device's browser memory. No tracking cookies, logins, or personal commuting data are ever stored or transmitted."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I export or print an executive PDF report of my savings?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Click the 'Download PDF Report' button in the calculator results bar to generate a clean, formatted executive summary document suitable for family budgeting, company fleet proposals, or car loan evaluations."
       }
     }
   ]
@@ -59,130 +91,392 @@ const faqSchema = {
 
 <Layout 
   title="EV vs Petrol Calculator: Free Cost Savings Tool | VoltSavings™"
-  description="Use our free EV vs petrol calculator to compare electric vehicle charging costs with gas prices. Discover your exact monthly and 5-year savings in 2026."
+  description="Compare petrol vs electric vehicle charging costs in seconds. Unbiased, free calculator with real-time currency, 5-year savings projection, and executive PDF reports."
   schema={[calculatorSchema, faqSchema]}
 >
-  <!-- Hero Section -->
+  <!-- Hero Section with Immediate Value & Problem Solving -->
   <section class="pt-12 pb-10 sm:pt-16 sm:pb-14 border-b border-gray-100 bg-gradient-to-b from-emerald-50/70 via-white to-gray-50/30 relative overflow-hidden" aria-labelledby="hero-heading">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center relative z-10">
       
       <!-- Trust Badge -->
-      <div class="inline-flex flex-wrap items-center justify-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-100/90 border border-emerald-300 text-emerald-800 text-[11px] sm:text-xs font-bold mb-5 shadow-xs max-w-full">
+      <div class="inline-flex flex-wrap items-center justify-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-100/90 border border-emerald-300 text-emerald-800 text-xs font-bold mb-5 shadow-xs">
         <span class="flex h-2 w-2 rounded-full bg-emerald-600 animate-pulse"></span>
+        <span>Independent & Unbiased</span>
+        <span class="text-emerald-400">•</span>
         <span>100% Free & Private</span>
         <span class="text-emerald-400">•</span>
         <span>Updated for 2026</span>
       </div>
 
       <!-- Main Headline -->
-      <h1 id="hero-heading" class="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black text-black tracking-tight leading-[1.15] mb-4 break-words">
-        Stop Overpaying for Fuel. <br class="hidden sm:inline" />
-        <span class="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Calculate Real EV Savings.</span>
+      <h1 id="hero-heading" class="text-3xl sm:text-5xl lg:text-6xl font-black text-gray-950 tracking-tight leading-[1.12] mb-4">
+        Stop Guessing Your Fuel Costs. <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 bg-clip-text text-transparent">Calculate Exact EV Savings.</span>
       </h1>
 
-      <p class="max-w-2xl mx-auto text-gray-700 text-xs sm:text-base leading-relaxed mb-6 font-medium">
-        Compare your daily petrol expenditure against electric vehicle charging in 10 seconds. Discover your exact monthly cash retained, multi-year ROI, and reduced carbon footprint.
+      <p class="max-w-2xl mx-auto text-gray-700 text-sm sm:text-base leading-relaxed mb-8 font-medium">
+        Compare your daily petrol expenditure against electric vehicle charging in 10 seconds. Discover your exact cost-per-kilometer, monthly retained cash, 5-year ROI break-even, and CO₂ emissions avoided.
       </p>
 
-      <!-- 3-Step Visual Micro-Flow -->
-      <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-3 bg-white/95 border border-gray-200/90 p-1.5 sm:p-2 rounded-2xl shadow-xs text-[11px] sm:text-xs font-bold text-gray-800 mb-8 max-w-full">
-        <span class="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-gray-50 text-gray-900">
-          <span class="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[9px] font-black">1</span>
-          Vehicle
-        </span>
-        <i class="fa-solid fa-arrow-right text-[8px] text-gray-400"></i>
-        <span class="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-gray-50 text-gray-900">
-          <span class="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[9px] font-black">2</span>
-          Daily Km
-        </span>
-        <i class="fa-solid fa-arrow-right text-[8px] text-gray-400"></i>
-        <span class="flex items-center gap-1 px-2 py-0.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200">
-          <span class="w-4 h-4 rounded-full bg-emerald-600 text-white flex items-center justify-center text-[9px] font-black">3</span>
-          Savings Matrix
-        </span>
+      <!-- How It Works: 3-Step Quick Visual Guide -->
+      <div class="bg-white/95 border border-gray-200/90 p-3 sm:p-4 rounded-3xl shadow-sm max-w-3xl mx-auto mb-8">
+        <div class="text-[11px] font-black uppercase tracking-wider text-emerald-700 mb-2">How VoltSavings Works in 3 Quick Steps</div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+          <div class="flex items-start gap-2.5 p-2.5 rounded-2xl bg-gray-50 border border-gray-100">
+            <span class="w-6 h-6 rounded-full bg-emerald-600 text-white flex-shrink-0 flex items-center justify-center text-xs font-black">1</span>
+            <div>
+              <strong class="text-xs font-black text-gray-950 block">Select Vehicle & Mileage</strong>
+              <span class="text-[11px] text-gray-600 font-medium">Pick a car or bike preset, or enter your custom daily commuting distance.</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5 p-2.5 rounded-2xl bg-gray-50 border border-gray-100">
+            <span class="w-6 h-6 rounded-full bg-emerald-600 text-white flex-shrink-0 flex items-center justify-center text-xs font-black">2</span>
+            <div>
+              <strong class="text-xs font-black text-gray-950 block">Enter Energy Rates</strong>
+              <span class="text-[11px] text-gray-600 font-medium">Input your local petrol price and home electricity utility rate per unit (kWh).</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-2.5 p-2.5 rounded-2xl bg-emerald-50 border border-emerald-200">
+            <span class="w-6 h-6 rounded-full bg-emerald-700 text-white flex-shrink-0 flex items-center justify-center text-xs font-black">3</span>
+            <div>
+              <strong class="text-xs font-black text-emerald-950 block">Get Instant ROI Matrix</strong>
+              <span class="text-[11px] text-emerald-800 font-medium">See live monthly & 5-year net savings, download printable PDF, and track CO₂ cuts.</span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <!-- Quick Trust Points -->
-      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-8 text-xs text-black font-bold">
-        <div class="flex items-center gap-1.5 text-gray-800">
-          <i class="fa-solid fa-motorcycle text-emerald-600"></i> Auto Presets
+      <!-- Quick Trust Indicators -->
+      <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-8 text-xs text-gray-800 font-bold">
+        <div class="flex items-center gap-1.5">
+          <i class="fa-solid fa-bolt text-emerald-600"></i> Instant 1-Click Vehicle Presets
         </div>
-        <div class="flex items-center gap-1.5 text-gray-800">
-          <i class="fa-solid fa-globe text-emerald-600"></i> 8 Global Currencies
+        <div class="flex items-center gap-1.5">
+          <i class="fa-solid fa-coins text-emerald-600"></i> 8 Global Currencies ($, £, €, PKR, INR, AED, CAD, AUD)
         </div>
-        <div class="flex items-center gap-1.5 text-gray-800">
-          <i class="fa-solid fa-shield-halved text-emerald-600"></i> 100% Client-Side Safe
+        <div class="flex items-center gap-1.5">
+          <i class="fa-solid fa-shield-halved text-emerald-600"></i> 100% Client-Side Privacy
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Interactive Calculator App -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full" role="main">
+  <!-- Interactive Calculator App Anchor -->
+  <main id="calculator-app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full scroll-mt-20" role="main">
     <Calculator />
   </main>
 
-  <!-- Feature Highlights -->
-  <section id="features" class="py-16 border-t border-gray-100 bg-gradient-to-b from-gray-50/60 to-white scroll-mt-16" aria-labelledby="features-heading">
+  <!-- Real-World Commuter Case Studies / Preset Comparisons -->
+  <section class="py-16 border-t border-gray-200 bg-white" aria-labelledby="scenarios-heading">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">UNBIASED & ACCURATE</span>
-        <h2 id="features-heading" class="text-2xl sm:text-3xl font-black text-black tracking-tight mt-1 mb-3">Why Commuters Trust VoltSavings</h2>
-        <p class="text-sm text-gray-600 font-medium">Transparent, real-world calculations without auto dealership or manufacturer bias.</p>
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Real-World Case Studies</span>
+        <h2 id="scenarios-heading" class="text-2xl sm:text-3xl font-black text-gray-950 tracking-tight mt-1 mb-3">
+          How Much Are Daily Commuters Saving Right Now?
+        </h2>
+        <p class="text-sm text-gray-600 font-medium">
+          Based on verified 2026 urban traffic telemetry and average domestic electricity rates. See how different commuter profiles perform:
+        </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="bg-white border border-gray-200/90 hover:border-emerald-500/50 p-6 rounded-3xl shadow-xs hover:shadow-md transition-all duration-300 group">
-          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mb-4 font-bold group-hover:scale-110 transition-transform">
-            <i class="fa-solid fa-leaf"></i>
+        <!-- Scenario 1: City Motorcycle Commuter -->
+        <div class="bg-gradient-to-b from-gray-50 to-white border-2 border-gray-200 rounded-3xl p-6 shadow-sm hover:border-emerald-500 transition-all">
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase bg-emerald-100 text-emerald-800">Motorcycle / Scooter</span>
+            <span class="text-xs font-bold text-gray-500">30 km/day</span>
           </div>
-          <h3 class="text-base font-black text-black mb-2">Real Eco & Financial Impact</h3>
-          <p class="text-xs text-gray-600 leading-relaxed font-medium">Discover direct tailpipe emissions avoided alongside hundreds of thousands of currency units kept in your personal wallet.</p>
+          <h3 class="text-lg font-black text-gray-950 mb-2">Urban Courier & Daily Rider</h3>
+          <p class="text-xs text-gray-600 mb-5 leading-relaxed font-medium">
+            Riding 30 km daily (780 km/month). Compares a 70cc-125cc petrol motorbike (45 km/L) with an electric scooter (35 km/kWh).
+          </p>
+          <div class="space-y-2.5 p-3.5 bg-gray-50 rounded-2xl text-xs font-semibold border border-gray-200 mb-5">
+            <div class="flex justify-between text-gray-700">
+              <span>Monthly Petrol Cost:</span>
+              <span class="font-bold text-red-600">High Recurring Burn</span>
+            </div>
+            <div class="flex justify-between text-gray-700">
+              <span>Monthly EV Charging:</span>
+              <span class="font-bold text-emerald-600">80% Less</span>
+            </div>
+            <div class="border-t border-gray-200 pt-2 flex justify-between font-bold text-gray-900">
+              <span>Annual Retained Cash:</span>
+              <span class="text-emerald-700 font-black">Major Savings</span>
+            </div>
+          </div>
+          <a href="/blog/ev-bikes-2026" class="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-1.5 transition-colors">
+            Read Electric Bike Economic Analysis <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
         </div>
 
-        <div class="bg-white border border-gray-200/90 hover:border-emerald-500/50 p-6 rounded-3xl shadow-xs hover:shadow-md transition-all duration-300 group">
-          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mb-4 font-bold group-hover:scale-110 transition-transform">
-            <i class="fa-solid fa-shield-halved"></i>
+        <!-- Scenario 2: Suburban Office Commuter -->
+        <div class="bg-gradient-to-b from-emerald-50/50 to-white border-2 border-emerald-300 rounded-3xl p-6 shadow-md relative">
+          <div class="absolute -top-3 right-6 bg-emerald-600 text-white text-[10px] font-black uppercase tracking-wider px-3 py-0.5 rounded-full shadow-xs">
+            Most Popular
           </div>
-          <h3 class="text-base font-black text-black mb-2">100% Client-Side Privacy</h3>
-          <p class="text-xs text-gray-600 leading-relaxed font-medium">No registrations, no cookies, no tracking. All arithmetic formulas run locally inside your device browser window.</p>
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase bg-emerald-100 text-emerald-800">Compact Sedan</span>
+            <span class="text-xs font-bold text-gray-500">45 km/day</span>
+          </div>
+          <h3 class="text-lg font-black text-gray-950 mb-2">The Daily Office Commuter</h3>
+          <p class="text-xs text-gray-600 mb-5 leading-relaxed font-medium">
+            Driving 45 km daily (1,170 km/month). Compares a 1.5L petrol sedan (14 km/L) against a standard electric sedan (6.5 km/kWh).
+          </p>
+          <div class="space-y-2.5 p-3.5 bg-emerald-50/60 rounded-2xl text-xs font-semibold border border-emerald-200 mb-5">
+            <div class="flex justify-between text-gray-700">
+              <span>Monthly Petrol Burn:</span>
+              <span class="font-bold text-red-600">~83.5 Liters</span>
+            </div>
+            <div class="flex justify-between text-gray-700">
+              <span>Monthly EV Power:</span>
+              <span class="font-bold text-emerald-600">~180 kWh Units</span>
+            </div>
+            <div class="border-t border-emerald-200 pt-2 flex justify-between font-bold text-emerald-950">
+              <span>3-Year Break-Even:</span>
+              <span class="text-emerald-700 font-black">Pays for Battery</span>
+            </div>
+          </div>
+          <a href="/blog/ev-savings-2026" class="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-1.5 transition-colors">
+            Read Complete 5-Year TCO Breakdown <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
         </div>
 
-        <div class="bg-white border border-gray-200/90 hover:border-emerald-500/50 p-6 rounded-3xl shadow-xs hover:shadow-md transition-all duration-300 group">
-          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl mb-4 font-bold group-hover:scale-110 transition-transform">
-            <i class="fa-solid fa-chart-line"></i>
+        <!-- Scenario 3: High-Mileage Family SUV -->
+        <div class="bg-gradient-to-b from-gray-50 to-white border-2 border-gray-200 rounded-3xl p-6 shadow-sm hover:border-emerald-500 transition-all">
+          <div class="flex items-center justify-between mb-4">
+            <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase bg-emerald-100 text-emerald-800">Crossover / SUV</span>
+            <span class="text-xs font-bold text-gray-500">80 km/day</span>
           </div>
-          <h3 class="text-base font-black text-black mb-2">1 to 5 Year Retained Cash</h3>
-          <p class="text-xs text-gray-600 leading-relaxed font-medium">Comprehensive long-term projections to calculate when your new electric vehicle breaks even and pays for its initial cost.</p>
+          <h3 class="text-lg font-black text-gray-950 mb-2">High-Mileage Family / Ride-Hail</h3>
+          <p class="text-xs text-gray-600 mb-5 leading-relaxed font-medium">
+            Driving 80 km daily (2,080 km/month). Compares an ICE crossover (10 km/L) against an electric SUV (4.8 km/kWh).
+          </p>
+          <div class="space-y-2.5 p-3.5 bg-gray-50 rounded-2xl text-xs font-semibold border border-gray-200 mb-5">
+            <div class="flex justify-between text-gray-700">
+              <span>Monthly Fuel Vol:</span>
+              <span class="font-bold text-red-600">~208 Liters</span>
+            </div>
+            <div class="flex justify-between text-gray-700">
+              <span>Tailpipe CO₂ Eliminated:</span>
+              <span class="font-bold text-emerald-600">~480 kg / month</span>
+            </div>
+            <div class="border-t border-gray-200 pt-2 flex justify-between font-bold text-gray-900">
+              <span>5-Year Cumulative:</span>
+              <span class="text-emerald-700 font-black">Massive Return</span>
+            </div>
+          </div>
+          <a href="/methodology" class="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-1.5 transition-colors">
+            Inspect Mathematical Formulas <i class="fa-solid fa-arrow-right text-[10px]"></i>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Guides & Research Section (Semantic Internal Linking!) -->
-  <section class="py-16 border-t border-gray-100 bg-white" aria-labelledby="research-heading">
+  <!-- Comprehensive TCO Comparison Table: ICE vs EV in 2026 -->
+  <section class="py-16 border-t border-gray-200 bg-gray-50/70" aria-labelledby="tco-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Comprehensive Engineering Analysis</span>
+        <h2 id="tco-heading" class="text-2xl sm:text-3xl font-black text-gray-950 tracking-tight mt-1 mb-3">
+          The 2026 Total Cost of Ownership (TCO) Breakdown
+        </h2>
+        <p class="text-sm text-gray-600 font-medium">
+          Why electric vehicles cost less per kilometer despite higher dealership sticker prices. A direct engineering comparison across 5 core operational dimensions:
+        </p>
+      </div>
+
+      <div class="overflow-x-auto bg-white rounded-3xl border-2 border-gray-200 shadow-sm">
+        <table class="w-full text-xs text-left border-collapse">
+          <thead>
+            <tr class="bg-gray-100/90 text-gray-950 font-black uppercase text-[11px] border-b border-gray-200">
+              <th class="p-4 sm:p-5">Dimension</th>
+              <th class="p-4 sm:p-5 text-red-700">Petrol / Internal Combustion (ICE)</th>
+              <th class="p-4 sm:p-5 text-emerald-700">Electric Vehicle (EV)</th>
+              <th class="p-4 sm:p-5 text-gray-900">Financial Winner</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 text-gray-700 font-medium">
+            <tr class="hover:bg-gray-50/80 transition-colors">
+              <td class="p-4 sm:p-5 font-bold text-gray-950">
+                1. Energy Efficiency & Fuel Cost
+              </td>
+              <td class="p-4 sm:p-5">
+                Thermal efficiency is only <strong>20% to 30%</strong>. Up to 75% of energy in every liter of fuel is lost as useless heat through the radiator and tailpipe.
+              </td>
+              <td class="p-4 sm:p-5 text-emerald-800">
+                Electric motors deliver <strong>85% to 92%</strong> efficiency. Overnight home charging on residential tariffs costs 70-85% less than gasoline.
+              </td>
+              <td class="p-4 sm:p-5">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800">
+                  EV Wins (70-85% Cheaper)
+                </span>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50/80 transition-colors">
+              <td class="p-4 sm:p-5 font-bold text-gray-950">
+                2. Powertrain Maintenance
+              </td>
+              <td class="p-4 sm:p-5">
+                2,000+ moving parts. Requires regular synthetic motor oil changes, oil filters, spark plugs, timing belts, alternators, exhaust catalytic converters, and clutch plates.
+              </td>
+              <td class="p-4 sm:p-5 text-emerald-800">
+                Under 20 moving parts in the motor. No engine oil, no spark plugs, no clutch wear, no exhaust system. Routine care limited to cabin air filters and coolant checks.
+              </td>
+              <td class="p-4 sm:p-5">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800">
+                  EV Wins (60% Lower Upkeep)
+                </span>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50/80 transition-colors">
+              <td class="p-4 sm:p-5 font-bold text-gray-950">
+                3. Braking System Lifespan
+              </td>
+              <td class="p-4 sm:p-5">
+                100% friction braking. Brake pads and steel rotors wear down quickly and require replacement every 25,000 to 45,000 kilometers.
+              </td>
+              <td class="p-4 sm:p-5 text-emerald-800">
+                <strong>Regenerative Braking</strong> reverses the motor to harvest kinetic energy into the battery. Brake pads frequently last 100,000+ km without replacement.
+              </td>
+              <td class="p-4 sm:p-5">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800">
+                  EV Wins (3x Pad Longevity)
+                </span>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50/80 transition-colors">
+              <td class="p-4 sm:p-5 font-bold text-gray-950">
+                4. Purchase Price & Depreciation
+              </td>
+              <td class="p-4 sm:p-5">
+                Lower upfront purchase price. Moderate depreciation curve with mature secondary used-car market established worldwide.
+              </td>
+              <td class="p-4 sm:p-5">
+                Higher initial sticker price due to battery pack chemistry costs. Fast battery price reductions are narrowing this gap rapidly in 2026.
+              </td>
+              <td class="p-4 sm:p-5">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black bg-amber-100 text-amber-800">
+                  ICE Wins on Upfront Price
+                </span>
+              </td>
+            </tr>
+            <tr class="hover:bg-gray-50/80 transition-colors">
+              <td class="p-4 sm:p-5 font-bold text-gray-950">
+                5. Environmental Emissions
+              </td>
+              <td class="p-4 sm:p-5">
+                Burns fossil fuels directly. Produces ~2.31 kg of CO₂ per liter of gasoline, plus carbon monoxide (CO), nitrogen oxides (NOx), and particulate matter (PM2.5).
+              </td>
+              <td class="p-4 sm:p-5 text-emerald-800">
+                <strong>Zero tailpipe emissions</strong>. Even when powered by average national electrical grids, lifetime lifecycle emissions are 50% to 70% lower than comparable petrol vehicles.
+              </td>
+              <td class="p-4 sm:p-5">
+                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800">
+                  EV Wins (Zero Tailpipe Smog)
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mt-6 text-center">
+        <a href="/blog/ev-battery-life-2026" class="text-xs font-black text-emerald-600 hover:underline inline-flex items-center gap-1.5">
+          Want to know how battery degradation affects resale value? Read our full 2026 Battery Lifecycle Guide →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Charging Speed & Infrastructure Breakdown -->
+  <section class="py-16 border-t border-gray-200 bg-white" aria-labelledby="charging-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Charging Fundamentals</span>
+        <h2 id="charging-heading" class="text-2xl sm:text-3xl font-black text-gray-950 tracking-tight mt-1 mb-3">
+          EV Charging Tiers: Speeds, Costs & Where to Charge
+        </h2>
+        <p class="text-sm text-gray-600 font-medium">
+          Understanding the three primary charging tiers ensures you never overpay for commercial power and always maximize your monthly savings:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Level 1 -->
+        <div class="bg-gray-50 border-2 border-gray-200 rounded-3xl p-6 shadow-xs">
+          <div class="w-10 h-10 rounded-xl bg-gray-200 text-gray-800 font-black flex items-center justify-center text-sm mb-4">
+            L1
+          </div>
+          <h3 class="text-base font-black text-gray-950 mb-1">Level 1: Household Socket</h3>
+          <span class="text-[11px] font-bold text-gray-500 block mb-3">120V / 230V Standard Wall Plug (1.4 - 2.4 kW)</span>
+          <p class="text-xs text-gray-600 leading-relaxed font-medium mb-4">
+            Plugs into any standard home outlet without special electrical upgrades. Perfect for electric motorcycles, scooters, and plug-in hybrids. Adds 5 to 8 km of range per hour.
+          </p>
+          <div class="p-3 bg-white rounded-xl border border-gray-200 text-[11px] font-bold text-gray-800">
+            <strong>Cost:</strong> Lowest possible (Direct residential billing tariff).
+          </div>
+        </div>
+
+        <!-- Level 2 -->
+        <div class="bg-emerald-50/50 border-2 border-emerald-300 rounded-3xl p-6 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white font-black flex items-center justify-center text-sm mb-4">
+            L2
+          </div>
+          <h3 class="text-base font-black text-gray-950 mb-1">Level 2: Dedicated Home Wallbox</h3>
+          <span class="text-[11px] font-bold text-emerald-700 block mb-3">240V / 400V 32A AC Dedicated Unit (7.4 - 22 kW)</span>
+          <p class="text-xs text-gray-700 leading-relaxed font-medium mb-4">
+            The gold standard for EV ownership. Installed in your garage or parking spot. Fully recharges a 60 kWh battery pack overnight in 6 to 8 hours while you sleep.
+          </p>
+          <div class="p-3 bg-white rounded-xl border border-emerald-200 text-[11px] font-bold text-emerald-950">
+            <strong>Cost:</strong> Extremely economical (Off-peak night tariffs).
+          </div>
+        </div>
+
+        <!-- Level 3 -->
+        <div class="bg-gray-50 border-2 border-gray-200 rounded-3xl p-6 shadow-xs">
+          <div class="w-10 h-10 rounded-xl bg-cyan-700 text-white font-black flex items-center justify-center text-sm mb-4">
+            DC
+          </div>
+          <h3 class="text-base font-black text-gray-950 mb-1">Level 3: Commercial DC Fast</h3>
+          <span class="text-[11px] font-bold text-cyan-800 block mb-3">400V - 800V Direct Current (50 - 350 kW)</span>
+          <p class="text-xs text-gray-600 leading-relaxed font-medium mb-4">
+            Located along motorways and commercial plazas. Bypasses the vehicle's onboard converter to add 150-300 km of range in 15 to 25 minutes during long road trips.
+          </p>
+          <div class="p-3 bg-white rounded-xl border border-gray-200 text-[11px] font-bold text-gray-800">
+            <strong>Cost:</strong> 2x to 3x higher due to commercial grid demand surcharges.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guides & Research Section (Internal Linking Hub) -->
+  <section class="py-16 border-t border-gray-200 bg-gray-50/50" aria-labelledby="research-heading">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
         <div>
-          <span class="text-xs font-black uppercase tracking-wider text-emerald-600">COMMUTER INTELLIGENCE</span>
-          <h2 id="research-heading" class="text-2xl sm:text-3xl font-black text-black tracking-tight mt-1">Latest EV Guides & Research</h2>
+          <span class="text-xs font-black uppercase tracking-wider text-emerald-600">IN-DEPTH RESEARCH</span>
+          <h2 id="research-heading" class="text-2xl sm:text-3xl font-black text-gray-950 tracking-tight mt-1">
+            Electric Mobility Guides & Operational Analysis
+          </h2>
         </div>
-        <a href="/blog" class="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-1 transition-colors">
-          Explore all articles <i class="fa-solid fa-arrow-right"></i>
+        <a href="/blog" class="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-1.5 transition-colors">
+          Browse all research articles <i class="fa-solid fa-arrow-right text-[10px]"></i>
         </a>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <!-- Article 1 -->
-        <article class="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden hover:border-emerald-300 transition flex flex-col shadow-sm">
+        <article class="bg-white border-2 border-gray-200 rounded-3xl overflow-hidden hover:border-emerald-400 transition-all flex flex-col shadow-sm">
           <div class="h-44 bg-emerald-50 p-6 flex flex-col justify-end border-b border-gray-100">
             <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1">Economics</span>
-            <h3 class="text-base font-black text-black leading-snug">Are Electric Motorcycles Worth It in 2026?</h3>
+            <h3 class="text-base font-black text-gray-950 leading-snug">Are Electric Motorcycles Worth It in 2026?</h3>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
             <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
-              With surging petrol rates, electric bikes claim up to 80% operational cost reduction. We break down initial purchase price vs recurring savings.
+              With surging petrol rates, electric bikes claim up to 80% operational cost reduction. We break down initial purchase price vs recurring battery amortisation.
             </p>
             <a href="/blog/ev-bikes-2026" class="text-xs font-black text-emerald-600 hover:underline inline-flex items-center gap-1">
               Read Analysis →
@@ -191,10 +485,10 @@ const faqSchema = {
         </article>
 
         <!-- Article 2 -->
-        <article class="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden hover:border-emerald-300 transition flex flex-col shadow-sm">
+        <article class="bg-white border-2 border-gray-200 rounded-3xl overflow-hidden hover:border-emerald-400 transition-all flex flex-col shadow-sm">
           <div class="h-44 bg-emerald-50 p-6 flex flex-col justify-end border-b border-gray-100">
             <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1">Cost Analysis</span>
-            <h3 class="text-base font-black text-black leading-snug">How Much Do You Save Switching to an EV?</h3>
+            <h3 class="text-base font-black text-gray-950 leading-snug">How Much Do You Save Switching to an EV?</h3>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
             <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
@@ -207,10 +501,10 @@ const faqSchema = {
         </article>
 
         <!-- Article 3 -->
-        <article class="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden hover:border-emerald-300 transition flex flex-col shadow-sm">
+        <article class="bg-white border-2 border-gray-200 rounded-3xl overflow-hidden hover:border-emerald-400 transition-all flex flex-col shadow-sm">
           <div class="h-44 bg-emerald-50 p-6 flex flex-col justify-end border-b border-gray-100">
-            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1">Maintenance</span>
-            <h3 class="text-base font-black text-black leading-snug">EV Battery Lifespan & Degradation Guide</h3>
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1">Battery Health</span>
+            <h3 class="text-base font-black text-gray-950 leading-snug">EV Battery Lifespan & Degradation Guide</h3>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
             <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
@@ -225,59 +519,116 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Interactive FAQ Section -->
-  <section id="faq" class="py-16 border-t border-gray-100 bg-gray-50/50 scroll-mt-16" aria-labelledby="faq-heading">
+  <!-- Interactive Comprehensive FAQ Accordion -->
+  <section id="faq" class="py-16 border-t border-gray-200 bg-white scroll-mt-20" aria-labelledby="faq-heading">
     <div class="max-w-4xl mx-auto px-4 sm:px-6">
       <div class="text-center mb-12">
         <span class="text-xs font-black uppercase tracking-wider text-emerald-600">HELP & FAQ</span>
-        <h2 id="faq-heading" class="text-2xl sm:text-3xl font-black text-black tracking-tight mt-1">Frequently Asked Questions</h2>
-        <p class="text-xs sm:text-sm text-gray-700 mt-2 font-medium">Everything you need to know about EV operational economics.</p>
+        <h2 id="faq-heading" class="text-2xl sm:text-3xl font-black text-gray-950 tracking-tight mt-1">Frequently Asked Questions</h2>
+        <p class="text-xs sm:text-sm text-gray-600 mt-2 font-medium">Everything you need to know about EV operational economics, formulas, and data privacy.</p>
       </div>
 
       <div class="space-y-4">
-        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
-          <summary class="flex justify-between items-center text-sm font-black text-black">
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-300 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span>What is VoltSavings and how does the calculator work?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            VoltSavings is an independent, 100% free financial modeling tool that computes the operational cost difference between petrol/diesel combustion engines and electric vehicles. You input your daily commute, fuel price, electricity rate, and efficiencies. The engine computes cost-per-km, annual savings, 5-year compounding ROI, and tailpipe CO₂ emissions avoided. For the full mathematical formulas, see our <a href="/methodology" class="text-emerald-600 font-bold underline">Methodology Page</a>.
+          </p>
+        </details>
+
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-300 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
             <span>What does EV Efficiency (km/kWh) mean?</span>
             <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
           </summary>
           <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
-            In combustion engines, efficiency is measured in distance per unit of liquid fuel (km per liter). In electric vehicles, energy is measured in kilowatt-hours (kWh), equivalent to 1 unit of electricity on your home meter. A rating of 30 km/kWh means the vehicle travels 30 kilometers using 1 unit of electric energy.
+            In combustion engines, efficiency is measured in distance per unit of liquid fuel (km per liter or MPG). In electric vehicles, energy is measured in kilowatt-hours (kWh), equivalent to 1 unit of electricity on your domestic utility meter. A rating of 30 km/kWh means the vehicle travels 30 kilometers using 1 unit of electric energy.
           </p>
         </details>
 
-        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
-          <summary class="flex justify-between items-center text-sm font-black text-black">
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-300 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
             <span>What typical efficiency numbers should I enter?</span>
             <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
           </summary>
           <div class="text-xs text-gray-700 leading-relaxed mt-3 space-y-2 font-medium">
-            <p><strong>Electric Bikes / Scooters:</strong> Typically deliver 25 to 45 km per kWh (or 15 to 28 mi/kWh).</p>
-            <p><strong>Electric Sedans / Compact Cars:</strong> Typically achieve 5.5 to 7.5 km per kWh (or 3.4 to 4.6 mi/kWh).</p>
+            <p><strong>Electric Bikes / Scooters:</strong> 25 to 45 km per kWh (or 15 to 28 mi/kWh).</p>
+            <p><strong>Electric Compact Cars / Sedans:</strong> 5.5 to 7.5 km per kWh (or 3.4 to 4.6 mi/kWh).</p>
+            <p><strong>Electric Crossovers / SUVs:</strong> 4.0 to 5.5 km per kWh (or 2.5 to 3.4 mi/kWh).</p>
             <p><strong>Petrol 70cc-125cc Bikes:</strong> 40 to 55 km/L.</p>
-            <p><strong>Petrol 1000cc-1500cc Cars:</strong> 11 to 16 km/L.</p>
+            <p><strong>Petrol 1000cc-1800cc Cars:</strong> 11 to 16 km/L.</p>
           </div>
         </details>
 
-        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
-          <summary class="flex justify-between items-center text-sm font-black text-black">
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-300 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
             <span>Does this calculator account for maintenance & engine oil?</span>
             <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
           </summary>
           <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
-            This tool computes direct fuel vs electric energy expenses and routine maintenance entered above. In reality, your savings with an EV are even higher because EVs have no engine oil, spark plugs, timing belts, or clutch assemblies.
+            Yes. VoltSavings provides inputs for routine monthly maintenance for both vehicles. In real life, internal combustion engines require frequent motor oil changes, spark plugs, timing belts, and transmission fluid. Electric vehicles have single-speed reduction gearboxes and regenerative braking, reducing mechanical maintenance by 60% or more.
           </p>
         </details>
 
-        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-sm">
-          <summary class="flex justify-between items-center text-sm font-black text-black">
-            <span>Is user data logged or sent to servers?</span>
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-300 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span>How does home charging cost compare with public DC fast chargers?</span>
             <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
           </summary>
           <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
-            No. VoltSavings is built as an open, client-side calculator. Everything runs locally in your device's browser memory. We never ask for your email, login, or personal driving history.
+            Overnight home Level 2 charging on residential off-peak tariffs is where 85% of your savings are created. Public DC fast chargers carry infrastructure surcharges, costing 2x to 3x more per kWh than home electricity. For optimal economics, charge overnight at home and reserve DC fast chargers for long-distance highway travel.
+          </p>
+        </details>
+
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-300 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span>How long do EV batteries last before requiring replacement?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            Modern Lithium Iron Phosphate (LFP) battery packs are engineered for 2,000 to 3,000 full charge cycles, which typically equates to 250,000 to 400,000 kilometers (10 to 15 years of daily commuting). Read our detailed <a href="/blog/ev-battery-life-2026" class="text-emerald-600 font-bold underline">EV Battery Lifespan & Degradation Guide</a> for practical charging tips.
+          </p>
+        </details>
+
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-300 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span>Is my personal driving history logged or tracked?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            No. VoltSavings operates 100% client-side in your web browser. We do not track your location, require an account, or send your inputs to a remote database. Learn more in our <a href="/privacy-policy" class="text-emerald-600 font-bold underline">Privacy Policy</a>.
+          </p>
+        </details>
+
+        <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-300 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span>Can I export or print an executive PDF report?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            Yes. Click the 'Download PDF Report' button in the calculator results area. A dedicated print stylesheet will format your exact inputs, monthly cost delta, 5-year projection, and CO₂ savings into an executive one-page document.
           </p>
         </details>
       </div>
+    </div>
+  </section>
+
+  <!-- Final Bottom CTA Section -->
+  <section class="py-14 bg-gradient-to-b from-white to-emerald-50/60 border-t border-gray-200 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mb-3">Take Control of Your Commuting Budget</h2>
+      <p class="text-sm text-gray-600 font-medium max-w-xl mx-auto mb-6">
+        Test your exact daily mileage and electricity tariff rate to see how much cash you can retain this year.
+      </p>
+      <a 
+        href="#calculator-app" 
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl text-sm font-black bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all"
+      >
+        <i class="fa-solid fa-calculator"></i> Launch Free Calculator
+      </a>
     </div>
   </section>
 </Layout>

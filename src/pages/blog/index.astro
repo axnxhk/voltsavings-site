@@ -4,32 +4,46 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
 const articles = [
   {
-    slug: 'ev-bikes-2026',
-    title: 'Are Electric Motorcycles Worth It in 2026?',
-    desc: 'With surging petrol rates, electric bikes claim up to 80% operational cost reduction. We break down initial purchase price vs recurring savings.',
-    category: 'Economics',
-    badgeClass: 'bg-emerald-100 text-emerald-800'
-  },
-  {
     slug: 'ev-savings-2026',
-    title: 'How Much Do You Save Switching to an EV?',
-    desc: 'Discover exactly how much money you can save by switching from a gas engine to an electric vehicle, factoring in fuel and routine maintenance.',
+    title: 'How Much Money Do You Really Save Switching to an EV? 2026 Financial Guide',
+    desc: 'Comprehensive cost analysis comparing gas vs electricity rates, brake pad longevity, powertrain maintenance differences, and multi-year TCO break-even curves.',
     category: 'Cost Analysis',
-    badgeClass: 'bg-emerald-100 text-emerald-800'
+    badgeClass: 'bg-emerald-100 text-emerald-800 border border-emerald-300',
+    readTime: '6 min read',
+    icon: 'fa-solid fa-file-invoice-dollar'
   },
   {
     slug: 'ev-battery-life-2026',
-    title: 'EV Battery Lifespan & Maintenance Guide',
-    desc: 'Learn how to prevent battery degradation, understand LFP battery lifecycles, and maximize your electric vehicle longevity under hot climates.',
-    category: 'Maintenance',
-    badgeClass: 'bg-emerald-100 text-emerald-800'
+    title: 'EV Battery Lifespan & Degradation Guide: How Long Do They Last in 2026?',
+    desc: 'Demystifying battery health: LFP vs NMC chemistry cycle life, the 20-80% charging rule, extreme climate management, and projected cell replacement costs through 2030.',
+    category: 'Battery Health',
+    badgeClass: 'bg-blue-100 text-blue-800 border border-blue-300',
+    readTime: '7 min read',
+    icon: 'fa-solid fa-battery-half'
+  },
+  {
+    slug: 'ev-bikes-2026',
+    title: 'Are Electric Motorcycles Worth It in 2026? Commuter Economics & Courier ROI',
+    desc: 'Detailed real-world comparison of 70cc-125cc petrol motorbikes vs electric two-wheelers, battery swapping networks, courier savings, and monsoon wading limits.',
+    category: 'Two-Wheeler Economics',
+    badgeClass: 'bg-teal-100 text-teal-800 border border-teal-300',
+    readTime: '5 min read',
+    icon: 'fa-solid fa-motorcycle'
   }
 ];
+
+const blogIndexSchema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "VoltSavings Electric Mobility Intelligence & Research Blog",
+  "description": "Authoritative research guides and financial analysis covering EV charging economics, battery degradation, and commuting return on investment."
+};
 ---
 
 <Layout 
   title="EV Research, Guides & Cost Analysis Blog | VoltSavings™"
-  description="Read our latest data-driven research and practical advice on electric vehicles, charging costs, battery maintenance, and commuting economics."
+  description="Read our latest data-driven research and practical advice on electric vehicles, charging costs, battery maintenance, and commuting economics in 2026."
+  schema={blogIndexSchema}
 >
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full flex-grow">
     
@@ -39,50 +53,66 @@ const articles = [
       { name: 'Blog' }
     ]} />
 
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Commuter Intelligence</span>
-      <h1 class="text-4xl sm:text-5xl font-black text-black tracking-tight mt-3 mb-4">Electric Mobility Guides & Analysis</h1>
-      <p class="text-sm sm:text-base text-gray-600 font-medium">Data-driven research and practical advice to help you maximize your savings while transitioning to clean energy vehicles.</p>
+    <!-- Header Section -->
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-100/90 border border-emerald-300 text-emerald-800 text-xs font-bold mb-4 shadow-xs">
+        <i class="fa-solid fa-book-open text-emerald-600"></i>
+        <span>COMMUTER INTELLIGENCE & RESEARCH</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-gray-950 tracking-tight mb-4">Electric Mobility Guides & Analysis</h1>
+      <p class="text-sm sm:text-base text-gray-600 font-medium leading-relaxed">
+        Unbiased, empirical research to help you navigate energy tariffs, battery degradation curves, and vehicle break-even timelines.
+      </p>
     </div>
 
     <!-- Blog Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       {articles.map((art) => (
-        <article class="bg-white border-2 border-gray-100 rounded-2xl overflow-hidden hover:border-emerald-300 transition shadow-sm flex flex-col">
-          <div class="p-6 border-b border-gray-100 bg-emerald-50/50">
-            <span class={`inline-block px-2.5 py-1 rounded-md text-[10px] font-black uppercase mb-3 ${art.badgeClass}`}>
-              {art.category}
-            </span>
-            <h2 class="text-xl font-black text-black leading-snug">
-              <a href={`/blog/${art.slug}`} class="hover:text-emerald-600 transition-colors">
+        <article class="bg-white border-2 border-gray-200 rounded-3xl overflow-hidden hover:border-emerald-500 transition-all shadow-sm hover:shadow-md flex flex-col group">
+          <div class="p-6 border-b border-gray-100 bg-gradient-to-b from-emerald-50/60 to-white">
+            <div class="flex items-center justify-between mb-3">
+              <span class={`inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase ${art.badgeClass}`}>
+                {art.category}
+              </span>
+              <span class="text-[11px] font-bold text-gray-400 flex items-center gap-1">
+                <i class="fa-regular fa-clock"></i> {art.readTime}
+              </span>
+            </div>
+            <h2 class="text-lg sm:text-xl font-black text-gray-950 leading-snug group-hover:text-emerald-700 transition-colors">
+              <a href={`/blog/${art.slug}`}>
                 {art.title}
               </a>
             </h2>
           </div>
           <div class="p-6 flex flex-col flex-grow justify-between">
-            <p class="text-sm text-gray-600 leading-relaxed mb-6 font-medium">
+            <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-6 font-medium">
               {art.desc}
             </p>
             <a 
               href={`/blog/${art.slug}`} 
-              class="text-sm font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-2 group transition-colors"
+              class="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-2 group-hover:gap-3 transition-all"
             >
-              Read Full Guide <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+              Read Full Analysis <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
         </article>
       ))}
     </div>
 
-    <!-- Calculator CTA Banner -->
-    <div class="mt-16 bg-emerald-50 border-2 border-emerald-200 rounded-3xl p-8 text-center max-w-4xl mx-auto">
-      <h3 class="text-2xl font-black text-black mb-2">Ready to crunch your own commuting numbers?</h3>
-      <p class="text-sm text-gray-700 mb-6 font-medium">Use our 100% free, private calculator with real-time currency and local electricity tariff support.</p>
+    <!-- High-Impact Interactive Banner -->
+    <div class="mt-16 bg-gradient-to-r from-emerald-50 via-teal-50 to-white border-2 border-emerald-300 rounded-3xl p-8 sm:p-10 text-center max-w-4xl mx-auto shadow-sm">
+      <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center text-xl mx-auto mb-4 font-bold shadow-sm">
+        <i class="fa-solid fa-calculator"></i>
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mb-3">Ready to calculate your own commuting ROI?</h2>
+      <p class="text-xs sm:text-sm text-gray-700 mb-6 font-medium max-w-xl mx-auto leading-relaxed">
+        Use our 100% free, private calculator with real-time multi-currency support, pre-calibrated vehicle presets, and printable PDF executive reports.
+      </p>
       <a 
         href="/#calculator-app" 
-        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all"
+        class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-xs sm:text-sm font-black bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all"
       >
-        Open Free EV Calculator <i class="fa-solid fa-arrow-right"></i>
+        Launch Free EV Calculator <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
 

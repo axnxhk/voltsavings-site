@@ -4,8 +4,8 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
 ---
 
 <Layout 
-  title="Privacy Policy | VoltSavings™"
-  description="Read the VoltSavings privacy policy. Learn how we handle your data, our client-side calculation privacy, and Google compliance."
+  title="Privacy Policy | VoltSavings™ - 100% Client-Side Privacy"
+  description="Read the VoltSavings privacy policy. Learn how we handle your data, our client-side calculation privacy, GDPR/CCPA compliance, and Google standards."
 >
   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full flex-grow">
     
@@ -14,26 +14,43 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
       { name: 'Privacy Policy' }
     ]} />
 
-    <div class="bg-white border-2 border-gray-100 rounded-3xl p-8 sm:p-12 shadow-sm">
-      <div class="mb-8 border-b border-gray-100 pb-6">
-        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Legal</span>
-        <h1 class="text-3xl sm:text-4xl font-black text-black tracking-tight mt-2">Privacy Policy</h1>
+    <div class="bg-white border-2 border-gray-200 rounded-3xl p-8 sm:p-12 shadow-sm">
+      <div class="mb-8 border-b border-gray-200 pb-6">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">PRIVACY & TRANSPARENCY</span>
+        <h1 class="text-3xl sm:text-4xl font-black text-gray-950 tracking-tight mt-2">Privacy Policy</h1>
+        <p class="text-xs text-gray-500 mt-2 font-medium">Last updated: October 30, 2026</p>
       </div>
-      <div class="space-y-6 text-sm text-gray-600 font-medium leading-relaxed">
-        <p>At <strong>VoltSavings</strong>, accessible from our website, one of our primary priorities is the privacy of our visitors. This Privacy Policy document details the types of information recorded by VoltSavings and how we manage it.</p>
-        
-        <h2 class="text-lg font-black text-black mt-6">1. Information Collection & Client-Side Privacy</h2>
-        <p>Our EV cost savings calculator functions entirely on the client-side inside your web browser. We do not require account registration, and we do not store, log, or transmit the personal commute numbers (distance, fuel costs, electricity bills) you enter into any remote database.</p>
-        
-        <h2 class="text-lg font-black text-black mt-6">2. Third-Party Services & Analytics</h2>
-        <p>We use Google Analytics (GA4) to observe anonymous website traffic metrics (such as page views, country-level aggregate visits, and browser types) to improve application stability and tool utility. These metrics do not contain personally identifying information.</p>
-        <p>We may also display third-party advertisements via Google AdSense. Third-party vendors, including Google, use cookies to serve ads based on prior visits. Users may opt out of personalized advertising by visiting Google's <a href="https://myadcenter.google.com/" class="text-emerald-600 hover:underline" target="_blank" rel="noopener noreferrer">Ads Settings</a>.</p>
 
-        <h2 class="text-lg font-black text-black mt-6">3. Standard Log Files</h2>
-        <p>VoltSavings follows standard hosting server procedure using log files. Information recorded includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date/time stamps, and referring/exit pages.</p>
+      <div class="space-y-6 text-sm text-gray-700 font-medium leading-relaxed">
+        <p>At <strong>VoltSavings</strong> (accessible at <a href="https://www.evcalculator.online" class="text-emerald-700 font-bold hover:underline">evcalculator.online</a>), our primary commitment is the privacy and trust of our visitors. This policy outlines how we handle data and explains our unique client-side calculation architecture.</p>
         
-        <h2 class="text-lg font-black text-black mt-6">4. Consent</h2>
-        <p>By using our website, you hereby consent to our Privacy Policy and agree to its <a href="/terms" class="text-emerald-600 hover:underline">Terms of Service</a>.</p>
+        <h2 class="text-lg font-black text-gray-950 mt-6">1. 100% Client-Side Computing & Zero Financial Data Retention</h2>
+        <p>Unlike traditional online banking or automotive loan tools that harvest user data, <strong>VoltSavings executes 100% client-side in your web browser</strong>. We do not require registration, login credentials, or email addresses. The commuting numbers you enter (daily distance, fuel costs, electricity tariff rates, vehicle efficiencies) are processed strictly in your local device RAM and are <strong>never stored, logged, or transmitted to our servers</strong>.</p>
+        
+        <h2 class="text-lg font-black text-gray-950 mt-6">2. Third-Party Analytics (Google Analytics GA4)</h2>
+        <p>We use Google Analytics (GA4) with IP anonymization enabled to monitor aggregate website performance, such as total page views, general regional visitor distribution, and device browser categories. This anonymous telemetry helps our development team optimize calculator load speed and mobile responsiveness. No personally identifiable information (PII) is captured.</p>
+        
+        <h2 class="text-lg font-black text-gray-950 mt-6">3. Advertising & Cookies (Google AdSense Compliance)</h2>
+        <p>To keep VoltSavings 100% free for commuters worldwide, we may display advertising served through Google AdSense. Google, as a third-party vendor, uses cookies to serve ads based on prior visits to our site and other websites. You may opt out of personalized advertising by visiting Google's <a href="https://myadcenter.google.com/" class="text-emerald-600 font-bold hover:underline" target="_blank" rel="noopener noreferrer">Ad Center</a>. For full details on cookie categories, review our <a href="/cookie-policy" class="text-emerald-600 font-bold hover:underline">Cookie Policy</a>.</p>
+
+        <h2 class="text-lg font-black text-gray-950 mt-6">4. General Data Protection Regulation (GDPR) Rights</h2>
+        <p>For visitors residing within the European Economic Area (EEA), you enjoy complete rights regarding data protection under the GDPR, including the right to access, rectify, or request deletion of any personal data. Because VoltSavings stores zero personal commuting data on its servers, you are automatically protected from server-side data breaches.</p>
+
+        <h2 class="text-lg font-black text-gray-950 mt-6">5. California Consumer Privacy Act (CCPA)</h2>
+        <p>Under the CCPA, California residents have the right to request disclosure of categories of personal information collected, or to request that a business not sell their personal data. <strong>VoltSavings does not sell, trade, or monetize personal user data</strong> under any circumstances.</p>
+        
+        <h2 class="text-lg font-black text-gray-950 mt-6">6. Contact & Inquiries</h2>
+        <p>If you have any questions or require additional information regarding our privacy practices, please contact us through our <a href="/contact" class="text-emerald-600 font-bold hover:underline">Contact Page</a> or email us directly at <a href="mailto:support@voltsavings.com" class="text-emerald-600 font-bold hover:underline">support@voltsavings.com</a>.</p>
+      </div>
+
+      <!-- Quick Link Back to Calculator -->
+      <div class="mt-10 pt-6 border-t border-gray-200 flex justify-between items-center flex-wrap gap-4">
+        <a href="/" class="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-1.5">
+          ← Return to EV Calculator Tool
+        </a>
+        <a href="/terms" class="text-xs font-bold text-gray-500 hover:text-gray-700">
+          Review Terms of Service →
+        </a>
       </div>
     </div>
   </main>

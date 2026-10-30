@@ -11,8 +11,8 @@ const aboutSchema = {
 ---
 
 <Layout 
-  title="About Us | VoltSavings™ - EV Cost Calculator"
-  description="Learn about VoltSavings, our mission to empower commuters with transparent EV vs Petrol cost comparisons, and our commitment to your data privacy."
+  title="About Us: Our Mission & Independent EV Research | VoltSavings™"
+  description="Discover why VoltSavings was created: an independent, privacy-first EV vs Petrol cost simulator empowering commuters worldwide with transparent financial data."
   schema={aboutSchema}
 >
   <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 w-full flex-grow">
@@ -22,30 +22,142 @@ const aboutSchema = {
       { name: 'About Us' }
     ]} />
 
-    <div class="bg-white border-2 border-gray-100 rounded-3xl p-8 sm:p-12 shadow-sm">
-      <div class="mb-8 border-b border-gray-100 pb-6">
-        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">Our Mission</span>
-        <h1 class="text-3xl sm:text-4xl font-black text-black tracking-tight mt-2">About VoltSavings</h1>
-      </div>
-      <div class="space-y-6 text-sm sm:text-base text-gray-600 font-medium leading-relaxed">
-        <p>Welcome to <strong>VoltSavings</strong>, your premier destination for transparent, data-driven operational cost comparisons between Electric Vehicles (EVs) and Internal Combustion Engine (ICE) vehicles.</p>
-        <p>Our mission is simple: to empower daily commuters worldwide with the financial data they need to make the switch to clean, green electric mobility. We noticed a lack of unbiased, easy-to-use tools that factor in real-world metrics like local electricity tariffs, fuel price spikes, and routine maintenance.</p>
-        <p>VoltSavings operates entirely in your browser. We prioritize your privacy above all else—we do not collect personal data, track your location, or require you to create an account. All arithmetic processes run strictly client-side.</p>
-        <p>Whether you are considering an electric motorcycle for daily intra-city trips or a family EV sedan, VoltSavings is here to help you forecast your long-term return on investment.</p>
+    <div class="bg-white border-2 border-gray-200 rounded-3xl p-8 sm:p-12 shadow-sm">
+      
+      <!-- Page Header -->
+      <div class="mb-10 border-b border-gray-200 pb-8">
+        <span class="text-xs font-black uppercase tracking-wider text-emerald-600">INDEPENDENT & OPEN SOURCE</span>
+        <h1 class="text-3xl sm:text-4xl font-black text-gray-950 tracking-tight mt-2">About VoltSavings</h1>
+        <p class="text-sm text-gray-600 mt-2 font-medium">
+          Empowering global commuters with transparent, unbiased financial modeling for electric and fuel mobility.
+        </p>
       </div>
 
-      <div class="mt-10 pt-8 border-t border-gray-100 flex flex-wrap gap-4 items-center justify-between">
+      <!-- Core Narrative -->
+      <div class="space-y-6 text-sm sm:text-base text-gray-700 font-medium leading-relaxed">
+        
+        <h2 class="text-xl font-black text-gray-950">Why Did We Build VoltSavings?</h2>
+        <p>
+          The global transition from fossil fuel combustion to electric mobility is one of the most critical economic and environmental shifts of the century. However, everyday car and motorcycle owners face an overwhelming amount of conflicting information. Dealerships frequently exaggerate fuel economy, EV manufacturers quote laboratory ranges under unrealistic conditions, and online calculators force users to surrender their email addresses just to view a basic comparison.
+        </p>
+        <p>
+          <strong>VoltSavings</strong> was founded with a singular, uncompromising vision: to build a free, accessible, and radically transparent financial intelligence platform that lets anyone calculate their true, real-world commuting expenditure in seconds.
+        </p>
+
+        <!-- Mission Highlight Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-8 not-prose">
+          <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-lg mb-3 font-bold">
+              <i class="fa-solid fa-scale-balanced"></i>
+            </div>
+            <strong class="text-sm font-black text-emerald-950 block mb-1">Zero Commercial Bias</strong>
+            <p class="text-xs text-emerald-800 font-medium leading-relaxed">
+              We do not sell cars, represent electric utilities, or accept manufacturer sponsorships. Our formulas treat petrol engines and electric motors with identical mathematical rigor.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-emerald-50/70 border border-emerald-200">
+            <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-lg mb-3 font-bold">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <strong class="text-sm font-black text-emerald-950 block mb-1">Radical Client-Side Privacy</strong>
+            <p class="text-xs text-emerald-800 font-medium leading-relaxed">
+              Your commute distance, fuel rates, and financial numbers are never transmitted to a server or saved in a remote database. Every calculation executes locally in your browser.
+            </p>
+          </div>
+        </div>
+
+        <h2 class="text-xl font-black text-gray-950 mt-8">Our Four Guiding Principles</h2>
+        
+        <div class="space-y-4">
+          <div class="border-l-4 border-emerald-600 pl-4 py-1">
+            <strong class="text-sm font-black text-gray-950 block">1. Mathematical & Empirical Accuracy</strong>
+            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+              We publish our complete mathematical architecture openly. From internal combustion thermal losses to Level 1 and Level 2 AC-to-DC onboard charging losses (10-15%), our equations are auditable on our <a href="/methodology" class="text-emerald-600 font-bold underline">Methodology Page</a>.
+            </p>
+          </div>
+
+          <div class="border-l-4 border-emerald-600 pl-4 py-1">
+            <strong class="text-sm font-black text-gray-950 block">2. Practical Commuter Context</strong>
+            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+              We recognise that a food delivery courier riding a 70cc motorbike in Karachi or Delhi has entirely different financial realities than a family driving a Tesla or Hyundai Ioniq in London, Toronto, or Sydney. Our calculator provides pre-calibrated vehicle presets and multi-currency support (USD, GBP, EUR, PKR, INR, AED, CAD, AUD).
+            </p>
+          </div>
+
+          <div class="border-l-4 border-emerald-600 pl-4 py-1">
+            <strong class="text-sm font-black text-gray-950 block">3. Holistic Total Cost of Ownership (TCO)</strong>
+            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+              Energy cost is only part of the equation. We incorporate routine mechanical maintenance—such as motor oil, spark plugs, timing belts, and friction brake pads—to show the true multi-year compounding ROI.
+            </p>
+          </div>
+
+          <div class="border-l-4 border-emerald-600 pl-4 py-1">
+            <strong class="text-sm font-black text-gray-950 block">4. Climate & Air Quality Accountability</strong>
+            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+              In addition to financial cash savings, we calculate direct tailpipe CO₂ emissions eliminated (2.31 kg CO₂ per liter of fuel), empowering users to quantify their personal contribution toward cleaner air in their local cities.
+            </p>
+          </div>
+        </div>
+
+        <h2 class="text-xl font-black text-gray-950 mt-8">Data Sources & Empirical Benchmarks</h2>
+        <p>
+          Our baseline vehicle consumption metrics, regenerative braking efficiency multipliers, and fuel energy density factors are synthesized from leading global regulatory bodies:
+        </p>
+        <ul class="list-disc pl-5 space-y-1.5 text-xs text-gray-700 font-semibold">
+          <li><strong>US Environmental Protection Agency (EPA):</strong> Vehicle efficiency ratings and electrical energy equivalence (MPGe).</li>
+          <li><strong>Worldwide Harmonised Light Vehicle Test Procedure (WLTP):</strong> Standardized range and consumption cycles.</li>
+          <li><strong>International Energy Agency (IEA):</strong> Global EV outlook and battery chemistry cost projections.</li>
+          <li><strong>Regional Electric Utility Rate Tariffs:</strong> Domestic residential off-peak vs peak billing schedules.</li>
+        </ul>
+
+        <h2 class="text-xl font-black text-gray-950 mt-8">Explore Our Research & Tools</h2>
+        <p>
+          Whether you are evaluating your first electric two-wheeler or planning a complete household transition to clean energy, we invite you to explore our resources:
+        </p>
+        <ul class="space-y-2 text-xs font-bold text-emerald-700">
+          <li>
+            <a href="/#calculator-app" class="hover:underline flex items-center gap-1.5">
+              <i class="fa-solid fa-calculator"></i> Launch the Interactive EV vs Petrol Cost Calculator
+            </a>
+          </li>
+          <li>
+            <a href="/blog/ev-savings-2026" class="hover:underline flex items-center gap-1.5">
+              <i class="fa-solid fa-file-invoice-dollar"></i> Read: How Much Money Do You Really Save Switching to an EV in 2026?
+            </a>
+          </li>
+          <li>
+            <a href="/blog/ev-battery-life-2026" class="hover:underline flex items-center gap-1.5">
+              <i class="fa-solid fa-battery-half"></i> Read: EV Battery Lifespan, Degradation & Replacement Cost Guide
+            </a>
+          </li>
+          <li>
+            <a href="/blog/ev-bikes-2026" class="hover:underline flex items-center gap-1.5">
+              <i class="fa-solid fa-motorcycle"></i> Read: Are Electric Motorcycles Worth It for Daily Commuters?
+            </a>
+          </li>
+          <li>
+            <a href="/methodology" class="hover:underline flex items-center gap-1.5">
+              <i class="fa-solid fa-square-root-variable"></i> Inspect: Mathematical Formulas & Algorithmic Architecture
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Action Card -->
+      <div class="mt-12 pt-8 border-t border-gray-200 flex flex-wrap gap-4 items-center justify-between">
         <div>
-          <h2 class="text-sm font-black text-black">Curious about your personal savings?</h2>
-          <p class="text-xs text-gray-500 font-medium">Test our free tool with your routine daily mileage.</p>
+          <h2 class="text-base font-black text-gray-950">Ready to calculate your commuting savings?</h2>
+          <p class="text-xs text-gray-500 font-medium">Free, client-side, and no personal registration required.</p>
         </div>
         <a 
           href="/#calculator-app" 
-          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-600/25 transition-all"
         >
           Try Free Calculator <i class="fa-solid fa-arrow-right"></i>
         </a>
       </div>
+
     </div>
   </main>
 </Layout>
