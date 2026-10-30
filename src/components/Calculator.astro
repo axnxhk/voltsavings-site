@@ -462,6 +462,7 @@
   let selectedDays = 26;
   let currentCountry = 'PK';
   let currentSymbol = 'Rs.';
+  let currentCurrencyCode = 'PKR';
   let activePreset = 'bike';
 
   // Elements
@@ -636,6 +637,7 @@
     const data = CURRENCY_DATA[countryKey as keyof typeof CURRENCY_DATA] || CURRENCY_DATA['PK'];
     currentCountry = countryKey;
     currentSymbol = data.symbol;
+    currentCurrencyCode = data.code;
     fuelPrice.value = String(data.fuelPrice);
     electricityRate.value = String(data.powerRate);
     
@@ -803,85 +805,89 @@
 
   // Populate Executive Document Print Template
   function updateExecutiveReport() {
-    const dist = parseFloat(dailyDistance?.value) || 0;
-    selectedDays = parseFloat(customDays?.value) || 26;
-    const fEff = parseFloat(fuelEfficiency?.value) || 1;
-    const fPrice = parseFloat(fuelPrice?.value) || 0;
-    const eEff = parseFloat(evEfficiency?.value) || 1;
-    const eRate = parseFloat(electricityRate?.value) || 0;
-    const fMaintCost = parseFloat(fuelMaint?.value) || 0;
-    const eMaintCost = parseFloat(evMaint?.value) || 0;
+    try {
+      const dist = parseFloat(dailyDistance?.value) || 0;
+      selectedDays = parseFloat(customDays?.value) || 26;
+      const fEff = parseFloat(fuelEfficiency?.value) || 1;
+      const fPrice = parseFloat(fuelPrice?.value) || 0;
+      const eEff = parseFloat(evEfficiency?.value) || 1;
+      const eRate = parseFloat(electricityRate?.value) || 0;
+      const fMaintCost = parseFloat(fuelMaint?.value) || 0;
+      const eMaintCost = parseFloat(evMaint?.value) || 0;
 
-    const monthlyDistance = dist * selectedDays;
-    const monthlyFuelLiters = fEff > 0 ? (monthlyDistance / fEff) : 0;
-    const fuelCostMonthly = (monthlyFuelLiters * fPrice) + fMaintCost;
-    const fuelCostYearly = fuelCostMonthly * 12;
+      const monthlyDistance = dist * selectedDays;
+      const monthlyFuelLiters = fEff > 0 ? (monthlyDistance / fEff) : 0;
+      const fuelCostMonthly = (monthlyFuelLiters * fPrice) + fMaintCost;
+      const fuelCostYearly = fuelCostMonthly * 12;
 
-    const monthlyEvKwh = eEff > 0 ? (monthlyDistance / eEff) : 0;
-    const evCostMonthly = (monthlyEvKwh * eRate) + eMaintCost;
-    const evCostYearly = evCostMonthly * 12;
+      const monthlyEvKwh = eEff > 0 ? (monthlyDistance / eEff) : 0;
+      const evCostMonthly = (monthlyEvKwh * eRate) + eMaintCost;
+      const evCostYearly = evCostMonthly * 12;
 
-    const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
-    const monthlySavings = Math.max(0, fuelCostMonthly - evCostMonthly);
-    const pctSavings = fuelCostYearly > 0 ? Math.round((annualSavings / fuelCostYearly) * 100) : 0;
+      const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
+      const monthlySavings = Math.max(0, fuelCostMonthly - evCostMonthly);
+      const pctSavings = fuelCostYearly > 0 ? Math.round((annualSavings / fuelCostYearly) * 100) : 0;
 
-    const fuelCostPerKm = monthlyDistance > 0 ? (fuelCostMonthly / monthlyDistance) : 0;
-    const evCostPerKm = monthlyDistance > 0 ? (evCostMonthly / monthlyDistance) : 0;
+      const fuelCostPerKm = monthlyDistance > 0 ? (fuelCostMonthly / monthlyDistance) : 0;
+      const evCostPerKm = monthlyDistance > 0 ? (evCostMonthly / monthlyDistance) : 0;
 
-    const annualFuelCo2 = isMetric ? (monthlyFuelLiters * 12 * 2.31) : (monthlyFuelLiters * 12 * 8.89);
-    const annualEvCo2 = (monthlyEvKwh * 12 * 0.45);
-    const annualCo2SavedKg = Math.max(0, Math.round(annualFuelCo2 - annualEvCo2));
-    const treeEquivalent = Math.max(1, Math.round(annualCo2SavedKg / 21));
+      const annualFuelCo2 = isMetric ? (monthlyFuelLiters * 12 * 2.31) : (monthlyFuelLiters * 12 * 8.89);
+      const annualEvCo2 = (monthlyEvKwh * 12 * 0.45);
+      const annualCo2SavedKg = Math.max(0, Math.round(annualFuelCo2 - annualEvCo2));
+      const treeEquivalent = Math.max(1, Math.round(annualCo2SavedKg / 21));
 
-    const uUnit = isMetric ? 'km' : 'mi';
-    const vUnit = isMetric ? 'L' : 'gal';
-    const effUnit = isMetric ? 'km/L' : 'MPG';
-    const evEffUnit = isMetric ? 'km/kWh' : 'mi/kWh';
+      const uUnit = isMetric ? 'km' : 'mi';
+      const vUnit = isMetric ? 'L' : 'gal';
+      const effUnit = isMetric ? 'km/L' : 'MPG';
+      const evEffUnit = isMetric ? 'km/kWh' : 'mi/kWh';
 
-    const setT = (id: string, text: string) => {
-      const el = document.getElementById(id);
-      if (el) el.innerText = text;
-    };
+      const setT = (id: string, text: string) => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = text;
+      };
 
-    setT('repDate', new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
-    setT('repCommute', `${dist} ${uUnit} / day`);
-    setT('repMonthlyDist', `${monthlyDistance.toLocaleString()} ${uUnit} / mo (${selectedDays} days)`);
-    setT('repPreset', `${activePreset.toUpperCase()} Segment`);
-    setT('repCurrency', `Currency: ${currentCurrencyCode} (${currentSymbol})`);
-    setT('repFuelEff', `${fEff} ${effUnit}`);
-    setT('repFuelPrice', `Rate: ${currentSymbol}${fPrice}/${vUnit} | Maint: ${currentSymbol}${fMaintCost}/mo`);
-    setT('repEvEff', `${eEff} ${evEffUnit}`);
-    setT('repPowerRate', `Rate: ${currentSymbol}${eRate}/kWh | Maint: ${currentSymbol}${eMaintCost}/mo`);
+      setT('repDate', new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
+      setT('repCommute', `${dist} ${uUnit} / day`);
+      setT('repMonthlyDist', `${monthlyDistance.toLocaleString()} ${uUnit} / mo (${selectedDays} days)`);
+      setT('repPreset', `${activePreset.toUpperCase()} Segment`);
+      setT('repCurrency', `Currency: ${currentCurrencyCode || 'PKR'} (${currentSymbol || 'Rs.'})`);
+      setT('repFuelEff', `${fEff} ${effUnit}`);
+      setT('repFuelPrice', `Rate: ${currentSymbol}${fPrice}/${vUnit} | Maint: ${currentSymbol}${fMaintCost}/mo`);
+      setT('repEvEff', `${eEff} ${evEffUnit}`);
+      setT('repPowerRate', `Rate: ${currentSymbol}${eRate}/kWh | Maint: ${currentSymbol}${eMaintCost}/mo`);
 
-    setT('repFuelMo', fmt(fuelCostMonthly));
-    setT('repFuelKm', `${currentSymbol}${fuelCostPerKm.toFixed(2)} per ${uUnit}`);
-    setT('repEvMo', fmt(evCostMonthly));
-    setT('repEvKm', `${currentSymbol}${evCostPerKm.toFixed(2)} per ${uUnit}`);
-    setT('repSaveMo', `+ ${fmt(monthlySavings)}`);
-    setT('repPctSave', `~${pctSavings}% COST REDUCTION`);
+      setT('repFuelMo', fmt(fuelCostMonthly));
+      setT('repFuelKm', `${currentSymbol}${fuelCostPerKm.toFixed(2)} per ${uUnit}`);
+      setT('repEvMo', fmt(evCostMonthly));
+      setT('repEvKm', `${currentSymbol}${evCostPerKm.toFixed(2)} per ${uUnit}`);
+      setT('repSaveMo', `+ ${fmt(monthlySavings)}`);
+      setT('repPctSave', `~${pctSavings}% COST REDUCTION`);
 
-    setT('repTblFuel1M', fmt(fuelCostMonthly));
-    setT('repTblEv1M', fmt(evCostMonthly));
-    setT('repTblSave1M', `+ ${fmt(monthlySavings)}`);
-    setT('repTblCo21M', `~${Math.round(annualCo2SavedKg / 12)} kg CO₂`);
+      setT('repTblFuel1M', fmt(fuelCostMonthly));
+      setT('repTblEv1M', fmt(evCostMonthly));
+      setT('repTblSave1M', `+ ${fmt(monthlySavings)}`);
+      setT('repTblCo21M', `~${Math.round(annualCo2SavedKg / 12)} kg CO₂`);
 
-    setT('repTblFuel1Y', fmt(fuelCostYearly));
-    setT('repTblEv1Y', fmt(evCostYearly));
-    setT('repTblSave1Y', `+ ${fmt(annualSavings)}`);
-    setT('repTblCo21Y', annualCo2SavedKg > 1000 ? `~${(annualCo2SavedKg / 1000).toFixed(1)} Tonnes CO₂` : `~${annualCo2SavedKg} kg CO₂`);
+      setT('repTblFuel1Y', fmt(fuelCostYearly));
+      setT('repTblEv1Y', fmt(evCostYearly));
+      setT('repTblSave1Y', `+ ${fmt(annualSavings)}`);
+      setT('repTblCo21Y', annualCo2SavedKg > 1000 ? `~${(annualCo2SavedKg / 1000).toFixed(1)} Tonnes CO₂` : `~${annualCo2SavedKg} kg CO₂`);
 
-    setT('repTblFuel3Y', fmt(fuelCostYearly * 3));
-    setT('repTblEv3Y', fmt(evCostYearly * 3));
-    setT('repTblSave3Y', `+ ${fmt(annualSavings * 3)}`);
-    setT('repTblCo23Y', `~${((annualCo2SavedKg * 3) / 1000).toFixed(1)} Tonnes CO₂`);
+      setT('repTblFuel3Y', fmt(fuelCostYearly * 3));
+      setT('repTblEv3Y', fmt(evCostYearly * 3));
+      setT('repTblSave3Y', `+ ${fmt(annualSavings * 3)}`);
+      setT('repTblCo23Y', `~${((annualCo2SavedKg * 3) / 1000).toFixed(1)} Tonnes CO₂`);
 
-    setT('repTblFuel5Y', fmt(fuelCostYearly * 5));
-    setT('repTblEv5Y', fmt(evCostYearly * 5));
-    setT('repTblSave5Y', `+ ${fmt(annualSavings * 5)}`);
-    setT('repTblCo25Y', `~${((annualCo2SavedKg * 5) / 1000).toFixed(1)} Tonnes CO₂`);
+      setT('repTblFuel5Y', fmt(fuelCostYearly * 5));
+      setT('repTblEv5Y', fmt(evCostYearly * 5));
+      setT('repTblSave5Y', `+ ${fmt(annualSavings * 5)}`);
+      setT('repTblCo25Y', `~${((annualCo2SavedKg * 5) / 1000).toFixed(1)} Tonnes CO₂`);
 
-    const co2Str = annualCo2SavedKg > 1000 ? `~${(annualCo2SavedKg / 1000).toFixed(1)} Tonnes` : `~${annualCo2SavedKg} kg`;
-    setT('repCo2Desc', `Avoiding fuel combustion eliminates approximately ${co2Str} of tailpipe CO₂ annually, equivalent to the atmospheric carbon absorption of ~${treeEquivalent} mature trees.`);
+      const co2Str = annualCo2SavedKg > 1000 ? `~${(annualCo2SavedKg / 1000).toFixed(1)} Tonnes` : `~${annualCo2SavedKg} kg`;
+      setT('repCo2Desc', `Avoiding fuel combustion eliminates approximately ${co2Str} of tailpipe CO₂ annually, equivalent to the atmospheric carbon absorption of ~${treeEquivalent} mature trees.`);
+    } catch (err) {
+      console.warn('Executive report sync non-fatal error:', err);
+    }
   }
 
   // Copy Calculation Summary with Visual Toast Feedback
@@ -925,8 +931,13 @@ Calculate your exact vehicle savings free at: https://www.evcalculator.online`;
   });
 
   // Print / Save PDF Button
-  document.getElementById('printBtn')?.addEventListener('click', () => {
-    updateExecutiveReport();
+  document.getElementById('printBtn')?.addEventListener('click', (e) => {
+    e.preventDefault();
+    try {
+      updateExecutiveReport();
+    } catch(err) {
+      console.warn('Print sync non-fatal warning:', err);
+    }
     window.print();
     if (typeof (window as any).gtag === 'function') {
       (window as any).gtag('event', 'print_savings_report', {
