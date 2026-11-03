@@ -287,8 +287,152 @@ const faqSchema = {
         </p>
       </div>
 
-      <div class="overflow-x-auto bg-white rounded-3xl border-2 border-gray-200 shadow-sm">
-        <table class="w-full text-xs text-left border-collapse">
+      <!-- Mobile View: Sleek High-Readability Comparison Cards (Screens < 768px) -->
+      <div class="md:hidden space-y-4">
+        <!-- Card 1 -->
+        <div class="bg-white rounded-2xl border-2 border-gray-200 p-4 shadow-xs">
+          <div class="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-gray-100">
+            <span class="text-xs font-black text-gray-950">1. Energy Efficiency & Fuel Cost</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 shrink-0">
+              EV Wins (70-85% Cheaper)
+            </span>
+          </div>
+          <div class="space-y-2.5">
+            <div class="p-3 rounded-xl bg-red-50/60 border border-red-100">
+              <div class="flex items-center gap-1.5 font-black text-red-700 text-[10px] uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-gas-pump"></i> Petrol / ICE Engine
+              </div>
+              <p class="text-xs text-gray-700 leading-relaxed font-medium">
+                Thermal efficiency is only <strong>20% to 30%</strong>. Up to 75% of energy in every liter of fuel is lost as useless heat through the radiator and tailpipe.
+              </p>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+              <div class="flex items-center gap-1.5 font-black text-emerald-800 text-[10px] uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-bolt"></i> Electric Vehicle (EV)
+              </div>
+              <p class="text-xs text-emerald-950 leading-relaxed font-medium">
+                Electric motors deliver <strong>85% to 92%</strong> efficiency. Overnight home charging on residential tariffs costs 70-85% less than gasoline.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-2xl border-2 border-gray-200 p-4 shadow-xs">
+          <div class="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-gray-100">
+            <span class="text-xs font-black text-gray-950">2. Powertrain Maintenance</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 shrink-0">
+              EV Wins (60% Lower Upkeep)
+            </span>
+          </div>
+          <div class="space-y-2.5">
+            <div class="p-3 rounded-xl bg-red-50/60 border border-red-100">
+              <div class="flex items-center gap-1.5 font-black text-red-700 text-[10px] uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-gas-pump"></i> Petrol / ICE Engine
+              </div>
+              <p class="text-xs text-gray-700 leading-relaxed font-medium">
+                2,000+ moving parts. Requires regular synthetic motor oil changes, oil filters, spark plugs, timing belts, alternators, exhaust catalytic converters, and clutch plates.
+              </p>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+              <div class="flex items-center gap-1.5 font-black text-emerald-800 text-[10px] uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-bolt"></i> Electric Vehicle (EV)
+              </div>
+              <p class="text-xs text-emerald-950 leading-relaxed font-medium">
+                Under 20 moving parts in the motor. No engine oil, no spark plugs, no clutch wear, no exhaust system. Routine care limited to cabin air filters and coolant checks.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white rounded-2xl border-2 border-gray-200 p-4 shadow-xs">
+          <div class="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-gray-100">
+            <span class="text-xs font-black text-gray-950">3. Braking System Lifespan</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 shrink-0">
+              EV Wins (3x Pad Longevity)
+            </span>
+          </div>
+          <div class="space-y-2.5">
+            <div class="p-3 rounded-xl bg-red-50/60 border border-red-100">
+              <div class="flex items-center gap-1.5 font-black text-red-700 text-[10px] uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-gas-pump"></i> Petrol / ICE Engine
+              </div>
+              <p class="text-xs text-gray-700 leading-relaxed font-medium">
+                100% friction braking. Brake pads and steel rotors wear down quickly and require replacement every 25,000 to 45,000 kilometers.
+              </p>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+              <div class="flex items-center gap-1.5 font-black text-emerald-800 text-[10px] uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-bolt"></i> Electric Vehicle (EV)
+              </div>
+              <p class="text-xs text-emerald-950 leading-relaxed font-medium">
+                <strong>Regenerative Braking</strong> reverses the motor to harvest kinetic energy into the battery. Brake pads frequently last 100,000+ km without replacement.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="bg-white rounded-2xl border-2 border-gray-200 p-4 shadow-xs">
+          <div class="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-gray-100">
+            <span class="text-xs font-black text-gray-950">4. Purchase Price & Depreciation</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-200 shrink-0">
+              ICE Wins on Upfront Price
+            </span>
+          </div>
+          <div class="space-y-2.5">
+            <div class="p-3 rounded-xl bg-amber-50/70 border border-amber-200/80">
+              <div class="flex items-center gap-1.5 font-black text-amber-800 text-[10px] uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-gas-pump"></i> Petrol / ICE Engine
+              </div>
+              <p class="text-xs text-gray-700 leading-relaxed font-medium">
+                Lower upfront purchase price. Moderate depreciation curve with mature secondary used-car market established worldwide.
+              </p>
+            </div>
+            <div class="p-3 rounded-xl bg-gray-50 border border-gray-200">
+              <div class="flex items-center gap-1.5 font-black text-gray-700 text-[10px] uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-bolt"></i> Electric Vehicle (EV)
+              </div>
+              <p class="text-xs text-gray-700 leading-relaxed font-medium">
+                Higher initial sticker price due to battery pack chemistry costs. Fast battery price reductions are narrowing this gap rapidly in 2026.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="bg-white rounded-2xl border-2 border-gray-200 p-4 shadow-xs">
+          <div class="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-gray-100">
+            <span class="text-xs font-black text-gray-950">5. Environmental Emissions</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-200 shrink-0">
+              EV Wins (Zero Tailpipe Smog)
+            </span>
+          </div>
+          <div class="space-y-2.5">
+            <div class="p-3 rounded-xl bg-red-50/60 border border-red-100">
+              <div class="flex items-center gap-1.5 font-black text-red-700 text-[10px] uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-gas-pump"></i> Petrol / ICE Engine
+              </div>
+              <p class="text-xs text-gray-700 leading-relaxed font-medium">
+                Burns fossil fuels directly. Produces ~2.31 kg of CO₂ per liter of gasoline, plus carbon monoxide (CO), nitrogen oxides (NOx), and particulate matter (PM2.5).
+              </p>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+              <div class="flex items-center gap-1.5 font-black text-emerald-800 text-[10px] uppercase tracking-wider mb-1">
+                <i class="fa-solid fa-bolt"></i> Electric Vehicle (EV)
+              </div>
+              <p class="text-xs text-emerald-950 leading-relaxed font-medium">
+                <strong>Zero tailpipe emissions</strong>. Even when powered by average national electrical grids, lifetime lifecycle emissions are 50% to 70% lower than comparable petrol vehicles.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop View: Comprehensive Data Table (Screens >= 768px) -->
+      <div class="hidden md:block overflow-x-auto bg-white rounded-3xl border-2 border-gray-200 shadow-sm">
+        <table class="w-full text-xs text-left border-collapse min-w-[720px]">
           <thead>
             <tr class="bg-gray-100/90 text-gray-950 font-black uppercase text-[11px] border-b border-gray-200">
               <th class="p-4 sm:p-5">Dimension</th>
