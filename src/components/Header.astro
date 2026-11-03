@@ -4,28 +4,30 @@ const currentPath = Astro.url.pathname;
 const isCalculator = currentPath === '/' || currentPath === '';
 const isBlog = currentPath.startsWith('/blog');
 const isAbout = currentPath.startsWith('/about');
+const isMethodology = currentPath.startsWith('/methodology');
 const isContact = currentPath.startsWith('/contact');
 ---
 
-<header class="border-b border-gray-100 bg-white sticky top-0 z-50 shadow-sm" role="banner">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 sm:h-20 flex items-center justify-between">
+<header class="border-b border-gray-100 bg-white sticky top-0 z-50 shadow-xs" role="banner">
+  <!-- Top Navigation Bar -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
     
     <!-- Logo -->
     <div class="flex items-center gap-3">
-      <a href="/" class="flex items-center gap-3 group" aria-label="VoltSavings Home">
-        <img src="/icon-192.png?v=6" alt="VoltSavings Logo" class="w-11 h-11 sm:w-14 sm:h-14 group-hover:scale-105 transition-transform flex-shrink-0 drop-shadow-md" width="56" height="56" />
+      <a href="/" class="flex items-center gap-2.5 sm:gap-3 group" aria-label="VoltSavings Home">
+        <img src="/icon-192.png?v=6" alt="VoltSavings Logo" class="w-10 h-10 sm:w-14 sm:h-14 group-hover:scale-105 transition-transform flex-shrink-0 drop-shadow-md" width="56" height="56" />
         <div>
-          <div class="flex items-center gap-2">
-            <span class="text-xl sm:text-2xl font-black tracking-tight text-gray-950">VoltSavings</span>
-            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] sm:text-[11px] font-extrabold bg-emerald-50 text-emerald-700 border border-emerald-200">PRO</span>
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <span class="text-lg sm:text-2xl font-black tracking-tight text-gray-950">VoltSavings</span>
+            <span class="inline-flex items-center px-1.5 sm:px-2 py-0.5 rounded text-[9px] sm:text-[11px] font-extrabold bg-emerald-50 text-emerald-700 border border-emerald-200">PRO</span>
           </div>
-          <p class="text-[11px] sm:text-xs text-gray-500 font-semibold hidden sm:block">Global Fuel vs EV Intelligence</p>
+          <p class="text-[10px] sm:text-xs text-gray-500 font-semibold hidden sm:block">Global Fuel vs EV Intelligence</p>
         </div>
       </a>
     </div>
 
-    <!-- Desktop Navigation -->
-    <nav class="hidden md:flex items-center space-x-8 text-sm font-bold text-gray-900" aria-label="Main Navigation">
+    <!-- Desktop Navigation (Visible on Tablet & Desktop) -->
+    <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-sm font-bold text-gray-900" aria-label="Desktop Navigation">
       <a 
         href="/" 
         class={`py-2 transition-colors flex items-center gap-1.5 ${isCalculator ? 'text-emerald-600 font-black' : 'hover:text-emerald-600 text-gray-700'}`}
@@ -48,6 +50,13 @@ const isContact = currentPath.startsWith('/contact');
         About Us {isAbout && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
       </a>
       <a 
+        href="/methodology" 
+        class={`py-2 transition-colors flex items-center gap-1.5 ${isMethodology ? 'text-emerald-600 font-black' : 'hover:text-emerald-600 text-gray-700'}`}
+        aria-current={isMethodology ? 'page' : undefined}
+      >
+        Methodology {isMethodology && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
+      </a>
+      <a 
         href="/contact" 
         class={`py-2 transition-colors flex items-center gap-1.5 ${isContact ? 'text-emerald-600 font-black' : 'hover:text-emerald-600 text-gray-700'}`}
         aria-current={isContact ? 'page' : undefined}
@@ -64,65 +73,130 @@ const isContact = currentPath.startsWith('/contact');
       >
         Try Calculator
       </a>
+      
+      <!-- Hamburger Toggle Button -->
       <button 
         type="button"
         aria-label="Toggle Navigation Menu" 
         aria-expanded="false"
         id="mobileMenuBtn" 
-        class="md:hidden text-black p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-xl border border-gray-200"
+        class="md:hidden text-gray-800 p-2 min-w-[40px] min-h-[40px] flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-emerald-600 rounded-xl border border-gray-200 hover:bg-gray-50 transition-colors"
       >
-        <i id="mobileMenuIcon" class="fa-solid fa-bars text-lg"></i>
+        <i id="mobileMenuIcon" class="fa-solid fa-bars text-base"></i>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Menu Dropdown -->
-  <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white/95 backdrop-blur-md px-4 py-5 space-y-2 text-sm shadow-xl transition-all animate-fadeIn">
+  <!-- Mobile Horizontal Pages Bar (ALWAYS VISIBLE in Header on Mobile!) -->
+  <nav class="md:hidden flex items-center justify-start px-3 py-1.5 border-t border-gray-100 bg-gray-50/90 overflow-x-auto no-scrollbar gap-1 text-[11px] font-bold" aria-label="Mobile Quick Navigation">
     <a 
       href="/" 
-      class={`mobile-link flex items-center justify-between py-2.5 px-3 rounded-xl font-bold min-h-[44px] ${isCalculator ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-800 hover:bg-gray-50'}`}
+      class={`px-2.5 py-1.5 rounded-lg whitespace-nowrap transition-all flex items-center gap-1 ${isCalculator ? 'bg-emerald-600 text-white shadow-xs font-black' : 'text-gray-700 hover:text-emerald-700 hover:bg-white'}`}
+      aria-current={isCalculator ? 'page' : undefined}
     >
-      <span>⚡ EV Calculator</span>
-      {isCalculator && <span class="w-2 h-2 rounded-full bg-emerald-600"></span>}
-    </a>
-    <a href="/#features" class="mobile-link block py-2.5 px-3 rounded-xl text-gray-700 hover:bg-gray-50 font-semibold min-h-[44px]">
-      Key Features
-    </a>
-    <a href="/#breakdown" class="mobile-link block py-2.5 px-3 rounded-xl text-gray-700 hover:bg-gray-50 font-semibold min-h-[44px]">
-      Comparison & 5-Year Matrix
+      <span>⚡ Calculator</span>
     </a>
     <a 
       href="/blog" 
-      class={`mobile-link flex items-center justify-between py-2.5 px-3 rounded-xl font-bold min-h-[44px] ${isBlog ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-800 hover:bg-gray-50'}`}
+      class={`px-2.5 py-1.5 rounded-lg whitespace-nowrap transition-all flex items-center gap-1 ${isBlog ? 'bg-emerald-600 text-white shadow-xs font-black' : 'text-gray-700 hover:text-emerald-700 hover:bg-white'}`}
+      aria-current={isBlog ? 'page' : undefined}
     >
-      <span>📚 EV Guides & Research</span>
-      {isBlog && <span class="w-2 h-2 rounded-full bg-emerald-600"></span>}
-    </a>
-    <a href="/#faq" class="mobile-link block py-2.5 px-3 rounded-xl text-gray-700 hover:bg-gray-50 font-semibold min-h-[44px]">
-      Help & FAQ
+      <span>📚 Blog</span>
     </a>
     <a 
       href="/about" 
-      class={`mobile-link block py-2.5 px-3 rounded-xl font-semibold min-h-[44px] ${isAbout ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-700 hover:bg-gray-50'}`}
+      class={`px-2.5 py-1.5 rounded-lg whitespace-nowrap transition-all flex items-center gap-1 ${isAbout ? 'bg-emerald-600 text-white shadow-xs font-black' : 'text-gray-700 hover:text-emerald-700 hover:bg-white'}`}
+      aria-current={isAbout ? 'page' : undefined}
     >
-      About Our Mission
+      <span>ℹ️ About</span>
+    </a>
+    <a 
+      href="/methodology" 
+      class={`px-2.5 py-1.5 rounded-lg whitespace-nowrap transition-all flex items-center gap-1 ${isMethodology ? 'bg-emerald-600 text-white shadow-xs font-black' : 'text-gray-700 hover:text-emerald-700 hover:bg-white'}`}
+      aria-current={isMethodology ? 'page' : undefined}
+    >
+      <span>📐 Formulas</span>
     </a>
     <a 
       href="/contact" 
-      class={`mobile-link block py-2.5 px-3 rounded-xl font-semibold min-h-[44px] ${isContact ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-700 hover:bg-gray-50'}`}
+      class={`px-2.5 py-1.5 rounded-lg whitespace-nowrap transition-all flex items-center gap-1 ${isContact ? 'bg-emerald-600 text-white shadow-xs font-black' : 'text-gray-700 hover:text-emerald-700 hover:bg-white'}`}
+      aria-current={isContact ? 'page' : undefined}
     >
-      Contact Support
+      <span>✉️ Contact</span>
     </a>
+  </nav>
 
-    <!-- Mobile Menu CTA Button -->
-    <div class="pt-3 border-t border-gray-100">
+  <!-- Mobile Full Menu Dropdown (When Hamburger is clicked) -->
+  <div id="mobileMenu" class="hidden md:hidden border-t border-gray-100 bg-white px-4 py-4 space-y-3 text-sm shadow-xl transition-all">
+    
+    <!-- Primary Pages Group -->
+    <div>
+      <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block mb-1.5">Website Pages</span>
+      <div class="space-y-1">
+        <a 
+          href="/" 
+          class={`flex items-center justify-between py-2 px-3 rounded-xl font-bold min-h-[40px] ${isCalculator ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-800 hover:bg-gray-50'}`}
+        >
+          <span>⚡ EV vs Petrol Calculator</span>
+          {isCalculator && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
+        </a>
+        <a 
+          href="/blog" 
+          class={`flex items-center justify-between py-2 px-3 rounded-xl font-bold min-h-[40px] ${isBlog ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-800 hover:bg-gray-50'}`}
+        >
+          <span>📚 EV Guides & Research</span>
+          {isBlog && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
+        </a>
+        <a 
+          href="/about" 
+          class={`flex items-center justify-between py-2 px-3 rounded-xl font-bold min-h-[40px] ${isAbout ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-800 hover:bg-gray-50'}`}
+        >
+          <span>ℹ️ About Our Mission</span>
+          {isAbout && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
+        </a>
+        <a 
+          href="/methodology" 
+          class={`flex items-center justify-between py-2 px-3 rounded-xl font-bold min-h-[40px] ${isMethodology ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-800 hover:bg-gray-50'}`}
+        >
+          <span>📐 Calculation Formulas</span>
+          {isMethodology && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
+        </a>
+        <a 
+          href="/contact" 
+          class={`flex items-center justify-between py-2 px-3 rounded-xl font-bold min-h-[40px] ${isContact ? 'bg-emerald-50 text-emerald-700 font-black' : 'text-gray-800 hover:bg-gray-50'}`}
+        >
+          <span>✉️ Contact & Support</span>
+          {isContact && <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>}
+        </a>
+      </div>
+    </div>
+
+    <!-- In-Page Calculator Shortcuts -->
+    <div class="pt-2 border-t border-gray-100">
+      <span class="text-[10px] font-black uppercase tracking-wider text-gray-400 block mb-1.5">Calculator Highlights</span>
+      <div class="space-y-1">
+        <a href="/#features" class="mobile-hash-link block py-1.5 px-3 rounded-xl text-gray-600 hover:bg-gray-50 text-xs font-semibold">
+          → Core Features & Trust
+        </a>
+        <a href="/#breakdown" class="mobile-hash-link block py-1.5 px-3 rounded-xl text-gray-600 hover:bg-gray-50 text-xs font-semibold">
+          → 5-Year Savings Breakdown Table
+        </a>
+        <a href="/#faq" class="mobile-hash-link block py-1.5 px-3 rounded-xl text-gray-600 hover:bg-gray-50 text-xs font-semibold">
+          → Frequently Asked Questions
+        </a>
+      </div>
+    </div>
+
+    <!-- Action Button -->
+    <div class="pt-2 border-t border-gray-100">
       <a 
         href="/#calculator-app" 
-        class="mobile-link w-full py-3 px-4 rounded-xl text-center text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white shadow-md flex items-center justify-center gap-2 min-h-[44px]"
+        class="mobile-hash-link w-full py-2.5 px-4 rounded-xl text-center text-xs font-black bg-emerald-600 hover:bg-emerald-700 text-white shadow-md flex items-center justify-center gap-2"
       >
-        <i class="fa-solid fa-calculator"></i> Launch Free Calculator
+        <i class="fa-solid fa-calculator"></i> Launch Calculator
       </a>
     </div>
+
   </div>
 </header>
 
@@ -137,18 +211,19 @@ const isContact = currentPath.startsWith('/contact');
     if (isHidden) {
       mobileMenu.classList.remove('hidden');
       mobileBtn.setAttribute('aria-expanded', 'true');
-      mobileMenuIcon.className = 'fa-solid fa-xmark text-lg';
+      mobileMenuIcon.className = 'fa-solid fa-xmark text-base';
     } else {
       mobileMenu.classList.add('hidden');
       mobileBtn.setAttribute('aria-expanded', 'false');
-      mobileMenuIcon.className = 'fa-solid fa-bars text-lg';
+      mobileMenuIcon.className = 'fa-solid fa-bars text-base';
     }
   }
 
   mobileBtn?.addEventListener('click', toggleMenu);
 
-  // Close mobile menu automatically when any link is clicked
-  document.querySelectorAll('.mobile-link').forEach(link => {
+  // Close mobile dropdown ONLY when an in-page anchor hash link is tapped!
+  // Normal page navigation links (like /blog, /about) will navigate naturally without DOM interference!
+  document.querySelectorAll('.mobile-hash-link').forEach(link => {
     link.addEventListener('click', () => {
       if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
         toggleMenu();
