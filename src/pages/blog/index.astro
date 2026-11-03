@@ -4,6 +4,15 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 
 const articles = [
   {
+    slug: 'ev-charging-cost-vs-petrol-2026',
+    title: 'How Much Does It Cost to Charge an EV vs Gas in 2026? (Tesla, BYD & Commuter Guide)',
+    desc: 'Empirical real-world telemetry comparing Tesla Model 3, BYD Atto 3, and popular EVs vs petrol cars. Home Level 2 rates vs commercial DC fast chargers.',
+    category: 'Charging Economics',
+    badgeClass: 'bg-emerald-100 text-emerald-800 border border-emerald-300',
+    readTime: '7 min read',
+    icon: 'fa-solid fa-bolt-lightning'
+  },
+  {
     slug: 'ev-savings-2026',
     title: 'How Much Money Do You Really Save Switching to an EV? 2026 Financial Guide',
     desc: 'Comprehensive cost analysis comparing gas vs electricity rates, brake pad longevity, powertrain maintenance differences, and multi-year TCO break-even curves.',
@@ -65,8 +74,8 @@ const blogIndexSchema = {
       </p>
     </div>
 
-    <!-- Blog Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Blog Grid (2x2 Balanced Layout) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       {articles.map((art) => (
         <article class="bg-white border-2 border-gray-200 rounded-3xl overflow-hidden hover:border-emerald-500 transition-all shadow-sm hover:shadow-md flex flex-col group">
           <div class="p-6 border-b border-gray-100 bg-gradient-to-b from-emerald-50/60 to-white">

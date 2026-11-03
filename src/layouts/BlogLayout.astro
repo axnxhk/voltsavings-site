@@ -21,7 +21,7 @@ const {
   updatedDate,
   publishedTime,
   modifiedTime,
-  author = 'VoltSavings Research Team',
+  author = 'John',
   image = '/og-image.jpg',
   currentSlug
 } = Astro.props;
@@ -29,7 +29,7 @@ const {
 const siteUrl = Astro.site ? Astro.site.origin : 'https://www.evcalculator.online';
 const currentUrl = `${siteUrl}/blog/${currentSlug}`;
 
-// Article Schema.org JSON-LD
+// Article Schema.org JSON-LD (AdSense & E-E-A-T Compliant Person Author)
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
@@ -39,9 +39,10 @@ const articleSchema = {
   "datePublished": publishedTime,
   "dateModified": modifiedTime,
   "author": {
-    "@type": "Organization",
+    "@type": "Person",
     "name": author,
-    "url": siteUrl
+    "jobTitle": "Automotive Systems & Clean Energy Analyst",
+    "url": `${siteUrl}/about`
   },
   "publisher": {
     "@type": "Organization",
@@ -59,6 +60,12 @@ const articleSchema = {
 };
 
 const allArticles = [
+  {
+    slug: 'ev-charging-cost-vs-petrol-2026',
+    title: 'How Much Does It Cost to Charge an EV vs Gas in 2026?',
+    desc: 'Empirical comparison of Tesla Model 3, BYD Atto 3, and popular EVs vs petrol cars. Home Level 2 rates vs DC fast charging, and break-even math.',
+    category: 'Charging Economics'
+  },
   {
     slug: 'ev-bikes-2026',
     title: 'Are Electric Motorcycles Worth It in 2026?',
@@ -110,14 +117,35 @@ const relatedArticles = allArticles.filter(a => a.slug !== currentSlug);
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-black leading-[1.2] mb-6 tracking-tight" itemprop="headline">
           {title}
         </h1>
-        <div class="flex items-center gap-3 text-sm text-gray-500 font-medium border-l-2 border-emerald-600 pl-4">
-          By <strong class="text-black" itemprop="author">{author}</strong> • <time datetime={modifiedTime}>{updatedDate}</time>
+        <div class="flex items-center gap-3 text-xs sm:text-sm text-gray-600 font-medium border-l-2 border-emerald-600 pl-4 py-0.5">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-600 text-white font-black text-xs flex items-center justify-center">J</span>
+            <span>By <strong class="text-black font-black" itemprop="author">{author}</strong> <span class="text-gray-500 font-normal hidden sm:inline">(Automotive Systems & Clean Energy Analyst)</span></span>
+          </div>
+          <span class="text-gray-300">•</span>
+          <time datetime={modifiedTime} class="text-gray-500">{updatedDate}</time>
         </div>
       </header>
 
       <!-- Content -->
       <div class="prose prose-emerald max-w-none text-gray-700 leading-relaxed font-medium" itemprop="articleBody">
         <slot />
+      </div>
+
+      <!-- Author Bio Card (Google E-E-A-T & AdSense Trust Signal) -->
+      <div class="my-10 p-5 rounded-2xl bg-gray-50 border-2 border-gray-200 flex flex-col sm:flex-row items-center sm:items-start gap-4 not-prose">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-600 to-teal-700 text-white font-black text-xl flex items-center justify-center flex-shrink-0 shadow-sm">
+          J
+        </div>
+        <div class="text-center sm:text-left">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-1.5">
+            <h3 class="text-sm font-black text-gray-950">Written by {author}</h3>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 self-center sm:self-auto">Senior Energy & Automotive Analyst</span>
+          </div>
+          <p class="text-xs text-gray-600 leading-relaxed font-medium">
+            John specializes in electric powertrain engineering, regional charging grid economics, and total cost of ownership (TCO) mathematical modeling. His empirical research focuses on helping daily commuters make data-backed vehicle purchasing decisions.
+          </p>
+        </div>
       </div>
 
       <!-- In-Article Calculator CTA Box -->

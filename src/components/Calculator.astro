@@ -66,60 +66,83 @@
       </div>
     </div>
 
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4" id="presetContainer" role="radiogroup" aria-label="Vehicle Presets">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3" id="presetContainer" role="radiogroup" aria-label="Vehicle Presets">
       
       <!-- Preset 1: Bike / Scooter -->
-      <button type="button" data-preset="bike" class="preset-btn active text-left p-3 sm:p-4 rounded-2xl border-2 border-emerald-600 bg-emerald-50/70 shadow-sm transition-all duration-200 cursor-pointer hover:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="true" role="radio">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-2xl sm:text-3xl">🛵</span>
-          <span class="preset-badge text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-md bg-emerald-600 text-white">Selected</span>
+      <button type="button" data-preset="bike" class="preset-btn active text-left p-3 sm:p-3.5 rounded-2xl border-2 border-emerald-600 bg-emerald-50/70 shadow-sm transition-all duration-200 cursor-pointer hover:border-emerald-600 focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="true" role="radio">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xl sm:text-2xl">🛵</span>
+          <span class="preset-badge text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-emerald-600 text-white">Selected</span>
         </div>
-        <p class="font-black text-xs sm:text-base text-black leading-tight">E-Bike / Scooter</p>
-        <p class="text-[10px] sm:text-[11px] text-gray-600 mt-0.5 sm:mt-1 font-medium">70cc vs EV</p>
-        <div class="mt-2 text-[9px] sm:text-[10px] font-bold text-emerald-700 bg-white/80 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 inline-block border border-emerald-200">
+        <p class="font-black text-xs sm:text-sm text-black leading-tight">E-Bike / Scooter</p>
+        <p class="text-[10px] text-gray-600 mt-0.5 font-medium">70cc vs EV Bike</p>
+        <div class="mt-2 text-[9px] font-bold text-emerald-700 bg-white/80 rounded-lg px-1.5 py-0.5 inline-block border border-emerald-200">
           Save ~90%
         </div>
       </button>
 
       <!-- Preset 2: Compact / Hatchback -->
-      <button type="button" data-preset="car_compact" class="preset-btn text-left p-3 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-2xl sm:text-3xl">🚗</span>
-          <span class="preset-badge text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
+      <button type="button" data-preset="car_compact" class="preset-btn text-left p-3 sm:p-3.5 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xl sm:text-2xl">🚗</span>
+          <span class="preset-badge text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
         </div>
-        <p class="font-black text-xs sm:text-base text-black leading-tight">City Hatchback</p>
-        <p class="text-[10px] sm:text-[11px] text-gray-600 mt-0.5 sm:mt-1 font-medium">Alto vs EV</p>
-        <div class="mt-2 text-[9px] sm:text-[10px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 inline-block border border-emerald-100">
+        <p class="font-black text-xs sm:text-sm text-black leading-tight">City Hatchback</p>
+        <p class="text-[10px] text-gray-600 mt-0.5 font-medium">Alto / Swift vs EV</p>
+        <div class="mt-2 text-[9px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-1.5 py-0.5 inline-block border border-emerald-100">
           Save ~80%
         </div>
       </button>
 
-      <!-- Preset 3: Sedan / SUV -->
-      <button type="button" data-preset="car_sedan" class="preset-btn text-left p-3 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-2xl sm:text-3xl">🚙</span>
-          <span class="preset-badge text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
+      <!-- Preset 3: Sedan / Crossover -->
+      <button type="button" data-preset="car_sedan" class="preset-btn text-left p-3 sm:p-3.5 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xl sm:text-2xl">🚙</span>
+          <span class="preset-badge text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
         </div>
-        <p class="font-black text-xs sm:text-base text-black leading-tight">Sedan / SUV</p>
-        <p class="text-[10px] sm:text-[11px] text-gray-600 mt-0.5 sm:mt-1 font-medium">Civic vs EV</p>
-        <div class="mt-2 text-[9px] sm:text-[10px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 inline-block border border-emerald-100">
+        <p class="font-black text-xs sm:text-sm text-black leading-tight">Family Sedan</p>
+        <p class="text-[10px] text-gray-600 mt-0.5 font-medium">Civic / MG4 vs EV</p>
+        <div class="mt-2 text-[9px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-1.5 py-0.5 inline-block border border-emerald-100">
           Save ~75%
         </div>
       </button>
 
-      <!-- Preset 4: Custom -->
-      <button type="button" data-preset="custom" class="preset-btn text-left p-3 sm:p-4 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
-        <div class="flex items-center justify-between mb-2">
-          <span class="text-2xl sm:text-3xl">⚙️</span>
-          <span class="preset-badge text-[9px] sm:text-[10px] font-black uppercase tracking-wider px-1.5 sm:px-2 py-0.5 rounded-md bg-gray-100 text-gray-600">Custom</span>
+      <!-- Preset 4: Tesla / BYD EV Models -->
+      <button type="button" data-preset="car_tesla" class="preset-btn text-left p-3 sm:p-3.5 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-checked="false" role="radio">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xl sm:text-2xl">⚡</span>
+          <span class="preset-badge text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-gray-100 text-gray-600">Select</span>
         </div>
-        <p class="font-black text-xs sm:text-base text-black leading-tight">Custom</p>
-        <p class="text-[10px] sm:text-[11px] text-gray-600 mt-0.5 sm:mt-1 font-medium">Manual Mode</p>
-        <div class="mt-2 text-[9px] sm:text-[10px] font-bold text-gray-600 bg-gray-100 rounded-lg px-1.5 sm:px-2 py-0.5 sm:py-1 inline-block">
+        <p class="font-black text-xs sm:text-sm text-black leading-tight">Tesla / BYD EV</p>
+        <p class="text-[10px] text-gray-600 mt-0.5 font-medium">Model 3/Y & Atto 3</p>
+        <div class="mt-2 text-[9px] font-bold text-emerald-700 bg-emerald-50 rounded-lg px-1.5 py-0.5 inline-block border border-emerald-100">
+          Save ~76%
+        </div>
+      </button>
+
+      <!-- Preset 5: Custom -->
+      <button type="button" data-preset="custom" class="preset-btn text-left p-3 sm:p-3.5 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500 col-span-2 sm:col-span-1" aria-checked="false" role="radio">
+        <div class="flex items-center justify-between mb-1.5">
+          <span class="text-xl sm:text-2xl">⚙️</span>
+          <span class="preset-badge text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-gray-100 text-gray-600">Custom</span>
+        </div>
+        <p class="font-black text-xs sm:text-sm text-black leading-tight">Custom</p>
+        <p class="text-[10px] text-gray-600 mt-0.5 font-medium">Manual Tuning</p>
+        <div class="mt-2 text-[9px] font-bold text-gray-600 bg-gray-100 rounded-lg px-1.5 py-0.5 inline-block">
           Tailored
         </div>
       </button>
 
+    </div>
+
+    <!-- Quick Benchmark Model Tags (Natural SEO & Real Commuter Telemetry) -->
+    <div class="mt-3 pt-2.5 border-t border-gray-100 flex flex-wrap items-center gap-1.5 text-[11px] text-gray-500 font-medium">
+      <span class="font-black text-gray-800 flex items-center gap-1"><i class="fa-solid fa-car-side text-emerald-600"></i> Calibrated EV Models:</span>
+      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">Tesla Model 3 / Y</span>
+      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">BYD Atto 3 / Seal</span>
+      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">Hyundai Ioniq 5</span>
+      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">Kia EV6</span>
+      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">MG4 Electric</span>
     </div>
   </div>
 
@@ -453,7 +476,13 @@
       metric: { fuelEff: 11, evEff: 6.0, maintMult: 4.2 },
       imperial: { fuelEff: 25, evEff: 3.6, maintMult: 3.8 },
       fuelHint: "1.5L-1.8L sedan/crossover (Civic/Corolla/Sportage)",
-      evHint: "EV Sedan/SUV (Tesla Model 3/BYD Atto 3/Deepal)"
+      evHint: "EV Sedan/Crossover (MG4/Hyundai Ioniq 5)"
+    },
+    car_tesla: {
+      metric: { fuelEff: 10, evEff: 6.3, maintMult: 4.5 },
+      imperial: { fuelEff: 26, evEff: 3.9, maintMult: 4.0 },
+      fuelHint: "2.0L Petrol Sedan/SUV (Camry/RAV4/CR-V)",
+      evHint: "Tesla Model 3/Y & BYD Atto 3/Seal (60-75 kWh)"
     }
   };
 
