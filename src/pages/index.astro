@@ -2,11 +2,11 @@
 import Layout from '../layouts/Layout.astro';
 import Calculator from '../components/Calculator.astro';
 
-// Enhanced Structured Data (JSON-LD) for SoftwareApplication & Comprehensive FAQPage
+// Enhanced Structured Data (JSON-LD) for SoftwareApplication & Comprehensive US/UK FAQPage
 const calculatorSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "VoltSavings EV vs Petrol Calculator",
+  "name": "VoltSavings EV Charging Cost & Petrol/Gas Savings Calculator",
   "operatingSystem": "All",
   "applicationCategory": "FinanceApplication",
   "offers": {
@@ -14,13 +14,61 @@ const calculatorSchema = {
     "price": "0",
     "priceCurrency": "USD"
   },
-  "description": "Calculate exact fuel cost vs electric vehicle charging expenses. Compare ROI across 1 to 5 years for cars and motorcycles."
+  "description": "Calculate exact fuel cost vs electric vehicle charging expenses in US Dollars ($/gal) and British Pounds (£/litre). Compare multi-year ROI for popular US and UK EVs."
 };
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does it cost to charge an electric car in the US compared to gas at $3.50/gal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At the US national average electricity rate of $0.16 per kWh, driving an EV achieving 3.8 miles/kWh costs approximately 4.2 cents per mile ($0.042/mi). In contrast, a gas car getting 28 US MPG at $3.50 per gallon costs 12.5 cents per mile ($0.125/mi). For an average 15,000-mile annual commute, an EV driver saves approximately $1,245 per year on fuel alone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I claim the $7,500 Federal Clean Vehicle Tax Credit for an EV in the US?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Under Internal Revenue Code Section 30D (Inflation Reduction Act), qualifying new electric vehicles assembled in North America that meet critical mineral and battery component guidelines are eligible for up to a $7,500 federal tax credit. This credit can be transferred directly to registered dealers at point-of-sale for an immediate price reduction. Qualified used EVs under $25,000 can receive up to $4,000 in federal tax credits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is cheaper in the US: charging at home (Level 2) or Tesla Superchargers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Home Level 2 charging is significantly cheaper. Overnight residential electricity rates average $0.08 to $0.16 per kWh ($5 to $10 for a full 60 kWh battery charge giving ~240 miles). Tesla Superchargers and commercial DC fast chargers cost $0.35 to $0.48 per kWh ($21 to $29 per charge). For optimal savings, charge overnight at home and reserve fast chargers for road trips."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost per mile (p/mile) to drive an EV in the UK compared to petrol?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With UK petrol averaging £1.45 per litre (£6.59 per Imperial Gallon), an average 40 Imperial MPG petrol car costs 16.5p per mile. In contrast, an electric car achieving 3.8 miles/kWh charged at home on a smart EV tariff like Octopus Intelligent Go (7p/kWh) costs just 1.8p per mile—an 89% fuel cost saving. On the standard Ofgem energy price cap (24.5p/kWh), an EV costs 6.4p per mile, saving over 61% compared to petrol."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the cheapest way to charge an electric vehicle in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The cheapest method is home charging on a dedicated time-of-use smart EV tariff, such as Octopus Intelligent Go (7p/kWh off-peak window from 11:30 PM to 5:30 AM) or British Gas EV tariff. Fully charging a 60 kWh battery on Octopus Go costs only £4.20. Under the Ofgem standard price cap (24.5p/kWh), the same charge costs £14.70, while motorway public rapid chargers (79p/kWh) cost approximately £47."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the UK Company Car Benefit-in-Kind (BiK) tax rates for electric cars?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pure zero-emission electric vehicles enjoy an ultra-favourable UK Benefit-in-Kind (BiK) tax rate of only 2% for 2024/2025, rising by 1% per tax year to 3% in 2025/2026, 4% in 2026/2027, and 5% in 2027/2028. Equivalent petrol and diesel company cars carry BiK tax rates of 25% to 37%, allowing UK drivers and businesses to save £2,500 to £6,000+ every year in income tax and National Insurance."
+      }
+    },
     {
       "@type": "Question",
       "name": "What is VoltSavings and how does the calculator work?",
@@ -90,8 +138,9 @@ const faqSchema = {
 ---
 
 <Layout 
-  title="EV vs Petrol Calculator: Free Cost Savings Tool | VoltSavings™"
-  description="Compare petrol vs EV charging costs in seconds. Free calculator with real-time currencies, 5-year ROI projections, and 1-page executive PDF reports."
+  title="EV Charging Cost Calculator (US $ & UK £) - Electric vs Gas/Petrol Savings | VoltSavings™"
+  description="Compare electric car charging costs vs gas in the US ($/gal) and petrol in the UK (£/litre). Accurate 2026 EV savings calculator & 5-year ROI reports."
+  canonicalUrl="https://www.evcalculator.online/"
   schema={[calculatorSchema, faqSchema]}
 >
   <!-- Hero Section with Immediate Value & Problem Solving -->
@@ -166,6 +215,303 @@ const faqSchema = {
   <main id="calculator-app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full scroll-mt-20" role="main">
     <Calculator />
   </main>
+
+  <!-- Comprehensive US & UK Regional EV Cost & Savings Guide (On-Page SEO Intelligence) -->
+  <section id="us-uk-ev-guide" class="py-16 border-t border-gray-200 bg-gradient-to-b from-white via-emerald-50/20 to-white" aria-labelledby="regional-guide-heading">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100/80 border border-emerald-300 text-emerald-900 text-xs font-black uppercase tracking-wider mb-3">
+          <span>🇺🇸 United States & 🇬🇧 United Kingdom Market Guide</span>
+        </div>
+        <h2 id="regional-guide-heading" class="text-2xl sm:text-4xl font-black text-gray-950 tracking-tight leading-tight">
+          EV Charging Cost vs Gas & Petrol: <br class="hidden sm:inline" />
+          <span class="bg-gradient-to-r from-emerald-600 to-teal-700 bg-clip-text text-transparent">Complete 2026 US ($) & UK (£) Economic Analysis</span>
+        </h2>
+        <p class="text-sm text-gray-600 mt-3 font-medium leading-relaxed">
+          Comparing electric vehicle operational expenses against gasoline at $3.50/gal in the United States and petrol at £1.45/litre in the United Kingdom. Discover real-world tariffs, home vs rapid charging rates, and tax incentives.
+        </p>
+      </div>
+
+      <!-- Grid: US Column vs UK Column -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch mb-12">
+        
+        <!-- ==================== US SECTION ==================== -->
+        <article class="bg-white border-2 border-emerald-200/90 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-full pointer-events-none"></div>
+
+          <div>
+            <!-- Header with US Flag & Market Badge -->
+            <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+              <div class="flex items-center gap-3">
+                <span class="text-3xl">🇺🇸</span>
+                <div>
+                  <h3 class="text-xl font-black text-gray-950">United States EV & Gas Guide</h3>
+                  <p class="text-xs text-gray-500 font-bold">USD ($) • US Gallons • mi/kWh Tariffs</p>
+                </div>
+              </div>
+              <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase bg-emerald-100 text-emerald-800 border border-emerald-300">
+                US Standards
+              </span>
+            </div>
+
+            <!-- Key US Metrics Bar -->
+            <div class="grid grid-cols-3 gap-2.5 p-3.5 bg-gray-50 rounded-2xl border border-gray-200 mb-6 text-center">
+              <div>
+                <span class="text-[10px] uppercase font-bold text-gray-500 block">Avg Gas Price</span>
+                <span class="text-sm sm:text-base font-black text-amber-700">$3.50 / gal</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-bold text-gray-500 block">Home Power Rate</span>
+                <span class="text-sm sm:text-base font-black text-emerald-700">$0.16 / kWh</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-bold text-gray-500 block">Avg Savings</span>
+                <span class="text-sm sm:text-base font-black text-emerald-800">~66% Cheaper</span>
+              </div>
+            </div>
+
+            <!-- Content Points -->
+            <div class="space-y-5 text-xs text-gray-700 leading-relaxed font-medium">
+              
+              <!-- Point 1: Charging Cost & Cost per Mile -->
+              <div class="bg-emerald-50/50 p-4 rounded-2xl border border-emerald-100">
+                <h4 class="text-sm font-black text-emerald-950 mb-1 flex items-center gap-1.5">
+                  <i class="fa-solid fa-coins text-emerald-600"></i> EV Charging Cost & Cost Per Mile vs Gas ($3.50/gal)
+                </h4>
+                <p class="mb-2">
+                  At the national average electricity tariff of <strong>$0.16 per kWh</strong>, fully recharging a standard 60 kWh battery (e.g. Tesla Model 3 or Model Y RWD, giving ~240 miles) costs approximately <strong>$9.60</strong>. On off-peak night utility programs ($0.08/kWh), a full charge drops to under <strong>$4.80</strong>.
+                </p>
+                <div class="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-emerald-200/60 font-bold text-[11px]">
+                  <div>Gas Sedan (28 US MPG @ $3.50): <span class="text-red-700 font-black block text-xs">12.5¢ per mile</span></div>
+                  <div>EV Sedan (3.8 mi/kWh @ $0.16): <span class="text-emerald-700 font-black block text-xs">4.2¢ per mile</span></div>
+                </div>
+                <p class="text-[11px] text-gray-600 mt-2">
+                  For a commuter traveling 15,000 miles per year, fuel drops from <strong>$1,875 to $630</strong> — retaining over <strong>$1,245 in cash annually</strong>.
+                </p>
+              </div>
+
+              <!-- Point 2: Level 2 vs Superchargers -->
+              <div>
+                <h4 class="text-sm font-black text-gray-950 mb-1 flex items-center gap-1.5">
+                  <i class="fa-solid fa-charging-station text-emerald-600"></i> Home Level 2 (240V) vs Tesla Superchargers
+                </h4>
+                <p>
+                  Over 85% of EV charging occurs at home using overnight Level 2 (240V) equipment. Home charging costs between <strong>$0.08 and $0.16/kWh</strong>. In contrast, commercial DC fast charging and Tesla Superchargers range from <strong>$0.35 to $0.48+ per kWh</strong> ($18 to $26 for a 20% to 80% road-trip top-up). Maximizing home overnight charging delivers the lowest total cost of ownership.
+                </p>
+              </div>
+
+              <!-- Point 3: $7,500 Tax Credit -->
+              <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200">
+                <h4 class="text-sm font-black text-gray-950 mb-1 flex items-center gap-1.5">
+                  <i class="fa-solid fa-receipt text-emerald-600"></i> $7,500 US Federal Clean Vehicle Tax Credit (IRC Section 30D)
+                </h4>
+                <p class="text-[11px] mb-2">
+                  Under the Inflation Reduction Act, qualifying new electric vehicles assembled in North America that meet battery mineral and component sourcing standards are eligible for up to a <strong>$7,500 tax credit</strong>.
+                </p>
+                <ul class="list-disc pl-4 space-y-1 text-[11px] text-gray-600">
+                  <li><strong>Point-of-Sale Transfer:</strong> Buyers can transfer the full credit to registered auto dealerships for an immediate $7,500 discount off sticker price.</li>
+                  <li><strong>Used EV Credit:</strong> Pre-owned EVs under $25,000 qualify for up to <strong>$4,000 (30% of sale price)</strong>.</li>
+                  <li><strong>Income Limits:</strong> Adjusted Gross Income caps apply: $300,000 (joint), $225,000 (head of household), $150,000 (single).</li>
+                </ul>
+              </div>
+
+              <!-- US Popular EV Benchmark Table -->
+              <div class="mt-4">
+                <h4 class="text-xs font-black uppercase text-gray-700 tracking-wider mb-2">Popular US EV Operational Cost Comparison (15,000 mi/yr)</h4>
+                <div class="overflow-x-auto rounded-xl border border-gray-200">
+                  <table class="w-full text-left text-[11px]">
+                    <thead class="bg-gray-100 text-gray-900 font-black">
+                      <tr>
+                        <th class="p-2">Model</th>
+                        <th class="p-2">Efficiency</th>
+                        <th class="p-2">Gas Equiv.</th>
+                        <th class="p-2 text-right">Annual Savings</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                      <tr>
+                        <td class="p-2 font-bold text-gray-900">Tesla Model Y</td>
+                        <td class="p-2">3.8 mi/kWh</td>
+                        <td class="p-2 text-gray-600">28 US MPG</td>
+                        <td class="p-2 text-right font-black text-emerald-600">+$1,245 / yr</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 font-bold text-gray-900">Tesla Model 3</td>
+                        <td class="p-2">4.1 mi/kWh</td>
+                        <td class="p-2 text-gray-600">32 US MPG</td>
+                        <td class="p-2 text-right font-black text-emerald-600">+$1,055 / yr</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 font-bold text-gray-900">Ford F-150 Lightning</td>
+                        <td class="p-2">2.1 mi/kWh</td>
+                        <td class="p-2 text-gray-600">18 US MPG</td>
+                        <td class="p-2 text-right font-black text-emerald-600">+$1,775 / yr</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 font-bold text-gray-900">Chevy Equinox EV</td>
+                        <td class="p-2">3.4 mi/kWh</td>
+                        <td class="p-2 text-gray-600">27 US MPG</td>
+                        <td class="p-2 text-right font-black text-emerald-600">+$1,239 / yr</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 font-bold text-gray-900">Hyundai Ioniq 5</td>
+                        <td class="p-2">3.5 mi/kWh</td>
+                        <td class="p-2 text-gray-600">29 US MPG</td>
+                        <td class="p-2 text-right font-black text-emerald-600">+$1,125 / yr</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+        <!-- ==================== UK SECTION ==================== -->
+        <article class="bg-white border-2 border-indigo-200/90 rounded-3xl p-6 sm:p-8 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-bl-full pointer-events-none"></div>
+
+          <div>
+            <!-- Header with UK Flag & Market Badge -->
+            <div class="flex items-center justify-between pb-4 border-b border-gray-100 mb-6">
+              <div class="flex items-center gap-3">
+                <span class="text-3xl">🇬🇧</span>
+                <div>
+                  <h3 class="text-xl font-black text-gray-950">United Kingdom EV & Petrol Guide</h3>
+                  <p class="text-xs text-gray-500 font-bold">GBP (£) • Imperial MPG • Octopus 7p Tariffs</p>
+                </div>
+              </div>
+              <span class="px-3 py-1 rounded-full text-[11px] font-black uppercase bg-indigo-100 text-indigo-900 border border-indigo-300">
+                UK Standards
+              </span>
+            </div>
+
+            <!-- Key UK Metrics Bar -->
+            <div class="grid grid-cols-3 gap-2.5 p-3.5 bg-gray-50 rounded-2xl border border-gray-200 mb-6 text-center">
+              <div>
+                <span class="text-[10px] uppercase font-bold text-gray-500 block">Avg Petrol Price</span>
+                <span class="text-sm sm:text-base font-black text-amber-700">£1.45 / L</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-bold text-gray-500 block">Octopus Go Tariff</span>
+                <span class="text-sm sm:text-base font-black text-emerald-700">7p / kWh</span>
+              </div>
+              <div>
+                <span class="text-[10px] uppercase font-bold text-gray-500 block">Smart EV Running</span>
+                <span class="text-sm sm:text-base font-black text-emerald-800">1.8p / mile</span>
+              </div>
+            </div>
+
+            <!-- Content Points -->
+            <div class="space-y-5 text-xs text-gray-700 leading-relaxed font-medium">
+              
+              <!-- Point 1: UK Running Costs in Pence per Mile -->
+              <div class="bg-indigo-50/50 p-4 rounded-2xl border border-indigo-100">
+                <h4 class="text-sm font-black text-indigo-950 mb-1 flex items-center gap-1.5">
+                  <i class="fa-solid fa-sterling-sign text-indigo-600"></i> UK EV Running Costs in Pence per Mile (p/mile) vs Petrol
+                </h4>
+                <p class="mb-2">
+                  In the UK, fuel is sold in litres, but cars report economy in <strong>Imperial MPG</strong> (1 UK Imperial Gallon = 4.54609 Litres). At £1.45/litre, petrol costs <strong>£6.59 per Imperial Gallon</strong>. A typical 40 Imperial MPG petrol car costs <strong>16.5p per mile</strong>.
+                </p>
+                <div class="grid grid-cols-2 gap-2 mt-2 pt-2 border-t border-indigo-200/60 font-bold text-[11px]">
+                  <div>Petrol Car (40 UK MPG @ £1.45/L): <span class="text-red-700 font-black block text-xs">16.5p per mile</span></div>
+                  <div>EV on Octopus Go (3.8 mi/kWh @ 7p): <span class="text-emerald-700 font-black block text-xs">1.8p per mile</span></div>
+                </div>
+                <p class="text-[11px] text-gray-600 mt-2">
+                  Even on the standard Ofgem energy price cap (24.5p/kWh), an EV costs just <strong>6.4p per mile</strong> — still saving over <strong>61% on running costs</strong>.
+                </p>
+              </div>
+
+              <!-- Point 2: UK Tariffs: Octopus Go vs Ofgem Cap vs Rapid -->
+              <div>
+                <h4 class="text-sm font-black text-gray-950 mb-1 flex items-center gap-1.5">
+                  <i class="fa-solid fa-bolt text-indigo-600"></i> Octopus Intelligent Go (7p) vs Ofgem Price Cap (24.5p) vs Rapid
+                </h4>
+                <p class="mb-2">
+                  Choosing the right domestic tariff is the single highest-impact financial lever for UK EV owners:
+                </p>
+                <ul class="list-disc pl-4 space-y-1 text-[11px] text-gray-600">
+                  <li><strong>Octopus Intelligent Go / British Gas EV:</strong> Provides an ultra-low <strong>7p/kWh</strong> rate overnight (11:30 PM to 5:30 AM). A full 60 kWh battery charge (230+ miles) costs just <strong>£4.20</strong>.</li>
+                  <li><strong>Ofgem Standard Price Cap:</strong> Averages <strong>24.5p/kWh</strong>. A full 60 kWh charge costs <strong>£14.70</strong>.</li>
+                  <li><strong>Motorway Public Rapid Chargers (Gridserve, Ionity, bp pulse):</strong> Average <strong>75p to 85p/kWh (79p avg)</strong>. A 10% to 80% charge costs <strong>£33 to £40</strong> (~20p/mile). Essential for long trips, while 90% of daily commuting is done at home.</li>
+                </ul>
+              </div>
+
+              <!-- Point 3: Company Car BiK Tax -->
+              <div class="bg-gray-50 p-4 rounded-2xl border border-gray-200">
+                <h4 class="text-sm font-black text-gray-950 mb-1 flex items-center gap-1.5">
+                  <i class="fa-solid fa-briefcase text-indigo-600"></i> UK Company Car Benefit-in-Kind (BiK) Tax Relief
+                </h4>
+                <p class="text-[11px] mb-2">
+                  The UK government provides major corporate tax incentives for pure electric company cars:
+                </p>
+                <ul class="list-disc pl-4 space-y-1 text-[11px] text-gray-600">
+                  <li><strong>Ultra-Low BiK Rate:</strong> 100% electric cars are taxed at only <strong>2% BiK for 2024/2025</strong>, increasing by only 1% per tax year (3% in 2025/2026, 4% in 2026/2027, 5% in 2027/2028).</li>
+                  <li><strong>Massive Personal Tax Savings:</strong> On a £45,000 EV, a 40% higher-rate taxpayer pays just <strong>£360/year</strong> in BiK tax (at 2%), compared to <strong>£5,400/year</strong> for an equivalent petrol car with 30% BiK — saving over <strong>£5,000 in take-home pay each year</strong>.</li>
+                  <li><strong>Salary Sacrifice Programs:</strong> Allows employees to pay for an EV from pre-tax gross salary, cutting Income Tax, Employee NI, and Employer NI.</li>
+                </ul>
+              </div>
+
+              <!-- UK Popular EV Benchmark Table -->
+              <div class="mt-4">
+                <h4 class="text-xs font-black uppercase text-gray-700 tracking-wider mb-2">Popular UK EV Operational Cost Comparison (10,000 mi/yr)</h4>
+                <div class="overflow-x-auto rounded-xl border border-gray-200">
+                  <table class="w-full text-left text-[11px]">
+                    <thead class="bg-gray-100 text-gray-900 font-black">
+                      <tr>
+                        <th class="p-2">Model</th>
+                        <th class="p-2">Efficiency</th>
+                        <th class="p-2">Petrol Equiv.</th>
+                        <th class="p-2 text-right">Annual Savings</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                      <tr>
+                        <td class="p-2 font-bold text-gray-900">Tesla Model Y</td>
+                        <td class="p-2">3.8 mi/kWh</td>
+                        <td class="p-2 text-gray-600">36 UK MPG</td>
+                        <td class="p-2 text-right font-black text-emerald-600">+£1,647 / yr</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 font-bold text-gray-900">MG4 EV</td>
+                        <td class="p-2">3.9 mi/kWh</td>
+                        <td class="p-2 text-gray-600">44 UK MPG</td>
+                        <td class="p-2 text-right font-black text-emerald-600">+£1,319 / yr</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 font-bold text-gray-900">Nissan Leaf</td>
+                        <td class="p-2">3.7 mi/kWh</td>
+                        <td class="p-2 text-gray-600">42 UK MPG</td>
+                        <td class="p-2 text-right font-black text-emerald-600">+£1,380 / yr</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 font-bold text-gray-900">Volkswagen ID.3</td>
+                        <td class="p-2">3.8 mi/kWh</td>
+                        <td class="p-2 text-gray-600">45 UK MPG</td>
+                        <td class="p-2 text-right font-black text-emerald-600">+£1,280 / yr</td>
+                      </tr>
+                      <tr>
+                        <td class="p-2 font-bold text-gray-900">Vauxhall Corsa Electric</td>
+                        <td class="p-2">4.0 mi/kWh</td>
+                        <td class="p-2 text-gray-600">48 UK MPG</td>
+                        <td class="p-2 text-right font-black text-emerald-600">+£1,198 / yr</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
+  </section>
 
   <!-- Real-World Commuter Case Studies / Preset Comparisons -->
   <section class="py-16 border-t border-gray-200 bg-white" aria-labelledby="scenarios-heading">
@@ -673,6 +1019,72 @@ const faqSchema = {
       </div>
 
       <div class="space-y-4">
+        <!-- US Specific FAQ 1 -->
+        <details class="group bg-white border-2 border-emerald-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span class="flex items-center gap-2"><span class="text-base">🇺🇸</span> How much does it cost to charge an electric car in the US compared to gas at $3.50/gal?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            At the US national average electricity rate of <strong>$0.16 per kWh</strong>, driving an EV achieving 3.8 miles/kWh costs approximately <strong>4.2 cents per mile ($0.042/mi)</strong>. In contrast, an internal combustion car averaging 28 US MPG with gasoline at <strong>$3.50 per gallon</strong> costs <strong>12.5 cents per mile ($0.125/mi)</strong>. For an average American commuter driving 15,000 miles annually, charging an EV costs just $630/year versus $1,875/year in gas—saving over <strong>$1,245 every year in fuel alone</strong>.
+          </p>
+        </details>
+
+        <!-- US Specific FAQ 2 -->
+        <details class="group bg-white border-2 border-emerald-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span class="flex items-center gap-2"><span class="text-base">🇺🇸</span> Can I claim the $7,500 Federal Clean Vehicle Tax Credit for an EV in the US?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            Yes. Under Internal Revenue Code Section 30D (Inflation Reduction Act), qualifying new electric vehicles assembled in North America that meet critical mineral and battery component guidelines are eligible for up to a <strong>$7,500 federal tax credit</strong>. Eligible buyers can transfer the full credit to registered car dealers at point-of-sale for an immediate price discount. Pre-owned electric vehicles under $25,000 can receive up to <strong>$4,000 (30% of sale price)</strong> in federal tax credits.
+          </p>
+        </details>
+
+        <!-- US Specific FAQ 3 -->
+        <details class="group bg-white border-2 border-emerald-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span class="flex items-center gap-2"><span class="text-base">🇺🇸</span> What is cheaper in the US: charging at home (Level 2) or Tesla Superchargers?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            Home Level 2 (240V) charging is dramatically cheaper. Overnight residential electricity rates average <strong>$0.08 to $0.16 per kWh</strong>, meaning a full 60 kWh battery charge (providing ~240 miles) costs only <strong>$5 to $10</strong>. In contrast, commercial DC fast chargers and Tesla Superchargers cost <strong>$0.35 to $0.48+ per kWh</strong> ($21 to $29 per charge). For optimal economics, charge overnight at home for daily commuting and reserve Superchargers for long-distance highway road trips.
+          </p>
+        </details>
+
+        <!-- UK Specific FAQ 1 -->
+        <details class="group bg-white border-2 border-indigo-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-indigo-400 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span class="flex items-center gap-2"><span class="text-base">🇬🇧</span> How much does it cost per mile (p/mile) to drive an EV in the UK compared to petrol?</span>
+            <span class="text-indigo-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            With UK petrol averaging <strong>£1.45 per litre</strong> (£6.59 per Imperial Gallon), an average 40 Imperial MPG petrol car costs <strong>16.5p per mile</strong>. In contrast, an electric car achieving 3.8 miles/kWh charged at home on a smart EV tariff like Octopus Intelligent Go (7p/kWh) costs just <strong>1.8p per mile</strong>—an 89% fuel cost saving. On the standard Ofgem energy price cap (24.5p/kWh), an EV costs <strong>6.4p per mile</strong>, saving over 61% compared to petrol.
+          </p>
+        </details>
+
+        <!-- UK Specific FAQ 2 -->
+        <details class="group bg-white border-2 border-indigo-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-indigo-400 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span class="flex items-center gap-2"><span class="text-base">🇬🇧</span> What is the cheapest way to charge an electric vehicle in the UK?</span>
+            <span class="text-indigo-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            The cheapest method is home charging on a dedicated time-of-use smart EV tariff, such as Octopus Intelligent Go (<strong>7p/kWh</strong> off-peak window from 11:30 PM to 5:30 AM) or British Gas EV tariff. Fully charging a 60 kWh battery on Octopus Go costs only <strong>£4.20</strong> (~230 miles range). Under the Ofgem standard price cap (24.5p/kWh), the same charge costs £14.70, while motorway public rapid chargers (79p/kWh) cost approximately £47.
+          </p>
+        </details>
+
+        <!-- UK Specific FAQ 3 -->
+        <details class="group bg-white border-2 border-indigo-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-indigo-400 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span class="flex items-center gap-2"><span class="text-base">🇬🇧</span> What are the UK Company Car Benefit-in-Kind (BiK) tax rates for electric cars?</span>
+            <span class="text-indigo-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+            Pure zero-emission electric vehicles enjoy an ultra-favourable UK Benefit-in-Kind (BiK) tax rate of only <strong>2% for 2024/2025</strong>, rising by 1% per tax year to <strong>3% in 2025/2026</strong>, 4% in 2026/2027, and 5% in 2027/2028. Equivalent petrol and diesel company cars carry BiK tax rates of 25% to 37%, allowing UK drivers and businesses to save <strong>£2,500 to £6,000+ every year</strong> in personal income tax and National Insurance contributions.
+          </p>
+        </details>
+
         <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-300 transition-all">
           <summary class="flex justify-between items-center text-sm font-black text-gray-950">
             <span>What is VoltSavings and how does the calculator work?</span>

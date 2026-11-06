@@ -19,6 +19,37 @@
     </a>
   </div>
 
+  <!-- Region Switcher: US vs UK Market Calibration -->
+  <div class="bg-gradient-to-r from-gray-950 via-slate-900 to-gray-900 text-white rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 mb-5 shadow-lg border border-gray-800">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
+      <div class="flex items-center gap-2.5">
+        <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-base font-black shrink-0">
+          <i class="fa-solid fa-earth-americas"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-xs sm:text-sm font-black text-white">Target Market / Region:</span>
+            <span id="activeRegionBadge" class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-full">🇺🇸 US Mode ($ / Miles)</span>
+          </div>
+          <p class="text-[11px] text-gray-300 font-medium mt-0.5">Auto-calibrates gas/petrol price, Imperial vs US Gallon math, tariffs & models</p>
+        </div>
+      </div>
+
+      <!-- Region Switcher 3-Way Buttons -->
+      <div class="grid grid-cols-3 gap-1.5 bg-gray-900/90 p-1.5 rounded-xl border border-gray-700/80 w-full md:w-auto" id="regionToggleGroup" role="group" aria-label="Region Selector">
+        <button type="button" id="btnRegionUS" class="region-toggle-btn px-3 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer bg-emerald-600 text-white shadow-xs">
+          <span>🇺🇸</span> <span>US ($ / Miles)</span>
+        </button>
+        <button type="button" id="btnRegionUK" class="region-toggle-btn px-3 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🇬🇧</span> <span>UK (£ / Miles)</span>
+        </button>
+        <button type="button" id="btnRegionGlobal" class="region-toggle-btn px-3 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🌍</span> <span>Global / Other</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Controls Bar (Currency & Unit) -->
   <div class="bg-white border border-gray-200/90 rounded-2xl sm:rounded-3xl p-3.5 sm:p-5 mb-8 shadow-sm overflow-hidden">
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
@@ -139,10 +170,30 @@
     <div class="mt-3 pt-2.5 border-t border-gray-100 flex flex-wrap items-center gap-1.5 text-[11px] text-gray-500 font-medium">
       <span class="font-black text-gray-800 flex items-center gap-1"><i class="fa-solid fa-car-side text-emerald-600"></i> Calibrated EV Models:</span>
       <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">Tesla Model 3 / Y</span>
-      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">BYD Atto 3 / Seal</span>
+      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">Ford F-150 Lightning</span>
+      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">Chevy Equinox EV</span>
       <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">Hyundai Ioniq 5</span>
-      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">Kia EV6</span>
       <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">MG4 Electric</span>
+      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">Nissan Leaf</span>
+      <span class="px-2 py-0.5 rounded-md bg-gray-100 text-gray-700 font-bold">VW ID.3</span>
+    </div>
+
+    <!-- Dedicated Popular EV Models Dropdown -->
+    <div class="mt-3.5 p-3 sm:p-4 bg-gradient-to-r from-gray-50 via-emerald-50/40 to-gray-50 border-2 border-emerald-200/80 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-xs">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-xl bg-emerald-600 text-white flex items-center justify-center text-xs font-black shadow-xs shrink-0">
+          <i class="fa-solid fa-car-battery"></i>
+        </div>
+        <div>
+          <label for="evModelPresetSelect" id="lblEvModelSelect" class="text-xs sm:text-sm font-black text-gray-900 block">Popular US EV Models Dropdown:</label>
+          <span class="text-[11px] text-gray-600 font-medium">Select a calibrated vehicle to auto-populate efficiency & comparison specs</span>
+        </div>
+      </div>
+      <div class="w-full sm:w-auto">
+        <select id="evModelPresetSelect" class="w-full sm:w-64 bg-white border-2 border-emerald-400 hover:border-emerald-600 text-xs font-bold rounded-xl px-3 py-2 text-black focus:outline-none focus:ring-2 focus:ring-emerald-500 cursor-pointer min-h-[42px] transition-all shadow-xs">
+          <!-- Populated dynamically based on region -->
+        </select>
+      </div>
     </div>
   </div>
 
@@ -238,6 +289,7 @@
               <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">Rs.</span>
               <input type="number" id="fuelPrice" value="280" step="0.01" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
             </div>
+            <p id="txtFuelPriceHint" class="text-[11px] text-gray-600 mt-1 font-medium">Standard fuel pump price</p>
           </div>
 
           <div>
@@ -271,6 +323,17 @@
             <div class="relative">
               <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">Rs.</span>
               <input type="number" id="electricityRate" value="40" step="0.01" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
+            </div>
+            <p id="txtElectricityHint" class="text-[11px] text-gray-600 mt-1 font-medium">Residential grid electricity tariff</p>
+            
+            <!-- Quick Select Electricity Tariff Chips -->
+            <div class="mt-2.5 pt-2 border-t border-emerald-200/70" id="electricityChipsWrapper">
+              <div class="flex items-center justify-between mb-1.5">
+                <span id="lblElectricityChips" class="text-[10px] font-black uppercase text-emerald-900 tracking-wider">Tariff Presets:</span>
+              </div>
+              <div id="electricityChipsContainer" class="flex flex-wrap gap-1.5">
+                <!-- Dynamically populated chips -->
+              </div>
             </div>
           </div>
 
@@ -448,10 +511,10 @@
 <script>
   // Country & Currency Base Configurations
   const CURRENCY_DATA = {
+    'US': { code: 'USD', symbol: '$', fuelPrice: 3.50, powerRate: 0.16, isMetric: false, baseFuelMaint: 35, baseEvMaint: 10 },
+    'GB': { code: 'GBP', symbol: '£', fuelPrice: 1.45, powerRate: 0.245, isMetric: false, baseFuelMaint: 28, baseEvMaint: 8 },
     'PK': { code: 'PKR', symbol: 'Rs.', fuelPrice: 280, powerRate: 40, isMetric: true, baseFuelMaint: 1500, baseEvMaint: 200 },
-    'US': { code: 'USD', symbol: '$', fuelPrice: 3.80, powerRate: 0.18, isMetric: false, baseFuelMaint: 35, baseEvMaint: 10 },
     'EU': { code: 'EUR', symbol: '€', fuelPrice: 1.85, powerRate: 0.32, isMetric: true, baseFuelMaint: 30, baseEvMaint: 8 },
-    'GB': { code: 'GBP', symbol: '£', fuelPrice: 1.50, powerRate: 0.28, isMetric: true, baseFuelMaint: 28, baseEvMaint: 8 },
     'IN': { code: 'INR', symbol: '₹', fuelPrice: 102, powerRate: 8, isMetric: true, baseFuelMaint: 600, baseEvMaint: 100 },
     'AE': { code: 'AED', symbol: 'AED', fuelPrice: 3.15, powerRate: 0.30, isMetric: true, baseFuelMaint: 100, baseEvMaint: 25 },
     'CA': { code: 'CAD', symbol: '$', fuelPrice: 1.65, powerRate: 0.16, isMetric: true, baseFuelMaint: 40, baseEvMaint: 12 },
@@ -469,30 +532,31 @@
     car_compact: {
       metric: { fuelEff: 15, evEff: 7.5, maintMult: 2.8 },
       imperial: { fuelEff: 35, evEff: 4.6, maintMult: 2.5 },
-      fuelHint: "660cc-1000cc hatchback (Alto/Cultus/Swift)",
-      evHint: "Compact city EV (BYD Dolphin/Seagull/Mini EV)"
+      fuelHint: "Hatchback / City Car (e.g. Fiesta, Swift, Leaf)",
+      evHint: "Compact city EV (e.g. Chevy Bolt, MG4, Dolphin)"
     },
     car_sedan: {
       metric: { fuelEff: 11, evEff: 6.0, maintMult: 4.2 },
-      imperial: { fuelEff: 25, evEff: 3.6, maintMult: 3.8 },
-      fuelHint: "1.5L-1.8L sedan/crossover (Civic/Corolla/Sportage)",
-      evHint: "EV Sedan/Crossover (MG4/Hyundai Ioniq 5)"
+      imperial: { fuelEff: 28, evEff: 3.8, maintMult: 3.8 },
+      fuelHint: "Sedan / Crossover (e.g. Camry, Civic, RAV4, Sportage)",
+      evHint: "EV Sedan / Crossover (e.g. Ioniq 5, Equinox EV, EV6)"
     },
     car_tesla: {
       metric: { fuelEff: 10, evEff: 6.3, maintMult: 4.5 },
-      imperial: { fuelEff: 26, evEff: 3.9, maintMult: 4.0 },
-      fuelHint: "2.0L Petrol Sedan/SUV (Camry/RAV4/CR-V)",
-      evHint: "Tesla Model 3/Y & BYD Atto 3/Seal (60-75 kWh)"
+      imperial: { fuelEff: 26, evEff: 4.0, maintMult: 4.0 },
+      fuelHint: "Performance Petrol Sedan / SUV (e.g. BMW 3, Audi Q5)",
+      evHint: "Tesla Model 3 / Model Y & BYD Seal (60-75 kWh)"
     }
   };
 
   // State
-  let isMetric = true;
+  let activeRegion: 'US' | 'GB' | 'GLOBAL' = 'US';
+  let isMetric = false;
   let selectedDays = 26;
-  let currentCountry = 'PK';
-  let currentSymbol = 'Rs.';
-  let currentCurrencyCode = 'PKR';
-  let activePreset = 'bike';
+  let currentCountry = 'US';
+  let currentSymbol = '$';
+  let currentCurrencyCode = 'USD';
+  let activePreset = 'car_tesla';
 
   // Elements
   const dailyDistance = document.getElementById('dailyDistance') as HTMLInputElement;
@@ -512,12 +576,300 @@
   const customDays = document.getElementById('customDays') as HTMLInputElement;
   const txtFuelHint = document.getElementById('txtFuelHint');
   const txtEvHint = document.getElementById('txtEvHint');
+  const btnRegionUS = document.getElementById('btnRegionUS');
+  const btnRegionUK = document.getElementById('btnRegionUK');
+  const btnRegionGlobal = document.getElementById('btnRegionGlobal');
+  const activeRegionBadge = document.getElementById('activeRegionBadge');
+  const lblFuelEfficiency = document.getElementById('lblFuelEfficiency');
+  const lblFuelPrice = document.getElementById('lblFuelPrice');
+  const lblEvEfficiency = document.getElementById('lblEvEfficiency');
+  const txtFuelPriceHint = document.getElementById('txtFuelPriceHint');
+  const txtElectricityHint = document.getElementById('txtElectricityHint');
+  const lblEvModelSelect = document.getElementById('lblEvModelSelect');
+  const lblElectricityChips = document.getElementById('lblElectricityChips');
+  const evModelPresetSelect = document.getElementById('evModelPresetSelect') as HTMLSelectElement;
+  const electricityChipsContainer = document.getElementById('electricityChipsContainer');
 
-  // Apply Vehicle Preset
+  // Update Currency Symbols throughout DOM
+  function updateCurrencySymbols(sym: string) {
+    document.querySelectorAll('.currency-symbol').forEach(el => {
+      (el as HTMLElement).innerText = sym;
+    });
+  }
+
+  // Update Unit Selector Buttons Visually
+  function updateUnitButtons(metricMode: boolean) {
+    isMetric = metricMode;
+    if (metricMode) {
+      if (unitMetric) unitMetric.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
+      if (unitImperial) unitImperial.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-700 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
+      if (distMin) distMin.innerText = "5 km/day";
+      if (distMax) distMax.innerText = "250 km/day";
+      if (dailyDistance) dailyDistance.max = "250";
+    } else {
+      if (unitImperial) unitImperial.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
+      if (unitMetric) unitMetric.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-700 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
+      if (distMin) distMin.innerText = "5 mi/day";
+      if (distMax) distMax.innerText = "150 mi/day";
+      if (dailyDistance) dailyDistance.max = "150";
+    }
+  }
+
+  // Populate Popular EV Models Preset Dropdown
+  function populateEvModels(reg: 'US' | 'GB' | 'GLOBAL') {
+    if (!evModelPresetSelect) return;
+    evModelPresetSelect.innerHTML = '';
+
+    let models: Array<{ id: string; name: string; evEff: number; fuelEff: number; fMaint: number; evMaint: number; hint: string }> = [];
+
+    if (reg === 'US') {
+      models = [
+        { id: '', name: '⚡ Select US EV Model Preset...', evEff: 0, fuelEff: 0, fMaint: 35, evMaint: 10, hint: '' },
+        { id: 'us-tesla-y', name: 'Tesla Model Y (3.8 mi/kWh | 28 US MPG)', evEff: 3.8, fuelEff: 28, fMaint: 35, evMaint: 10, hint: 'Tesla Model Y Long Range (3.8 mi/kWh vs 28 US MPG SUV)' },
+        { id: 'us-tesla-3', name: 'Tesla Model 3 (4.1 mi/kWh | 32 US MPG)', evEff: 4.1, fuelEff: 32, fMaint: 35, evMaint: 10, hint: 'Tesla Model 3 Highland (4.1 mi/kWh vs 32 US MPG Sedan)' },
+        { id: 'us-f150', name: 'Ford F-150 Lightning (2.1 mi/kWh | 18 US MPG)', evEff: 2.1, fuelEff: 18, fMaint: 45, evMaint: 15, hint: 'Ford F-150 Lightning EV Truck (2.1 mi/kWh vs 18 US MPG V8)' },
+        { id: 'us-equinox', name: 'Chevy Equinox EV (3.4 mi/kWh | 27 US MPG)', evEff: 3.4, fuelEff: 27, fMaint: 35, evMaint: 10, hint: 'Chevy Equinox EV (3.4 mi/kWh vs 27 US MPG Crossover)' },
+        { id: 'us-ioniq5', name: 'Hyundai Ioniq 5 (3.5 mi/kWh | 29 US MPG)', evEff: 3.5, fuelEff: 29, fMaint: 35, evMaint: 10, hint: 'Hyundai Ioniq 5 (3.5 mi/kWh vs 29 US MPG Crossover)' }
+      ];
+    } else if (reg === 'GB') {
+      models = [
+        { id: '', name: '⚡ Select UK EV Model Preset...', evEff: 0, fuelEff: 0, fMaint: 28, evMaint: 8, hint: '' },
+        { id: 'uk-tesla-y', name: 'Tesla Model Y (3.8 mi/kWh | 36 UK MPG)', evEff: 3.8, fuelEff: 36, fMaint: 28, evMaint: 8, hint: 'Tesla Model Y (3.8 mi/kWh vs 36 UK Imperial MPG SUV)' },
+        { id: 'uk-mg4', name: 'MG4 EV (3.9 mi/kWh | 44 UK MPG)', evEff: 3.9, fuelEff: 44, fMaint: 25, evMaint: 7, hint: 'MG4 EV Hatchback (3.9 mi/kWh vs 44 UK Imperial MPG)' },
+        { id: 'uk-leaf', name: 'Nissan Leaf (3.7 mi/kWh | 42 UK MPG)', evEff: 3.7, fuelEff: 42, fMaint: 25, evMaint: 7, hint: 'Nissan Leaf (3.7 mi/kWh vs 42 UK Imperial MPG)' },
+        { id: 'uk-id3', name: 'Volkswagen ID.3 (3.8 mi/kWh | 45 UK MPG)', evEff: 3.8, fuelEff: 45, fMaint: 28, evMaint: 8, hint: 'Volkswagen ID.3 (3.8 mi/kWh vs 45 UK Imperial MPG Golf)' },
+        { id: 'uk-corsa', name: 'Vauxhall Corsa Electric (4.0 mi/kWh | 48 UK MPG)', evEff: 4.0, fuelEff: 48, fMaint: 24, evMaint: 7, hint: 'Vauxhall Corsa Electric (4.0 mi/kWh vs 48 UK Imperial MPG)' }
+      ];
+    } else {
+      models = [
+        { id: '', name: '⚡ Select Calibrated EV Model...', evEff: 0, fuelEff: 0, fMaint: 1000, evMaint: 200, hint: '' },
+        { id: 'gl-tesla-y', name: 'Tesla Model Y / Model 3', evEff: isMetric ? 6.3 : 3.8, fuelEff: isMetric ? 10 : 28, fMaint: 1500, evMaint: 200, hint: 'Tesla Model Y / 3 Calibration' },
+        { id: 'gl-byd', name: 'BYD Atto 3 / Seal', evEff: isMetric ? 6.1 : 3.7, fuelEff: isMetric ? 11 : 29, fMaint: 1500, evMaint: 200, hint: 'BYD Blade Battery Calibration' },
+        { id: 'gl-mg4', name: 'MG4 Electric / ZS EV', evEff: isMetric ? 6.2 : 3.8, fuelEff: isMetric ? 12 : 32, fMaint: 1400, evMaint: 180, hint: 'MG Electric Calibration' }
+      ];
+    }
+
+    models.forEach(m => {
+      const opt = document.createElement('option');
+      opt.value = m.id;
+      opt.textContent = m.name;
+      evModelPresetSelect.appendChild(opt);
+    });
+
+    evModelPresetSelect.onchange = () => {
+      const found = models.find(m => m.id === evModelPresetSelect.value);
+      if (found && found.evEff > 0) {
+        evEfficiency.value = String(found.evEff);
+        fuelEfficiency.value = String(found.fuelEff);
+        fuelMaint.value = String(found.fMaint);
+        evMaint.value = String(found.evMaint);
+        if (txtFuelHint) txtFuelHint.innerText = found.hint;
+        if (txtEvHint) txtEvHint.innerText = found.name;
+
+        // Unhighlight category buttons to show customized model
+        document.querySelectorAll('.preset-btn').forEach(btn => {
+          btn.classList.remove('border-emerald-600', 'bg-emerald-50/70', 'shadow-sm');
+          btn.classList.add('border-gray-200', 'bg-white');
+          btn.setAttribute('aria-checked', 'false');
+          const badge = btn.querySelector('.preset-badge');
+          if (badge) {
+            badge.className = 'preset-badge text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-md bg-gray-100 text-gray-600';
+            badge.textContent = 'Select';
+          }
+        });
+        calculate();
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'select_ev_model_preset', { model: found.id, region: activeRegion });
+        }
+      }
+    };
+  }
+
+  // Render Dynamic Electricity Chips
+  function renderElectricityChips(reg: 'US' | 'GB' | 'GLOBAL') {
+    if (!electricityChipsContainer) return;
+    electricityChipsContainer.innerHTML = '';
+
+    let list: Array<{ label: string; rate: number }> = [];
+
+    if (reg === 'US') {
+      list = [
+        { label: 'US Avg ($0.16/kWh)', rate: 0.16 },
+        { label: 'Off-Peak Night ($0.08/kWh)', rate: 0.08 },
+        { label: 'California PG&E ($0.34/kWh)', rate: 0.34 },
+        { label: 'DC Fast Charger ($0.48/kWh)', rate: 0.48 }
+      ];
+    } else if (reg === 'GB') {
+      list = [
+        { label: 'Ofgem Price Cap (24.5p/kWh)', rate: 0.245 },
+        { label: 'Octopus Intelligent Go (7p/kWh)', rate: 0.07 },
+        { label: 'Public Rapid Charger (79p/kWh)', rate: 0.79 }
+      ];
+    } else {
+      const cData = CURRENCY_DATA[currentCountry as keyof typeof CURRENCY_DATA] || CURRENCY_DATA['PK'];
+      list = [
+        { label: `Grid Tariff (${currentSymbol}${cData.powerRate}/kWh)`, rate: cData.powerRate },
+        { label: `Off-Peak (${currentSymbol}${(cData.powerRate * 0.55).toFixed(2)}/kWh)`, rate: Number((cData.powerRate * 0.55).toFixed(2)) },
+        { label: `Fast Charger (${currentSymbol}${(cData.powerRate * 1.8).toFixed(2)}/kWh)`, rate: Number((cData.powerRate * 1.8).toFixed(2)) }
+      ];
+    }
+
+    const currentVal = parseFloat(electricityRate?.value);
+
+    list.forEach(item => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      const isSelected = Math.abs(currentVal - item.rate) < 0.001;
+      chip.className = isSelected
+        ? 'elec-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white cursor-pointer transition-all shadow-xs'
+        : 'elec-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-gray-200 hover:border-emerald-500 text-gray-700 hover:text-emerald-700 cursor-pointer transition-all';
+      chip.innerText = item.label;
+
+      chip.addEventListener('click', () => {
+        electricityRate.value = String(item.rate);
+        document.querySelectorAll('.elec-chip').forEach(c => {
+          c.className = 'elec-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-gray-200 hover:border-emerald-500 text-gray-700 hover:text-emerald-700 cursor-pointer transition-all';
+        });
+        chip.className = 'elec-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-emerald-600 text-white cursor-pointer transition-all shadow-xs';
+        calculate();
+        if (typeof (window as any).gtag === 'function') {
+          (window as any).gtag('event', 'select_tariff_preset', { tariff: item.label, rate: item.rate, region: activeRegion });
+        }
+      });
+
+      electricityChipsContainer.appendChild(chip);
+    });
+  }
+
+  // Set Active Region Mode
+  function setRegion(region: 'US' | 'GB' | 'GLOBAL', shouldRecalculate = true) {
+    activeRegion = region;
+
+    const baseBtnClass = "region-toggle-btn px-3 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer";
+    const activeClass = `${baseBtnClass} bg-emerald-600 text-white shadow-xs`;
+    const inactiveClass = `${baseBtnClass} text-gray-300 hover:text-white hover:bg-gray-800`;
+
+    if (btnRegionUS) btnRegionUS.className = (region === 'US') ? activeClass : inactiveClass;
+    if (btnRegionUK) btnRegionUK.className = (region === 'GB') ? activeClass : inactiveClass;
+    if (btnRegionGlobal) btnRegionGlobal.className = (region === 'GLOBAL') ? activeClass : inactiveClass;
+
+    if (region === 'US') {
+      if (activeRegionBadge) activeRegionBadge.innerText = "🇺🇸 US Mode ($ / Miles)";
+      currentCountry = 'US';
+      currentSymbol = '$';
+      currentCurrencyCode = 'USD';
+      isMetric = false;
+
+      if (currencySelect) currencySelect.value = 'US';
+
+      if (lblFuelPrice) lblFuelPrice.innerText = "Gas / Gasoline Price";
+      if (txtFuelPriceHint) txtFuelPriceHint.innerText = "Price per US Gallon ($/gal) • US Avg: $3.50";
+      if (lblFuelEfficiency) lblFuelEfficiency.innerText = "Fuel Economy (US MPG)";
+      if (lblEvEfficiency) lblEvEfficiency.innerText = "EV Efficiency (mi/kWh)";
+      if (txtElectricityHint) txtElectricityHint.innerText = "Electricity Rate per kWh ($/kWh) • US Avg: $0.16";
+      if (lblEvModelSelect) lblEvModelSelect.innerText = "Popular US EV Models Dropdown:";
+      if (lblElectricityChips) lblElectricityChips.innerText = "Popular US Electricity Rates:";
+
+      fuelPrice.value = "3.50";
+      electricityRate.value = "0.16";
+      fuelMaint.value = "35";
+      evMaint.value = "10";
+      dailyDistance.value = "35";
+
+      updateUnitButtons(false);
+      populateEvModels('US');
+      renderElectricityChips('US');
+      updateCurrencySymbols('$');
+
+    } else if (region === 'GB') {
+      if (activeRegionBadge) activeRegionBadge.innerText = "🇬🇧 UK Mode (£ / Miles)";
+      currentCountry = 'GB';
+      currentSymbol = '£';
+      currentCurrencyCode = 'GBP';
+      isMetric = false; // UK commuters measure distance in miles and fuel economy in Imperial MPG
+
+      if (currencySelect) currencySelect.value = 'GB';
+
+      if (lblFuelPrice) lblFuelPrice.innerText = "Petrol / Diesel Price";
+      if (txtFuelPriceHint) txtFuelPriceHint.innerText = "Price per Litre (£/litre) • UK Avg: £1.45 (1 Imp Gal = 4.546L)";
+      if (lblFuelEfficiency) lblFuelEfficiency.innerText = "Fuel Economy (UK Imperial MPG)";
+      if (lblEvEfficiency) lblEvEfficiency.innerText = "EV Efficiency (mi/kWh)";
+      if (txtElectricityHint) txtElectricityHint.innerText = "Electricity Tariff per kWh (£/kWh) • Ofgem: 24.5p";
+      if (lblEvModelSelect) lblEvModelSelect.innerText = "Popular UK EV Models Dropdown:";
+      if (lblElectricityChips) lblElectricityChips.innerText = "Popular UK Electricity Tariffs:";
+
+      fuelPrice.value = "1.45";
+      electricityRate.value = "0.245";
+      fuelMaint.value = "28";
+      evMaint.value = "8";
+      dailyDistance.value = "30";
+
+      updateUnitButtons(false);
+      populateEvModels('GB');
+      renderElectricityChips('GB');
+      updateCurrencySymbols('£');
+
+    } else {
+      // GLOBAL / Custom Mode
+      if (activeRegionBadge) activeRegionBadge.innerText = "🌍 Global / Custom Mode";
+      const cData = CURRENCY_DATA[currencySelect.value as keyof typeof CURRENCY_DATA] || CURRENCY_DATA['PK'];
+      currentCountry = currencySelect.value;
+      currentSymbol = cData.symbol;
+      currentCurrencyCode = cData.code;
+      isMetric = cData.isMetric;
+
+      if (lblFuelPrice) lblFuelPrice.innerText = isMetric ? "Fuel Price (per Liter)" : "Fuel Price (per Gallon)";
+      if (txtFuelPriceHint) txtFuelPriceHint.innerText = "Standard fuel pump price";
+      if (lblFuelEfficiency) lblFuelEfficiency.innerText = isMetric ? "Fuel Economy (km/L)" : "Fuel Economy (MPG)";
+      if (lblEvEfficiency) lblEvEfficiency.innerText = isMetric ? "EV Efficiency (km/kWh)" : "EV Efficiency (mi/kWh)";
+      if (txtElectricityHint) txtElectricityHint.innerText = "Electricity Rate per Unit / kWh";
+      if (lblEvModelSelect) lblEvModelSelect.innerText = "Calibrated EV Models:";
+      if (lblElectricityChips) lblElectricityChips.innerText = "Quick Tariff Presets:";
+
+      fuelPrice.value = String(cData.fuelPrice);
+      electricityRate.value = String(cData.powerRate);
+      fuelMaint.value = String(cData.baseFuelMaint);
+      evMaint.value = String(cData.baseEvMaint);
+
+      updateUnitButtons(isMetric);
+      populateEvModels('GLOBAL');
+      renderElectricityChips('GLOBAL');
+      updateCurrencySymbols(currentSymbol);
+    }
+
+    // Apply baseline preset
+    applyPreset(activePreset);
+    if (shouldRecalculate) {
+      calculate();
+    }
+  }
+
+  // Setup Region Switcher Listeners
+  btnRegionUS?.addEventListener('click', () => {
+    setRegion('US');
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'switch_region_toggle', { region: 'US' });
+    }
+  });
+
+  btnRegionUK?.addEventListener('click', () => {
+    setRegion('GB');
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'switch_region_toggle', { region: 'GB' });
+    }
+  });
+
+  btnRegionGlobal?.addEventListener('click', () => {
+    setRegion('GLOBAL');
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'switch_region_toggle', { region: 'GLOBAL' });
+    }
+  });
+
+  // Apply Vehicle Preset Category
   function applyPreset(presetKey: string) {
     activePreset = presetKey;
 
-    // Update preset buttons visually
     document.querySelectorAll('.preset-btn').forEach(btn => {
       const p = btn.getAttribute('data-preset');
       const badge = btn.querySelector('.preset-badge');
@@ -551,11 +903,18 @@
     if (!spec) return;
 
     const unitSpec = isMetric ? spec.metric : spec.imperial;
-    fuelEfficiency.value = String(unitSpec.fuelEff);
+    
+    // Scale UK Imperial MPG realistically (UK gallons are ~20% larger than US gallons)
+    if (activeRegion === 'GB' && !isMetric) {
+      // 1 UK Imperial Gallon = 1.20095 US Gallons
+      fuelEfficiency.value = String(Math.round(unitSpec.fuelEff * 1.2));
+    } else {
+      fuelEfficiency.value = String(unitSpec.fuelEff);
+    }
+    
     evEfficiency.value = String(unitSpec.evEff);
 
-    // Realistic maintenance scaling for the vehicle category
-    const countryData = CURRENCY_DATA[currentCountry as keyof typeof CURRENCY_DATA] || CURRENCY_DATA['PK'];
+    const countryData = CURRENCY_DATA[currentCountry as keyof typeof CURRENCY_DATA] || CURRENCY_DATA['US'];
     fuelMaint.value = String(Math.round(countryData.baseFuelMaint * unitSpec.maintMult));
     evMaint.value = String(Math.round(countryData.baseEvMaint * unitSpec.maintMult));
 
@@ -572,7 +931,7 @@
       if (p) {
         applyPreset(p);
         if (typeof (window as any).gtag === 'function') {
-          (window as any).gtag('event', 'select_vehicle_preset', { vehicle_type: p });
+          (window as any).gtag('event', 'select_vehicle_preset', { vehicle_type: p, region: activeRegion });
         }
       }
     });
@@ -584,7 +943,6 @@
       const d = chip.getAttribute('data-dist');
       if (d && dailyDistance) {
         dailyDistance.value = d;
-        // update chip active style
         document.querySelectorAll('.dist-chip').forEach(c => {
           c.className = 'dist-chip px-2.5 py-1 rounded-lg text-xs font-bold bg-white border border-gray-200 hover:border-emerald-500 text-gray-700 hover:text-emerald-700 cursor-pointer transition-all';
         });
@@ -611,33 +969,25 @@
 
   // Set Measurement Unit (Metric vs Imperial)
   function setUnit(metricMode: boolean) {
-    isMetric = metricMode;
-    if (metricMode) {
-      if (unitMetric) unitMetric.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
-      if (unitImperial) unitImperial.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-700 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
-      if (distMin) distMin.innerText = "5 km/day";
-      if (distMax) distMax.innerText = "250 km/day";
-      if (dailyDistance) dailyDistance.max = "250";
-      
-      const lblFuel = document.getElementById('lblFuelEfficiency');
-      const lblPrice = document.getElementById('lblFuelPrice');
-      const lblEv = document.getElementById('lblEvEfficiency');
-      if (lblFuel) lblFuel.innerText = "Fuel Economy (km/L)";
-      if (lblPrice) lblPrice.innerText = "Fuel Price (per Liter)";
-      if (lblEv) lblEv.innerText = "EV Efficiency (km/kWh)";
-    } else {
-      if (unitImperial) unitImperial.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center bg-emerald-600 text-white transition-all shadow-sm min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
-      if (unitMetric) unitMetric.className = "px-4 py-2.5 sm:py-1.5 rounded-lg text-center text-gray-700 hover:text-black transition-all min-h-[44px] sm:min-h-0 flex items-center justify-center cursor-pointer";
-      if (distMin) distMin.innerText = "5 mi/day";
-      if (distMax) distMax.innerText = "150 mi/day";
-      if (dailyDistance) dailyDistance.max = "150";
+    updateUnitButtons(metricMode);
 
-      const lblFuel = document.getElementById('lblFuelEfficiency');
-      const lblPrice = document.getElementById('lblFuelPrice');
-      const lblEv = document.getElementById('lblEvEfficiency');
-      if (lblFuel) lblFuel.innerText = "Fuel Economy (MPG)";
-      if (lblPrice) lblPrice.innerText = "Fuel Price (per Gallon)";
-      if (lblEv) lblEv.innerText = "EV Efficiency (mi/kWh)";
+    if (metricMode) {
+      if (lblFuelEfficiency) lblFuelEfficiency.innerText = "Fuel Economy (km/L)";
+      if (lblFuelPrice) lblFuelPrice.innerText = "Fuel Price (per Liter)";
+      if (lblEvEfficiency) lblEvEfficiency.innerText = "EV Efficiency (km/kWh)";
+      if (txtFuelPriceHint) txtFuelPriceHint.innerText = "Standard fuel pump price per Liter";
+    } else {
+      if (activeRegion === 'GB') {
+        if (lblFuelEfficiency) lblFuelEfficiency.innerText = "Fuel Economy (UK Imperial MPG)";
+        if (lblFuelPrice) lblFuelPrice.innerText = "Petrol / Diesel Price (£/litre)";
+        if (lblEvEfficiency) lblEvEfficiency.innerText = "EV Efficiency (mi/kWh)";
+        if (txtFuelPriceHint) txtFuelPriceHint.innerText = "Price per Litre (£/litre) • UK Avg: £1.45 (1 Imp Gal = 4.546L)";
+      } else {
+        if (lblFuelEfficiency) lblFuelEfficiency.innerText = "Fuel Economy (US MPG)";
+        if (lblFuelPrice) lblFuelPrice.innerText = "Gas / Gasoline Price ($/gal)";
+        if (lblEvEfficiency) lblEvEfficiency.innerText = "EV Efficiency (mi/kWh)";
+        if (txtFuelPriceHint) txtFuelPriceHint.innerText = "Price per US Gallon ($/gal) • US Avg: $3.50";
+      }
     }
 
     if (activePreset !== 'custom') {
@@ -663,26 +1013,16 @@
 
   // Country Data & Currency Setup
   function applyCountryData(countryKey: string) {
-    const data = CURRENCY_DATA[countryKey as keyof typeof CURRENCY_DATA] || CURRENCY_DATA['PK'];
-    currentCountry = countryKey;
-    currentSymbol = data.symbol;
-    currentCurrencyCode = data.code;
-    fuelPrice.value = String(data.fuelPrice);
-    electricityRate.value = String(data.powerRate);
-    
-    document.querySelectorAll('.currency-symbol').forEach(el => {
-      (el as HTMLElement).innerText = currentSymbol;
-    });
-
-    if (currencySelect.value !== countryKey) {
-      currencySelect.value = countryKey;
+    if (countryKey === 'US') {
+      setRegion('US');
+      return;
     }
-
-    if (data.isMetric !== isMetric) {
-      setUnit(data.isMetric);
-    } else {
-      applyPreset(activePreset);
+    if (countryKey === 'GB') {
+      setRegion('GB');
+      return;
     }
+    activeRegion = 'GLOBAL';
+    setRegion('GLOBAL');
   }
 
   currencySelect?.addEventListener('change', () => {
@@ -693,19 +1033,26 @@
   });
 
   resetDefaultsBtn?.addEventListener('click', () => {
-    dailyDistance.value = "35";
     customDays.value = "26";
-    applyCountryData(currentCountry);
-    applyPreset('bike');
+    if (activeRegion === 'US') {
+      dailyDistance.value = "35";
+      setRegion('US');
+    } else if (activeRegion === 'GB') {
+      dailyDistance.value = "30";
+      setRegion('GB');
+    } else {
+      dailyDistance.value = "35";
+      setRegion('GLOBAL');
+    }
+    applyPreset('car_tesla');
     if (typeof (window as any).gtag === 'function') {
-      (window as any).gtag('event', 'reset_calculator_defaults');
+      (window as any).gtag('event', 'reset_calculator_defaults', { region: activeRegion });
     }
   });
 
   // Detect manual user edits to switch to "Custom" mode
   [fuelEfficiency, evEfficiency, fuelMaint, evMaint].forEach(el => {
     el?.addEventListener('input', () => {
-      // Mark as custom preset
       document.querySelectorAll('.preset-btn').forEach(btn => {
         const p = btn.getAttribute('data-preset');
         const badge = btn.querySelector('.preset-badge');
@@ -738,7 +1085,7 @@
     return currentSymbol + " " + Math.round(val).toLocaleString();
   }
 
-  // Core Calculation Function
+  // Core Calculation Function with Precise US & UK Imperial Gallon Math
   function calculate() {
     const dist = parseFloat(dailyDistance?.value) || 0;
     selectedDays = parseFloat(customDays?.value) || 26;
@@ -750,28 +1097,72 @@
     const eMaintCost = parseFloat(evMaint?.value) || 0;
 
     const monthlyDistance = dist * selectedDays;
-    const monthlyFuelLiters = fEff > 0 ? (monthlyDistance / fEff) : 0;
-    const fuelCostMonthly = (monthlyFuelLiters * fPrice) + fMaintCost;
-    const fuelCostYearly = fuelCostMonthly * 12;
 
+    let monthlyFuelCost = 0;
+    let fuelCostPerUnit = 0;
+    let monthlyFuelVolume = 0;
+
+    if (activeRegion === 'GB') {
+      // UK IMPERIAL GALLON MATH:
+      // UK fuel is sold at pumps in £ per Litre (fPrice).
+      // Car efficiency is measured in UK Imperial MPG (fEff).
+      // 1 UK Imperial Gallon = 4.54609 Litres.
+      // Price per Imperial Gallon = fPrice * 4.54609
+      // Fuel cost per mile (£) = (fPrice * 4.54609) / fEff
+      // Total monthly fuel cost (£) = (monthlyDistance / fEff) * (fPrice * 4.54609) + fMaintCost
+      const pricePerImpGal = fPrice * 4.54609;
+      const monthlyImpGallons = fEff > 0 ? (monthlyDistance / fEff) : 0;
+      monthlyFuelVolume = monthlyImpGallons * 4.54609; // In litres for CO2
+      monthlyFuelCost = (monthlyImpGallons * pricePerImpGal) + fMaintCost;
+      fuelCostPerUnit = fEff > 0 ? (pricePerImpGal / fEff) : 0; // Cost per mile (£)
+    } else if (activeRegion === 'US' || !isMetric) {
+      // US GALLON MATH:
+      // US gas is sold in $ per US Gallon (fPrice).
+      // Car efficiency is measured in US MPG (fEff).
+      // Monthly US Gallons = monthlyDistance / fEff
+      // Fuel cost per mile ($) = fPrice / fEff
+      // Total monthly fuel cost ($) = (monthlyDistance / fEff) * fPrice + fMaintCost
+      const monthlyUsGallons = fEff > 0 ? (monthlyDistance / fEff) : 0;
+      monthlyFuelVolume = monthlyUsGallons; // In US gallons for CO2
+      monthlyFuelCost = (monthlyUsGallons * fPrice) + fMaintCost;
+      fuelCostPerUnit = fEff > 0 ? (fPrice / fEff) : 0; // Cost per mile ($)
+    } else {
+      // METRIC (km & Litre) MATH:
+      const monthlyLiters = fEff > 0 ? (monthlyDistance / fEff) : 0;
+      monthlyFuelVolume = monthlyLiters;
+      monthlyFuelCost = (monthlyLiters * fPrice) + fMaintCost;
+      fuelCostPerUnit = fEff > 0 ? (fPrice / fEff) : 0; // Cost per km
+    }
+
+    const fuelCostYearly = monthlyFuelCost * 12;
+
+    // EV Energy Math (Both US & UK use mi/kWh, metric uses km/kWh)
     const monthlyEvKwh = eEff > 0 ? (monthlyDistance / eEff) : 0;
     const evCostMonthly = (monthlyEvKwh * eRate) + eMaintCost;
     const evCostYearly = evCostMonthly * 12;
+    const evCostPerUnit = eEff > 0 ? (eRate / eEff) : 0; // Cost per mile/km
 
     const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
-    const monthlySavings = Math.max(0, fuelCostMonthly - evCostMonthly);
+    const monthlySavings = Math.max(0, monthlyFuelCost - evCostMonthly);
     const pctSavings = fuelCostYearly > 0 ? Math.round((annualSavings / fuelCostYearly) * 100) : 0;
 
     // Environmental Impact Calculation
-    // Petrol emits ~2.31 kg CO2/L (or 8.89 kg/gal). EV grid emissions ~0.45 kg CO2/kWh
-    const annualFuelCo2 = isMetric ? (monthlyFuelLiters * 12 * 2.31) : (monthlyFuelLiters * 12 * 8.89);
-    const annualEvCo2 = (monthlyEvKwh * 12 * 0.45);
+    let annualFuelCo2 = 0;
+    if (activeRegion === 'GB') {
+      annualFuelCo2 = monthlyFuelVolume * 12 * 2.31; // 2.31 kg CO2/Litre
+    } else if (activeRegion === 'US' || !isMetric) {
+      annualFuelCo2 = monthlyFuelVolume * 12 * 8.89; // 8.89 kg CO2/US Gallon
+    } else {
+      annualFuelCo2 = monthlyFuelVolume * 12 * 2.31;
+    }
+    const annualEvCo2 = (monthlyEvKwh * 12 * 0.45); // Average grid ~0.45 kg CO2/kWh
     const annualCo2SavedKg = Math.max(0, Math.round(annualFuelCo2 - annualEvCo2));
-    const treeEquivalent = Math.max(1, Math.round(annualCo2SavedKg / 21)); // 1 mature tree absorbs ~21kg CO2/yr
+    const treeEquivalent = Math.max(1, Math.round(annualCo2SavedKg / 21));
 
     // Update Distance Display
+    const uUnit = (activeRegion === 'US' || activeRegion === 'GB' || !isMetric) ? 'mi' : 'km';
     if (distanceDisplay) {
-      distanceDisplay.innerText = dist + " " + (isMetric ? 'km' : 'mi');
+      distanceDisplay.innerText = dist + " " + uUnit;
     }
 
     // Update Hero Results
@@ -779,24 +1170,38 @@
     const monthlyTxt = document.getElementById('monthlySavingsText');
     const savingPct = document.getElementById('savingPercentage');
     const mobSavings = document.getElementById('mobileSavingsText');
-    
+
     if (annualTxt) annualTxt.innerText = fmt(annualSavings);
     if (monthlyTxt) monthlyTxt.innerText = fmt(monthlySavings);
     if (mobSavings) mobSavings.innerText = fmt(annualSavings) + " / yr";
     if (savingPct) savingPct.innerText = "Save ~" + pctSavings + "%";
 
-    // Update Visual Comparison Gauge
+    // Visual Cost Comparison Gauge with Pence / Cents per Mile
     const gaugePetrolTxt = document.getElementById('gaugePetrolText');
     const gaugeEvTxt = document.getElementById('gaugeEvText');
     const gaugeNetTxt = document.getElementById('gaugeNetText');
     const gaugeEvBar = document.getElementById('gaugeEvBar');
 
-    if (gaugePetrolTxt) gaugePetrolTxt.innerText = fmt(fuelCostMonthly) + " / mo";
-    if (gaugeEvTxt) gaugeEvTxt.innerText = fmt(evCostMonthly) + " / mo";
+    let fuelRateBadge = "";
+    let evRateBadge = "";
+
+    if (activeRegion === 'GB') {
+      fuelRateBadge = ` (${(fuelCostPerUnit * 100).toFixed(1)}p/mi)`;
+      evRateBadge = ` (${(evCostPerUnit * 100).toFixed(1)}p/mi)`;
+    } else if (activeRegion === 'US' || !isMetric) {
+      fuelRateBadge = ` (${(fuelCostPerUnit * 100).toFixed(1)}¢/mi)`;
+      evRateBadge = ` (${(evCostPerUnit * 100).toFixed(1)}¢/mi)`;
+    } else {
+      fuelRateBadge = ` (${currentSymbol}${fuelCostPerUnit.toFixed(2)}/km)`;
+      evRateBadge = ` (${currentSymbol}${evCostPerUnit.toFixed(2)}/km)`;
+    }
+
+    if (gaugePetrolTxt) gaugePetrolTxt.innerText = fmt(monthlyFuelCost) + " / mo" + fuelRateBadge;
+    if (gaugeEvTxt) gaugeEvTxt.innerText = fmt(evCostMonthly) + " / mo" + evRateBadge;
     if (gaugeNetTxt) gaugeNetTxt.innerText = "+ " + fmt(monthlySavings) + " / mo";
-    
+
     if (gaugeEvBar) {
-      const evBarWidth = fuelCostMonthly > 0 ? Math.min(100, Math.max(8, (evCostMonthly / fuelCostMonthly) * 100)) : 10;
+      const evBarWidth = monthlyFuelCost > 0 ? Math.min(100, Math.max(8, (evCostMonthly / monthlyFuelCost) * 100)) : 10;
       gaugeEvBar.style.width = evBarWidth + "%";
     }
 
@@ -812,7 +1217,7 @@
       if (el) el.innerText = text;
     };
 
-    setEl('tblFuel1M', fmt(fuelCostMonthly));
+    setEl('tblFuel1M', fmt(monthlyFuelCost));
     setEl('tblEv1M', fmt(evCostMonthly));
     setEl('tblSave1M', fmt(monthlySavings));
 
@@ -845,30 +1250,70 @@
       const eMaintCost = parseFloat(evMaint?.value) || 0;
 
       const monthlyDistance = dist * selectedDays;
-      const monthlyFuelLiters = fEff > 0 ? (monthlyDistance / fEff) : 0;
-      const fuelCostMonthly = (monthlyFuelLiters * fPrice) + fMaintCost;
-      const fuelCostYearly = fuelCostMonthly * 12;
+
+      let monthlyFuelCost = 0;
+      let monthlyFuelVolume = 0;
+      let fuelCostPerUnit = 0;
+
+      if (activeRegion === 'GB') {
+        const pricePerImpGal = fPrice * 4.54609;
+        const monthlyImpGallons = fEff > 0 ? (monthlyDistance / fEff) : 0;
+        monthlyFuelVolume = monthlyImpGallons * 4.54609;
+        monthlyFuelCost = (monthlyImpGallons * pricePerImpGal) + fMaintCost;
+        fuelCostPerUnit = fEff > 0 ? (pricePerImpGal / fEff) : 0;
+      } else if (activeRegion === 'US' || !isMetric) {
+        const monthlyUsGallons = fEff > 0 ? (monthlyDistance / fEff) : 0;
+        monthlyFuelVolume = monthlyUsGallons;
+        monthlyFuelCost = (monthlyUsGallons * fPrice) + fMaintCost;
+        fuelCostPerUnit = fEff > 0 ? (fPrice / fEff) : 0;
+      } else {
+        const monthlyLiters = fEff > 0 ? (monthlyDistance / fEff) : 0;
+        monthlyFuelVolume = monthlyLiters;
+        monthlyFuelCost = (monthlyLiters * fPrice) + fMaintCost;
+        fuelCostPerUnit = fEff > 0 ? (fPrice / fEff) : 0;
+      }
+
+      const fuelCostYearly = monthlyFuelCost * 12;
 
       const monthlyEvKwh = eEff > 0 ? (monthlyDistance / eEff) : 0;
       const evCostMonthly = (monthlyEvKwh * eRate) + eMaintCost;
       const evCostYearly = evCostMonthly * 12;
+      const evCostPerUnit = eEff > 0 ? (eRate / eEff) : 0;
 
       const annualSavings = Math.max(0, fuelCostYearly - evCostYearly);
-      const monthlySavings = Math.max(0, fuelCostMonthly - evCostMonthly);
+      const monthlySavings = Math.max(0, monthlyFuelCost - evCostMonthly);
       const pctSavings = fuelCostYearly > 0 ? Math.round((annualSavings / fuelCostYearly) * 100) : 0;
 
-      const fuelCostPerKm = monthlyDistance > 0 ? (fuelCostMonthly / monthlyDistance) : 0;
-      const evCostPerKm = monthlyDistance > 0 ? (evCostMonthly / monthlyDistance) : 0;
-
-      const annualFuelCo2 = isMetric ? (monthlyFuelLiters * 12 * 2.31) : (monthlyFuelLiters * 12 * 8.89);
+      let annualFuelCo2 = 0;
+      if (activeRegion === 'GB') {
+        annualFuelCo2 = monthlyFuelVolume * 12 * 2.31;
+      } else if (activeRegion === 'US' || !isMetric) {
+        annualFuelCo2 = monthlyFuelVolume * 12 * 8.89;
+      } else {
+        annualFuelCo2 = monthlyFuelVolume * 12 * 2.31;
+      }
       const annualEvCo2 = (monthlyEvKwh * 12 * 0.45);
       const annualCo2SavedKg = Math.max(0, Math.round(annualFuelCo2 - annualEvCo2));
       const treeEquivalent = Math.max(1, Math.round(annualCo2SavedKg / 21));
 
-      const uUnit = isMetric ? 'km' : 'mi';
-      const vUnit = isMetric ? 'L' : 'gal';
-      const effUnit = isMetric ? 'km/L' : 'MPG';
-      const evEffUnit = isMetric ? 'km/kWh' : 'mi/kWh';
+      const uUnit = (activeRegion === 'US' || activeRegion === 'GB' || !isMetric) ? 'mi' : 'km';
+      let effUnit = "km/L";
+      let vUnit = "Litre";
+      let evEffUnit = "km/kWh";
+
+      if (activeRegion === 'GB') {
+        effUnit = "UK Imperial MPG";
+        vUnit = "Litre (£1.45/L = £6.59/Imp Gal)";
+        evEffUnit = "mi/kWh";
+      } else if (activeRegion === 'US' || !isMetric) {
+        effUnit = "US MPG";
+        vUnit = "gal";
+        evEffUnit = "mi/kWh";
+      } else {
+        effUnit = "km/L";
+        vUnit = "L";
+        evEffUnit = "km/kWh";
+      }
 
       const setT = (id: string, text: string) => {
         const el = document.getElementById(id);
@@ -878,21 +1323,21 @@
       setT('repDate', new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }));
       setT('repCommute', `${dist} ${uUnit} / day`);
       setT('repMonthlyDist', `${monthlyDistance.toLocaleString()} ${uUnit} / mo (${selectedDays} days)`);
-      setT('repPreset', `${activePreset.toUpperCase()} Segment`);
-      setT('repCurrency', `Currency: ${currentCurrencyCode || 'PKR'} (${currentSymbol || 'Rs.'})`);
+      setT('repPreset', `${activeRegion} Market (${activePreset.toUpperCase()})`);
+      setT('repCurrency', `Currency: ${currentCurrencyCode || 'USD'} (${currentSymbol || '$'})`);
       setT('repFuelEff', `${fEff} ${effUnit}`);
       setT('repFuelPrice', `Rate: ${currentSymbol}${fPrice}/${vUnit} | Maint: ${currentSymbol}${fMaintCost}/mo`);
       setT('repEvEff', `${eEff} ${evEffUnit}`);
       setT('repPowerRate', `Rate: ${currentSymbol}${eRate}/kWh | Maint: ${currentSymbol}${eMaintCost}/mo`);
 
-      setT('repFuelMo', fmt(fuelCostMonthly));
-      setT('repFuelKm', `${currentSymbol}${fuelCostPerKm.toFixed(2)} per ${uUnit}`);
+      setT('repFuelMo', fmt(monthlyFuelCost));
+      setT('repFuelKm', activeRegion === 'GB' ? `${(fuelCostPerUnit * 100).toFixed(1)}p per ${uUnit}` : `${currentSymbol}${fuelCostPerUnit.toFixed(2)} per ${uUnit}`);
       setT('repEvMo', fmt(evCostMonthly));
-      setT('repEvKm', `${currentSymbol}${evCostPerKm.toFixed(2)} per ${uUnit}`);
+      setT('repEvKm', activeRegion === 'GB' ? `${(evCostPerUnit * 100).toFixed(1)}p per ${uUnit}` : `${currentSymbol}${evCostPerUnit.toFixed(2)} per ${uUnit}`);
       setT('repSaveMo', `+ ${fmt(monthlySavings)}`);
       setT('repPctSave', `~${pctSavings}% COST REDUCTION`);
 
-      setT('repTblFuel1M', fmt(fuelCostMonthly));
+      setT('repTblFuel1M', fmt(monthlyFuelCost));
       setT('repTblEv1M', fmt(evCostMonthly));
       setT('repTblSave1M', `+ ${fmt(monthlySavings)}`);
       setT('repTblCo21M', `~${Math.round(annualCo2SavedKg / 12)} kg CO₂`);
@@ -926,8 +1371,9 @@
     const annualText = document.getElementById('annualSavingsText')?.innerText || '';
     const monthlyText = document.getElementById('monthlySavingsText')?.innerText || '';
     const distText = distanceDisplay?.innerText || '';
-    
-    const text = `⚡ VoltSavings EV vs Petrol Report:
+
+    const text = `⚡ VoltSavings EV vs Petrol/Gas Report:
+• Target Market: ${activeRegion} (${currentCurrencyCode})
 • Vehicle Category: ${activePreset.toUpperCase()}
 • Daily Commute: ${distText} (${customDays.value} days/month)
 • Monthly Fuel Cost: ${document.getElementById('tblFuel1M')?.innerText || ''}
@@ -950,6 +1396,7 @@ Calculate your exact vehicle savings free at: https://www.evcalculator.online`;
       if (typeof (window as any).gtag === 'function') {
         (window as any).gtag('event', 'share_calculation_summary', {
           event_category: 'engagement',
+          region: activeRegion,
           country: currentCountry,
           currency: currentSymbol,
           vehicle_preset: activePreset,
@@ -970,6 +1417,7 @@ Calculate your exact vehicle savings free at: https://www.evcalculator.online`;
     window.print();
     if (typeof (window as any).gtag === 'function') {
       (window as any).gtag('event', 'print_savings_report', {
+        region: activeRegion,
         vehicle_preset: activePreset
       });
     }
@@ -993,31 +1441,29 @@ Calculate your exact vehicle savings free at: https://www.evcalculator.online`;
   function autoDetectCountry(): string {
     try {
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-      if (tz.includes('Karachi')) return 'PK';
-      if (tz.includes('Kolkata') || tz.includes('Calcutta')) return 'IN';
-      if (tz.includes('Dubai')) return 'AE';
       if (tz.includes('London')) return 'GB';
-      if (tz.includes('Toronto') || tz.includes('Vancouver') || tz.includes('Montreal')) return 'CA';
-      if (tz.startsWith('Australia/')) return 'AU';
       if (tz.startsWith('America/')) return 'US';
-      if (tz.startsWith('Europe/')) return 'EU';
     } catch(e) {}
-    return 'PK';
+    return 'US'; // Default to primary target market (US)
   }
 
   const detected = autoDetectCountry();
-  applyCountryData(detected);
+  if (detected === 'GB') {
+    setRegion('GB');
+  } else {
+    setRegion('US');
+  }
 
   // Fallback to IP lookup
   fetch('https://api.country.is')
     .then(res => res.json())
     .then(data => {
       if (data && data.country) {
-        let code = data.country.toUpperCase();
-        if (CURRENCY_DATA[code as keyof typeof CURRENCY_DATA]) {
-          applyCountryData(code);
-        } else if (['DE','FR','IT','ES','NL','BE','AT','IE','PT','GR','FI','SE','PL','NO','DK','CH'].includes(code)) {
-          applyCountryData('EU');
+        const code = data.country.toUpperCase();
+        if (code === 'GB') {
+          setRegion('GB');
+        } else if (code === 'US') {
+          setRegion('US');
         }
       }
     })
