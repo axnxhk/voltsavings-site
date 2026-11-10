@@ -942,14 +942,14 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- Guides & Research Section (Internal Linking Hub) -->
+  <!-- Guides & Research Section (Internal Linking Hub - Latest Guides & Articles) -->
   <section class="py-16 border-t border-gray-200 bg-gray-50/50" aria-labelledby="research-heading">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
         <div>
-          <span class="text-xs font-black uppercase tracking-wider text-emerald-600">IN-DEPTH RESEARCH</span>
+          <span class="text-xs font-black uppercase tracking-wider text-emerald-600">LATEST GUIDES &amp; ARTICLES</span>
           <h2 id="research-heading" class="text-2xl sm:text-3xl font-black text-gray-950 tracking-tight mt-1">
-            Electric Mobility Guides & Operational Analysis
+            Electric Mobility Guides &amp; Operational Analysis
           </h2>
         </div>
         <a href="/blog" class="text-xs font-black text-emerald-600 hover:text-emerald-700 flex items-center gap-1.5 transition-colors">
@@ -962,9 +962,13 @@ const faqSchema = {
         <article class="bg-white border-2 border-emerald-300 rounded-3xl overflow-hidden hover:border-emerald-500 transition-all flex flex-col shadow-sm relative">
           <div class="h-44 bg-gradient-to-br from-emerald-100/70 to-emerald-50 p-6 flex flex-col justify-end border-b border-gray-100">
             <span class="text-[10px] font-black uppercase tracking-wider text-emerald-800 mb-1 flex items-center gap-1">
-              <span>🇺🇸</span> US Market Analysis
+              <span>🇺🇸</span> US EV Economics
             </span>
-            <h3 class="text-base font-black text-gray-950 leading-snug">How Much Does It Cost to Charge an EV in the US?</h3>
+            <h3 class="text-base font-black text-gray-950 leading-snug">
+              <a href="/blog/ev-charging-cost-us-2026" class="hover:text-emerald-700 transition-colors">
+                How Much Does It Cost to Charge an Electric Car in the US? (2026 Guide)
+              </a>
+            </h3>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
             <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
@@ -976,34 +980,46 @@ const faqSchema = {
           </div>
         </article>
 
-        <!-- Article 2 -->
+        <!-- Article 2: EV vs Petrol Charging Cost Telemetry -->
         <article class="bg-white border-2 border-gray-200 rounded-3xl overflow-hidden hover:border-emerald-400 transition-all flex flex-col shadow-sm">
           <div class="h-44 bg-emerald-50 p-6 flex flex-col justify-end border-b border-gray-100">
-            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1">Cost Analysis</span>
-            <h3 class="text-base font-black text-gray-950 leading-snug">How Much Do You Save Switching to an EV?</h3>
+            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1 flex items-center gap-1">
+              <i class="fa-solid fa-bolt-lightning text-emerald-600"></i> Charging Economics
+            </span>
+            <h3 class="text-base font-black text-gray-950 leading-snug">
+              <a href="/blog/ev-charging-cost-vs-petrol-2026" class="hover:text-emerald-700 transition-colors">
+                How Much Does It Cost to Charge an EV vs Gas in 2026?
+              </a>
+            </h3>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
             <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
-              Commercial rapid chargers vs overnight domestic tariffs, plus long-term maintenance differences between internal combustion engines and EVs.
+              Empirical telemetry comparing Tesla Model 3, BYD Atto 3, and popular EVs vs petrol cars. Home Level 2 rates vs DC fast charging, and break-even math.
             </p>
-            <a href="/blog/ev-savings-2026" class="text-xs font-black text-emerald-600 hover:underline inline-flex items-center gap-1">
-              Read Analysis →
+            <a href="/blog/ev-charging-cost-vs-petrol-2026" class="text-xs font-black text-emerald-600 hover:underline inline-flex items-center gap-1">
+              Read Charging Analysis →
             </a>
           </div>
         </article>
 
-        <!-- Article 3 -->
+        <!-- Article 3: Electric Two-Wheeler & Bike Economics -->
         <article class="bg-white border-2 border-gray-200 rounded-3xl overflow-hidden hover:border-emerald-400 transition-all flex flex-col shadow-sm">
-          <div class="h-44 bg-emerald-50 p-6 flex flex-col justify-end border-b border-gray-100">
-            <span class="text-[10px] font-black uppercase tracking-wider text-emerald-700 mb-1">Battery Health</span>
-            <h3 class="text-base font-black text-gray-950 leading-snug">EV Battery Lifespan & Degradation Guide</h3>
+          <div class="h-44 bg-teal-50 p-6 flex flex-col justify-end border-b border-gray-100">
+            <span class="text-[10px] font-black uppercase tracking-wider text-teal-800 mb-1 flex items-center gap-1">
+              <i class="fa-solid fa-motorcycle text-teal-600"></i> Commuter Economics
+            </span>
+            <h3 class="text-base font-black text-gray-950 leading-snug">
+              <a href="/blog/ev-bikes-2026" class="hover:text-emerald-700 transition-colors">
+                Are Electric Motorcycles Worth It in 2026?
+              </a>
+            </h3>
           </div>
           <div class="p-6 flex-grow flex flex-col justify-between">
             <p class="text-xs text-gray-700 leading-relaxed mb-4 font-medium">
-              How long do lithium iron phosphate (LFP) packs truly last under hot climates, and what will replacement cost by 2030?
+              Detailed real-world comparison of 70cc-125cc petrol motorbikes vs electric two-wheelers, battery swapping networks, and commercial courier ROI.
             </p>
-            <a href="/blog/ev-battery-life-2026" class="text-xs font-black text-emerald-600 hover:underline inline-flex items-center gap-1">
-              Read Analysis →
+            <a href="/blog/ev-bikes-2026" class="text-xs font-black text-emerald-600 hover:underline inline-flex items-center gap-1">
+              Read Bike Analysis →
             </a>
           </div>
         </article>

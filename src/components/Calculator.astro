@@ -1381,7 +1381,7 @@
 • Monthly Cash Saved: ${monthlyText}
 • Estimated 1-Year Savings: ${annualText}
 • Estimated 5-Year Savings: ${document.getElementById('tblSave5Y')?.innerText || ''}
-Calculate your exact vehicle savings free at: https://www.evcalculator.online`;
+Calculate your exact vehicle savings free at: https://www.evcalculator.online/`;
 
     navigator.clipboard.writeText(text).then(() => {
       if (copyBtnText) copyBtnText.innerText = "✓ Copied to Clipboard!";

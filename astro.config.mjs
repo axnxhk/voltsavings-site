@@ -13,6 +13,23 @@ export default defineConfig({
     tailwind({
       applyBaseStyles: false,
     }),
-    sitemap()
+    sitemap({
+      serialize(item) {
+        if (item.url === 'https://www.evcalculator.online/') {
+          item.changefreq = 'daily';
+          item.priority = 1.0;
+          item.lastmod = new Date();
+        } else if (item.url.includes('/blog')) {
+          item.changefreq = 'weekly';
+          item.priority = 0.8;
+          item.lastmod = new Date();
+        } else {
+          item.changefreq = 'monthly';
+          item.priority = 0.7;
+          item.lastmod = new Date();
+        }
+        return item;
+      }
+    })
   ],
 });

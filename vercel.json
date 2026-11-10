@@ -1,6 +1,16 @@
 {
   "cleanUrls": true,
-  "rewrites": [
-    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml" }
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "evcalculator.online"
+        }
+      ],
+      "destination": "https://www.evcalculator.online/$1",
+      "permanent": true
+    }
   ]
 }
