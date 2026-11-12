@@ -12,6 +12,7 @@ export interface Props {
   author?: string;
   image?: string;
   currentSlug: string;
+  extraSchema?: Record<string, any> | Array<Record<string, any>>;
 }
 
 const {
@@ -23,7 +24,8 @@ const {
   modifiedTime,
   author = 'John',
   image = '/og-image.jpg',
-  currentSlug
+  currentSlug,
+  extraSchema
 } = Astro.props;
 
 const siteUrl = Astro.site ? Astro.site.origin : 'https://www.evcalculator.online';
@@ -61,6 +63,18 @@ const articleSchema = {
 
 const allArticles = [
   {
+    slug: 'ev-charging-cost-uk-2026',
+    title: 'How Much Does It Cost to Charge an Electric Car in the UK? (2026 Guide)',
+    desc: 'Compare Octopus Intelligent Go (7p/kWh) vs Ofgem Price Cap (24.5p/kWh), public rapid chargers, pence-per-mile math vs petrol, and UK BiK company car tax savings.',
+    category: 'UK EV Economics'
+  },
+  {
+    slug: 'ev-vs-hybrid-vs-gas-cost-2026',
+    title: 'EV vs Hybrid vs Gas Cars: 5-Year Cost & Maintenance Breakdown (2026 US Guide)',
+    desc: 'Side-by-side 5-year Total Cost of Ownership comparing EVs, hybrids, and gas cars in the US—fuel, oil changes, brake wear, insurance, and depreciation.',
+    category: '5-Year TCO & Maintenance'
+  },
+  {
     slug: 'ev-charging-cost-us-2026',
     title: 'How Much Does It Cost to Charge an Electric Car in the US? (2026 Guide)',
     desc: 'Empirical analysis of monthly US EV charging costs. Compare Tesla Model Y vs gas at $3.50/gal, home Level 2 vs Supercharger rates, state tariffs, and federal tax credits.',
@@ -92,13 +106,16 @@ const allArticles = [
   }
 ];
 
-const relatedArticles = allArticles.filter(a => a.slug !== currentSlug);
+const relatedArticles = allArticles.filter(a => a.slug !== currentSlug).slice(0, 4);
+const combinedSchema = extraSchema
+  ? [articleSchema, ...(Array.isArray(extraSchema) ? extraSchema : [extraSchema])]
+  : articleSchema;
 ---
 
 <Layout 
   title={title} 
   description={description} 
-  schema={articleSchema}
+  schema={combinedSchema}
   type="article"
   image={image}
   publishedTime={publishedTime}

@@ -8,7 +8,19 @@
   </url>
   <url>
     <loc>https://www.evcalculator.online/blog</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.evcalculator.online/blog/ev-charging-cost-uk-2026</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.evcalculator.online/blog/ev-vs-hybrid-vs-gas-cost-2026</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

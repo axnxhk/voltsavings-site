@@ -1,0 +1,343 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const ukFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does it cost to charge an electric car at home in the UK in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On the standard Ofgem Energy Price Cap (24.5p/kWh), fully charging a typical 60 kWh electric car costs £14.70, or around 6.4p per mile. On a dedicated smart EV tariff like Octopus Intelligent Go (7p/kWh off-peak), the exact same 60 kWh charge drops to £4.20—just 1.8p per mile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many pence per mile is an electric car compared to petrol in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At £1.45 per litre (£6.59 per UK Imperial Gallon), a 40 MPG petrol car costs 16.5p per mile in fuel. An EV averaging 3.8 miles/kWh costs 1.8p per mile on Octopus Intelligent Go (7p/kWh) or 6.4p per mile on the standard Ofgem tariff (24.5p/kWh), cutting fuel bills by 61% to 89%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are UK motorway rapid chargers more expensive than petrol?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Public ultra-rapid motorway chargers (150kW–350kW) carry 20% VAT (compared to 5% VAT on domestic home electricity) plus commercial grid connection fees, resulting in average tariffs around 79p/kWh. At 79p/kWh, an EV costs roughly 20.8p per mile—higher than a 40 MPG petrol car at 16.5p per mile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the UK Benefit-in-Kind (BiK) company car tax rates for EVs in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Electric company cars benefit from ultra-low UK Benefit-in-Kind (BiK) tax rates: 3% in 2025/26 and 4% in 2026/27, compared to 25%–37% for comparable petrol and diesel vehicles. Through salary sacrifice or company car schemes, UK higher-rate taxpayers save £2,500 to £6,000+ annually."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best EV home charging tariff in the UK?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Smart time-of-use EV tariffs such as Octopus Intelligent Go (7p/kWh overnight), OVO Charge Anytime (7p/kWh), and E.ON Next Drive offer the lowest UK charging rates, typically providing 5 to 6+ hours of cheap overnight charging for under £5 per full battery."
+      }
+    }
+  ]
+};
+---
+
+<BlogLayout
+  title="How Much Does It Cost to Charge an Electric Car in the UK? (2026 Guide) | VoltSavings"
+  description="Compare 2026 UK EV charging costs: Octopus Intelligent Go (7p/kWh) vs Ofgem Price Cap (24.5p/kWh), rapid chargers, and exact pence-per-mile savings vs petrol."
+  category="UK EV Economics"
+  updatedDate="Updated Nov 2026"
+  publishedTime="2026-11-12T10:00:00Z"
+  modifiedTime="2026-11-12T10:00:00Z"
+  author="John"
+  currentSlug="ev-charging-cost-uk-2026"
+  extraSchema={ukFaqSchema}
+>
+  <!-- Lead In Paragraph -->
+  <p class="text-lg text-gray-950 font-semibold mb-6 leading-relaxed">
+    If you are considering switching to an electric vehicle in the United Kingdom in 2026, your real-world running cost boils down to one critical factor: <strong>Where and when you plug in.</strong> Depending on your electricity tariff, charging a family EV can cost as little as <strong>1.8p per mile</strong> on an overnight smart tariff—or exceed <strong>20p per mile</strong> at a motorway rapid charger.
+  </p>
+
+  <p class="mb-8 leading-relaxed">
+    With UK petrol pump prices hovering around <strong>£1.45 per litre (£6.59 per Imperial gallon)</strong> and the Ofgem domestic energy price cap sitting near <strong>24.5p per kWh</strong>, British drivers need transparent, accurate math before buying or leasing an EV. In this comprehensive UK guide, the <strong>VoltSavings Research Team</strong> breaks down home wallbox tariffs like <strong>Octopus Intelligent Go</strong>, public rapid charging networks, exact <strong>pence-per-mile (p/mile)</strong> comparisons against 40 MPG petrol cars, and massive <strong>Benefit-in-Kind (BiK)</strong> company car tax savings.
+  </p>
+
+  <!-- Key Takeaways Highlight Box -->
+  <div class="my-8 p-6 bg-gradient-to-br from-emerald-50 via-teal-50/40 to-emerald-50 border-2 border-emerald-300 rounded-3xl not-prose shadow-sm">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-black">
+        <i class="fa-solid fa-bolt"></i>
+      </span>
+      <h3 class="text-sm font-black uppercase tracking-wider text-emerald-950">Key Takeaways: 2026 UK EV Charging Costs</h3>
+    </div>
+    <ul class="space-y-2 text-xs sm:text-sm text-gray-800 font-medium">
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>Smart Home EV Tariff (Octopus Intelligent Go @ 7p/kWh):</strong> Full 60 kWh charge costs just <strong>£4.20</strong> (approx. <strong>1.8p per mile</strong>)—an <strong>89% saving</strong> vs petrol.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>Standard Ofgem Price Cap (24.5p/kWh):</strong> Full 60 kWh charge costs <strong>£14.70</strong> (approx. <strong>6.4p per mile</strong>)—still <strong>61% cheaper</strong> than an average petrol car.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>UK Petrol Baseline (£1.45/litre @ 40 Imperial MPG):</strong> Costs <strong>16.5p per mile</strong>, or <strong>£1,648 per year</strong> for 10,000 annual miles.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-1 shrink-0"></i>
+        <span><strong>Public Rapid Charger Trap (79p/kWh):</strong> Charging a 60 kWh battery on motorway rapid networks costs <strong>£47.40</strong> (<strong>20.8p per mile</strong>)—more expensive per mile than petrol due to 20% commercial VAT.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Interactive Quick-Tool Simulator Banner -->
+  <div class="my-8 p-6 bg-gray-950 text-white border border-gray-800 rounded-3xl not-prose flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl">
+    <div>
+      <span class="text-[10px] font-black uppercase tracking-widest text-emerald-400 block mb-1">UK (£ / IMPERIAL MPG) SIMULATOR</span>
+      <strong class="text-base sm:text-lg font-black text-white block">Calculate Your Exact UK Pence-Per-Mile Savings</strong>
+      <p class="text-xs text-gray-300 font-medium mt-1">Switch our free calculator to <strong>🇬🇧 UK (£ / Miles)</strong> mode and test Octopus Go (7p), Ofgem Cap (24.5p), MG4 EV, Tesla Model Y, and Vauxhall Corsa Electric presets.</p>
+    </div>
+    <a 
+      href="/#calculator-app" 
+      class="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black shadow-lg shadow-emerald-600/30 flex-shrink-0 transition-all text-center w-full sm:w-auto"
+    >
+      <i class="fa-solid fa-calculator mr-1.5"></i> Launch UK Calculator →
+    </a>
+  </div>
+
+  <!-- Section 1 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    1. UK EV Charging Tariffs Explained: Home Smart Rates vs Public Rapid Networks
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    Unlike filling up at a forecourt where unleaded petrol costs roughly the same everywhere, the price of a kilowatt-hour (kWh) of electricity in Britain varies by over <strong>1,000%</strong> depending on your tariff and location. Crucially, home electricity benefits from a reduced <strong>5% VAT rate</strong>, whereas public charging networks must legally add the standard <strong>20% commercial VAT</strong> on top of infrastructure and commercial energy costs.
+  </p>
+
+  <!-- UK Comparison Table -->
+  <div class="overflow-x-auto my-8 bg-white rounded-2xl border-2 border-gray-200 not-prose shadow-sm">
+    <table class="w-full text-xs text-left border-collapse">
+      <thead class="bg-gray-100 text-gray-950 font-black uppercase text-[11px] border-b border-gray-200">
+        <tr>
+          <th class="p-3.5">UK Charging / Fuel Source</th>
+          <th class="p-3.5">Unit Rate (2026)</th>
+          <th class="p-3.5">Full 60 kWh Charge (228 mi)</th>
+          <th class="p-3.5 text-emerald-800">Cost Per Mile</th>
+          <th class="p-3.5">Annual Cost (10,000 mi)</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 text-gray-700 font-medium">
+        <tr class="bg-emerald-50/70">
+          <td class="p-3.5 font-bold text-emerald-950">Octopus Intelligent Go / Smart EV (Off-Peak)</td>
+          <td class="p-3.5 font-bold text-emerald-700">7.0p / kWh</td>
+          <td class="p-3.5 font-bold">£4.20</td>
+          <td class="p-3.5 font-black text-emerald-700">1.8p / mile</td>
+          <td class="p-3.5 font-black text-emerald-900">£184 / year</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Ofgem Standard Home Price Cap (Variable)</td>
+          <td class="p-3.5">24.5p / kWh</td>
+          <td class="p-3.5">£14.70</td>
+          <td class="p-3.5 font-bold text-emerald-700">6.4p / mile</td>
+          <td class="p-3.5 font-bold">£645 / year</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Public Destination / Lamppost (7kW–22kW)</td>
+          <td class="p-3.5">54.0p / kWh</td>
+          <td class="p-3.5">£32.40</td>
+          <td class="p-3.5 font-bold text-gray-900">14.2p / mile</td>
+          <td class="p-3.5">£1,421 / year</td>
+        </tr>
+        <tr class="bg-amber-50/50">
+          <td class="p-3.5 font-bold text-amber-950">Motorway Ultra-Rapid Charger (50kW–350kW)</td>
+          <td class="p-3.5 font-bold text-amber-800">79.0p / kWh</td>
+          <td class="p-3.5 font-bold">£47.40</td>
+          <td class="p-3.5 font-black text-amber-800">20.8p / mile</td>
+          <td class="p-3.5 font-bold text-amber-900">£2,079 / year</td>
+        </tr>
+        <tr class="bg-red-50/60 border-t-2 border-red-200">
+          <td class="p-3.5 font-black text-red-950">40 MPG UK Petrol Car (Baseline)</td>
+          <td class="p-3.5 font-bold text-red-800">£1.45 / Litre (£6.59/gal)</td>
+          <td class="p-3.5 text-red-800">£37.60 (equiv. 228 mi)</td>
+          <td class="p-3.5 font-black text-red-700">16.5p / mile</td>
+          <td class="p-3.5 font-black text-red-900">£1,648 / year</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="text-xs text-gray-500 italic mb-8">
+    *Assumes an EV efficiency of 3.8 miles/kWh (typical for a Tesla Model Y, MG4 EV, or VW ID.3 in mixed UK weather) and a petrol car achieving 40 UK Imperial MPG at £1.45/litre.
+  </p>
+
+  <!-- Section 2 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    2. UK Imperial Gallon vs US Gallon: Why Accuracy Matters in Fuel Calculators
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    A frequent mistake British motorists encounter online is using American calculators built around the smaller US gallon (3.785 litres). In the UK, fuel economy is officially measured using the <strong>UK Imperial Gallon, which equals 4.54609 litres</strong>—20% larger than the US gallon.
+  </p>
+  <p class="mb-6 leading-relaxed">
+    To compute your genuine petrol cost per mile in Britain:
+  </p>
+  <div class="my-6 p-5 bg-gray-50 border-2 border-gray-200 rounded-2xl not-prose font-mono text-xs sm:text-sm text-gray-900">
+    <strong>UK Petrol Cost per Mile:</strong><br/>
+    (Litre Price in £ × 4.54609) ÷ Vehicle UK Imperial MPG<br/>
+    <span class="text-emerald-700 font-bold">Example (£1.45/L @ 40 MPG):</span> (£1.45 × 4.54609) ÷ 40 = <strong>£0.1648 (16.5p/mile)</strong>
+  </div>
+  <p class="mb-6 leading-relaxed">
+    Our <a href="/#calculator-app" class="text-emerald-700 font-bold underline">VoltSavings UK Calculator Mode</a> automatically applies the exact <strong>4.54609 litre-to-Imperial-gallon</strong> conversion factor so your pence-per-mile and monthly savings figures match real-world UK driving conditions.
+  </p>
+
+  <!-- Section 3 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    3. Real-World UK EV Models: Cost Per Mile & Full Charge Breakdown
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    Efficiency varies noticeably between lightweight hatchbacks and larger family crossovers, especially during colder British winters when cabin heating increases battery consumption. Below is the verified 2026 cost breakdown for five of the UK's best-selling electric cars:
+  </p>
+
+  <div class="overflow-x-auto my-8 bg-white rounded-2xl border-2 border-gray-200 not-prose shadow-sm">
+    <table class="w-full text-xs text-left border-collapse">
+      <thead class="bg-gray-100 text-gray-950 font-black uppercase text-[11px] border-b border-gray-200">
+        <tr>
+          <th class="p-3.5">Popular UK EV Model</th>
+          <th class="p-3.5">Real-World Efficiency</th>
+          <th class="p-3.5">Usable Battery</th>
+          <th class="p-3.5 text-emerald-800">Octopus Go (7p) / Mile</th>
+          <th class="p-3.5">Ofgem Cap (24.5p) / Mile</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 text-gray-700 font-medium">
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Tesla Model Y RWD</td>
+          <td class="p-3.5">3.8 mi / kWh</td>
+          <td class="p-3.5">57.5 kWh</td>
+          <td class="p-3.5 font-black text-emerald-700">1.8p / mile (£4.03 full)</td>
+          <td class="p-3.5 font-bold">6.4p / mile (£14.09 full)</td>
+        </tr>
+        <tr class="bg-gray-50/60">
+          <td class="p-3.5 font-bold text-gray-950">MG4 EV Long Range</td>
+          <td class="p-3.5">3.7 mi / kWh</td>
+          <td class="p-3.5">61.7 kWh</td>
+          <td class="p-3.5 font-black text-emerald-700">1.9p / mile (£4.32 full)</td>
+          <td class="p-3.5 font-bold">6.6p / mile (£15.12 full)</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Volkswagen ID.3 Pro</td>
+          <td class="p-3.5">3.9 mi / kWh</td>
+          <td class="p-3.5">58.0 kWh</td>
+          <td class="p-3.5 font-black text-emerald-700">1.8p / mile (£4.06 full)</td>
+          <td class="p-3.5 font-bold">6.3p / mile (£14.21 full)</td>
+        </tr>
+        <tr class="bg-gray-50/60">
+          <td class="p-3.5 font-bold text-gray-950">Vauxhall Corsa Electric</td>
+          <td class="p-3.5">4.0 mi / kWh</td>
+          <td class="p-3.5">48.1 kWh</td>
+          <td class="p-3.5 font-black text-emerald-700">1.7p / mile (£3.37 full)</td>
+          <td class="p-3.5 font-bold">6.1p / mile (£11.78 full)</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Nissan Leaf (40 kWh)</td>
+          <td class="p-3.5">3.6 mi / kWh</td>
+          <td class="p-3.5">39.0 kWh</td>
+          <td class="p-3.5 font-black text-emerald-700">1.9p / mile (£2.73 full)</td>
+          <td class="p-3.5 font-bold">6.8p / mile (£9.56 full)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 4 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    4. UK Company Car Tax (Benefit-in-Kind) & Salary Sacrifice Savings
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    Beyond fuel savings, the biggest driver of UK electric vehicle adoption is HMRC's <strong>Benefit-in-Kind (BiK) company car tax system</strong>. While petrol and diesel company cars are taxed at <strong>25% to 37%</strong> of their P11D list price depending on CO2 emissions, pure zero-emission EVs enjoy rock-bottom BiK rates:
+  </p>
+  <ul class="list-disc pl-6 mb-6 space-y-2 text-sm text-gray-800 font-medium">
+    <li><strong>2025/2026 Tax Year:</strong> 3% BiK Rate</li>
+    <li><strong>2026/2027 Tax Year:</strong> 4% BiK Rate</li>
+    <li><strong>2027/2028 Tax Year:</strong> 5% BiK Rate</li>
+  </ul>
+  <p class="mb-6 leading-relaxed">
+    For a UK higher-rate (40%) taxpayer choosing a £45,000 company car, switching from a 32% BiK petrol SUV (£5,760/yr in personal tax) to a 4% BiK electric SUV (£720/yr in personal tax) saves <strong>£5,040 every year in income tax alone</strong>—even before counting £1,400+ in annual petrol savings on an Octopus Go tariff.
+  </p>
+
+  <!-- Section 5 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    5. What About VED Road Tax & Terraced-House Street Charging?
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    Since April 2025, electric vehicles in the UK are no longer exempt from <strong>Vehicle Excise Duty (VED)</strong> road tax. Most EVs pay the standard £195 annual rate (plus the Expensive Car Supplement if the list price exceeded £40,000 when registered, though recent thresholds and adjustments apply—always verify current DVLA bands for your registration year). Even factoring in standard VED, home-charged EVs remain £900 to £1,400 cheaper per year to run than petrol cars.
+  </p>
+  <p class="mb-8 leading-relaxed">
+    <strong>No driveway?</strong> If you live in a terraced home or flat without off-street parking and rely 100% on 79p/kWh motorway rapid chargers, your fuel bill will match or slightly exceed a frugal petrol or hybrid car. However, if you have access to local council pavement gullies, workplace charging, or supermarket 22kW–50kW off-peak deals (around 35p–45p/kWh), EVs still deliver steady per-mile savings plus drastically lower servicing bills.
+  </p>
+
+  <!-- FAQ Section -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-6 tracking-tight">
+    Frequently Asked Questions (UK EV Charging)
+  </h2>
+
+  <div class="space-y-4 my-6 not-prose">
+    <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all" open>
+      <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+        <span>How much does it cost to charge an electric car at home in the UK?</span>
+        <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+      </summary>
+      <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+        On the Ofgem Energy Price Cap (24.5p/kWh), a full 60 kWh charge costs £14.70 (6.4p/mile). On Octopus Intelligent Go (7p/kWh overnight), the exact same 60 kWh charge costs only £4.20 (1.8p/mile).
+      </p>
+    </details>
+
+    <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+      <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+        <span>How much cheaper is an EV per mile than petrol in the UK?</span>
+        <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+      </summary>
+      <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+        A petrol car returning 40 Imperial MPG at £1.45/litre costs 16.5p per mile. Charging at home on a smart EV tariff (7p/kWh) costs just 1.8p per mile—89% cheaper. Even on standard variable tariffs (24.5p/kWh), an EV costs 6.4p per mile, saving over 60%.
+      </p>
+    </details>
+
+    <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+      <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+        <span>How much does a home EV wallbox charger cost to install in the UK?</span>
+        <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+      </summary>
+      <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+        A 7kW smart home wallbox (such as Ohme, Hypervolt, or Pod Point) typically costs £850 to £1,150 fully installed. Eligible UK renters and flat owners can still claim up to £350 off installation through the government OZEV EV Chargepoint Grant, and most homeowners recoup the installation cost within 8 to 12 months of smart tariff savings.
+      </p>
+    </details>
+  </div>
+
+  <!-- Related Internal Research Hub -->
+  <h2 class="text-2xl font-black text-gray-950 mt-12 mb-4">Explore Related Commuter Research & Guides</h2>
+  <ul class="space-y-2 text-xs font-bold text-emerald-700 mb-8">
+    <li><a href="/blog/ev-vs-hybrid-vs-gas-cost-2026" class="hover:underline">→ EV vs Hybrid vs Gas Cars: 5-Year Ownership & Maintenance Breakdown</a></li>
+    <li><a href="/blog/ev-charging-cost-us-2026" class="hover:underline">→ How Much Does It Cost to Charge an Electric Car in the US? (2026 Guide)</a></li>
+    <li><a href="/blog/ev-charging-cost-vs-petrol-2026" class="hover:underline">→ How Much Does It Cost to Charge an EV vs Petrol in 2026? (Global Telemetry)</a></li>
+    <li><a href="/#calculator-app" class="hover:underline">→ Calculate Your Exact UK (£ / Imperial MPG) Savings Free</a></li>
+  </ul>
+
+  <!-- Bottom CTA Card -->
+  <div class="my-10 p-8 bg-gradient-to-br from-emerald-600 via-teal-700 to-gray-950 text-white rounded-3xl not-prose shadow-xl text-center">
+    <h3 class="text-2xl sm:text-3xl font-black mb-3 text-white">Test Your Exact UK Car & Tariff Numbers</h3>
+    <p class="text-xs sm:text-sm text-emerald-100 max-w-xl mx-auto mb-6 font-medium leading-relaxed">
+      Switch our calculator to 🇬🇧 UK Mode to compare Octopus Go (7p/kWh), Ofgem Cap (24.5p/kWh), and your exact petrol car Imperial MPG in seconds.
+    </p>
+    <a 
+      href="/#calculator-app" 
+      class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-xs sm:text-sm font-black bg-white hover:bg-emerald-50 text-emerald-950 shadow-lg transition-all"
+    >
+      <i class="fa-solid fa-calculator text-emerald-600"></i> Open Free UK EV Calculator
+    </a>
+  </div>
+</BlogLayout>

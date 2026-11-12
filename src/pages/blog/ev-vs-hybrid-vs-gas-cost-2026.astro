@@ -1,0 +1,330 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const usTcoFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which is cheaper over 5 years in the US: an EV, a hybrid, or a gas car?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you can charge at home overnight ($0.16/kWh or less) and qualify for federal or state EV incentives, an Electric Vehicle often delivers the lowest 5-year fuel and maintenance cost—saving $9,000+ combined over gas. However, if you live in an apartment and rely on public fast chargers or buy without tax credits, a Hybrid (45+ MPG) frequently achieves the lowest total cost of ownership due to strong resale value and lower insurance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much less is EV maintenance compared to a gas car?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the US, routine EV maintenance averages $300 to $500 per year ($1,500–$2,500 over 5 years), compared to $1,000 to $1,400+ per year ($5,000–$7,000 over 5 years) for a comparable gas car. EVs eliminate oil changes, spark plugs, timing belts, exhaust systems, and multi-speed transmission services, while regenerative braking cuts brake pad wear by over 50%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do hybrids still need oil changes and brake replacements?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Because a hybrid (HEV) still contains an internal combustion gasoline engine, it requires regular synthetic oil changes, engine air filters, spark plugs, and cooling system maintenance. However, regenerative braking helps hybrid brake pads last noticeably longer than those on standard gas-only vehicles."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is EV car insurance sometimes higher than gas or hybrid insurance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "EV insurance averages $250 to $450 more per year in the US because electric vehicles carry higher replacement values, specialized aluminum or sensor-packed body panels, and strict battery pack inspection rules following collisions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many miles per year do you need to drive for an EV to beat a hybrid?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At US average rates ($0.16/kWh vs $3.50/gal), a home-charged EV saves roughly $535 per 15,000 miles on energy compared to a 45 MPG hybrid, plus ~$350/year on maintenance. Drivers logging 14,000+ miles per year with Level 2 home charging typically reach clear net savings over hybrids within 3 to 5 years—especially when factoring in EV tax credits."
+      }
+    }
+  ]
+};
+---
+
+<BlogLayout
+  title="EV vs Hybrid vs Gas Cars: 5-Year Cost & Maintenance Breakdown (2026 US Guide) | VoltSavings"
+  description="Compare 5-year ownership costs for EV, Hybrid, and Gas cars in the US. Real 2026 fuel, maintenance, insurance, and depreciation numbers for smart buyers."
+  category="5-Year TCO & Maintenance"
+  updatedDate="Updated Nov 2026"
+  publishedTime="2026-11-12T11:00:00Z"
+  modifiedTime="2026-11-12T11:00:00Z"
+  author="John"
+  currentSlug="ev-vs-hybrid-vs-gas-cost-2026"
+  extraSchema={usTcoFaqSchema}
+>
+  <!-- Lead In Paragraph -->
+  <p class="text-lg text-gray-950 font-semibold mb-6 leading-relaxed">
+    When shopping for a new or used vehicle in the United States in 2026, buyers face a three-way crossroads: <strong>Should you go all-electric (EV), buy a gas-electric hybrid (HEV), or stick with a traditional gasoline car?</strong>
+  </p>
+
+  <p class="mb-8 leading-relaxed">
+    Sticker prices only tell a fraction of the story. Over a typical <strong>5-year, 75,000-mile</strong> ownership window, fuel bills, routine maintenance, car insurance, state registration surcharges, and depreciation can easily swing your real out-of-pocket cost by <strong>$8,000 to $14,000</strong>. In this data-driven US guide, the <strong>VoltSavings Research Team</strong> puts a benchmark <strong>Electric Crossover (Tesla Model Y / Chevy Equinox EV)</strong>, a <strong>Hybrid (Toyota RAV4 Hybrid)</strong>, and a <strong>Gas SUV (28 MPG ICE)</strong> side by side so you can pick the mathematically cheapest drivetrain for your lifestyle.
+  </p>
+
+  <!-- Key Takeaways Highlight Box -->
+  <div class="my-8 p-6 bg-gradient-to-br from-emerald-50 via-teal-50/40 to-emerald-50 border-2 border-emerald-300 rounded-3xl not-prose shadow-sm">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-black">
+        <i class="fa-solid fa-scale-balanced"></i>
+      </span>
+      <h3 class="text-sm font-black uppercase tracking-wider text-emerald-950">Key Takeaways: 5-Year US Cost Showdown (75,000 Miles)</h3>
+    </div>
+    <ul class="space-y-2 text-xs sm:text-sm text-gray-800 font-medium">
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>5-Year Energy Spend:</strong> Home-charged EV (<strong>$3,158</strong>) beats Hybrid (<strong>$5,833</strong>) by 46% and crushes Gas (<strong>$9,375</strong>) by <strong>$6,217</strong>.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>5-Year Maintenance Spend:</strong> EVs average <strong>~$2,000</strong> total vs <strong>~$3,750</strong> for Hybrids and <strong>~$5,800</strong> for Gas vehicles—zero oil changes or exhaust repairs.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>The Hybrid Sweet Spot:</strong> For drivers without home charging—or those who buy new without tax credits—hybrids often hold lower 5-year depreciation and insurance costs.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-1 shrink-0"></i>
+        <span><strong>Hidden EV Costs to Watch:</strong> Factor in ~$300/yr higher EV insurance, $100–$250/yr state EV registration fees, and faster tire wear on heavy electric crossovers.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Interactive Quick-Tool Simulator Banner -->
+  <div class="my-8 p-6 bg-gray-950 text-white border border-gray-800 rounded-3xl not-prose flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl">
+    <div>
+      <span class="text-[10px] font-black uppercase tracking-widest text-emerald-400 block mb-1">5-YEAR US TCO CALCULATOR</span>
+      <strong class="text-base sm:text-lg font-black text-white block">Simulate Your Exact 5-Year Cash Retained (US Mode)</strong>
+      <p class="text-xs text-gray-300 font-medium mt-1">Compare your current car's US MPG against Tesla Model Y, Model 3, Ford F-150 Lightning, and Chevy Equinox EV with your exact electric rate.</p>
+    </div>
+    <a 
+      href="/#calculator-app" 
+      class="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black shadow-lg shadow-emerald-600/30 flex-shrink-0 transition-all text-center w-full sm:w-auto"
+    >
+      <i class="fa-solid fa-calculator mr-1.5"></i> Run 5-Year Calculator →
+    </a>
+  </div>
+
+  <!-- Section 1 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    1. Side-by-Side 5-Year Cost Comparison (75,000 US Miles)
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    To keep our comparison apples-to-apples, we model an average American commuter driving <strong>15,000 miles per year (75,000 miles over 5 years)</strong> using 2026 US national averages: <strong>$3.50/gallon</strong> for regular gasoline and <strong>$0.16/kWh</strong> for overnight residential electricity.
+  </p>
+
+  <div class="overflow-x-auto my-8 bg-white rounded-2xl border-2 border-gray-200 not-prose shadow-sm">
+    <table class="w-full text-xs text-left border-collapse">
+      <thead class="bg-gray-100 text-gray-950 font-black uppercase text-[11px] border-b border-gray-200">
+        <tr>
+          <th class="p-3.5">5-Year Expense Category</th>
+          <th class="p-3.5 text-emerald-800">Electric Vehicle (EV)</th>
+          <th class="p-3.5 text-teal-800">Hybrid (HEV - 45 MPG)</th>
+          <th class="p-3.5 text-red-800">Gasoline Car (28 MPG)</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 text-gray-700 font-medium">
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Fuel / Home Charging (75,000 mi)</td>
+          <td class="p-3.5 font-black text-emerald-700">$3,158 ($0.042/mi)</td>
+          <td class="p-3.5 font-bold text-teal-700">$5,833 ($0.078/mi)</td>
+          <td class="p-3.5 font-bold text-red-700">$9,375 ($0.125/mi)</td>
+        </tr>
+        <tr class="bg-gray-50/60">
+          <td class="p-3.5 font-bold text-gray-950">Routine Maintenance &amp; Repairs</td>
+          <td class="p-3.5 font-black text-emerald-700">~$2,000</td>
+          <td class="p-3.5">~$3,750</td>
+          <td class="p-3.5 text-red-700">~$5,800</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Estimated Tires (1 Replacement Set)</td>
+          <td class="p-3.5 text-amber-800">~$1,250</td>
+          <td class="p-3.5">~$950</td>
+          <td class="p-3.5">~$950</td>
+        </tr>
+        <tr class="bg-gray-50/60">
+          <td class="p-3.5 font-bold text-gray-950">Insurance Delta (5-Yr Cumulative)</td>
+          <td class="p-3.5 text-amber-800">+$1,650 higher</td>
+          <td class="p-3.5">Baseline</td>
+          <td class="p-3.5">Baseline</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">State EV Registration Fees (5 Yrs)</td>
+          <td class="p-3.5 text-amber-800">~$750</td>
+          <td class="p-3.5">$0 extra</td>
+          <td class="p-3.5">$0 extra</td>
+        </tr>
+        <tr class="bg-emerald-50/70 border-t-2 border-emerald-300 font-semibold">
+          <td class="p-3.5 font-black text-gray-950">5-Year Operating Subtotal (Excl. Purchase/Depr.)</td>
+          <td class="p-3.5 font-black text-emerald-800">~$8,808</td>
+          <td class="p-3.5 font-black text-teal-800">~$10,533</td>
+          <td class="p-3.5 font-black text-red-800">~$16,125</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mb-6 leading-relaxed">
+    Look closely at the bottom line: on direct running costs (energy + maintenance + insurance + fees), a home-charged EV saves <strong>~$7,317 over a gas car</strong> and <strong>~$1,725 over a 45 MPG hybrid</strong> across five years.
+  </p>
+
+  <!-- Section 2 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    2. Maintenance Cost Deep Dive: EV vs Hybrid vs Gas
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    A traditional internal combustion engine contains over 2,000 moving parts subjected to high heat, friction, and combustion pressure. An electric motor uses fewer than 20 moving parts inside its drivetrain. Over 75,000 miles, here is what drops off your service bill entirely:
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-8 not-prose">
+    <div class="p-5 bg-emerald-50/70 border-2 border-emerald-300 rounded-2xl">
+      <h3 class="text-sm font-black text-emerald-950 mb-2">⚡ Pure EV Maintenance</h3>
+      <p class="text-xs text-gray-700 leading-relaxed mb-3">
+        <strong>$300–$500 / year.</strong> Only requires tire rotations every 7,500 miles, cabin air filters, wiper blades, and occasional brake fluid/coolant checks.
+      </p>
+      <div class="text-[11px] font-bold text-emerald-800">
+        ✓ Zero oil changes<br/>
+        ✓ Brake pads last 90,000+ mi
+      </div>
+    </div>
+
+    <div class="p-5 bg-white border-2 border-gray-200 rounded-2xl">
+      <h3 class="text-sm font-black text-gray-950 mb-2">🔋 Hybrid (HEV) Maintenance</h3>
+      <p class="text-xs text-gray-700 leading-relaxed mb-3">
+        <strong>$650–$850 / year.</strong> Still requires full-synthetic oil changes every 5,000–10,000 miles, engine air filters, and spark plugs, though regenerative braking saves brake pads.
+      </p>
+      <div class="text-[11px] font-bold text-gray-700">
+        • Dual powertrain upkeep<br/>
+        ✓ Brake pads last 70,000+ mi
+      </div>
+    </div>
+
+    <div class="p-5 bg-white border-2 border-gray-200 rounded-2xl">
+      <h3 class="text-sm font-black text-gray-950 mb-2">⛽ Gas (ICE) Maintenance</h3>
+      <p class="text-xs text-gray-700 leading-relaxed mb-3">
+        <strong>$1,000–$1,400 / year.</strong> Requires 10–15 oil changes over 5 years, brake pads &amp; rotors around 45,000 miles, transmission service, belts, and exhaust checks.
+      </p>
+      <div class="text-[11px] font-bold text-red-700">
+        ✗ Most expensive servicing<br/>
+        ✗ High repair risk after 60k mi
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    3. Depreciation, Insurance &amp; The $7,500 Tax Credit Equation
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    Why do many US automotive studies (including AAA's <em>Your Driving Costs</em> report) still show Hybrids winning on <strong>Total Cost of Ownership</strong> for average-mileage buyers? Two big factors offset EV fuel savings if you aren't careful:
+  </p>
+  <ul class="list-disc pl-6 mb-6 space-y-2 text-sm text-gray-800 font-medium">
+    <li><strong>Depreciation Curve:</strong> Rapid battery improvements and manufacturer price cuts have caused new EVs to depreciate faster in years 1–3 than Toyota or Honda hybrids, which command top resale values. However, if you buy a <strong>2-to-3-year-old used EV</strong> (or apply the <strong>$7,500 Federal Clean Vehicle Tax Credit</strong> / point-of-sale lease credit on a new EV), the steep initial depreciation has already been absorbed.</li>
+    <li><strong>Public Fast Charging vs Home Charging:</strong> If you live in an apartment and rely on commercial DC fast chargers ($0.38–$0.48/kWh), your EV fuel cost rises to ~$0.11–$0.13 per mile—making a 45 MPG hybrid (~$0.078/mile) actually <strong>cheaper on fuel</strong>!</li>
+  </ul>
+
+  <!-- Section 4 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    4. Decision Matrix: Which Drivetrain Saves You the Most Money?
+  </h2>
+  <div class="overflow-x-auto my-6 bg-white rounded-2xl border-2 border-gray-200 not-prose shadow-sm">
+    <table class="w-full text-xs text-left border-collapse">
+      <thead class="bg-gray-100 text-gray-950 font-black uppercase text-[11px] border-b border-gray-200">
+        <tr>
+          <th class="p-3.5">Your Driving Profile</th>
+          <th class="p-3.5">Cheapest 5-Year Choice</th>
+          <th class="p-3.5">Why It Wins</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 text-gray-700 font-medium">
+        <tr class="bg-emerald-50/50">
+          <td class="p-3.5 font-bold text-gray-950">Homeowner / Garage Charging + 12,000+ mi/yr</td>
+          <td class="p-3.5 font-black text-emerald-700">Electric Vehicle (EV)</td>
+          <td class="p-3.5">Overnight $0.08–$0.16/kWh rates + low maintenance + tax credits yield $7,000–$11,000 savings over gas.</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Apartment / Street Parking (No Home Outlet)</td>
+          <td class="p-3.5 font-black text-teal-700">Hybrid (HEV)</td>
+          <td class="p-3.5">45–52 MPG beats public fast-charger rates ($0.45/kWh) while keeping zero charging anxiety.</td>
+        </tr>
+        <tr class="bg-emerald-50/50">
+          <td class="p-3.5 font-bold text-gray-950">High-Mileage / Rideshare / California Gas ($4.80+)</td>
+          <td class="p-3.5 font-black text-emerald-700">Used or Tax-Credit EV</td>
+          <td class="p-3.5">At 20,000+ miles/year or high state gas prices, EVs break even within 24 months.</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Low Mileage (&lt;6,000 mi/yr) Budget Buyer</td>
+          <td class="p-3.5 font-black text-gray-900">Used Gas or Used Hybrid</td>
+          <td class="p-3.5">Fuel bills are too small to justify higher upfront purchase prices or extra EV registration fees.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FAQ Section -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-6 tracking-tight">
+    Frequently Asked Questions (EV vs Hybrid vs Gas)
+  </h2>
+
+  <div class="space-y-4 my-6 not-prose">
+    <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all" open>
+      <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+        <span>Is an EV or a hybrid cheaper to maintain over 5 years?</span>
+        <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+      </summary>
+      <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+        A pure EV is noticeably cheaper to maintain ($300–$500/yr) than a hybrid ($650–$850/yr) because hybrids still contain a gasoline engine requiring synthetic oil changes, spark plugs, belts, and cooling system servicing.
+      </p>
+    </details>
+
+    <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+      <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+        <span>How much does a home EV save compared to a 45 MPG hybrid?</span>
+        <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+      </summary>
+      <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+        At $0.16/kWh and $3.50/gal gas, driving 15,000 miles per year costs ~$632 in electricity for an EV versus ~$1,167 in fuel for a 45 MPG hybrid—saving ~$535/year on energy plus ~$350/year on maintenance.
+      </p>
+    </details>
+
+    <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+      <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+        <span>Do EV batteries need replacing before 100,000 miles?</span>
+        <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+      </summary>
+      <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+        No. Every new EV sold in the US includes a federal-mandated 8-year / 100,000-mile battery warranty, and real-world telemetry shows modern EV packs routinely exceed 200,000+ miles. See our <a href="/blog/ev-battery-life-2026" class="text-emerald-700 underline font-bold">EV Battery Lifespan Guide</a> for degradation curves.
+      </p>
+    </details>
+  </div>
+
+  <!-- Related Internal Research Hub -->
+  <h2 class="text-2xl font-black text-gray-950 mt-12 mb-4">Explore Related Commuter Research & Guides</h2>
+  <ul class="space-y-2 text-xs font-bold text-emerald-700 mb-8">
+    <li><a href="/blog/ev-charging-cost-us-2026" class="hover:underline">→ How Much Does It Cost to Charge an Electric Car in the US? (State-by-State Guide)</a></li>
+    <li><a href="/blog/ev-charging-cost-uk-2026" class="hover:underline">→ How Much Does It Cost to Charge an Electric Car in the UK? (Octopus vs Ofgem)</a></li>
+    <li><a href="/blog/ev-battery-life-2026" class="hover:underline">→ EV Battery Lifespan & Degradation Guide (LFP vs NMC)</a></li>
+    <li><a href="/#calculator-app" class="hover:underline">→ Open the Free Interactive US EV vs Gas Savings Calculator</a></li>
+  </ul>
+
+  <!-- Bottom CTA Card -->
+  <div class="my-10 p-8 bg-gradient-to-br from-emerald-600 via-teal-700 to-gray-950 text-white rounded-3xl not-prose shadow-xl text-center">
+    <h3 class="text-2xl sm:text-3xl font-black mb-3 text-white">Compare Your Exact MPG vs EV Numbers</h3>
+    <p class="text-xs sm:text-sm text-emerald-100 max-w-xl mx-auto mb-6 font-medium leading-relaxed">
+      Enter your exact hybrid or gas car MPG, local pump price, and home electricity rate to generate a free 1-Year and 5-Year PDF ownership report.
+    </p>
+    <a 
+      href="/#calculator-app" 
+      class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-xs sm:text-sm font-black bg-white hover:bg-emerald-50 text-emerald-950 shadow-lg transition-all"
+    >
+      <i class="fa-solid fa-calculator text-emerald-600"></i> Open Free EV vs Gas Calculator
+    </a>
+  </div>
+</BlogLayout>
