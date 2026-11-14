@@ -7,14 +7,26 @@ const calculatorSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "VoltSavings EV Charging Cost & Petrol/Gas Savings Calculator",
-  "operatingSystem": "All",
+  "alternateName": "VoltSavings EV Charging Calculator",
+  "url": "https://www.evcalculator.online/",
   "applicationCategory": "FinanceApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Compatible with all modern web browsers (Chrome, Safari, Firefox, Edge).",
+  "softwareVersion": "2026.2",
   "offers": {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD"
   },
-  "description": "Calculate exact fuel cost vs electric vehicle charging expenses in US Dollars ($/gal) and British Pounds (£/litre). Compare multi-year ROI for popular US and UK EVs."
+  "description": "Interactive electric vehicle charging cost and fuel savings calculator. Dynamically models home Level 2 charging, off-peak Time-of-Use utility tariffs, and public DC fast charging vs gasoline ($/gal) in the United States and petrol (£/litre & Imperial MPG) in the United Kingdom.",
+  "featureList": [
+    "US Mode ($ / Miles): Calculate electric charging costs with $/kWh utility tariffs, $/gallon gasoline prices, US EPA MPG, and pre-calibrated vehicle profiles (Tesla Model Y, Model 3, Chevy Equinox EV, Ford F-150 Lightning)",
+    "UK Mode (£ / Miles): Calculate electric charging costs with p/kWh electricity rates (Octopus Intelligent Go 7p/kWh vs Ofgem Price Cap 24.5p/kWh vs 79p/kWh public rapid chargers), £/litre petrol prices, and UK Imperial Gallon conversion (4.54609 L/gal)",
+    "AC Level 2 Charging Efficiency Loss (configurable 8%–12% inverter loss modeling)",
+    "Compound Multi-Year Retained Cash (1-Month, 1-Year, 3-Year, and 5-Year Break-Even Ownership Projections)",
+    "Avoided Tailpipe CO2 Emissions & Tree Environmental Equivalency Calculator",
+    "Client-Side Privacy Engine (zero data sent to external servers) with 1-Click Executive PDF Report Export"
+  ]
 };
 
 const faqSchema = {

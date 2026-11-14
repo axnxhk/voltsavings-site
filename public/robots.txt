@@ -1,6 +1,42 @@
+# Standard Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Generative AI Answer Engines & Search Bots (GEO)
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Default Rule
 User-agent: *
 Allow: /
 
+# LLM Crawler Context File
+# LLMs-Text: https://www.evcalculator.online/llms.txt
+
 # Sitemaps
-Sitemap: https://www.evcalculator.online/sitemap-index.xml
 Sitemap: https://www.evcalculator.online/sitemap.xml
+Sitemap: https://www.evcalculator.online/sitemap-index.xml

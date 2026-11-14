@@ -1,0 +1,13 @@
+# EV Charging Cost Calculator (US & UK)
+> Free interactive electric vehicle charging cost calculator comparing home charging, off-peak tariffs, and public DC rapid charging against gas (US $/Gallon) and petrol (UK £/Litre & p/kWh).
+
+## Core Interactive Tool
+- [EV Charging Cost Calculator (US & UK Modes)](https://www.evcalculator.online/): Calculate cost per mile, cost per full charge (0-100% & 10-80%), and monthly/annual savings vs gas or petrol with Level 2 charging loss factored in.
+
+## Key 2026 Data Guides & Cost Breakdowns
+- [Tesla Model Y Home Charging Cost US](https://www.evcalculator.online/blog/tesla-model-y-home-charging-cost-us)
+- [Chevy Equinox EV Charging Cost at Home vs Supercharger US](https://www.evcalculator.online/blog/chevy-equinox-ev-charging-cost-at-home-us)
+- [UK EV Charging Cost: Octopus Go vs Ofgem Price Cap](https://www.evcalculator.online/blog/uk-ev-charging-cost-octopus-go-vs-price-cap)
+- [UK Public EV Charging Network Prices Compared 2026](https://www.evcalculator.online/blog/uk-public-ev-charging-network-prices-compared-2026)
+- [EV Charging Cost US 2026 Guide](https://www.evcalculator.online/blog/ev-charging-cost-us-2026)
+- [EV Charging Cost vs Petrol 2026](https://www.evcalculator.online/blog/ev-charging-cost-vs-petrol-2026)
