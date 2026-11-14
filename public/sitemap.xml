@@ -8,7 +8,19 @@
   </url>
   <url>
     <loc>https://www.evcalculator.online/blog</loc>
-    <lastmod>2026-11-12</lastmod>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.evcalculator.online/blog/chevy-equinox-ev-charging-cost-at-home-us</loc>
+    <lastmod>2026-11-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.evcalculator.online/blog/uk-public-ev-charging-network-prices-compared-2026</loc>
+    <lastmod>2026-11-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

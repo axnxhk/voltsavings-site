@@ -11,6 +11,16 @@
       ],
       "destination": "https://www.evcalculator.online/$1",
       "permanent": true
+    },
+    {
+      "source": "/blog/tesla-model-y-home-charging-cost-us",
+      "destination": "https://www.evcalculator.online/blog/ev-charging-cost-us-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/uk-ev-charging-cost-octopus-go-vs-price-cap",
+      "destination": "https://www.evcalculator.online/blog/ev-charging-cost-uk-2026",
+      "permanent": true
     }
   ]
 }

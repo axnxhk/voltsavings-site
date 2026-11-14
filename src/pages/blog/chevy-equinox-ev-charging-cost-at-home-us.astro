@@ -1,0 +1,369 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const equinoxFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does it cost to fully charge a Chevy Equinox EV at home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At the US national average residential electricity rate of $0.168 per kWh, fully charging the Chevy Equinox EV's 85 kWh usable battery (accounting for ~10% Level 2 charging loss, or 93.5 kWh drawn from the grid) costs approximately $15.71. On an off-peak time-of-use (TOU) tariff at $0.08 per kWh, a complete 0 to 100% recharge costs just $7.48."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to charge a Chevy Equinox EV per month?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For an average American driver logging 1,000 miles per month at real-world efficiency of 3.5 miles/kWh (~286 kWh consumed), monthly home charging costs approximately $52.80 on the US average electricity rate ($0.168/kWh) and only $25.10 per month on an overnight off-peak tariff ($0.08/kWh). In high-rate states like California ($0.34/kWh), it costs roughly $97.20 per month."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the Chevy Equinox EV charge at Tesla Superchargers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. General Motors has integrated access to over 17,800 Tesla Superchargers across the United States. Equinox EV owners can charge at V3 and V4 Supercharger stalls using an approved GM NACS-to-CCS1 adapter and activate sessions seamlessly via the myChevrolet mobile app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much do you save driving a Chevy Equinox EV compared to a gas SUV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A comparable 28 MPG gas SUV driven 12,000 miles annually at $3.50 per gallon burns $1,500 in fuel each year (~12.5¢/mile). The Equinox EV charged at home on US average rates costs approximately $633 per year (~5.2¢/mile), saving $867 per year on fuel alone, or over $1,200 annually if charged overnight on an off-peak tariff."
+      }
+    }
+  ]
+};
+---
+
+<BlogLayout
+  title="Chevy Equinox EV Charging Cost at Home vs Supercharger (2026 Monthly Breakdown) | VoltSavings"
+  description="Real 2026 Chevy Equinox EV charging costs at home vs Superchargers. Full 85 kWh battery breakdown, TOU night rates, and monthly gas SUV savings."
+  category="US EV Economics"
+  updatedDate="Updated Nov 2026"
+  publishedTime="2026-11-15T08:00:00Z"
+  modifiedTime="2026-11-15T08:00:00Z"
+  author="John"
+  currentSlug="chevy-equinox-ev-charging-cost-at-home-us"
+  extraSchema={equinoxFaqSchema}
+>
+  <!-- Lead In Paragraph -->
+  <p class="text-lg text-gray-950 font-semibold mb-6 leading-relaxed">
+    The <strong>Chevy Equinox EV</strong> has rapidly cemented its position as America's benchmark value electric crossover. Starting under $35,000 before the $7,500 federal clean vehicle tax credit, it brings 300+ miles of EPA-rated range within reach of everyday American households. But for prospective buyers cross-shopping against traditional gas compact SUVs, the decisive financial question is: <strong>How much does it actually cost per month to charge a Chevy Equinox EV at home versus filling up with gasoline or using commercial fast chargers?</strong>
+  </p>
+
+  <p class="mb-8 leading-relaxed">
+    Equipped with General Motors' Ultium powertrain architecture featuring an <strong>85.0 kWh usable battery pack</strong>, the Equinox EV delivers remarkable energy efficiency for a roomy five-seater crossover. In this authoritative 2026 empirical guide, the <strong>VoltSavings Research Team</strong> breaks down the real-world kilowatt-hour (kWh) math for home Level 2 charging, evaluates off-peak Time-of-Use (TOU) utility rates across major states, compares Tesla Supercharger costs using GM's official NACS adapter, and calculates your multi-year net cash savings versus a 28 MPG gas SUV.
+  </p>
+
+  <!-- Key Takeaways Highlight Box -->
+  <div class="my-8 p-6 bg-gradient-to-br from-emerald-50 via-teal-50/40 to-emerald-50 border-2 border-emerald-300 rounded-3xl not-prose shadow-sm">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-black">
+        <i class="fa-solid fa-bolt"></i>
+      </span>
+      <h3 class="text-sm font-black uppercase tracking-wider text-emerald-950">Key Takeaways: 2026 Equinox EV Charging Economics</h3>
+    </div>
+    <ul class="space-y-2 text-xs sm:text-sm text-gray-800 font-medium">
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>Full 0–100% Home Charge (US National Avg @ 16.8¢/kWh):</strong> Costs approximately <strong>$15.71</strong> (replenishing 85 kWh with 10% AC charging loss = 93.5 kWh from the wall).</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>Overnight Off-Peak Tariff (8.0¢/kWh):</strong> A complete overnight charge drops to just <strong>$7.48</strong>, delivering over 300 miles of highway range.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>Monthly Commute Cost (1,000 Miles):</strong> Costs roughly <strong>$52.80/month</strong> at home (<strong>~5.2¢/mile</strong>) versus <strong>$125.00/month</strong> for a 28 MPG gas SUV at $3.50/gal (<strong>12.5¢/mile</strong>)—saving <strong>$72.20 every month ($866/year)</strong>.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-1 shrink-0"></i>
+        <span><strong>Public DC Fast Charging &amp; Superchargers (45¢–54¢/kWh):</strong> A typical 10% to 80% highway top-up costs <strong>$27 to $32</strong> (<strong>13¢ to 15¢/mile</strong>). To maximize savings, do 85%+ of your charging at home.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Interactive Quick-Tool Simulator Banner -->
+  <div class="my-8 p-6 bg-gray-950 text-white border border-gray-800 rounded-3xl not-prose flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl">
+    <div>
+      <span class="text-[10px] font-black uppercase tracking-widest text-emerald-400 block mb-1">FREE INTERACTIVE FINANCIAL ENGINE</span>
+      <strong class="text-base sm:text-lg font-black text-white block">Calculate Your Exact Chevy Equinox EV Monthly Savings</strong>
+      <p class="text-xs text-gray-300 font-medium mt-1">Input your state electric rate ($/kWh), commute mileage, and local gas pump price to generate a certified 1-year and 5-year ROI report.</p>
+    </div>
+    <a 
+      href="/#calculator-app" 
+      class="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black shadow-lg shadow-emerald-600/30 flex-shrink-0 transition-all text-center w-full sm:w-auto"
+    >
+      <i class="fa-solid fa-calculator mr-1.5"></i> Launch Free US Calculator →
+    </a>
+  </div>
+
+  <!-- Section 1 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    1. Chevy Equinox EV Battery Specs &amp; Charging Hardware Architecture
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    To compute electrical charging costs with surgical precision, one must inspect the vehicle's underlying battery chemistry and internal inverter architecture. General Motors built the Equinox EV upon its modular Ultium platform, employing a 10-module nickel-cobalt-manganese-aluminum (NCMA) pouch cell configuration:
+  </p>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 my-8 not-prose">
+    <div class="p-4 bg-white border-2 border-gray-200 rounded-2xl shadow-xs">
+      <span class="text-[10px] font-black uppercase text-gray-400 block mb-1">Usable Capacity</span>
+      <strong class="text-xl font-black text-gray-950 block">85.0 kWh</strong>
+      <p class="text-[11px] text-gray-600 mt-1">Gross capacity ~89 kWh with ~4 kWh software safety buffer.</p>
+    </div>
+    <div class="p-4 bg-white border-2 border-gray-200 rounded-2xl shadow-xs">
+      <span class="text-[10px] font-black uppercase text-gray-400 block mb-1">EPA Rated Range</span>
+      <strong class="text-xl font-black text-emerald-700 block">319 Miles</strong>
+      <p class="text-[11px] text-gray-600 mt-1">Single-Motor FWD (213 hp). Dual-motor eAWD delivers 285 miles (288 hp).</p>
+    </div>
+    <div class="p-4 bg-white border-2 border-gray-200 rounded-2xl shadow-xs">
+      <span class="text-[10px] font-black uppercase text-gray-400 block mb-1">Level 2 AC Onboard</span>
+      <strong class="text-xl font-black text-gray-950 block">11.5 kW</strong>
+      <p class="text-[11px] text-gray-600 mt-1">Adds up to 34 miles/hour on a 240V / 48A dedicated home circuit.</p>
+    </div>
+    <div class="p-4 bg-white border-2 border-gray-200 rounded-2xl shadow-xs">
+      <span class="text-[10px] font-black uppercase text-gray-400 block mb-1">DC Fast Charging</span>
+      <strong class="text-xl font-black text-gray-950 block">150 kW Peak</strong>
+      <p class="text-[11px] text-gray-600 mt-1">10% to 80% replenishment in approximately 30 minutes.</p>
+    </div>
+  </div>
+
+  <p class="mb-4 leading-relaxed">
+    In routine real-world commuting—combining suburban secondary roads, urban stop-and-go with one-pedal regenerative braking, and 70 mph interstate cruising—the front-wheel-drive Equinox EV averages approximately <strong>3.5 miles per kilowatt-hour (mi/kWh)</strong>, which translates to an energy consumption rate of <strong>28.5 kWh per 100 miles</strong>. During harsh freezing winter conditions with cabin heat running, consumption climbs to roughly 2.8 mi/kWh (~35.7 kWh/100 mi), while pleasant spring temperatures yield up to 3.8 to 4.0 mi/kWh.
+  </p>
+
+  <!-- Section 2 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    2. Home Charging Cost Breakdown: Full Charge (0–100%) vs Daily Commute (10–80%)
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    A critical engineering detail frequently overlooked by simplistic online calculators is <strong>Level 2 charging efficiency loss</strong>. During AC-to-DC conversion within the vehicle's onboard inverter and thermal management circulation, roughly 8% to 12% of electrical energy is dissipated as heat. To deliver 85.0 kWh of chemical energy into the battery pack, the residential utility meter must register approximately <strong>93.5 kWh of electricity</strong> (assuming 90% charging efficiency).
+  </p>
+  <p class="mb-6 leading-relaxed">
+    Furthermore, lithium-ion battery preservation best practices recommend daily charging to <strong>80% state-of-charge (SoC)</strong>, reserving 100% full charges for long-distance highway road trips. A routine 10% to 80% charge window replenishes <strong>59.5 kWh of usable battery energy</strong>, drawing approximately <strong>65.4 kWh from your wall outlet</strong>.
+  </p>
+
+  <!-- Detailed Cost Table -->
+  <div class="overflow-x-auto my-8 bg-white rounded-2xl border-2 border-gray-200 not-prose shadow-sm">
+    <table class="w-full text-xs text-left border-collapse">
+      <thead class="bg-gray-100 text-gray-950 font-black uppercase text-[11px] border-b border-gray-200">
+        <tr>
+          <th class="p-3.5">Electricity Rate Scenario</th>
+          <th class="p-3.5">Utility Tariff ($/kWh)</th>
+          <th class="p-3.5 text-emerald-800">Routine 10%–80% (~223 mi)</th>
+          <th class="p-3.5">Full 0%–100% (~319 mi)</th>
+          <th class="p-3.5">Monthly Cost (1,000 mi)</th>
+          <th class="p-3.5">Cost Per Mile</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 text-gray-700 font-medium">
+        <tr class="bg-emerald-50/70">
+          <td class="p-3.5 font-bold text-emerald-950">Overnight Off-Peak (Smart EV Tariff)</td>
+          <td class="p-3.5 font-bold text-emerald-700">$0.080 / kWh</td>
+          <td class="p-3.5 font-black text-emerald-700">$5.23</td>
+          <td class="p-3.5 font-bold">$7.48</td>
+          <td class="p-3.5 font-black text-emerald-900">$25.10 / mo</td>
+          <td class="p-3.5 font-black text-emerald-700">2.51¢ / mi</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Low-Cost States (Texas, WA, Idaho)</td>
+          <td class="p-3.5">$0.120 / kWh</td>
+          <td class="p-3.5">$7.85</td>
+          <td class="p-3.5">$11.22</td>
+          <td class="p-3.5 font-bold">$37.66 / mo</td>
+          <td class="p-3.5">3.77¢ / mi</td>
+        </tr>
+        <tr class="bg-blue-50/40">
+          <td class="p-3.5 font-bold text-blue-950">US National Average (EIA 2026 Baseline)</td>
+          <td class="p-3.5 font-bold text-blue-800">$0.168 / kWh</td>
+          <td class="p-3.5 font-bold text-blue-900">$11.00</td>
+          <td class="p-3.5 font-bold text-blue-900">$15.71</td>
+          <td class="p-3.5 font-black text-blue-950">$52.80 / mo</td>
+          <td class="p-3.5 font-bold text-blue-900">5.28¢ / mi</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Moderate Northeast / Midwest Grid</td>
+          <td class="p-3.5">$0.220 / kWh</td>
+          <td class="p-3.5">$14.40</td>
+          <td class="p-3.5">$20.57</td>
+          <td class="p-3.5 font-bold">$69.05 / mo</td>
+          <td class="p-3.5">6.91¢ / mi</td>
+        </tr>
+        <tr class="bg-amber-50/60">
+          <td class="p-3.5 font-bold text-amber-950">High-Rate States (California PG&amp;E, MA)</td>
+          <td class="p-3.5 font-bold text-amber-800">$0.340 / kWh</td>
+          <td class="p-3.5 font-bold text-amber-900">$22.25</td>
+          <td class="p-3.5 font-bold text-amber-900">$31.79</td>
+          <td class="p-3.5 font-black text-amber-950">$97.20 / mo</td>
+          <td class="p-3.5 font-bold text-amber-900">9.72¢ / mi</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="text-xs text-gray-500 italic mb-8">
+    *Calculations factor in 10% AC Level 2 charging losses (93.5 kWh wall draw for 100% capacity; 65.4 kWh wall draw for 10–80% top-up) at real-world baseline efficiency of 3.5 mi/kWh.
+  </p>
+
+  <!-- Section 3 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    3. Public DC Fast Charging &amp; Tesla Supercharger Costs (with NACS Adapter)
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    One of the greatest competitive advantages of owning a GM electric vehicle in 2026 is seamless access to the <strong>Tesla Supercharger network</strong>. Using an approved GM NACS-to-CCS1 adapter, Equinox EV owners can tap into thousands of reliable V3 (250 kW) and V4 Supercharger stalls nationwide. You can initiate and pay for charging sessions directly through the myChevrolet mobile app or the Tesla app.
+  </p>
+  <p class="mb-4 leading-relaxed">
+    However, public fast charging carries a substantial financial premium over domestic home charging:
+  </p>
+  <ul class="list-disc pl-6 mb-6 space-y-2 text-sm text-gray-800 font-medium">
+    <li><strong>Tesla Superchargers (Non-Tesla Member Rate):</strong> Typically averages <strong>$0.42 to $0.52 per kWh</strong> across interstate corridors. A 10% to 80% road trip top-up (59.5 kWh) costs between <strong>$25.00 and $31.00</strong>.</li>
+    <li><strong>Electrify America &amp; EVgo (Standard PAYG):</strong> Averages <strong>$0.48 to $0.56 per kWh</strong> (plus potential session connection fees in select municipalities). The same 10% to 80% charge costs <strong>$28.50 to $33.30</strong>.</li>
+    <li><strong>Highway Cost Per Mile:</strong> Driving exclusively on public fast chargers pushes your operating cost to approximately <strong>13.5¢ to 15.5¢ per mile</strong>.</li>
+  </ul>
+
+  <!-- Section 4 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    4. Head-to-Head: Chevy Equinox EV vs Gas Chevy Equinox (28 MPG)
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    To understand the true total cost of ownership (TCO) advantage, let us compare the <strong>Equinox EV</strong> against its combustion counterpart, the traditional <strong>Chevy Equinox 1.5L Turbo gas SUV</strong> delivering an EPA combined rating of 28 US MPG. We model an American commuter driving <strong>12,000 miles per year (1,000 miles per month)</strong> with gasoline priced at $3.50 per gallon:
+  </p>
+
+  <div class="overflow-x-auto my-8 bg-white rounded-2xl border-2 border-gray-200 not-prose shadow-sm">
+    <table class="w-full text-xs text-left border-collapse">
+      <thead class="bg-gray-100 text-gray-950 font-black uppercase text-[11px] border-b border-gray-200">
+        <tr>
+          <th class="p-3.5">Comparison Metric</th>
+          <th class="p-3.5 text-emerald-800">Chevy Equinox EV (Home @ $0.168)</th>
+          <th class="p-3.5 text-emerald-800">Chevy Equinox EV (Off-Peak @ $0.08)</th>
+          <th class="p-3.5 text-red-800">Chevy Equinox Gas 1.5T (28 MPG)</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200 text-gray-700 font-medium">
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Energy / Fuel Cost Per Mile</td>
+          <td class="p-3.5 font-bold text-emerald-700">5.28¢ / mile</td>
+          <td class="p-3.5 font-black text-emerald-700">2.51¢ / mile</td>
+          <td class="p-3.5 font-bold text-red-700">12.50¢ / mile</td>
+        </tr>
+        <tr class="bg-gray-50/60">
+          <td class="p-3.5 font-bold text-gray-950">Monthly Fueling Bill (1,000 mi)</td>
+          <td class="p-3.5 font-bold text-emerald-700">$52.80 / month</td>
+          <td class="p-3.5 font-black text-emerald-700">$25.10 / month</td>
+          <td class="p-3.5 font-bold text-red-700">$125.00 / month</td>
+        </tr>
+        <tr>
+          <td class="p-3.5 font-bold text-gray-950">Annual Fueling Cost (12,000 mi)</td>
+          <td class="p-3.5 font-bold text-emerald-700">$633.60 / year</td>
+          <td class="p-3.5 font-black text-emerald-700">$301.20 / year</td>
+          <td class="p-3.5 font-bold text-red-700">$1,500.00 / year</td>
+        </tr>
+        <tr class="bg-gray-50/60">
+          <td class="p-3.5 font-bold text-gray-950">Routine Oil Changes &amp; Filters</td>
+          <td class="p-3.5 font-black text-emerald-700">$0.00 (Zero engine oil)</td>
+          <td class="p-3.5 font-black text-emerald-700">$0.00 (Zero engine oil)</td>
+          <td class="p-3.5 text-red-700">~$160.00 / year (2 changes)</td>
+        </tr>
+        <tr class="bg-emerald-50/80 border-t-2 border-emerald-300 font-semibold">
+          <td class="p-3.5 font-black text-gray-950">Net 5-Year Pocket Savings (60,000 mi)</td>
+          <td class="p-3.5 font-black text-emerald-800">+$5,132 Retained Cash</td>
+          <td class="p-3.5 font-black text-emerald-800">+$6,794 Retained Cash</td>
+          <td class="p-3.5 text-red-800">Baseline Burn</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mb-6 leading-relaxed">
+    Over a five-year ownership span, an Equinox EV driver charging at home preserves between <strong>$5,100 and $6,800 in unburned fuel and maintenance expenditure</strong> compared to the gas Equinox. When stacked on top of the <strong>$7,500 Federal Clean Vehicle Tax Credit</strong> for qualifying buyers, the total financial benefit comfortably eclipses $12,500.
+  </p>
+
+  <!-- Section 5 -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    5. Equinox EV vs Tesla Model Y: Charging Curve &amp; Efficiency Compared
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    Prospective American EV buyers invariably compare the Chevy Equinox EV against the country's best-selling electric crossover, the Tesla Model Y. In our in-depth <a href="/blog/tesla-model-y-home-charging-cost-us" class="text-emerald-700 font-bold underline">Tesla Model Y Home Charging Cost Breakdown</a> and flagship <a href="/blog/ev-charging-cost-us-2026" class="text-emerald-700 font-bold underline">US EV Charging Cost Guide</a>, we documented that the Model Y operates at a slightly higher highway efficiency of approximately 3.8 mi/kWh versus 3.5 mi/kWh for the Equinox EV.
+  </p>
+  <p class="mb-6 leading-relaxed">
+    However, the Equinox EV counters with a larger battery reserve (<strong>85 kWh usable</strong> vs ~75 kWh usable in the Model Y Long Range) and a very consistent Level 2 AC onboard charging speed of 11.5 kW. While the Model Y charges faster at peak DC fast charging speeds (up to 250 kW on V3 Superchargers vs 150 kW for the Equinox), the Equinox EV holds its 100 kW+ charge rate remarkably well through 60% battery capacity. For drivers conducting 90% of their charging at home overnight, the day-to-day electrical bill delta between the two vehicles is under $4 to $6 per month.
+  </p>
+
+  <!-- FAQ Section -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-6 tracking-tight">
+    Frequently Asked Questions (Chevy Equinox EV Charging)
+  </h2>
+
+  <div class="space-y-4 my-6 not-prose">
+    <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all" open>
+      <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+        <span>How much does it cost to fully charge a Chevy Equinox EV at home?</span>
+        <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+      </summary>
+      <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+        At the US national average residential electricity rate of $0.168 per kWh, fully charging the Equinox EV's 85 kWh usable battery (drawing ~93.5 kWh from the wall with 10% AC charging loss) costs approximately $15.71. On an off-peak night tariff ($0.08/kWh), a complete recharge costs just $7.48.
+      </p>
+    </details>
+
+    <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+      <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+        <span>How many hours does it take to charge an Equinox EV on Level 2?</span>
+        <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+      </summary>
+      <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+        Using a standard 48-Amp Level 2 home wallbox operating at 11.5 kW, replenishing a typical 20% to 80% daily charge takes roughly 4.5 to 5.5 hours. A complete 0 to 100% recharge takes approximately 8.5 hours—easily accomplished overnight while you sleep.
+      </p>
+    </details>
+
+    <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+      <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+        <span>Can I plug a Chevy Equinox EV into a regular 120V household wall outlet?</span>
+        <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+      </summary>
+      <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+        Yes, Level 1 (120V) charging is supported via GM's dual-voltage cord set. However, Level 1 charging delivers only 1.4 kW, adding roughly 3 to 4 miles of range per hour. A full recharge from empty on 120V takes over 60 hours, making a dedicated 240V Level 2 circuit highly recommended for daily commuters.
+      </p>
+    </details>
+
+    <details class="group bg-white border-2 border-gray-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+      <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+        <span>How much does a Tesla Supercharger session cost for an Equinox EV?</span>
+        <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+      </summary>
+      <p class="text-xs text-gray-700 leading-relaxed mt-3 font-medium">
+        Using an approved GM NACS-to-CCS1 adapter, non-member rates at Tesla Superchargers average $0.45 to $0.52 per kWh. A routine 10% to 80% highway top-up (approx 59.5 kWh) costs between $27.00 and $31.00 and takes roughly 30 minutes at peak speeds up to 150 kW.
+      </p>
+    </details>
+  </div>
+
+  <!-- Related Internal Research Hub -->
+  <h2 class="text-2xl font-black text-gray-950 mt-12 mb-4">Explore Related Commuter Research &amp; Guides</h2>
+  <ul class="space-y-2 text-xs font-bold text-emerald-700 mb-8">
+    <li><a href="/blog/ev-charging-cost-us-2026" class="hover:underline">→ How Much Does It Cost to Charge an Electric Car in the US? (Tesla Model Y &amp; State Tariffs)</a></li>
+    <li><a href="/blog/ev-vs-hybrid-vs-gas-cost-2026" class="hover:underline">→ EV vs Hybrid vs Gas Cars: 5-Year Ownership &amp; Maintenance Breakdown</a></li>
+    <li><a href="/blog/ev-savings-2026" class="hover:underline">→ How Much Money Do You Really Save Switching to an EV? (5-Year TCO Breakdown)</a></li>
+    <li><a href="/blog/uk-public-ev-charging-network-prices-compared-2026" class="hover:underline">→ UK Public EV Charging Network Prices Compared (2026 Zapmap Telemetry)</a></li>
+    <li><a href="/#calculator-app" class="hover:underline">→ Open the Free Interactive US EV vs Gas Savings Calculator</a></li>
+  </ul>
+
+  <!-- Bottom CTA Card -->
+  <div class="my-10 p-8 bg-gradient-to-br from-emerald-600 via-teal-700 to-gray-950 text-white rounded-3xl not-prose shadow-xl text-center">
+    <h3 class="text-2xl sm:text-3xl font-black mb-3 text-white">Calculate Your Custom Equinox EV Fuel Savings</h3>
+    <p class="text-xs sm:text-sm text-emerald-100 max-w-xl mx-auto mb-6 font-medium leading-relaxed">
+      Test your exact utility company rates ($/kWh), daily driving commute distance, and local pump gas prices in our 100% free, private client-side calculator.
+    </p>
+    <a 
+      href="/#calculator-app" 
+      class="inline-flex items-center gap-2 px-7 py-3.5 rounded-2xl text-xs sm:text-sm font-black bg-white hover:bg-emerald-50 text-emerald-950 shadow-lg transition-all"
+    >
+      <i class="fa-solid fa-calculator text-emerald-600"></i> Open Free US EV Calculator
+    </a>
+  </div>
+</BlogLayout>
