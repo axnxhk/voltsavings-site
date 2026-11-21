@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Calculator from '../components/Calculator.astro';
+import AdBannerResponsive from '../components/ads/AdBannerResponsive.astro';
+import AdNativeBanner from '../components/ads/AdNativeBanner.astro';
 
 // Enhanced Structured Data (JSON-LD) for SoftwareApplication & Comprehensive US/UK FAQPage
 const calculatorSchema = {
@@ -226,6 +228,8 @@ const faqSchema = {
 
   <!-- Interactive Calculator App Anchor -->
   <main id="calculator-app" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full scroll-mt-20" role="main">
+    <!-- Top Responsive Ad (468x60 Desktop / 320x50 Mobile) -->
+    <AdBannerResponsive />
     <Calculator />
   </main>
 
@@ -892,6 +896,9 @@ const faqSchema = {
       </div>
     </div>
   </section>
+
+  <!-- Mid-Page Native Ad Banner -->
+  <AdNativeBanner />
 
   <!-- Charging Speed & Infrastructure Breakdown -->
   <section class="py-16 border-t border-gray-200 bg-white" aria-labelledby="charging-heading">

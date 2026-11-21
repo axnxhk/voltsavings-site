@@ -1,6 +1,9 @@
 ---
 import Layout from './Layout.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import AdNativeBanner from '../components/ads/AdNativeBanner.astro';
+import AdBannerResponsive from '../components/ads/AdBannerResponsive.astro';
+import AdBanner300x250 from '../components/ads/AdBanner300x250.astro';
 
 export interface Props {
   title: string;
@@ -174,10 +177,16 @@ const combinedSchema = extraSchema
         </div>
       </header>
 
+      <!-- Top Responsive Article Ad (468x60 / 320x50) -->
+      <AdBannerResponsive />
+
       <!-- Content -->
       <div class="prose prose-emerald max-w-none text-gray-700 leading-relaxed font-medium" itemprop="articleBody">
         <slot />
       </div>
+
+      <!-- End-of-Article Native Ad Banner -->
+      <AdNativeBanner />
 
       <!-- Author Bio Card (Google E-E-A-T & AdSense Trust Signal) -->
       <div class="my-10 p-5 rounded-2xl bg-gray-50 border-2 border-gray-200 flex flex-col sm:flex-row items-center sm:items-start gap-4 not-prose">
