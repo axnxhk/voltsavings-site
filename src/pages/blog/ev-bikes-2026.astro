@@ -1,5 +1,29 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const bikesFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Are electric motorcycles and scooters cheaper to run than petrol bikes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. An electric motorcycle or scooter consumes only 25 to 40 Wh per kilometer (25 to 40 km/kWh), making operational fuel costs 80% to 90% cheaper than a 70cc to 125cc petrol motorbike. In suburban commuting, an e-bike costs under 0.5¢ per mile in electricity."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does an electric motorcycle battery last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most electric two-wheelers equipped with quality lithium-ion or LFP packs last 1,500 to 2,500 cycles (5 to 8 years of standard daily commuting) before dropping below 75% capacity."
+      }
+    }
+  ]
+};
+
 ---
 
 <BlogLayout
@@ -11,6 +35,7 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
   modifiedTime="2026-11-10T12:00:00Z"
   author="John"
   currentSlug="ev-bikes-2026"
+  extraSchema={bikesFaqSchema}
 >
   <p class="text-lg text-gray-950 font-semibold mb-8 leading-relaxed">
     Across urban metropolises globally—from South Asia and Southeast Asia to European capitals—the two-wheeler is the true lifeblood of daily commuting. Millions of office workers, university students, and delivery couriers rely on motorcycles for intra-city mobility. But with petrol prices reaching historic highs, the burning question in 2026 is: <strong>Are electric motorcycles and scooters genuinely worth the investment?</strong>

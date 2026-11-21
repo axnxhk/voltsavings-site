@@ -1,5 +1,29 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const savingsFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much money do you actually save by switching to an electric vehicle?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On average, switching from a gasoline/petrol car to an EV saves $1,000 to $1,500 per year on fuel in the US, £1,100 to £1,600 per year in the UK, and $1,500 to $2,200 CAD per year in Canada. Over a 5-year ownership period, cumulative savings exceed $6,000 to $10,000 including avoided oil changes, spark plugs, and brake pad wear."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does brake maintenance differ between electric and gas cars?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Electric cars use regenerative braking, using electric motors to slow the car down and feed energy back into the battery. This reduces mechanical friction on brake pads and rotors by up to 80%, allowing EV brake pads to last 100,000+ miles before requiring replacement."
+      }
+    }
+  ]
+};
+
 ---
 
 <BlogLayout
@@ -11,6 +35,7 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
   modifiedTime="2026-10-30T22:00:00Z"
   author="John"
   currentSlug="ev-savings-2026"
+  extraSchema={savingsFaqSchema}
 >
   <p class="text-lg text-gray-950 font-semibold mb-8 leading-relaxed">
     The global shift toward electric mobility is no longer solely an environmental talking point—it has evolved into one of the most powerful household financial strategies of the decade. With volatile global oil markets and climbing petrol station prices, purchasing an <strong>electric vehicle (EV)</strong> has become a front-line defense against inflation.
@@ -31,7 +56,7 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
       href="/#calculator-app" 
       class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black shadow-md flex-shrink-0 transition-all"
     >
-      Open Free Calculator →
+      Open EV vs Gas / Petrol Calculator →
     </a>
   </div>
 

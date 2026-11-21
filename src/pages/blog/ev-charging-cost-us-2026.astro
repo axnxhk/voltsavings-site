@@ -1,5 +1,45 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const usFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does it cost to charge a Tesla Model Y from 0% to 100% at home in the US?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At the US national residential electricity average of $0.168 per kWh, fully recharging the Tesla Model Y's 75 kWh battery pack (with ~10% AC charging loss, or 82.5 kWh drawn from the grid) costs approximately $13.86. On an overnight off-peak Time-of-Use tariff at $0.08 per kWh, a full charge costs just $6.60."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to charge an electric car per month in the US?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For an average American driver traveling 1,100 miles per month, home Level 2 charging costs approximately $45 to $65 per month at US average residential rates. In contrast, fueling a 28 MPG gasoline vehicle costs $135 to $150 per month at $3.50/gallon, saving the EV driver over $1,000 per year."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Tesla Superchargers more expensive than charging at home?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tesla Superchargers cost approximately $0.40 to $0.43 per kWh for Tesla owners (and $0.57 to $0.60 per kWh for non-members), making a typical fast-charge session cost $21 to $32. Home Level 2 charging averages $0.168/kWh, saving you 60% to 70% compared to commercial fast charging."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I claim the $7,500 federal tax credit for an EV in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Under the Inflation Reduction Act (Section 30D), qualifying new electric vehicles assembled in North America that satisfy critical mineral and battery component criteria qualify for up to $7,500 at the point of sale. Pre-owned electric vehicles under $25,000 can receive up to $4,000 in federal tax credits."
+      }
+    }
+  ]
+};
+
 ---
 
 <BlogLayout
@@ -11,6 +51,7 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
   modifiedTime="2026-11-10T12:00:00Z"
   author="John"
   currentSlug="ev-charging-cost-us-2026"
+  extraSchema={usFaqSchema}
 >
   <!-- Lead In Paragraph -->
   <p class="text-lg text-gray-950 font-semibold mb-6 leading-relaxed">

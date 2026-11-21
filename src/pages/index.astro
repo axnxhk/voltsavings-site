@@ -22,6 +22,7 @@ const calculatorSchema = {
   "featureList": [
     "US Mode ($ / Miles): Calculate electric charging costs with $/kWh utility tariffs, $/gallon gasoline prices, US EPA MPG, and pre-calibrated vehicle profiles (Tesla Model Y, Model 3, Chevy Equinox EV, Ford F-150 Lightning)",
     "UK Mode (£ / Miles): Calculate electric charging costs with p/kWh electricity rates (Octopus Intelligent Go 7p/kWh vs Ofgem Price Cap 24.5p/kWh vs 79p/kWh public rapid chargers), £/litre petrol prices, and UK Imperial Gallon conversion (4.54609 L/gal)",
+    "Canada Mode (CAD $ / Kilometres): Model Canadian fuel prices ($/L), regional provincial hydro tariffs (Hydro-Québec 8¢/kWh vs BC Hydro 11¢/kWh vs Ontario Ultra-Low Overnight 3¢/kWh), and EV battery consumption in km/kWh",
     "AC Level 2 Charging Efficiency Loss (configurable 8%–12% inverter loss modeling)",
     "Compound Multi-Year Retained Cash (1-Month, 1-Year, 3-Year, and 5-Year Break-Even Ownership Projections)",
     "Avoided Tailpipe CO2 Emissions & Tree Environmental Equivalency Calculator",
@@ -150,8 +151,8 @@ const faqSchema = {
 ---
 
 <Layout 
-  title="EV Charging Cost Calculator (US $ & UK £) - Electric vs Gas/Petrol Savings | VoltSavings™"
-  description="Compare electric car charging costs vs gas in the US ($/gal) and petrol in the UK (£/litre). Accurate 2026 EV savings calculator & 5-year ROI reports."
+  title="EV vs Petrol & Gas Calculator (2026) - Electric Car Running Cost & Savings (US, UK & Canada) | VoltSavings™"
+  description="Free interactive EV vs petrol & gas calculator (2026). Calculate electric car running costs per mile & km across the US ($/gal), UK (£/L & p/kWh), and Canada ($/L). Compare home charging vs fast chargers and 5-year ROI savings."
   canonicalUrl="https://www.evcalculator.online/"
   schema={[calculatorSchema, faqSchema]}
 >
@@ -171,12 +172,12 @@ const faqSchema = {
 
       <!-- Main Headline -->
       <h1 id="hero-heading" class="text-3xl sm:text-5xl lg:text-6xl font-black text-gray-950 tracking-tight leading-[1.12] mb-4">
-        Stop Guessing Your Fuel Costs. <br class="hidden sm:inline" />
-        <span class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 bg-clip-text text-transparent">Calculate Exact EV Savings.</span>
+        EV vs Petrol &amp; Gas Calculator <br class="hidden sm:inline" />
+        <span class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 bg-clip-text text-transparent">Electric Car Running Cost &amp; Charging Savings</span>
       </h1>
 
       <p class="max-w-2xl mx-auto text-gray-700 text-sm sm:text-base leading-relaxed mb-8 font-medium">
-        Compare your daily petrol expenditure against electric vehicle charging in 10 seconds. Discover your exact cost-per-kilometer, monthly retained cash, 5-year ROI break-even, and CO₂ emissions avoided.
+        Compare your daily gas or petrol expenditure against electric vehicle charging in 10 seconds. Calculate exact cost-per-mile ($) in the US, pence-per-mile (p) in the UK, and cost-per-km ($) in Canada with real-time 5-year fuel savings and avoided CO₂ emissions.
       </p>
 
       <!-- How It Works: 3-Step Quick Visual Guide -->
@@ -1615,6 +1616,28 @@ const faqSchema = {
       </div>
 
       <div class="space-y-4">
+        <!-- Canada Specific FAQ -->
+        <details class="group bg-white border-2 border-emerald-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span class="flex items-center gap-2"><span class="text-base">🇨🇦</span> How does this EV vs gas calculator work in Canada (CAD $/Litre vs km/kWh)?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs sm:text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-100 font-medium">
+            In Canada mode, the calculator uses Canadian Dollars (CAD $), pump gas prices in $/Litre (national average ~$1.65/L), and residential electricity tariffs in $/kWh (averaging ~$0.16/kWh, or as low as 8¢/kWh in Quebec and 2.8¢/kWh in Ontario ultra-low overnight windows). Driving an EV achieving 5.5 km/kWh costs approximately 2.9¢ CAD per km, while a gas car at 9.0 L/100km costs 14.9¢ CAD per km—saving Canadian commuters $1,800 to $2,400+ per year.
+          </p>
+        </details>
+
+        <!-- UK Specific Cost Per Mile FAQ -->
+        <details class="group bg-white border-2 border-emerald-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
+          <summary class="flex justify-between items-center text-sm font-black text-gray-950">
+            <span class="flex items-center gap-2"><span class="text-base">🇬🇧</span> What is the cost per mile of an electric car in the UK (pence per mile)?</span>
+            <span class="text-emerald-600 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+          </summary>
+          <p class="text-xs sm:text-sm text-gray-700 leading-relaxed mt-3 pt-3 border-t border-gray-100 font-medium">
+            An electric car in the UK achieving 3.8 miles/kWh costs approximately 1.8p to 2.0p per mile when charged overnight at home on a smart EV tariff like Intelligent Octopus Go (7.0p/kWh). On the standard Ofgem energy price cap (24.5p–26.3p/kWh), it costs roughly 6.5p to 7.0p per mile. In contrast, an average petrol car achieving 40 Imperial MPG at £1.45/L costs 16.5p per mile—meaning an EV saves between 9.5p and 14.7p on every single mile driven.
+          </p>
+        </details>
+
         <!-- US Specific FAQ 1 -->
         <details class="group bg-white border-2 border-emerald-200 rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden cursor-pointer shadow-xs hover:border-emerald-400 transition-all">
           <summary class="flex justify-between items-center text-sm font-black text-gray-950">

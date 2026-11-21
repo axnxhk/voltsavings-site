@@ -1,5 +1,37 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const petrolFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does it cost to charge an EV compared to petrol in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Charging an electric vehicle at home costs between 2¢ and 5¢ per mile in the US ($0.08–$0.18/kWh) and 2p to 7p per mile in the UK (7p–24.5p/kWh). In contrast, a petrol car achieving 30 US MPG or 40 UK Imperial MPG costs 12¢ to 16.5p per mile at current pump prices—making home EV charging 65% to 85% cheaper than petrol."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is commercial DC fast charging cheaper than petrol?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Public DC fast charging (50kW to 350kW) averages $0.40–$0.58/kWh in the US and 76p–89p/kWh in the UK. At motorway fast chargers, an EV costs roughly 12¢–16¢/mile in the US and 22p–25p/mile in the UK, which is comparable to or slightly higher than an efficient petrol car. That is why 85%+ of charging should be done at home."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much money do you save annually by switching from petrol to an EV?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An average driver commuting 12,000 miles per year saves approximately $1,100 to $1,400 annually in the US and £1,000 to £1,350 annually in the UK on fuel and routine powertrain maintenance (oil changes, spark plugs, timing belts)."
+      }
+    }
+  ]
+};
+
 ---
 
 <BlogLayout
@@ -11,6 +43,7 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
   modifiedTime="2026-11-10T12:00:00Z"
   author="John"
   currentSlug="ev-charging-cost-vs-petrol-2026"
+  extraSchema={petrolFaqSchema}
 >
   <p class="text-lg text-gray-950 font-semibold mb-8 leading-relaxed">
     With worldwide petroleum prices continuously volatile and global electricity grids adopting cleaner generation, prospective car buyers in 2026 have one pivotal financial question: <strong>How much does it actually cost to charge an electric car compared to filling up a petrol tank?</strong>
@@ -31,7 +64,7 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
       href="/#calculator-app" 
       class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black shadow-md flex-shrink-0 transition-all"
     >
-      Open Free Calculator →
+      Open EV vs Gas / Petrol Calculator →
     </a>
   </div>
 

@@ -1,5 +1,37 @@
 ---
 import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const batteryFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How long do electric car batteries last in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Modern EV batteries typically last 10 to 20 years and 200,000 to 500,000 miles. Modern Lithium Iron Phosphate (LFP) chemistry can withstand 2,500 to 4,000 complete charge cycles before degrading to 80% original capacity, comfortably outlasting the vehicle's structural lifespan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does it cost to replace an EV battery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In 2026, pack-level battery prices have fallen to approximately $95 to $115 per kWh. Replacing a complete 60 kWh pack out of warranty typically costs between $5,500 and $7,500. However, battery replacements are rare, as over 98% of modern EVs remain on their original battery under factory 8-year / 100,000-mile warranties."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best daily charging limit for battery longevity?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For Nickel-Manganese-Cobalt (NMC) batteries, set your daily charge limit to 80% to minimize chemical stress and reserve 100% charging for road trips. For Lithium Iron Phosphate (LFP) batteries (such as standard range Tesla Model 3/Y and BYD models), charging to 100% once per week is recommended to calibrate the Battery Management System (BMS)."
+      }
+    }
+  ]
+};
+
 ---
 
 <BlogLayout
@@ -11,6 +43,7 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
   modifiedTime="2026-10-30T22:00:00Z"
   author="John"
   currentSlug="ev-battery-life-2026"
+  extraSchema={batteryFaqSchema}
 >
   <p class="text-lg text-gray-950 font-semibold mb-8 leading-relaxed">
     Among prospective electric vehicle buyers, no single topic causes more hesitation than <strong>battery lifespan and degradation</strong>. Skeptics frequently cite concerns that an EV battery will require an exorbitantly expensive replacement after just four or five years of driving.
@@ -31,7 +64,7 @@ import BlogLayout from '../../layouts/BlogLayout.astro';
       href="/#calculator-app" 
       class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-black shadow-md flex-shrink-0 transition-all"
     >
-      Open Free Calculator →
+      Open EV vs Gas / Petrol Calculator →
     </a>
   </div>
 

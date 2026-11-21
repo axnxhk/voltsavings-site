@@ -11,7 +11,7 @@
       </div>
       <div>
         <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Est. Annual Savings</p>
-        <p id="mobileSavingsText" class="text-base font-black text-emerald-400 leading-tight">Rs. 0</p>
+        <p id="mobileSavingsText" class="text-base font-black text-emerald-400 leading-tight">$0</p>
       </div>
     </div>
     <a href="#breakdown" class="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition-all flex items-center gap-1 shadow-sm">
@@ -36,15 +36,18 @@
       </div>
 
       <!-- Region Switcher 3-Way Buttons -->
-      <div class="grid grid-cols-3 gap-1.5 bg-gray-900/90 p-1.5 rounded-xl border border-gray-700/80 w-full md:w-auto" id="regionToggleGroup" role="group" aria-label="Region Selector">
-        <button type="button" id="btnRegionUS" class="region-toggle-btn px-3 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer bg-emerald-600 text-white shadow-xs">
-          <span>🇺🇸</span> <span>US ($ / Miles)</span>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 bg-gray-900/90 p-1.5 rounded-xl border border-gray-700/80 w-full md:w-auto" id="regionToggleGroup" role="group" aria-label="Region Selector">
+        <button type="button" id="btnRegionUS" class="region-toggle-btn px-2.5 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1 cursor-pointer bg-emerald-600 text-white shadow-xs">
+          <span>🇺🇸</span> <span>US ($ / Mi)</span>
         </button>
-        <button type="button" id="btnRegionUK" class="region-toggle-btn px-3 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800">
-          <span>🇬🇧</span> <span>UK (£ / Miles)</span>
+        <button type="button" id="btnRegionUK" class="region-toggle-btn px-2.5 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1 cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🇬🇧</span> <span>UK (£ / Mi)</span>
         </button>
-        <button type="button" id="btnRegionGlobal" class="region-toggle-btn px-3 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800">
-          <span>🌍</span> <span>Global / Other</span>
+        <button type="button" id="btnRegionCA" class="region-toggle-btn px-2.5 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1 cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🇨🇦</span> <span>Canada ($ / km)</span>
+        </button>
+        <button type="button" id="btnRegionGlobal" class="region-toggle-btn px-2.5 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1 cursor-pointer text-gray-300 hover:text-white hover:bg-gray-800">
+          <span>🌍</span> <span>Global</span>
         </button>
       </div>
     </div>
@@ -60,14 +63,14 @@
           <i class="fa-solid fa-earth-americas text-emerald-600"></i> Country & Currency:
         </label>
         <select id="currencySelect" class="w-full sm:w-auto bg-gray-50 hover:bg-gray-100/80 border border-gray-300 text-sm sm:text-xs font-bold rounded-xl px-3 py-2 text-black focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 cursor-pointer min-h-[44px] transition-all">
-          <option value="PK">🇵🇰 Pakistan (PKR - Rs.)</option>
-          <option value="US">🇺🇸 United States (USD - $)</option>
-          <option value="EU">🇪🇺 Europe (EUR - €)</option>
+          <option value="US" selected>🇺🇸 United States (USD - $)</option>
           <option value="GB">🇬🇧 United Kingdom (GBP - £)</option>
+          <option value="CA">🇨🇦 Canada (CAD - $)</option>
+          <option value="EU">🇪🇺 Europe (EUR - €)</option>
+          <option value="AU">🇦🇺 Australia (AUD - $)</option>
           <option value="IN">🇮🇳 India (INR - ₹)</option>
           <option value="AE">🇦🇪 United Arab Emirates (AED)</option>
-          <option value="CA">🇨🇦 Canada (CAD - $)</option>
-          <option value="AU">🇦🇺 Australia (AUD - $)</option>
+          <option value="PK">🇵🇰 Pakistan (PKR - Rs.)</option>
         </select>
       </div>
 
@@ -279,15 +282,15 @@
             <div class="flex items-center justify-between mb-1">
               <label id="lblFuelEfficiency" for="fuelEfficiency" class="text-xs text-black font-black">Fuel Economy (km/L)</label>
             </div>
-            <input type="number" id="fuelEfficiency" value="40" step="0.5" class="w-full bg-white border-2 border-amber-200 rounded-xl px-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
+            <input type="number" id="fuelEfficiency" value="28" min="0.1" step="0.5" class="w-full bg-white border-2 border-amber-200 rounded-xl px-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
             <p id="txtFuelHint" class="text-[11px] text-gray-600 mt-1 font-medium">Standard for selected vehicle</p>
           </div>
 
           <div class="mb-4">
             <label id="lblFuelPrice" for="fuelPrice" class="block text-xs text-black font-black mb-1">Fuel Price (per Liter)</label>
             <div class="relative">
-              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">Rs.</span>
-              <input type="number" id="fuelPrice" value="280" step="0.01" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
+              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">$</span>
+              <input type="number" id="fuelPrice" value="3.50" min="0" step="0.01" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
             </div>
             <p id="txtFuelPriceHint" class="text-[11px] text-gray-600 mt-1 font-medium">Standard fuel pump price</p>
           </div>
@@ -295,8 +298,8 @@
           <div>
             <label for="fuelMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance / Oil</label>
             <div class="relative">
-              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">Rs.</span>
-              <input type="number" id="fuelMaint" value="1500" step="1" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
+              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">$</span>
+              <input type="number" id="fuelMaint" value="35" min="0" step="1" class="w-full bg-white border-2 border-amber-200 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-amber-600 font-black min-h-[44px]">
             </div>
           </div>
         </div>
@@ -314,15 +317,15 @@
             <div class="flex items-center justify-between mb-1">
               <label id="lblEvEfficiency" for="evEfficiency" class="text-xs text-black font-black">EV Efficiency (km/kWh)</label>
             </div>
-            <input type="number" id="evEfficiency" value="30" step="0.1" class="w-full bg-white border-2 border-emerald-300 rounded-xl px-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
+            <input type="number" id="evEfficiency" value="3.8" min="0.1" step="0.1" class="w-full bg-white border-2 border-emerald-300 rounded-xl px-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
             <p id="txtEvHint" class="text-[11px] text-gray-600 mt-1 font-medium">Standard for selected vehicle</p>
           </div>
 
           <div class="mb-4">
             <label for="electricityRate" class="block text-xs text-black font-black mb-1">Electricity Rate (per Unit / kWh)</label>
             <div class="relative">
-              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">Rs.</span>
-              <input type="number" id="electricityRate" value="40" step="0.01" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
+              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">$</span>
+              <input type="number" id="electricityRate" value="0.16" min="0" step="0.001" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
             </div>
             <p id="txtElectricityHint" class="text-[11px] text-gray-600 mt-1 font-medium">Residential grid electricity tariff</p>
             
@@ -340,8 +343,8 @@
           <div>
             <label for="evMaint" class="block text-xs text-black font-black mb-1">Monthly Maintenance (Routine)</label>
             <div class="relative">
-              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">Rs.</span>
-              <input type="number" id="evMaint" value="200" step="1" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
+              <span class="currency-symbol absolute left-3 top-2.5 text-xs text-gray-500 font-black pointer-events-none">$</span>
+              <input type="number" id="evMaint" value="10" min="0" step="1" class="w-full bg-white border-2 border-emerald-300 rounded-xl pl-9 pr-3 py-2 text-base sm:text-sm text-black focus:outline-none focus:border-emerald-600 font-black min-h-[44px]">
             </div>
           </div>
         </div>
@@ -550,7 +553,7 @@
   };
 
   // State
-  let activeRegion: 'US' | 'GB' | 'GLOBAL' = 'US';
+  let activeRegion: 'US' | 'GB' | 'CA' | 'GLOBAL' = 'US';
   let isMetric = false;
   let selectedDays = 26;
   let currentCountry = 'US';
@@ -578,6 +581,7 @@
   const txtEvHint = document.getElementById('txtEvHint');
   const btnRegionUS = document.getElementById('btnRegionUS');
   const btnRegionUK = document.getElementById('btnRegionUK');
+  const btnRegionCA = document.getElementById('btnRegionCA');
   const btnRegionGlobal = document.getElementById('btnRegionGlobal');
   const activeRegionBadge = document.getElementById('activeRegionBadge');
   const lblFuelEfficiency = document.getElementById('lblFuelEfficiency');
@@ -742,7 +746,7 @@
   }
 
   // Set Active Region Mode
-  function setRegion(region: 'US' | 'GB' | 'GLOBAL', shouldRecalculate = true) {
+  function setRegion(region: 'US' | 'GB' | 'CA' | 'GLOBAL', shouldRecalculate = true) {
     activeRegion = region;
 
     const baseBtnClass = "region-toggle-btn px-3 py-2 rounded-lg text-xs font-black transition-all flex items-center justify-center gap-1.5 cursor-pointer";
@@ -751,6 +755,7 @@
 
     if (btnRegionUS) btnRegionUS.className = (region === 'US') ? activeClass : inactiveClass;
     if (btnRegionUK) btnRegionUK.className = (region === 'GB') ? activeClass : inactiveClass;
+    if (btnRegionCA) btnRegionCA.className = (region === 'CA') ? activeClass : inactiveClass;
     if (btnRegionGlobal) btnRegionGlobal.className = (region === 'GLOBAL') ? activeClass : inactiveClass;
 
     if (region === 'US') {
@@ -852,6 +857,14 @@
     }
   });
 
+  
+  btnRegionCA?.addEventListener('click', () => {
+    setRegion('CA');
+    if (typeof (window as any).gtag === 'function') {
+      (window as any).gtag('event', 'switch_region_toggle', { region: 'CA' });
+    }
+  });
+  
   btnRegionUK?.addEventListener('click', () => {
     setRegion('GB');
     if (typeof (window as any).gtag === 'function') {
