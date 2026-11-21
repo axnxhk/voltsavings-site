@@ -2,7 +2,7 @@
 import AdBanner300x250 from './ads/AdBanner300x250.astro';
 ---
 
-<div id="calculator-app" class="scroll-mt-20">
+<div id="calculator-inner" class="scroll-mt-20">
   
   <!-- Floating Mobile Summary Pill (Shows on mobile when adjusting inputs) -->
   <div id="mobileFloatingBar" class="fixed bottom-4 left-4 right-4 z-40 sm:hidden bg-gray-900/95 backdrop-blur-md text-white p-3.5 rounded-2xl shadow-2xl border border-gray-700/60 flex items-center justify-between transition-all duration-300 transform translate-y-0">
@@ -156,7 +156,7 @@ import AdBanner300x250 from './ads/AdBanner300x250.astro';
       </button>
 
       <!-- Preset 5: Custom -->
-      <button type="button" data-preset="custom" class="preset-btn text-left p-3 sm:p-3.5 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500 col-span-2 sm:col-span-1" aria-checked="false" role="radio">
+      <button type="button" data-preset="custom" class="preset-btn text-left p-3 sm:p-3.5 rounded-2xl border-2 border-gray-200 bg-white hover:border-gray-300 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-emerald-500 col-span-2 sm:col-span-1 lg:col-span-1" aria-checked="false" role="radio">
         <div class="flex items-center justify-between mb-1.5">
           <span class="text-xl sm:text-2xl">⚙️</span>
           <span class="preset-badge text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-md bg-gray-100 text-gray-600">Custom</span>

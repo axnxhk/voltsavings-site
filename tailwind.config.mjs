@@ -3,6 +3,9 @@ export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
+      screens: {
+        '3col': '1360px',
+      },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', 'sans-serif'],
       },

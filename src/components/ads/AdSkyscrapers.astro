@@ -1,38 +1,54 @@
 ---
+interface Props {
+  class?: string;
+}
+const { class: className = "" } = Astro.props;
 ---
-<!-- Adsterra Left & Right Sticky Skyscrapers (Visible only on wide desktop screens >= 1536px, zero content overlap) -->
-<div class="hidden 2xl:block pointer-events-auto" aria-hidden="true">
-  <!-- Left Skyscraper (160x600) -->
-  <aside class="fixed left-3 top-24 z-30 w-[160px] flex flex-col items-center">
-    <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Advertisement</span>
-    <div class="w-[160px] min-h-[600px] bg-gray-50/70 rounded-xl overflow-hidden border border-gray-200/80 shadow-xs flex items-center justify-center">
-      <script is:inline>
-        atOptions = {
-          'key' : '00fa7b4da670237326ce75e572b0ee55',
-          'format' : 'iframe',
-          'height' : 600,
-          'width' : 160,
-          'params' : {}
-        };
-      </script>
-      <script is:inline src="https://bauval.org/22/00fa7b4da670237326ce75e572b0ee55"></script>
+
+<!-- Dedicated 3-Column Desktop Layout (Zero Overlap on >=1360px, Hidden on Laptops/Tablets/Mobile) -->
+<div class={`w-full min-[1360px]:flex 3col:flex min-[1360px]:items-start 3col:items-start min-[1360px]:justify-center 3col:justify-center min-[1360px]:gap-6 3col:gap-6 max-w-[1440px] mx-auto px-4 ${className}`}>
+  
+  <!-- Left Ad Rail (160x600 Desktop Skyscraper - Sticky & Zero Overlap) -->
+  <aside class="hidden min-[1360px]:block 3col:block w-[160px] shrink-0 sticky top-20 self-start" aria-label="Advertisement">
+    <div class="flex flex-col items-center">
+      <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1.5 select-none text-center block">Advertisement</span>
+      <div class="w-[160px] min-h-[600px] bg-gray-50/70 rounded-xl overflow-hidden border border-gray-200/80 shadow-xs flex items-center justify-center">
+        <script is:inline>
+          atOptions = {
+            'key' : '00fa7b4da670237326ce75e572b0ee55',
+            'format' : 'iframe',
+            'height' : 600,
+            'width' : 160,
+            'params' : {}
+          };
+        </script>
+        <script is:inline src="https://bauval.org/22/00fa7b4da670237326ce75e572b0ee55"></script>
+      </div>
     </div>
   </aside>
 
-  <!-- Right Skyscraper (160x300 / 160x600) -->
-  <aside class="fixed right-3 top-24 z-30 w-[160px] flex flex-col items-center">
-    <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1">Advertisement</span>
-    <div class="w-[160px] min-h-[600px] bg-gray-50/70 rounded-xl overflow-hidden border border-gray-200/80 shadow-xs flex items-center justify-center">
-      <script is:inline>
-        atOptions = {
-          'key' : 'b30caa0cbcfd7f39a87b85a41ffa2025',
-          'format' : 'iframe',
-          'height' : 300,
-          'width' : 160,
-          'params' : {}
-        };
-      </script>
-      <script is:inline src="https://bauval.org/22/b30caa0cbcfd7f39a87b85a41ffa2025"></script>
+  <!-- Center Main Content (Max 1000px: Vehicle Category cards, inputs & results have full breathing room) -->
+  <div class="flex-1 min-w-0 max-w-[1000px] mx-auto w-full">
+    <slot />
+  </div>
+
+  <!-- Right Ad Rail (160x300 Desktop Skyscraper - Sticky & Zero Overlap) -->
+  <aside class="hidden min-[1360px]:block 3col:block w-[160px] shrink-0 sticky top-20 self-start" aria-label="Advertisement">
+    <div class="flex flex-col items-center">
+      <span class="text-[9px] font-bold uppercase tracking-wider text-gray-400 mb-1.5 select-none text-center block">Advertisement</span>
+      <div class="w-[160px] min-h-[600px] bg-gray-50/70 rounded-xl overflow-hidden border border-gray-200/80 shadow-xs flex items-center justify-center">
+        <script is:inline>
+          atOptions = {
+            'key' : 'b30caa0cbcfd7f39a87b85a41ffa2025',
+            'format' : 'iframe',
+            'height' : 300,
+            'width' : 160,
+            'params' : {}
+          };
+        </script>
+        <script is:inline src="https://bauval.org/22/b30caa0cbcfd7f39a87b85a41ffa2025"></script>
+      </div>
     </div>
   </aside>
+
 </div>
