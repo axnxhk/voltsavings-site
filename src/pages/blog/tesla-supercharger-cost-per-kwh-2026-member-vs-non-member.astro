@@ -1,0 +1,512 @@
+---
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const superchargerFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a Tesla Supercharger cost per kWh in late 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In late 2026, Tesla Supercharger rates in the United States average $0.40 to $0.43 per kWh for Tesla owners and subscribed non-Tesla members. For non-Tesla drivers charging pay-as-you-go without a membership, rates average $0.57 to $0.60 per kWh, with high-demand urban and peak-hour stations in California, New York, and Massachusetts reaching $0.63 to $0.72+ per kWh."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the $12.99 per month Tesla Supercharging membership worth it for non-Tesla EVs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, if you charge at Superchargers at least twice a month or take a single multi-state road trip. The non-Tesla membership costs $12.99/month and discounts your rate by roughly $0.17 per kWh (from ~$0.58/kWh down to ~$0.41/kWh). The exact mathematical break-even point is 76.4 kWh per month ($12.99 ÷ $0.17). A single 10% to 80% charging session on an EV with an 80–90 kWh battery draws 56 to 65 kWh, meaning you break even in just 1.2 to 1.5 charging sessions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Tesla Supercharging more expensive than gasoline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "At non-member rates ($0.57–$0.60/kWh), Supercharging is actually more expensive per mile than fueling a fuel-efficient 30–35 MPG gas car at $3.50/gal. At 3.5 miles/kWh, a non-member paying $0.58/kWh spends approximately 16.6¢ per mile, while a 30 MPG gas car at $3.50/gal costs 11.7¢ per mile. However, home charging at the US average ($0.182/kWh = 5.2¢/mi) or overnight off-peak ($0.08/kWh = 2.5¢/mi) is 60% to 80% cheaper than gasoline."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are Tesla Supercharger idle fees and congestion fees?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tesla charges an idle fee of $0.50 per minute once charging finishes if the station is at least 50% occupied, increasing to $1.00 per minute if the station is 100% full. The fee is waived if you disconnect within 5 minutes. Additionally, at select congested Superchargers, Tesla imposes a $1.00 per minute congestion fee if you continue charging past an 80% battery state of charge (SoC)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Ford, Chevy, Rivian, and Hyundai EVs use Tesla Superchargers in 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Most major automakers—including Ford, General Motors (Chevy, GMC, Cadillac), Rivian, Hyundai, Kia, and Genesis—have official software access to over 17,800 Tesla V3 and V4 Supercharger stalls across North America. Drivers can charge using an OEM-approved NACS-to-CCS1 adapter and activate stalls directly via the Tesla smartphone app or their vehicle's native companion app."
+      }
+    }
+  ]
+};
+---
+
+<BlogLayout
+  title="Tesla Supercharger Cost per kWh (Late 2026): Member vs Non-Member & Home Charging | VoltSavings"
+  description="Tesla Supercharger rates jumped in late 2026. Compare exact member ($0.40–$0.43/kWh), non-member ($0.57–$0.60/kWh), peak vs off-peak, and $12.99 membership break-even math."
+  category="US EV Economics"
+  updatedDate="Updated Nov 2026"
+  publishedTime="2026-11-18T08:00:00Z"
+  modifiedTime="2026-11-18T08:00:00Z"
+  author="John"
+  currentSlug="tesla-supercharger-cost-per-kwh-2026-member-vs-non-member"
+  extraSchema={superchargerFaqSchema}
+>
+  <!-- Lead In Paragraph -->
+  <p class="text-lg text-gray-950 font-semibold mb-6 leading-relaxed">
+    Throughout 2026, the North American electric vehicle charging landscape underwent its most seismic transformation in history. As Ford, General Motors, Rivian, Hyundai, and Kia gained official access to over 17,800 Tesla V3 and V4 Supercharger stalls via NACS adapters, <strong>Tesla's charging network effectively became America's national fast-charging utility</strong>.
+  </p>
+
+  <p class="mb-8 leading-relaxed">
+    However, along with widespread access came a sharp reality check: <strong>late-2026 Supercharger price hikes have widened the financial gap between Tesla owners, non-Tesla members, and pay-as-you-go drivers.</strong> How much does a Tesla Supercharger actually cost per kWh today? Is the $12.99/month Supercharging membership mathematically justified for non-Tesla EV owners? And does commercial fast charging undermine your fuel savings compared to gasoline?
+  </p>
+
+  <!-- Key Takeaways Highlight Box -->
+  <div class="my-8 p-6 bg-gradient-to-br from-emerald-50 via-teal-50/40 to-emerald-50 border-2 border-emerald-300 rounded-3xl not-prose shadow-sm">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="w-7 h-7 rounded-lg bg-emerald-600 text-white flex items-center justify-center text-xs font-black">
+        <i class="fa-solid fa-bolt"></i>
+      </span>
+      <h3 class="text-sm font-black uppercase tracking-wider text-emerald-950">Key Takeaways: Late 2026 Supercharger Pricing</h3>
+    </div>
+    <ul class="space-y-2.5 text-xs sm:text-sm text-gray-800 font-medium">
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>Tesla Owners &amp; Members Rate:</strong> Average <strong>$0.40 to $0.43 per kWh</strong> nationally (overnight off-peak dips to <strong>$0.30–$0.36/kWh</strong>). All Tesla vehicles receive this tier automatically.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>Non-Tesla Pay-As-You-Go (PAYG):</strong> Averages <strong>$0.57 to $0.60 per kWh</strong>, with peak-hour urban hubs in California and the Northeast reaching <strong>$0.65 to $0.72+/kWh</strong>.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-check text-emerald-600 mt-1 shrink-0"></i>
+        <span><strong>The $12.99/Month Membership Break-Even:</strong> Saving an average of <strong>$0.17/kWh</strong> means the subscription pays for itself after consuming just <strong>76.4 kWh/month</strong>—roughly <strong>1.2 to 1.5 fast-charge stops</strong>. Non-Tesla drivers embarking on a single road trip break even in one weekend!</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i class="fa-solid fa-triangle-exclamation text-amber-600 mt-1 shrink-0"></i>
+        <span><strong>Supercharging vs. Gas Paradox:</strong> At $0.58/kWh, non-member fast charging costs <strong>~16.6¢ per mile</strong>—more expensive than fueling a 30 MPG gas car at $3.50/gal (<strong>11.7¢/mile</strong>). To preserve massive savings, drivers must follow the <strong>85/15 rule</strong> (85% home Level 2 charging + 15% road-trip fast charging).</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Interactive Quick-Tool Simulator Banner -->
+  <div class="my-8 p-6 bg-gray-950 text-white border border-gray-800 rounded-3xl not-prose flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl">
+    <div>
+      <span class="text-[10px] font-black uppercase tracking-widest text-emerald-400 block mb-1">FREE FAST-CHARGING COST CALCULATOR</span>
+      <strong class="text-base sm:text-lg font-black text-white block">Compare Your Local Supercharger Rate vs. Home &amp; Gas</strong>
+      <p class="text-xs text-gray-300 font-medium mt-1">Plug in your utility rate ($/kWh), Supercharger price ($0.42 vs $0.58), and gas pump price to generate a certified 1-year and 5-year ROI report.</p>
+    </div>
+    <a 
+      href="/#calculator-app" 
+      class="px-6 py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-black shadow-lg shadow-emerald-600/30 flex-shrink-0 transition-all text-center w-full sm:w-auto"
+    >
+      <i class="fa-solid fa-calculator mr-1.5"></i> Launch ROI Calculator →
+    </a>
+  </div>
+
+  <!-- Section 1: Late 2026 Pricing Breakdown -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    1. Late 2026 Tesla Supercharger Pricing Breakdown (US Averages &amp; Tiers)
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    Unlike residential electricity, which is heavily regulated by state public utility commissions (PUCs), Tesla operates Superchargers as a dynamic commercial service. Rates vary by location, local utility demand charges, time of day (Time-of-Use / TOU), and driver vehicle brand.
+  </p>
+
+  <p class="mb-6 leading-relaxed">
+    Across more than 2,200 Supercharger stations in the US, pricing in late 2026 is divided into four distinct operational tiers:
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-8 not-prose">
+    <!-- Card 1 -->
+    <div class="p-5 bg-white border-2 border-gray-200 rounded-2xl shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <span class="px-2.5 py-0.5 rounded-md text-[10px] font-black uppercase bg-emerald-100 text-emerald-900">Member Tier</span>
+        <span class="text-xs font-bold text-gray-500">Tesla Owners &amp; Subscribers</span>
+      </div>
+      <h3 class="text-base font-black text-gray-950 mb-1">$0.40 to $0.43 / kWh (US Average)</h3>
+      <p class="text-xs text-gray-600 mb-3 leading-relaxed">
+        Applies automatically to all Tesla vehicle owners (Model 3, Model Y, Model S, Model X, Cybertruck) and non-Tesla EV owners who subscribe to the $12.99/month Supercharging membership.
+      </p>
+      <div class="pt-3 border-t border-gray-100 text-xs font-semibold text-gray-800">
+        <div>Off-Peak Window (10 PM – 8 AM): <span class="text-emerald-700 font-black">$0.30–$0.36 / kWh</span></div>
+        <div class="text-[11px] text-gray-500 mt-0.5">Approx. 11.4¢ to 12.3¢ per mile at 3.5 mi/kWh efficiency.</div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="p-5 bg-white border-2 border-gray-200 rounded-2xl shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <span class="px-2.5 py-0.5 rounded-md text-[10px] font-black uppercase bg-amber-100 text-amber-900">Non-Member Tier</span>
+        <span class="text-xs font-bold text-gray-500">Pay-As-You-Go (PAYG)</span>
+      </div>
+      <h3 class="text-base font-black text-gray-950 mb-1">$0.57 to $0.60 / kWh (US Average)</h3>
+      <p class="text-xs text-gray-600 mb-3 leading-relaxed">
+        Applies to Ford, GM (<a href="/blog/chevy-equinox-ev-charging-cost-at-home-us" class="text-emerald-700 font-bold hover:underline">Chevy Equinox EV</a>, Blazer EV), Rivian, and other non-Tesla EV drivers who do not maintain an active $12.99 monthly membership.
+      </p>
+      <div class="pt-3 border-t border-gray-100 text-xs font-semibold text-gray-800">
+        <div>Peak Urban Windows (12 PM – 8 PM): <span class="text-red-700 font-black">$0.63–$0.72+ / kWh</span></div>
+        <div class="text-[11px] text-gray-500 mt-0.5">Approx. 16.3¢ to 17.1¢ per mile (surpassing gas costs).</div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="p-5 bg-white border-2 border-gray-200 rounded-2xl shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <span class="px-2.5 py-0.5 rounded-md text-[10px] font-black uppercase bg-blue-100 text-blue-900">Benchmark Home</span>
+        <span class="text-xs font-bold text-gray-500">Residential Level 2</span>
+      </div>
+      <h3 class="text-base font-black text-gray-950 mb-1">$0.182 / kWh (EIA Late-2026 Avg)</h3>
+      <p class="text-xs text-gray-600 mb-3 leading-relaxed">
+        The official US Energy Information Administration (EIA) national residential electricity average. Overnight off-peak EV utility plans in states like Texas and Florida drop as low as <strong>$0.08 to $0.12/kWh</strong>.
+      </p>
+      <div class="pt-3 border-t border-gray-100 text-xs font-semibold text-gray-800">
+        <div>Level 2 Real-World Cost: <span class="text-emerald-700 font-black">5.2¢ / mile</span></div>
+        <div class="text-[11px] text-gray-500 mt-0.5">68% cheaper than member Supercharging; 70% cheaper than non-member.</div>
+      </div>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="p-5 bg-white border-2 border-gray-200 rounded-2xl shadow-xs">
+      <div class="flex items-center justify-between mb-2">
+        <span class="px-2.5 py-0.5 rounded-md text-[10px] font-black uppercase bg-red-100 text-red-900">Penalties &amp; Fees</span>
+        <span class="text-xs font-bold text-gray-500">Idle &amp; Congestion</span>
+      </div>
+      <h3 class="text-base font-black text-gray-950 mb-1">$0.50 – $1.00 / Minute</h3>
+      <p class="text-xs text-gray-600 mb-3 leading-relaxed">
+        Tesla charges <strong>$0.50/min</strong> when a station is 50% full, jumping to <strong>$1.00/min</strong> if 100% full. Disconnect within 5 minutes to waive the fee. Additionally, a <strong>$1.00/min congestion fee</strong> applies above 80% SoC at busy sites.
+      </p>
+      <div class="pt-3 border-t border-gray-100 text-xs font-semibold text-gray-800">
+        <div>Dwell Guard: <span class="text-red-700 font-black">Unplug promptly at 80%</span></div>
+        <div class="text-[11px] text-gray-500 mt-0.5">Prevents costly $30+ accidental overstay penalties.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Comparison Table -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    2. 50 kWh &amp; 75 kWh Charge Session Cost Comparison: Fast Charging vs. Home &amp; Gas
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    To see the concrete financial impact of these rates, consider two typical highway fast-charging sessions:
+  </p>
+  <ul class="list-disc pl-6 space-y-2 mb-6 text-gray-800 font-medium">
+    <li><strong>50 kWh Session:</strong> A standard 20% to 80% road-trip top-up on vehicles like the Tesla Model 3 RWD, Hyundai Ioniq 5, or Chevy Equinox EV (adding roughly 175 to 190 miles of highway range).</li>
+    <li><strong>75 kWh Session:</strong> A deep 10% to 85% recharge on a long-range crossover, full-size SUV, or electric pickup like the Tesla Model Y Long Range, Ford Mustang Mach-E Extended Range, or Rivian R1T (adding roughly 260 to 285 miles of highway range).</li>
+  </ul>
+
+  <!-- Responsive Comparison Table -->
+  <div class="my-8 overflow-x-auto rounded-3xl border border-gray-200 bg-white shadow-sm not-prose">
+    <table class="w-full text-left text-xs sm:text-sm text-gray-800">
+      <thead class="bg-gray-950 text-white uppercase text-[10px] tracking-wider">
+        <tr>
+          <th class="py-4 px-4 sm:px-6">Charging Method / Energy Source</th>
+          <th class="py-4 px-3 sm:px-4 text-center">Effective Rate</th>
+          <th class="py-4 px-3 sm:px-4 text-right">50 kWh Top-Up (~180 mi)</th>
+          <th class="py-4 px-3 sm:px-4 text-right">75 kWh Top-Up (~270 mi)</th>
+          <th class="py-4 px-4 sm:px-6 text-right">Cost Per Mile (3.5 mi/kWh)</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 font-medium">
+        <!-- Home Off-Peak -->
+        <tr class="hover:bg-gray-50 transition-colors">
+          <td class="py-4 px-4 sm:px-6">
+            <strong class="text-gray-950 block">🌙 Home Off-Peak Time-of-Use (TOU)</strong>
+            <span class="text-[11px] text-gray-500">Overnight utility rate + 10% Level 2 AC loss</span>
+          </td>
+          <td class="py-4 px-3 sm:px-4 text-center font-bold text-emerald-700">$0.080 / kWh</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-emerald-700">$4.40</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-emerald-700">$6.60</td>
+          <td class="py-4 px-4 sm:px-6 text-right font-bold text-emerald-700">2.51¢ / mi</td>
+        </tr>
+
+        <!-- Home US EIA Average -->
+        <tr class="hover:bg-gray-50 transition-colors">
+          <td class="py-4 px-4 sm:px-6">
+            <strong class="text-gray-950 block">🏠 US Residential Home Average (EIA)</strong>
+            <span class="text-[11px] text-gray-500">US national residential rate + 10% Level 2 loss</span>
+          </td>
+          <td class="py-4 px-3 sm:px-4 text-center font-semibold text-gray-700">$0.182 / kWh</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-gray-950">$10.01</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-gray-950">$15.02</td>
+          <td class="py-4 px-4 sm:px-6 text-right font-bold text-gray-800">5.71¢ / mi</td>
+        </tr>
+
+        <!-- Tesla Supercharger Member -->
+        <tr class="bg-emerald-50/40 hover:bg-emerald-50/80 transition-colors">
+          <td class="py-4 px-4 sm:px-6">
+            <strong class="text-emerald-950 block">⚡ Supercharger Member / Tesla Owner</strong>
+            <span class="text-[11px] text-emerald-700">All Tesla vehicles + $12.99/mo non-Tesla subscribers</span>
+          </td>
+          <td class="py-4 px-3 sm:px-4 text-center font-bold text-emerald-800">$0.420 / kWh</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-emerald-950">$21.00</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-emerald-950">$31.50</td>
+          <td class="py-4 px-4 sm:px-6 text-right font-bold text-emerald-800">12.00¢ / mi</td>
+        </tr>
+
+        <!-- Tesla Supercharger Non-Member -->
+        <tr class="bg-amber-50/40 hover:bg-amber-50/80 transition-colors">
+          <td class="py-4 px-4 sm:px-6">
+            <strong class="text-amber-950 block">⚠️ Supercharger Non-Member (PAYG)</strong>
+            <span class="text-[11px] text-amber-700">Ford, Chevy, Rivian, Hyundai without membership</span>
+          </td>
+          <td class="py-4 px-3 sm:px-4 text-center font-bold text-amber-800">$0.580 / kWh</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-amber-950">$29.00</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-amber-950">$43.50</td>
+          <td class="py-4 px-4 sm:px-6 text-right font-bold text-amber-900">16.57¢ / mi</td>
+        </tr>
+
+        <!-- Benchmark 30 MPG Gas Car @ $3.50 -->
+        <tr class="bg-gray-50/80 border-t-2 border-gray-300">
+          <td class="py-4 px-4 sm:px-6">
+            <strong class="text-gray-950 block">⛽ 30 MPG Gas Car (@ $3.50 / Gallon)</strong>
+            <span class="text-[11px] text-gray-500">US national average gas pump price</span>
+          </td>
+          <td class="py-4 px-3 sm:px-4 text-center font-semibold text-gray-700">$3.50 / gal</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-gray-950">$21.00</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-gray-950">$31.50</td>
+          <td class="py-4 px-4 sm:px-6 text-right font-bold text-gray-800">11.67¢ / mi</td>
+        </tr>
+
+        <!-- Benchmark 30 MPG Gas Car @ $4.40 -->
+        <tr class="bg-gray-50/80">
+          <td class="py-4 px-4 sm:px-6">
+            <strong class="text-gray-950 block">⛽ 30 MPG Gas Car (@ $4.40 / Gallon)</strong>
+            <span class="text-[11px] text-gray-500">High-cost West Coast / urban gas station price</span>
+          </td>
+          <td class="py-4 px-3 sm:px-4 text-center font-semibold text-gray-700">$4.40 / gal</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-red-700">$26.40</td>
+          <td class="py-4 px-3 sm:px-4 text-right font-black text-red-700">$39.60</td>
+          <td class="py-4 px-4 sm:px-6 text-right font-bold text-red-700">14.67¢ / mi</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="mb-4 leading-relaxed">
+    <strong>The Critical Takeaway:</strong> Notice the staggering price disparity between non-member fast charging and gasoline. At <strong>$0.58/kWh</strong>, replenishing 50 kWh costs <strong>$29.00 (16.57¢/mile)</strong>—making it <strong>$8.00 more expensive</strong> than putting 6 gallons of gas into a 30 MPG car ($21.00)!
+  </p>
+
+  <p class="mb-8 leading-relaxed">
+    However, when charging at home on an off-peak rate ($0.08/kWh), that exact same 180 miles of driving costs just <strong>$4.40</strong>—delivering an extraordinary <strong>$16.60 in savings per 180 miles</strong> compared to the gas car.
+  </p>
+
+  <!-- Section 3: Break-Even Math for the $12.99 Membership -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    3. The $12.99/Month Non-Tesla Membership: Exact Break-Even Math
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    For drivers of non-Tesla electric vehicles (Ford F-150 Lightning, Mustang Mach-E, Chevy Equinox EV, Rivian R1T/R1S, Hyundai Ioniq 5), Tesla offers an optional subscription inside the Tesla mobile app for <strong>$12.99 per month</strong> (or an annual option in select regions).
+  </p>
+
+  <p class="mb-4 leading-relaxed">
+    This membership grants non-Tesla drivers access to the exact same discounted rates paid by Tesla owners, saving an average of <strong>$0.16 to $0.18 per kWh</strong> on every charging session.
+  </p>
+
+  <!-- Math Callout Box -->
+  <div class="my-6 p-6 rounded-3xl bg-slate-900 text-white not-prose shadow-lg border border-slate-800">
+    <div class="flex items-center gap-2 mb-3">
+      <span class="w-7 h-7 rounded-lg bg-emerald-500 text-slate-950 flex items-center justify-center text-xs font-black">
+        <i class="fa-solid fa-calculator"></i>
+      </span>
+      <h3 class="text-sm font-black uppercase tracking-wider text-emerald-400">The Exact Mathematical Formula</h3>
+    </div>
+    <div class="text-xs sm:text-sm space-y-2 text-slate-200 font-medium">
+      <p>Average Non-Member Rate: <strong>$0.58 / kWh</strong></p>
+      <p>Discounted Member Rate: <strong>$0.41 / kWh</strong></p>
+      <p>Net Savings Per Kilowatt-Hour: <strong>$0.17 / kWh</strong></p>
+      <div class="p-3 my-2 bg-slate-800 rounded-xl font-mono text-emerald-300 text-sm font-bold">
+        Break-Even Point = $12.99 ÷ $0.17/kWh = 76.41 kWh
+      </div>
+      <p class="text-slate-300 text-xs">
+        <strong>Conclusion:</strong> You must purchase at least <strong>76.4 kWh per month</strong> from Tesla Superchargers for the membership to pay for itself. Any additional kilowatt-hour charged beyond 76.4 kWh is pure profit in your wallet.
+      </p>
+    </div>
+  </div>
+
+  <h3 class="text-lg font-black text-gray-950 mt-6 mb-3">What Does 76.4 kWh Mean in the Real World?</h3>
+  <ul class="list-disc pl-6 space-y-2 mb-6 text-gray-800 font-medium">
+    <li><strong>Ford F-150 Lightning (131 kWh Extended Pack):</strong> A single 15% to 80% road-trip charging stop consumes <strong>85.1 kWh</strong>. You break even and save money on your <em>very first charging stop</em>!</li>
+    <li><strong>Chevy Equinox EV (85 kWh Pack):</strong> A typical 10% to 80% fast-charge top-up draws <strong>59.5 kWh</strong>. You break even after just <strong>1.28 charging sessions</strong>.</li>
+    <li><strong>Rivian R1T / R1S (135 kWh Large Pack):</strong> A single 20% to 80% highway session draws <strong>81 kWh</strong>. Breaks even in a single stop.</li>
+    <li><strong>Hyundai Ioniq 5 / Kia EV6 (84 kWh Pack):</strong> Draws roughly <strong>58.8 kWh</strong> during a highway stop, reaching break-even in 1.3 sessions.</li>
+  </ul>
+
+  <!-- Road Trip Pro Tip Box -->
+  <div class="my-6 p-5 rounded-2xl bg-emerald-50 border-2 border-emerald-300 not-prose flex items-start gap-3">
+    <i class="fa-solid fa-lightbulb text-emerald-700 text-lg mt-0.5 shrink-0"></i>
+    <div class="text-xs sm:text-sm text-emerald-950 font-medium leading-relaxed">
+      <strong>Road Trip Pro-Tip: The "One-Month Flips":</strong> You do NOT need to subscribe to the $12.99 membership all year round. If you normally charge at home on Level 2 and only road-trip during Thanksgiving, Christmas, or summer vacation, simply open the Tesla app on the morning of your trip, activate the $12.99 membership, and immediately cancel auto-renewal in settings. The membership remains active for 30 days, saving you $30 to $80 across your road trip, and lapses automatically before the next billing cycle.
+    </div>
+  </div>
+
+  <!-- Section 4: The 85/15 Rule -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    4. The 85/15 Rule: Maximizing Fuel Savings Without Fast-Charging Burnout
+  </h2>
+  <p class="mb-4 leading-relaxed">
+    Some prospective EV buyers worry that commercial fast-charging prices ruin the economic premise of an electric vehicle. But this fear misunderstands how electric cars are energized in daily life.
+  </p>
+
+  <p class="mb-4 leading-relaxed">
+    Unlike combustion vehicle drivers who must visit a retail gas station every week, EV drivers wake up every morning with a "full tank" replenished overnight in their own garage or driveway. Telemetry from the US Department of Energy demonstrates that American EV owners perform over <strong>85% of their total charging at home</strong>, relying on public DC fast chargers for only <strong>10% to 15% of annual driving</strong> (primarily during long weekend trips and vacations).
+  </p>
+
+  <div class="p-6 my-8 rounded-3xl bg-gray-50 border border-gray-200 not-prose">
+    <h3 class="text-base font-black text-gray-950 mb-2">The Blended 85/15 Commuter Math (12,000 Miles/Year @ 3.5 mi/kWh)</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs sm:text-sm font-medium mt-4">
+      <div class="p-4 bg-white rounded-2xl border border-gray-200">
+        <span class="text-[10px] font-black uppercase text-emerald-700 block mb-1">85% Home Charging</span>
+        <strong class="text-gray-950 text-base block mb-1">10,200 Miles</strong>
+        <p class="text-gray-600 text-xs">2,914 kWh drawn @ $0.182/kWh EIA rate = <strong>$530.35/year</strong> (5.2¢/mi).</p>
+      </div>
+
+      <div class="p-4 bg-white rounded-2xl border border-gray-200">
+        <span class="text-[10px] font-black uppercase text-amber-700 block mb-1">15% Supercharging</span>
+        <strong class="text-gray-950 text-base block mb-1">1,800 Miles</strong>
+        <p class="text-gray-600 text-xs">514 kWh drawn @ $0.42/kWh member rate = <strong>$215.88/year</strong> (12.0¢/mi).</p>
+      </div>
+
+      <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-300">
+        <span class="text-[10px] font-black uppercase text-emerald-800 block mb-1">Total Blended Cost</span>
+        <strong class="text-emerald-950 text-base block mb-1">$746.23 / Year</strong>
+        <p class="text-emerald-900 text-xs">Blended rate: <strong>6.2¢/mile</strong>. Compared to a 28 MPG gas SUV ($1,500/yr), you save <strong>$753.77 net cash</strong>!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Step by Step Access -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    5. Step-by-Step: How Non-Tesla Drivers Access &amp; Pay at Superchargers
+  </h2>
+  <p class="mb-6 leading-relaxed">
+    If you own a Ford, GM, Rivian, Hyundai, or Kia EV, charging at a Tesla Supercharger in late 2026 is seamless if you follow these four steps:
+  </p>
+
+  <div class="space-y-4 my-8 not-prose">
+    <div class="p-5 rounded-2xl bg-white border border-gray-200 shadow-xs flex items-start gap-3.5">
+      <span class="w-8 h-8 rounded-xl bg-gray-950 text-white flex items-center justify-center font-black text-sm shrink-0">1</span>
+      <div>
+        <strong class="text-sm sm:text-base font-black text-gray-950 block mb-0.5">Download the Tesla App &amp; Add Payment</strong>
+        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
+          Create an account in the official Tesla mobile app (iOS or Android) and store a default payment method. Under the menu, select <em>Charge Your Other EV</em>.
+        </p>
+      </div>
+    </div>
+
+    <div class="p-5 rounded-2xl bg-white border border-gray-200 shadow-xs flex items-start gap-3.5">
+      <span class="w-8 h-8 rounded-xl bg-gray-950 text-white flex items-center justify-center font-black text-sm shrink-0">2</span>
+      <div>
+        <strong class="text-sm sm:text-base font-black text-gray-950 block mb-0.5">Filter for NACS-Compatible V3 &amp; V4 Stalls</strong>
+        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
+          Only Tesla V3 (250 kW) and V4 (350 kW) stalls support CCS1 adapters. Older V2 stalls (150 kW with dual silver charging cables) communicate via proprietary CAN bus protocols and cannot talk to non-Tesla CCS vehicles.
+        </p>
+      </div>
+    </div>
+
+    <div class="p-5 rounded-2xl bg-white border border-gray-200 shadow-xs flex items-start gap-3.5">
+      <span class="w-8 h-8 rounded-xl bg-gray-950 text-white flex items-center justify-center font-black text-sm shrink-0">3</span>
+      <div>
+        <strong class="text-sm sm:text-base font-black text-gray-950 block mb-0.5">Attach Approved OEM NACS Adapter Securely</strong>
+        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
+          Click the Tesla Supercharger connector firmly into your OEM NACS-to-CCS1 adapter until the mechanical latch engages, then plug the adapter into your vehicle's charge port.
+        </p>
+      </div>
+    </div>
+
+    <div class="p-5 rounded-2xl bg-white border border-gray-200 shadow-xs flex items-start gap-3.5">
+      <span class="w-8 h-8 rounded-xl bg-gray-950 text-white flex items-center justify-center font-black text-sm shrink-0">4</span>
+      <div>
+        <strong class="text-sm sm:text-base font-black text-gray-950 block mb-0.5">Activate via App or Native Plug &amp; Charge</strong>
+        <p class="text-xs sm:text-sm text-gray-600 leading-relaxed font-medium">
+          For vehicles equipped with native ISO 15118 Plug &amp; Charge (like Ford and GM), the session starts automatically. Otherwise, select the stall number (e.g., 3B) inside the Tesla app and press <em>Start Charging</em>.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Quick-Tool Simulator Banner (Bottom) -->
+  <div class="my-8 p-6 bg-gradient-to-r from-emerald-900 to-teal-950 text-white rounded-3xl not-prose flex flex-col sm:flex-row items-center justify-between gap-5 shadow-xl">
+    <div>
+      <span class="text-[10px] font-black uppercase tracking-widest text-emerald-300 block mb-1">INTERACTIVE US SAVINGS CALCULATOR</span>
+      <strong class="text-base sm:text-lg font-black text-white block">Calculate Your Net Fast-Charging &amp; Home Savings</strong>
+      <p class="text-xs text-emerald-100 font-medium mt-1">Simulate your exact vehicle specs, annual highway miles, and local electricity rates with certified 5-year ROI reports.</p>
+    </div>
+    <a 
+      href="/#calculator-app" 
+      class="px-6 py-3 rounded-2xl bg-emerald-400 hover:bg-emerald-300 text-emerald-950 text-xs font-black shadow-lg flex-shrink-0 transition-all text-center w-full sm:w-auto"
+    >
+      <i class="fa-solid fa-calculator mr-1.5"></i> Open Free Calculator →
+    </a>
+  </div>
+
+  <!-- Section 6: FAQ Section -->
+  <h2 class="text-2xl sm:text-3xl font-black text-gray-950 mt-12 mb-4 tracking-tight">
+    6. Frequently Asked Questions: Tesla Supercharging Costs &amp; Memberships
+  </h2>
+  
+  <div class="space-y-4 my-8 not-prose">
+    <div class="p-5 bg-white border border-gray-200 rounded-2xl shadow-xs">
+      <h3 class="text-base font-black text-gray-950 mb-2">How much does a Tesla Supercharger cost per kWh in late 2026?</h3>
+      <p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium">
+        In late 2026, Tesla Supercharger rates in the United States average $0.40 to $0.43 per kWh for Tesla owners and subscribed non-Tesla members. For non-Tesla drivers charging pay-as-you-go without a membership, rates average $0.57 to $0.60 per kWh, with high-demand urban and peak-hour stations in California, New York, and Massachusetts reaching $0.63 to $0.72+ per kWh.
+      </p>
+    </div>
+
+    <div class="p-5 bg-white border border-gray-200 rounded-2xl shadow-xs">
+      <h3 class="text-base font-black text-gray-950 mb-2">Is the $12.99 per month Tesla Supercharging membership worth it for non-Tesla EVs?</h3>
+      <p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium">
+        Yes, if you charge at Superchargers at least twice a month or take a single multi-state road trip. The non-Tesla membership costs $12.99/month and discounts your rate by roughly $0.17 per kWh (from ~$0.58/kWh down to ~$0.41/kWh). The exact mathematical break-even point is 76.4 kWh per month ($12.99 ÷ $0.17). A single 10% to 80% charging session on an EV with an 80–90 kWh battery draws 56 to 65 kWh, meaning you break even in just 1.2 to 1.5 charging sessions.
+      </p>
+    </div>
+
+    <div class="p-5 bg-white border border-gray-200 rounded-2xl shadow-xs">
+      <h3 class="text-base font-black text-gray-950 mb-2">Is Tesla Supercharging more expensive than gasoline?</h3>
+      <p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium">
+        At non-member rates ($0.57–$0.60/kWh), Supercharging is actually more expensive per mile than fueling a fuel-efficient 30–35 MPG gas car at $3.50/gal. At 3.5 miles/kWh, a non-member paying $0.58/kWh spends approximately 16.6¢ per mile, while a 30 MPG gas car at $3.50/gal costs 11.7¢ per mile. However, home charging at the US average ($0.182/kWh = 5.2¢/mi) or overnight off-peak ($0.08/kWh = 2.5¢/mi) is 60% to 80% cheaper than gasoline.
+      </p>
+    </div>
+
+    <div class="p-5 bg-white border border-gray-200 rounded-2xl shadow-xs">
+      <h3 class="text-base font-black text-gray-950 mb-2">What are Tesla Supercharger idle fees and congestion fees?</h3>
+      <p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium">
+        Tesla charges an idle fee of $0.50 per minute once charging finishes if the station is at least 50% occupied, increasing to $1.00 per minute if the station is 100% full. The fee is waived if you disconnect within 5 minutes. Additionally, at select congested Superchargers, Tesla imposes a $1.00 per minute congestion fee if you continue charging past an 80% battery state of charge (SoC).
+      </p>
+    </div>
+
+    <div class="p-5 bg-white border border-gray-200 rounded-2xl shadow-xs">
+      <h3 class="text-base font-black text-gray-950 mb-2">Can Ford, Chevy, Rivian, and Hyundai EVs use Tesla Superchargers in 2026?</h3>
+      <p class="text-xs sm:text-sm text-gray-700 leading-relaxed font-medium">
+        Yes. Most major automakers—including Ford, General Motors (Chevy, GMC, Cadillac), Rivian, Hyundai, Kia, and Genesis—have official software access to over 17,800 Tesla V3 and V4 Supercharger stalls across North America. Drivers can charge using an OEM-approved NACS-to-CCS1 adapter and activate stalls directly via the Tesla smartphone app or their vehicle's native companion app.
+      </p>
+    </div>
+  </div>
+
+  <!-- Related Reading Section -->
+  <div class="mt-12 pt-8 border-t border-gray-200 not-prose">
+    <h3 class="text-sm font-black uppercase tracking-wider text-gray-500 mb-4">Related EV Charging &amp; Economics Research</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <a href="/blog/chevy-equinox-ev-charging-cost-at-home-us" class="p-4 rounded-2xl bg-gray-50 border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50/30 transition-all flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] font-black uppercase text-emerald-700 mb-1 block">Chevy EV Guide</span>
+          <strong class="text-xs sm:text-sm font-bold text-gray-950 line-clamp-2">Chevy Equinox EV Charging Cost at Home vs Supercharger (2026)</strong>
+        </div>
+        <span class="text-[11px] font-semibold text-emerald-600 mt-2 flex items-center gap-1">Read Guide →</span>
+      </a>
+      <a href="/blog/winter-ev-charging-cost-cold-weather-2026" class="p-4 rounded-2xl bg-gray-50 border border-gray-200 hover:border-emerald-500 hover:bg-emerald-50/30 transition-all flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] font-black uppercase text-emerald-700 mb-1 block">Seasonal Guide</span>
+          <strong class="text-xs sm:text-sm font-bold text-gray-950 line-clamp-2">Winter EV Charging Cost: How Much More Does Cold Weather Cost?</strong>
+        </div>
+        <span class="text-[11px] font-semibold text-emerald-600 mt-2 flex items-center gap-1">Read Guide →</span>
+      </a>
+    </div>
+  </div>
+</BlogLayout>
