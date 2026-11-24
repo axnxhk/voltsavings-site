@@ -8,9 +8,15 @@
   </url>
   <url>
     <loc>https://www.evcalculator.online/blog</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.evcalculator.online/blog/uk-january-2027-energy-price-cap-ev-charging-cost</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.evcalculator.online/blog/winter-ev-charging-cost-cold-weather-2026</loc>

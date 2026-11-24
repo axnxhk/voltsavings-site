@@ -4,7 +4,8 @@
 ## Core Interactive Tool
 - [EV Charging Cost Calculator (US & UK Modes)](https://www.evcalculator.online/): Calculate cost per mile, cost per full charge (0-100% & 10-80%), and monthly/annual savings vs gas or petrol with Level 2 charging loss factored in.
 
-## Key 2026 Data Guides & Cost Breakdowns
+## Key 2026/2027 Data Guides & Cost Breakdowns
+- [UK January 2027 Energy Price Cap EV Charging Cost vs Petrol (32.5p/kWh Math)](https://www.evcalculator.online/blog/uk-january-2027-energy-price-cap-ev-charging-cost)
 - [Winter EV Charging Cost & Cold Weather Economics (US & UK)](https://www.evcalculator.online/blog/winter-ev-charging-cost-cold-weather-2026)
 - [Tesla Supercharger Cost per kWh (Late 2026): Member vs Non-Member](https://www.evcalculator.online/blog/tesla-supercharger-cost-per-kwh-2026-member-vs-non-member)
 - [Tesla Model Y Home Charging Cost US](https://www.evcalculator.online/blog/ev-charging-cost-us-2026)
